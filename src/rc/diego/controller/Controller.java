@@ -6,36 +6,46 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import rc.diego.view.IndexJSP;
+import rc.diego.view.paymentDataJSP;
+import rc.diego.view.shoppingCartJSP;
+
 /**
  * Created by entakitos on 19/02/16.
  */
-public class Controller extends HttpServlet {
-
-    private InterfaceHelperDispatcher myDispatcher;
-
-    @Override
-    public void init() throws ServletException {
-        super.init();
-        myDispatcher=new JspHelperDispatcher(this.getServletContext());
-    }
+public class Controller extends HttpServlet implements InterfaceTaskMapper{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doGet(req, resp);
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp);
+
+    }
+
+    //TODO derivar estos métodos nunha clase separada
+    //TODO considerar usar o InterfaceTaskMapper ao largo de todo o proxecto
+    @Override
+    public void initializeShoppingCart() {
+
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPut(req, resp);
+    public void addToShoppingCart() {
+
     }
 
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doDelete(req, resp);
+    public void removeFromShoppingCart() {
+
+    }
+
+    @Override
+    public void pay() {
+
     }
 }

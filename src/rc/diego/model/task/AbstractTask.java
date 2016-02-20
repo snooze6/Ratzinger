@@ -1,4 +1,4 @@
-package rc.diego.model;
+package rc.diego.model.task;
 
 import java.util.List;
 

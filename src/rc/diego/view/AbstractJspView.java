@@ -16,6 +16,10 @@ public abstract class AbstractJspView {
         return viewUrl;
     }
 
+    protected void setViewUrl(String viewUrl) {
+        this.viewUrl = viewUrl;
+    }
+
     public HttpServletRequest getRequest() {
         return request;
     }

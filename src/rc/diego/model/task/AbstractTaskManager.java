@@ -1,4 +1,4 @@
-package rc.diego.model;
+package rc.diego.model.task;
 
 /**
  * Created by entakitos on 19/02/16.
