@@ -13,7 +13,7 @@ import rc.diego.view.shoppingCartJSP;
 /**
  * Created by entakitos on 19/02/16.
  */
-public class Controller extends HttpServlet implements InterfaceTaskMapper{
+public class Controller extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,25 +27,4 @@ public class Controller extends HttpServlet implements InterfaceTaskMapper{
 
     }
 
-    //TODO derivar estos métodos nunha clase separada
-    //TODO considerar usar o InterfaceTaskMapper ao largo de todo o proxecto
-    @Override
-    public void initializeShoppingCart() {
-
-    }
-
-    @Override
-    public void addToShoppingCart() {
-
-    }
-
-    @Override
-    public void removeFromShoppingCart() {
-
-    }
-
-    @Override
-    public void pay() {
-
-    }
 }

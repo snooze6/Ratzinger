@@ -7,7 +7,7 @@ import java.util.HashMap;
 /**
  * Created by entakitos on 20/02/16.
  */
-public class removeProduct extends AbstractTask {
+public class removeProduct implements InterfaceTask {
     private HashMap<String,Product> shoppingCart;
     private Product product;
 
@@ -33,7 +33,7 @@ public class removeProduct extends AbstractTask {
     }
 
     @Override
-    void run() {
+    public void run() {
 
         if(shoppingCart.containsKey(product.getName())){
             shoppingCart.remove(product.getName());

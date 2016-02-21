@@ -7,7 +7,7 @@ import java.util.HashMap;
 /**
  * Created by entakitos on 20/02/16.
  */
-public class resetShoppingCart extends AbstractTask {
+public class resetShoppingCart implements InterfaceTask {
     private HashMap<String,Product> shoppingCart;
 
     public HashMap<String,Product>  getShoppingCart() {
@@ -22,8 +22,9 @@ public class resetShoppingCart extends AbstractTask {
         this.shoppingCart = shoppingCart;
     }
 
+
     @Override
-    void run() {
+    public void run() {
 
         shoppingCart.clear();
 

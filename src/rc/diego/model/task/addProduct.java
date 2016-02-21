@@ -8,7 +8,7 @@ import java.util.HashMap;
 /**
  * Created by entakitos on 20/02/16.
  */
-public class addProduct extends AbstractTask {
+public class addProduct  implements InterfaceTask {
     private HashMap<String,Product> shoppingCart;
     private Product product;
 
@@ -34,7 +34,7 @@ public class addProduct extends AbstractTask {
     }
 
     @Override
-    void run() {
+    public void run() {
 
         if(shoppingCart.containsKey(product.getName())){
             Product p=shoppingCart.get(product.getName());
