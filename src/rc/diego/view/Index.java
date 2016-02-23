@@ -6,9 +6,9 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by entakitos on 20/02/16.
  */
-public class IndexJSP extends AbstractJspView{
+public class Index extends AbstractView {
 
-    public IndexJSP(HttpServletRequest request,HttpServletResponse response) {
+    public Index(HttpServletRequest request, HttpServletResponse response) {
         super(request, response);
         //TODO usar setViewURL(String str) para especificar donde se encontra a páxina
     }

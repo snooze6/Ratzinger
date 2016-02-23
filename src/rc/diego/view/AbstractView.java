@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by entakitos on 19/02/16.
  */
-public abstract class AbstractJspView {
+public abstract class AbstractView {
 
     protected String viewUrl;
     protected HttpServletRequest request;
@@ -28,7 +28,7 @@ public abstract class AbstractJspView {
         return response;
     }
 
-    public AbstractJspView(HttpServletRequest request, HttpServletResponse response) {
+    public AbstractView(HttpServletRequest request, HttpServletResponse response) {
         this.request = request;
         this.response = response;
     }

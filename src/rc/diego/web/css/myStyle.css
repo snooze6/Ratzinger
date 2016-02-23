@@ -1,0 +1,17 @@
+.demo-card-wide.mdl-card {
+  width: 900px;
+  margin:auto;
+  margin-top: 3%;
+}
+.demo-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 176px;
+  background: url('../images/online-music.bmp') center / cover;
+  background-repeat: no-repeat;
+  background-size: 239px;
+  background-color: #0194E1;
+}
+
+form *{
+  margin-bottom: 15px;
+}

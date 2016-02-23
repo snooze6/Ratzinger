@@ -2,7 +2,7 @@ package rc.diego.controller;
 
 import java.io.IOException;
 
-import rc.diego.view.AbstractJspView;
+import rc.diego.view.AbstractView;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -10,16 +10,16 @@ import javax.servlet.ServletException;
 /**
  * Created by entakitos on 19/02/16.
  */
-public class JspHelperDispatcher implements InterfaceHelperDispatcher{
+public class HelperDispatcher implements InterfaceHelperDispatcher{
 
     private ServletContext context;
 
-    public JspHelperDispatcher(ServletContext context) {
+    public HelperDispatcher(ServletContext context) {
         this.context = context;
     }
 
     @Override
-    public void forward(AbstractJspView view) {
+    public void forward(AbstractView view) {
 
         try {
             context.getRequestDispatcher(view.getViewUrl()).forward(view.getRequest(),view.getResponse());
@@ -32,7 +32,7 @@ public class JspHelperDispatcher implements InterfaceHelperDispatcher{
     }
 
     @Override
-    public void include(AbstractJspView view) {
+    public void include(AbstractView view) {
 
         try {
             context.getRequestDispatcher(view.getViewUrl()).include(view.getRequest(),view.getResponse());

@@ -6,10 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import rc.diego.view.IndexJSP;
-import rc.diego.view.paymentDataJSP;
-import rc.diego.view.shoppingCartJSP;
-
 /**
  * Created by entakitos on 19/02/16.
  */
