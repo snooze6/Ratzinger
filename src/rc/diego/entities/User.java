@@ -34,5 +34,8 @@ public class User extends BaseEntity{
         this.shoppingCart = shoppingCart;
     }
 
+    public User(){
+        this.shoppingCart = new HashMap<>();
+    }
 
 }

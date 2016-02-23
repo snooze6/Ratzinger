@@ -4,10 +4,10 @@ package rc.diego.entities;
  * Created by entakitos on 20/02/16.
  */
 public class Product extends BaseEntity{
-    private String name;
-    private String description;
-    private float unitaryPrice;
-    private int quantity;
+    protected String name;
+    protected String description;
+    protected float unitaryPrice;
+    protected int quantity;
 
     public String getName() {
         return name;
