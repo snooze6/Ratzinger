@@ -39,6 +39,6 @@ public class TaskMapper implements InterfaceTaskMapper{
     }
 
     public TaskMapper() {
-        this.tm=new TaskManager();;
+        this.tm=new TaskManager();
     }
 }
