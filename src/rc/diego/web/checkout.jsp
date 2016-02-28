@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,7 +15,7 @@
     </head>
     <body>
 
-      <form action="/local/prueba" method="POST">
+      <form action="/practica3_diego_reirizcores/index.jsp" method="POST">
         <div class="demo-card-wide mdl-card mdl-shadow--2dp">
           <div class="mdl-card__title" id="cabeceraTarxetaInicio">
             <h2 class="mdl-card__title-text">Datos de Compra</h2>
@@ -23,17 +24,17 @@
           <!--contido tarxeta-->
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="nombre">
+                <input class="mdl-textfield__input" type="text" id="nombre" pattern="text">
                 <label class="mdl-textfield__label" for="nombre">Text...</label>
               </div>
               <br/>
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="email" id="email">
+                <input class="mdl-textfield__input" type="email" id="email" pattern="email">
                 <label class="mdl-textfield__label" for="email">e-mail...</label>
               </div>
 
-
+               <input type="hidden" name="action" value="confirmPayment">
             <!--fin contido tarxeta-->
           </div>
           <div class="mdl-card__actions mdl-card--border">

@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,7 +15,7 @@
     </head>
     <body>
 
-      <form action="/local/prueba" method="POST">
+      <form action="/practica3_diego_reirizcores/index.jsp" method="POST">
         <div class="demo-card-wide mdl-card mdl-shadow--2dp">
           <div class="mdl-card__title" id="cabeceraTarxetaInicio">
             <h2 class="mdl-card__title-text">Welcome</h2>
@@ -39,6 +40,7 @@
 
               <label for="cantidad">Cantidad:</label>
               <input type="text" name="cantidad" value="1" pattern="[0-9]*">
+              <input type="hidden" name="action" value="buyItem">
 
 
 
@@ -47,6 +49,7 @@
           </div>
           <div class="mdl-card__actions mdl-card--border">
             <input type="submit" value="Seleccionar Producto" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;">
+            <input type="button" value="Ver Carrito" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;">
           </div>
 
         </div>

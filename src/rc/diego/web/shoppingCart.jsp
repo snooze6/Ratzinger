@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
   <html>
     <head>
@@ -14,7 +15,7 @@
     </head>
     <body>
 
-      <form action="/local/prueba" method="POST">
+      <form action="/practica3_diego_reirizcores/index.jsp" method="POST">
         <div class="demo-card-wide mdl-card mdl-shadow--2dp">
           <div class="mdl-card__title" id="cabeceraTarxetaCarrito">
             <h2 class="mdl-card__title-text">Carrito</h2>
@@ -75,6 +76,7 @@
             </tfoot>
           </table>
 
+            <input type="hidden" name="action" value="checkout">
             <!--fin contido tarxeta-->
       
           <div class="mdl-card__actions mdl-card--border">
@@ -82,7 +84,7 @@
               Volver
             </a>
             <input type="submit" value="Comprar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;">
-              <input type="button" value="ELIMINAR" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;color:#F44336;">
+            <input type="button" value="ELIMINAR" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;color:#F44336;">
           </div>
       
         </div>
