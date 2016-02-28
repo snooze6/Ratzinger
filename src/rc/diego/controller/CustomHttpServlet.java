@@ -18,8 +18,12 @@ public abstract class CustomHttpServlet extends HttpServlet{
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.service(req, resp);
         taskMapper = new TaskMapper();
-
         HelperDispatcher hd=new HelperDispatcher(getServletContext());
         viewManager = new ViewManager(hd,req,resp);
+    }
+
+    public CustomHttpServlet() {
+        super();
+
     }
 }

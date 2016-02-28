@@ -1,6 +1,7 @@
 package rc.diego.controller;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -9,7 +10,7 @@ import java.io.IOException;
 /**
  * Created by entakitos on 19/02/16.
  */
-public class Controller extends CustomHttpServlet {
+public class Controller extends HttpServlet {
 
     private final String ACTION_SHOW_INDEX = "index";
     private final String ACTION_SHOW_SHOPPING_CART = "shoppingCart";
@@ -19,9 +20,16 @@ public class Controller extends CustomHttpServlet {
     private final String ACTION_CHECKOUT = "checkout";
     private final String ACTION_CONFIRM_PAYMENT = "confirmPayment";
 
+    protected InterfaceTaskMapper taskMapper;
+    protected InterfaceViewManager viewManager;
+
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+
+        taskMapper = new TaskMapper();
+        HelperDispatcher hd=new HelperDispatcher(getServletContext());
+        viewManager = new ViewManager(hd,req,resp);
 
         viewManager.showIndex();
 
@@ -29,7 +37,10 @@ public class Controller extends CustomHttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+
+        taskMapper = new TaskMapper();
+        HelperDispatcher hd=new HelperDispatcher(getServletContext());
+        viewManager = new ViewManager(hd,req,resp);
 
         HttpSession session=req.getSession(false);
 
@@ -38,7 +49,7 @@ public class Controller extends CustomHttpServlet {
             taskMapper.initializeSession(session);
         }
 
-        switch ((String)req.getAttribute("action")){
+        switch ((String)req.getParameter("action")){
             case ACTION_SHOW_INDEX:
                 viewManager.showIndex();
                 break;

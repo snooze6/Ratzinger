@@ -2,21 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c6f8ae3-cfdf-4333-b6b2-37d50d51f686" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/rc/diego/model/task/initializeSesion.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/rc/diego/entities/BaseEntity.java" afterPath="$PROJECT_DIR$/src/rc/diego/model/entities/BaseEntity.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/rc/diego/entities/Product.java" afterPath="$PROJECT_DIR$/src/rc/diego/model/entities/Product.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/rc/diego/entities/ProductCd.java" afterPath="$PROJECT_DIR$/src/rc/diego/model/entities/ProductCd.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/rc/diego/entities/User.java" afterPath="$PROJECT_DIR$/src/rc/diego/model/entities/User.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rc/diego/controller/Controller.java" afterPath="$PROJECT_DIR$/src/rc/diego/controller/Controller.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rc/diego/controller/CustomHttpServlet.java" afterPath="$PROJECT_DIR$/src/rc/diego/controller/CustomHttpServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rc/diego/controller/InterfaceTaskMapper.java" afterPath="$PROJECT_DIR$/src/rc/diego/controller/InterfaceTaskMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rc/diego/controller/TaskMapper.java" afterPath="$PROJECT_DIR$/src/rc/diego/controller/TaskMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rc/diego/controller/ViewManager.java" afterPath="$PROJECT_DIR$/src/rc/diego/controller/ViewManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rc/diego/model/task/addProduct.java" afterPath="$PROJECT_DIR$/src/rc/diego/model/task/addProduct.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rc/diego/model/task/removeProduct.java" afterPath="$PROJECT_DIR$/src/rc/diego/model/task/removeProduct.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rc/diego/model/task/resetShoppingCart.java" afterPath="$PROJECT_DIR$/src/rc/diego/model/task/resetShoppingCart.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rc/diego/model/task/updateProduct.java" afterPath="$PROJECT_DIR$/src/rc/diego/model/task/updateProduct.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rc/diego/view/Index.java" afterPath="$PROJECT_DIR$/src/rc/diego/view/Index.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rc/diego/view/payment.java" afterPath="$PROJECT_DIR$/src/rc/diego/view/payment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rc/diego/view/paymentData.java" afterPath="$PROJECT_DIR$/src/rc/diego/view/paymentData.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rc/diego/view/shoppingCart.java" afterPath="$PROJECT_DIR$/src/rc/diego/view/shoppingCart.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rc/diego/web/checkout.jsp" afterPath="$PROJECT_DIR$/src/rc/diego/web/checkout.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rc/diego/web/confirmBuy.jsp" afterPath="$PROJECT_DIR$/src/rc/diego/web/confirmBuy.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rc/diego/web/index.jsp" afterPath="$PROJECT_DIR$/src/rc/diego/web/index.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rc/diego/web/shoppingCart.jsp" afterPath="$PROJECT_DIR$/src/rc/diego/web/shoppingCart.jsp" />
     </list>
     <ignored path="DAWA-practica3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,18 +34,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TaskMapper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/rc/diego/controller/TaskMapper.java">
+      <file leaf-file-name="ViewManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rc/diego/controller/ViewManager.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="38" column="28" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1089#1090#0" expanded="true" />
-                <element signature="e#1146#1147#0" expanded="true" />
-                <element signature="e#1262#1263#0" expanded="true" />
-                <element signature="e#1303#1304#0" expanded="true" />
-              </folding>
+              <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -57,38 +47,29 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/rc/diego/controller/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.17384106">
-              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.67715234">
+              <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="initializeSesion.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/rc/diego/model/task/initializeSesion.java">
+      <file leaf-file-name="HelperDispatcher.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rc/diego/controller/HelperDispatcher.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#438#439#0" expanded="true" />
-                <element signature="e#520#521#0" expanded="true" />
-                <element signature="e#572#573#0" expanded="true" />
-                <element signature="e#610#611#0" expanded="true" />
-              </folding>
+              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/rc/diego/model/entities/User.java">
+      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rc/diego/web/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="64" selection-start-line="8" selection-start-column="64" selection-end-line="8" selection-end-column="64" />
-              <folding>
-                <element signature="e#807#808#0" expanded="true" />
-                <element signature="e#858#859#0" expanded="true" />
-              </folding>
+              <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -97,7 +78,7 @@
         <entry file="file://$PROJECT_DIR$/src/rc/diego/controller/CustomHttpServlet.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="46" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
+              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -105,21 +86,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InterfaceTaskMapper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/rc/diego/controller/InterfaceTaskMapper.java">
+      <file leaf-file-name="Index.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rc/diego/view/Index.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="70" selection-start-line="12" selection-start-column="70" selection-end-line="12" selection-end-column="70" />
+              <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InterfaceViewManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/rc/diego/controller/InterfaceViewManager.java">
+      <file leaf-file-name="confirmBuy.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rc/diego/web/confirmBuy.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
+              <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AbstractView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rc/diego/view/AbstractView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -146,7 +137,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/rc/diego/view/AbstractVista.java" />
         <option value="$PROJECT_DIR$/src/rc/diego/entities/BaseEntity.java" />
         <option value="$PROJECT_DIR$/src/rc/diego/model/AbstractTaskManager.java" />
         <option value="$PROJECT_DIR$/src/rc/diego/model/AbstractTask.java" />
@@ -155,7 +145,6 @@
         <option value="$PROJECT_DIR$/src/rc/diego/view/AbstractView.java" />
         <option value="$PROJECT_DIR$/src/rc/diego/model/repository/AbstractRepository.java" />
         <option value="$PROJECT_DIR$/src/rc/diego/view/AbstractJspView.java" />
-        <option value="$PROJECT_DIR$/src/rc/diego/view/Index.java" />
         <option value="$PROJECT_DIR$/src/rc/diego/view/shoppingCartJSP.java" />
         <option value="$PROJECT_DIR$/src/rc/diego/view/paymentJSP.java" />
         <option value="$PROJECT_DIR$/src/rc/diego/controller/HelperDispatcher.java" />
@@ -184,15 +173,21 @@
         <option value="$PROJECT_DIR$/src/rc/diego/entities/User.java" />
         <option value="$PROJECT_DIR$/src/rc/diego/entities/ProductCd.java" />
         <option value="$PROJECT_DIR$/src/rc/diego/entities/Product.java" />
-        <option value="$PROJECT_DIR$/src/rc/diego/web/index.jsp" />
-        <option value="$PROJECT_DIR$/src/rc/diego/view/paymentData.java" />
         <option value="$PROJECT_DIR$/src/rc/diego/controller/ViewManager.java" />
         <option value="$PROJECT_DIR$/src/rc/diego/controller/TaskMapper.java" />
         <option value="$PROJECT_DIR$/src/rc/diego/controller/InterfaceTaskMapper.java" />
-        <option value="$PROJECT_DIR$/src/rc/diego/controller/CustomHttpServlet.java" />
-        <option value="$PROJECT_DIR$/src/rc/diego/controller/Controller.java" />
         <option value="$PROJECT_DIR$/src/rc/diego/model/entities/User.java" />
         <option value="$PROJECT_DIR$/src/rc/diego/model/task/initializeSesion.java" />
+        <option value="$PROJECT_DIR$/src/rc/diego/view/Index.java" />
+        <option value="$PROJECT_DIR$/src/rc/diego/view/payment.java" />
+        <option value="$PROJECT_DIR$/src/rc/diego/view/paymentData.java" />
+        <option value="$PROJECT_DIR$/src/rc/diego/view/shoppingCart.java" />
+        <option value="$PROJECT_DIR$/src/rc/diego/controller/CustomHttpServlet.java" />
+        <option value="$PROJECT_DIR$/src/rc/diego/web/shoppingCart.jsp" />
+        <option value="$PROJECT_DIR$/src/rc/diego/web/checkout.jsp" />
+        <option value="$PROJECT_DIR$/src/rc/diego/web/confirmBuy.jsp" />
+        <option value="$PROJECT_DIR$/src/rc/diego/web/index.jsp" />
+        <option value="$PROJECT_DIR$/src/rc/diego/controller/Controller.java" />
       </list>
     </option>
   </component>
@@ -314,28 +309,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DAWA-practica3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DAWA-practica3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="diego" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="model" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -400,7 +373,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="/usr/share/tomcat8/lib/servlet-api.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -687,7 +660,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="0" width="1920" height="1080" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -733,21 +706,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/rc/diego/model/entities/BaseEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rc/diego/controller/HelperDispatcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/rc/diego/controller/ViewManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -908,27 +866,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/rc/diego/view/shoppingCart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rc/diego/view/payment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rc/diego/view/AbstractView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/rc/diego/model/entities/Product.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -940,69 +877,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rc/diego/controller/InterfaceHelperDispatcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rc/diego/web/shoppingCart.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rc/diego/web/checkout.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rc/diego/web/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rc/diego/view/Index.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rc/diego/controller/HelperDispatcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22350994">
-          <caret line="14" column="26" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rc/diego/controller/ViewManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="39" selection-start-line="43" selection-start-column="39" selection-end-line="43" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rc/diego/view/paymentData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17384106">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1062,29 +936,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/rc/diego/controller/InterfaceViewManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/rc/diego/controller/InterfaceTaskMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="70" selection-start-line="12" selection-start-column="70" selection-end-line="12" selection-end-column="70" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rc/diego/controller/CustomHttpServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="46" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1127,10 +983,132 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/rc/diego/view/shoppingCart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rc/diego/view/paymentData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/share/tomcat8/lib/servlet-api.jar!/javax/servlet/http/HttpServlet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.3350785">
+          <caret line="177" column="20" selection-start-line="177" selection-start-column="20" selection-end-line="177" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rc/diego/controller/InterfaceViewManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rc/diego/controller/InterfaceHelperDispatcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rc/diego/view/payment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="36" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rc/diego/view/AbstractView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rc/diego/controller/ViewManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rc/diego/controller/HelperDispatcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rc/diego/controller/CustomHttpServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rc/diego/web/shoppingCart.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22350994">
+          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rc/diego/web/checkout.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14770241">
+          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rc/diego/web/confirmBuy.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rc/diego/view/Index.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rc/diego/web/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/rc/diego/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17384106">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.67715234">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding />
         </state>
       </provider>
