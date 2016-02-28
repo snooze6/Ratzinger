@@ -11,15 +11,15 @@ import java.io.IOException;
  */
 public abstract class CustomHttpServlet extends HttpServlet{
 
-    protected InterfaceTaskMapper tm;
-    protected InterfaceViewManager vm;
+    protected InterfaceTaskMapper taskMapper;
+    protected InterfaceViewManager viewManager;
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.service(req, resp);
-        tm = new TaskMapper();
+        taskMapper = new TaskMapper();
 
         HelperDispatcher hd=new HelperDispatcher(getServletContext());
-        vm = new ViewManager(hd,req,resp);
+        viewManager = new ViewManager(hd,req,resp);
     }
 }

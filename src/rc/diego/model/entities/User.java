@@ -1,4 +1,4 @@
-package rc.diego.entities;
+package rc.diego.model.entities;
 
 import java.util.HashMap;
 
@@ -6,6 +6,8 @@ import java.util.HashMap;
  * Created by entakitos on 20/02/16.
  */
 public class User extends BaseEntity{
+    public final static String SESSION_ATTRIBUTE_USER="usuario";
+
     private String name;
     private String eMail;
     private HashMap<String,Product> shoppingCart;

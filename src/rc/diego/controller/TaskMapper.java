@@ -1,9 +1,10 @@
 package rc.diego.controller;
 
-import rc.diego.entities.Product;
-import rc.diego.entities.User;
+import rc.diego.model.entities.Product;
+import rc.diego.model.entities.User;
 import rc.diego.model.task.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 
 /**
@@ -31,6 +32,11 @@ public class TaskMapper implements InterfaceTaskMapper{
     @Override
     public void updateShoppingCart(HashMap<String, Product> shoppingCart, Product product) {
         tm.runTask(new updateProduct(shoppingCart, product));
+    }
+
+    @Override
+    public void initializeSession(HttpSession session) {
+        tm.runTask(new initializeSesion(session));
     }
 
     @Override

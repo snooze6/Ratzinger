@@ -1,4 +1,4 @@
-package rc.diego.entities;
+package rc.diego.model.entities;
 
 /**
  * Created by entakitos on 20/02/16.

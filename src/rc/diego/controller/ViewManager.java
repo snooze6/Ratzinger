@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import rc.diego.view.Index;
+import rc.diego.view.payment;
 import rc.diego.view.paymentData;
 import rc.diego.view.shoppingCart;
 
@@ -40,6 +41,6 @@ public class ViewManager implements InterfaceViewManager {
 
     @Override
     public void showPayment() {
-        dispatcher.forward(new Index(request,response));
+        dispatcher.forward(new payment(request,response));
     }
 }

@@ -1,8 +1,9 @@
 package rc.diego.controller;
 
-import rc.diego.entities.Product;
-import rc.diego.entities.User;
+import rc.diego.model.entities.Product;
+import rc.diego.model.entities.User;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 
 /**
@@ -13,5 +14,6 @@ public interface InterfaceTaskMapper {
     void addToShoppingCart(HashMap<String,Product>  shoppingCart, Product product);
     void removeFromShoppingCart(HashMap<String,Product>  shoppingCart, Product product);
     void updateShoppingCart(HashMap<String,Product>  shoppingCart, Product product);
+    void initializeSession(HttpSession session);
     void pay(User user);
 }

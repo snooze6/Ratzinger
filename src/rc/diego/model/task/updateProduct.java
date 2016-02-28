@@ -1,6 +1,6 @@
 package rc.diego.model.task;
 
-import rc.diego.entities.Product;
+import rc.diego.model.entities.Product;
 
 import java.util.HashMap;
 
