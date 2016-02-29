@@ -14,6 +14,7 @@
       <link rel="stylesheet" href="./web/css/myStyle.css">
       <script src="./web/js/material.min.js"></script>
       <script src="./web/js/jquery-2.1.4.js"></script>
+      <script src="./web/js/shoppingCart.js"></script>
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
       <title>Musica para DAA - Carrito</title>
@@ -21,7 +22,7 @@
     </head>
     <body>
 
-      <form action="/practica3_diego_reirizcores/index.jsp" method="POST">
+      <form id="form" action="/practica3_diego_reirizcores/index.jsp" method="POST">
         <div class="demo-card-wide mdl-card mdl-shadow--2dp">
           <div class="mdl-card__title" id="cabeceraTarxetaCarrito">
             <h2 class="mdl-card__title-text">Carrito</h2>
@@ -51,7 +52,7 @@
                                 <c:set var="total" value="${total + producto.value.getUnitaryPrice() * producto.value.getQuantity()}"></c:set>
       						<td>
                                 <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" >
-                                  <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input">
+                                  <input type="checkbox" id="checkbox-${producto.value.getName()}" name="checkbox-${producto.value.getName()}" class="mdl-checkbox__input">
                                 </label>
       						</td>
       					</tr>
@@ -86,15 +87,26 @@
             </tfoot>
           </table>
 
-            <input type="hidden" name="action" value="checkout">
+            <input type="hidden" name="action" id="action" value="checkout">
             <!--fin contido tarxeta-->
 
           <div class="mdl-card__actions mdl-card--border">
             <a href="/practica3_diego_reirizcores/index.jsp" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
               Volver
             </a>
-            <input type="submit" value="Comprar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;">
-            <input type="button" value="ELIMINAR" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;color:#F44336;">
+            <c:choose>
+                <c:when test="${total gt 0}">
+                    <input type="submit" value="COMPRAR" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;">
+                    <input type="button" value="ELIMINAR" id="eliminar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;color:#F44336;">
+                </c:when>
+                <c:otherwise>
+                    <input type="submit" value="COMPRAR" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;" disabled>
+                    <input type="button" value="ELIMINAR" id="eliminar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;" disabled>
+                </c:otherwise>
+            </c:choose>
+
+
+
           </div>
 
         </div>

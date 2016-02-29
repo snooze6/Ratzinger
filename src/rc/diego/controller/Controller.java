@@ -77,7 +77,6 @@ public class Controller extends CustomHttpServlet {
 
                     break;
                 case ACTION_BUY_ITEM:
-                    //TODO:FALTA REALIZAR ACCION DE COMPRA
                     Product p= obterProducto(
                             req.getParameter(PARAMETER_CD_LIST),
                             Integer.parseInt(req.getParameter(PARAMETER_QUANTITY))
@@ -93,7 +92,38 @@ public class Controller extends CustomHttpServlet {
                     getViewManager().showShoppingCart();
                     break;
                 case ACTION_ERASE_ITEM:
-                    //TODO:FALTA REALIZAR ACCION DE BORRAR
+
+                    Enumeration enumeration=req.getParameterNames();
+                    System.out.println("VALORES DE DEPURACION");
+
+                    while (enumeration.hasMoreElements()) {
+                        String element = (String)enumeration.nextElement();
+
+                        if(element.contains("checkbox-")) {
+                            element.replace("checkbox-", "");
+
+                            User u3=(User) session.getAttribute(User.SESSION_ATTRIBUTE_USER);
+
+                            Product product=new Product();
+                            product.setName(element.replace("checkbox-", "").trim());
+
+                            try {
+                                getTaskMapper().removeFromShoppingCart(
+                                        u3.getShoppingCart(),
+                                        product
+                                );
+
+                                /*
+                                    Execútase dentro de un bloque try catch por si se dese a
+                                    posibilidade de que se manipulara o html
+                                    e se intentara borrar un elemento que non existe no carrito
+                                 */
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
                     getViewManager().showShoppingCart();
                     break;
                 case ACTION_UPDATE_ITEM:
@@ -101,7 +131,6 @@ public class Controller extends CustomHttpServlet {
                     getViewManager().showShoppingCart();
                     break;
                 case ACTION_RESET:
-                    //TODO:FALTA REALIZAR ACCION DE ACTUALIZAR
                     User u2 = (User) session.getAttribute(User.SESSION_ATTRIBUTE_USER);
                     getTaskMapper().initializeShoppingCart(u2.getShoppingCart());
                     getViewManager().showIndex();
@@ -120,8 +149,8 @@ public class Controller extends CustomHttpServlet {
     private Product obterProducto(String descripcionCD,int quantity){
         Product p=new Product();
         StringTokenizer t = new StringTokenizer(descripcionCD,"|");
-        p.setName(t.nextToken());
-        p.setDescription("Autor: " + t.nextToken() + " de " + t.nextToken());
+        p.setName(t.nextToken().trim());
+        p.setDescription("Autor: " + t.nextToken().trim() + " de " + t.nextToken().trim());
         p.setUnitaryPrice(Float.parseFloat(t.nextToken().replace('$',' ').trim()));
         p.setQuantity(quantity);
 
