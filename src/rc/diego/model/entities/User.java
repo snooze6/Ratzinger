@@ -6,7 +6,10 @@ import java.util.HashMap;
  * Created by entakitos on 20/02/16.
  */
 public class User extends BaseEntity{
+
     public final static String SESSION_ATTRIBUTE_USER="usuario";
+    public final static String PARAMETER_NAME ="nombre";
+    public final static String PARAMETER_MAIL ="email";
 
     private String name;
     private String eMail;

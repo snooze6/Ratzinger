@@ -40,6 +40,11 @@ public class TaskMapper implements InterfaceTaskMapper{
     }
 
     @Override
+    public void setUserData(String name, String email, User user) {
+        tm.runTask(new setUserData(name, email, user));
+    }
+
+    @Override
     public void pay(User user) {
         //TODO not implemented yet
     }

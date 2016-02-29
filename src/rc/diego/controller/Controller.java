@@ -28,6 +28,7 @@ public class Controller extends CustomHttpServlet {
     private final String ACTION_UPDATE_ITEM = "updateItem";
     private final String ACTION_CHECKOUT = "checkout";
     private final String ACTION_CONFIRM_PAYMENT = "confirmPayment";
+    private final String ACTION_RESET = "reset";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -65,13 +66,21 @@ public class Controller extends CustomHttpServlet {
                     getViewManager().showPaymentData();
                     break;
                 case ACTION_CONFIRM_PAYMENT:
+
+                    getTaskMapper().setUserData(
+                            req.getParameter(User.PARAMETER_NAME),
+                            req.getParameter(User.PARAMETER_MAIL),
+                            (User) session.getAttribute(User.SESSION_ATTRIBUTE_USER)
+                    );
+
                     getViewManager().showPayment();
+
                     break;
                 case ACTION_BUY_ITEM:
                     //TODO:FALTA REALIZAR ACCION DE COMPRA
                     Product p= obterProducto(
-                        req.getParameter(PARAMETER_CD_LIST),
-                        Integer.parseInt(req.getParameter(PARAMETER_QUANTITY))
+                            req.getParameter(PARAMETER_CD_LIST),
+                            Integer.parseInt(req.getParameter(PARAMETER_QUANTITY))
                     );
 
                     User u = (User) session.getAttribute(User.SESSION_ATTRIBUTE_USER);
@@ -90,6 +99,13 @@ public class Controller extends CustomHttpServlet {
                 case ACTION_UPDATE_ITEM:
                     //TODO:FALTA REALIZAR ACCION DE ACTUALIZAR
                     getViewManager().showShoppingCart();
+                    break;
+                case ACTION_RESET:
+                    //TODO:FALTA REALIZAR ACCION DE ACTUALIZAR
+                    User u2 = (User) session.getAttribute(User.SESSION_ATTRIBUTE_USER);
+                    getTaskMapper().initializeShoppingCart(u2.getShoppingCart());
+                    getViewManager().showIndex();
+
                     break;
                 default:
                     getViewManager().showIndex();

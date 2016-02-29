@@ -15,5 +15,6 @@ public interface InterfaceTaskMapper {
     void removeFromShoppingCart(HashMap<String,Product>  shoppingCart, Product product);
     void updateShoppingCart(HashMap<String,Product>  shoppingCart, Product product);
     void initializeSession(HttpSession session);
+    void setUserData(String name, String email, User user);
     void pay(User user);
 }

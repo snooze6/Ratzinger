@@ -13,6 +13,7 @@
       <link rel="stylesheet" href="./web/css/material.min.css">
       <link rel="stylesheet" href="./web/css/myStyle.css">
       <script src="./web/js/material.min.js"></script>
+      <script src="./web/js/jquery-2.1.4.js"></script>
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
       <title>Musica para DAA - Carrito</title>
@@ -33,7 +34,8 @@
               <tr>
                 <th class="mdl-data-table__cell--non-numeric">CD</th>
                 <th>Cantidad</th>
-                <th>Precio</th>
+                <th>Precio Unitario</th>
+                <th>Precio Total</th>
                 <th></th>
               </tr>
             </thead>
@@ -45,10 +47,12 @@
       						<td>${producto.value.getName()}</td>
       						<td>${producto.value.getQuantity()}</td>
       						<td>${producto.value.getUnitaryPrice()}&euro;</td>
+      						<td><fmt:formatNumber value="${producto.value.getUnitaryPrice() * producto.value.getQuantity()}" type="currency"/></td>
+                                <c:set var="total" value="${total + producto.value.getUnitaryPrice() * producto.value.getQuantity()}"></c:set>
       						<td>
-                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" >
-                      <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input">
-                    </label>
+                                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" >
+                                  <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input">
+                                </label>
       						</td>
       					</tr>
 
@@ -58,9 +62,24 @@
             <tfoot>
 
                 <tr>
-                  <th class="mdl-data-table__cell--non-numeric">Precio Total</th>
+                  <th class="mdl-data-table__cell--non-numeric">Precio Sin Iva:</th>
                   <th></th>
-                  <th>XX.xx€</th>
+                  <th></th>
+                  <th><fmt:formatNumber value="${total}" type="currency"/></th>
+                  <th></th>
+                </tr>
+                <tr>
+                  <th class="mdl-data-table__cell--non-numeric">IVA(21%):</th>
+                  <th></th>
+                  <th></th>
+                  <th><fmt:formatNumber value="${total * 21 / 100}" type="currency"/></th>
+                  <th></th>
+                </tr>
+                <tr>
+                  <th class="mdl-data-table__cell--non-numeric">Precio Total:</th>
+                  <th></th>
+                  <th></th>
+                  <th><fmt:formatNumber value="${total + total * 21 / 100}" type="currency"/></th>
                   <th></th>
                 </tr>
 
