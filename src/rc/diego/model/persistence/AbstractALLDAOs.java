@@ -6,5 +6,5 @@ package rc.diego.model.persistence;
  */
 public abstract class AbstractALLDAOs {
     //PROPERTIES
-    protected InterfaceDAOPedidos mockupDAO;
+    protected InterfaceDAOPedidos DAOPedidos;
 }

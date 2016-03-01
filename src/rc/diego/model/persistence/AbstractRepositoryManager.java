@@ -27,12 +27,12 @@ public abstract class AbstractRepositoryManager extends AbstractALLDAOs implemen
     }
 
     @Override
-    public InterfaceDAOPedidos getMockUpDAO() {
+    public InterfaceDAOPedidos getDAOPedidos() {
 
         AbstractRepository repository=repositories.get(0);
 
         if(repository != null)
-            return repository.mockupDAO;
+            return repository.DAOPedidos;
         else
             return null;
     }
