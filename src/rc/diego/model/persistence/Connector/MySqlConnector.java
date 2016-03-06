@@ -6,14 +6,19 @@ import java.sql.DriverManager;
 /**
  * Created by entakitos on 1/03/16.
  */
-public class MySqlConnector {
+public class MySqlConnector implements InterfaceConnector{
+    private String host="localhost";
+    private String database="dawa_04_test";
+    private String user="root";
+    private String passwd="root";
 
-    public Connection getConnection(String host, String database,String user,String passwd)throws Exception
+    public Connection getConnection()throws Exception
     {
         String url = "";
         try
         {
-            url = "jdbc:mysql://" + host + "/" + database;
+            url = "jdbc:mysql://"+host+"/"+database+"?user="+user+"&password="+passwd;
+            Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(url);
             System.out.println("Conexion establecida con " + url + "...");
             return con;

@@ -1,5 +1,6 @@
 package rc.diego.controller;
 
+import rc.diego.model.entities.Pedido;
 import rc.diego.model.entities.Product;
 import rc.diego.model.entities.User;
 
@@ -17,4 +18,6 @@ public interface InterfaceTaskMapper {
     void initializeSession(HttpSession session);
     void setUserData(String name, String email, User user);
     void pay(User user);
+
+    void insertPedido(Pedido pedido);
 }

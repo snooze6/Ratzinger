@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
   <html>
     <head>
@@ -9,6 +10,7 @@
       <link rel="stylesheet" href="./web/css/material.min.css">
       <link rel="stylesheet" href="./web/css/myStyle.css">
       <script src="./web/js/material.min.js"></script>
+      <script src="./web/js/jquery-2.1.4.js"></script>
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
       <title>Musica para DAA</title>
@@ -23,11 +25,10 @@
           <div class="mdl-card__supporting-text">
           <!--contido tarxeta-->
 
-              Su compra se ha realizado con éxcito, en breves le llegará un correo a <strong>usuario@correo.com</strong> con los datos de la compra efectuada.
-              
+               <p>Gracias por confiar en nosotros <strong><c:out value="${sessionScope.usuario.getName()}"/></strong>.</p>
+              <p>Su compra se ha realizado con éxito, en breves le llegará un correo a <strong><c:out value="${sessionScope.usuario.geteMail()}"/></strong> con los datos de la compra efectuada.</p>
 
-
-              <input type="hidden" name="action" value="index">
+              <input type="hidden" name="action" value="reset">
 
             <!--fin contido tarxeta-->
           </div>

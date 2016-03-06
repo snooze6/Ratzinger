@@ -1,5 +1,6 @@
 package rc.diego.controller;
 
+import rc.diego.model.entities.Pedido;
 import rc.diego.model.entities.Product;
 import rc.diego.model.entities.User;
 import rc.diego.model.task.*;
@@ -47,6 +48,11 @@ public class TaskMapper implements InterfaceTaskMapper{
     @Override
     public void pay(User user) {
         //TODO not implemented yet
+    }
+
+    @Override
+    public void insertPedido(Pedido pedido) {
+        tm.runTask(new insertPedido(pedido));
     }
 
     public TaskMapper() {

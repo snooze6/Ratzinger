@@ -1,5 +1,6 @@
 package rc.diego.controller;
 
+import rc.diego.model.entities.Pedido;
 import rc.diego.model.entities.Product;
 import rc.diego.model.entities.User;
 
@@ -8,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.StringTokenizer;
@@ -71,6 +75,20 @@ public class Controller extends CustomHttpServlet {
                             req.getParameter(User.PARAMETER_NAME),
                             req.getParameter(User.PARAMETER_MAIL),
                             (User) session.getAttribute(User.SESSION_ATTRIBUTE_USER)
+                    );
+
+
+                    final float[] total = {0};
+                    ((User) session.getAttribute(User.SESSION_ATTRIBUTE_USER)).getShoppingCart().entrySet().forEach(stringProductEntry -> {
+                        total[0] +=stringProductEntry.getValue().getQuantity() * stringProductEntry.getValue().getUnitaryPrice();
+                    });
+
+                    getTaskMapper().insertPedido(
+                            new Pedido(
+                                    (User) session.getAttribute(User.SESSION_ATTRIBUTE_USER),
+                                    new Date(),
+                                    total[0]
+                            )
                     );
 
                     getViewManager().showPayment();
