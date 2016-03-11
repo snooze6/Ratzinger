@@ -1,10 +1,12 @@
 package rc.diego.model.persistence;
 
 import rc.diego.model.entities.Pedido;
+import rc.diego.model.persistence.Connector.MySQLContract;
 import rc.diego.model.persistence.Connector.MySqlConnector;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -17,7 +19,7 @@ public class PedidosMySqlDAO implements InterfaceDAOPedidos {
     PreparedStatement insertOrder = null;
     PreparedStatement insertProductOrder = null;
 
-    String insertOrderSQL = "INSERT INTO orders  (`user`,`email`,`total`)  VALUES(?,?,?)";
+    String insertOrderSQL = "INSERT INTO "+ MySQLContract.Orders.TABLE_NAME+"  (`"+MySQLContract.Orders.USER+"`,`"+MySQLContract.Orders.EMAIL+"`,`"+MySQLContract.Orders.TOTAL+"`)  VALUES(?,?,?)";
     //String insertProductSQL = "INSERT INTO products('id_pedido','name','description','unitary_price','quantity') VALUES(?,?,?,?,?);";
 
 
@@ -36,6 +38,11 @@ public class PedidosMySqlDAO implements InterfaceDAOPedidos {
             insertOrder.setString(2,pedido.getUser().geteMail());
             insertOrder.setFloat(3,pedido.getTotal());
             int row=insertOrder.executeUpdate();
+
+            ResultSet generatedKeys=insertOrder.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                int id = generatedKeys.getInt(MySQLContract.Orders.ID);
+            }
 
 //            pedido.getUser().getShoppingCart().entrySet().forEach(stringProductEntry -> {
 //
