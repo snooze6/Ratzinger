@@ -1,11 +1,11 @@
-package rc.diego.model.persistence.VO;
+package rc.diego.model.VO;
 
 /**
  * Created by entakitos on 11/03/16.
  */
-public class VOOrderProduct {
+public class VOOrdersLine {
     private VOOrder order;
-    private VOProduct product;
+    private VOCd cd;
     private float unitaryPrice;
     private int quantity;
 
@@ -17,12 +17,12 @@ public class VOOrderProduct {
         this.order = order;
     }
 
-    public VOProduct getProduct() {
-        return product;
+    public VOCd getCd() {
+        return cd;
     }
 
-    public void setProduct(VOProduct product) {
-        this.product = product;
+    public void setCd(VOCd cd) {
+        this.cd = cd;
     }
 
     public float getUnitaryPrice() {
@@ -41,13 +41,13 @@ public class VOOrderProduct {
         this.quantity = quantity;
     }
 
-    public VOOrderProduct() {
+    public VOOrdersLine() {
 
     }
 
-    public VOOrderProduct(VOOrder order, VOProduct product, float unitaryPrice, int quantity) {
+    public VOOrdersLine(VOOrder order, VOCd cd, float unitaryPrice, int quantity) {
         this.order = order;
-        this.product = product;
+        this.cd = cd;
         this.unitaryPrice = unitaryPrice;
         this.quantity = quantity;
     }

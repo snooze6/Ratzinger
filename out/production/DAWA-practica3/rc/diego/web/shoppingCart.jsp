@@ -42,7 +42,7 @@
             </thead>
             <tbody>
 
-      				<c:forEach var="producto" items="${sessionScope.usuario.getShoppingCart()}">
+      				<c:forEach var="producto" items="${sessionScope.cart}">
 
       					<tr>
       						<td>${producto.value.getName()}</td>

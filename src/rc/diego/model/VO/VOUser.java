@@ -1,19 +1,21 @@
-package rc.diego.model.entities;
+package rc.diego.model.VO;
 
 import java.util.HashMap;
 
 /**
  * Created by entakitos on 20/02/16.
  */
-public class User extends BaseEntity{
+public class VOUser extends BaseEntity{
 
     public final static String SESSION_ATTRIBUTE_USER="usuario";
     public final static String PARAMETER_NAME ="nombre";
     public final static String PARAMETER_MAIL ="email";
 
     private String name;
+    private String lastName;
+    private String DNI;
     private String eMail;
-    private HashMap<String,Product> shoppingCart;
+    private String password;
 
     public String getName() {
         return name;
@@ -31,16 +33,28 @@ public class User extends BaseEntity{
         this.eMail = eMail;
     }
 
-    public HashMap<String,Product> getShoppingCart() {
-        return shoppingCart;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setShoppingCart(HashMap<String,Product> shoppingCart) {
-        this.shoppingCart = shoppingCart;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public User(){
-        this.shoppingCart = new HashMap<>();
+    public String getDNI() {
+        return DNI;
+    }
+
+    public void setDNI(String DNI) {
+        this.DNI = DNI;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }

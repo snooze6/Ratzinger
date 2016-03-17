@@ -1,6 +1,7 @@
 package rc.diego.model.task;
 
-import rc.diego.model.entities.User;
+import rc.diego.model.VO.VOShoppingCart;
+import rc.diego.model.VO.VOUser;
 
 import javax.servlet.http.HttpSession;
 
@@ -21,7 +22,8 @@ public class initializeSesion implements InterfaceTask{
 
     @Override
     public void run() {
-        this.session.setAttribute(User.SESSION_ATTRIBUTE_USER, new User());
+        this.session.setAttribute(VOUser.SESSION_ATTRIBUTE_USER, new VOUser());
+        this.session.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART,new VOShoppingCart());
     }
 
     public initializeSesion(HttpSession session) {

@@ -1,6 +1,6 @@
 package rc.diego.model.task;
 
-import rc.diego.model.entities.User;
+import rc.diego.model.VO.VOUser;
 
 /**
  * Created by entakitos on 29/02/16.
@@ -9,7 +9,7 @@ public class setUserData implements InterfaceTask{
 
     private String name;
     private String email;
-    private User user;
+    private VOUser VOUser;
 
     public String getName() {
         return name;
@@ -27,23 +27,23 @@ public class setUserData implements InterfaceTask{
         this.email = email;
     }
 
-    public User getUser() {
-        return user;
+    public VOUser getVOUser() {
+        return VOUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setVOUser(VOUser VOUser) {
+        this.VOUser = VOUser;
     }
 
-    public setUserData(String name, String email, User user) {
+    public setUserData(String name, String email, VOUser VOUser) {
         this.name = name;
         this.email = email;
-        this.user = user;
+        this.VOUser = VOUser;
     }
 
     @Override
     public void run() {
-        user.setName(name);
-        user.seteMail(email);
+        VOUser.setName(name);
+        VOUser.seteMail(email);
     }
 }

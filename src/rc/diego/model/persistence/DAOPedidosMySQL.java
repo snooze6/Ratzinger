@@ -1,6 +1,8 @@
 package rc.diego.model.persistence;
 
-import rc.diego.model.entities.Pedido;
+import rc.diego.model.VO.VOShoppingCart;
+import rc.diego.model.VO.VOCd;
+import rc.diego.model.VO.VOUser;
 import rc.diego.model.persistence.Connector.MySQLContract;
 import rc.diego.model.persistence.Connector.MySqlConnector;
 
@@ -9,7 +11,7 @@ import java.sql.*;
 /**
  * Created by entakitos on 17/02/16.
  */
-public class PedidosMySqlDAO implements InterfaceDAOPedidos {
+public class DAOPedidosMySQL implements InterfaceDAOPedidos {
 
     private Connection con;
 
@@ -20,14 +22,8 @@ public class PedidosMySqlDAO implements InterfaceDAOPedidos {
     final String maxOrderIdSQL = "SELECT MAX(" + MySQLContract.Orders.ID + ") as "+MySQLContract.Orders.ID+" FROM "+ MySQLContract.Orders.TABLE_NAME + " LIMIT 1;";
     String insertProductSQL = "INSERT INTO "+MySQLContract.OrderProducsts.TABLE_NAME+"(`"+MySQLContract.OrderProducsts.ID_ORDER+"`,`"+MySQLContract.OrderProducsts.ID_PRODUCT+"`,`"+MySQLContract.OrderProducsts.UNITARY_PRICE+"`,`"+MySQLContract.OrderProducsts.QUANTITY+"`) VALUES(?,?,?,?);";
 
-
     @Override
-    public String getTestData() {
-        return "HELLO WORLD";
-    }
-
-    @Override
-    public void insertarPedido(Pedido pedido) throws SQLException {
+    public void insertarPedido(VOUser user, VOShoppingCart carrito) throws SQLException {
 
         try {
             con.setAutoCommit(false);
@@ -36,9 +32,16 @@ public class PedidosMySqlDAO implements InterfaceDAOPedidos {
                 insertOrder = con.prepareStatement(insertOrderSQL);
 //            insertOrder = con.prepareStatement(insertOrderSQL, Statement.RETURN_GENERATED_KEYS);
 
-            insertOrder.setString(1,pedido.getUser().getName());
-            insertOrder.setString(2,pedido.getUser().geteMail());
-            insertOrder.setFloat(3,pedido.getTotal());
+            insertOrder.setString(1, user.getName());
+            insertOrder.setString(2, user.geteMail());
+
+            final float[] total = {0};
+            carrito.forEach((s, voCd) -> {
+                total[0] +=voCd.getQuantity()*voCd.getUnitaryPrice();
+            });
+
+            insertOrder.setFloat(3, total[0]);
+
             int row=insertOrder.executeUpdate();
 
 //            ResultSet generatedKeys=insertOrder.getGeneratedKeys();
@@ -55,15 +58,13 @@ public class PedidosMySqlDAO implements InterfaceDAOPedidos {
                 int maxId=setId.getInt(MySQLContract.Orders.ID);
                 System.out.println("ID2 --> "+setId);
 
-                //TODO: nestos momentos solo se pode insertar un producto vinculado a cada pedido xa que non se esta recollendo o ID dos productos da BD
-                pedido.getUser().getShoppingCart().values().forEach(product -> {
+                carrito.forEach((s,product) -> {
                     try {
                         if (insertProductOrder == null)
                             insertProductOrder=con.prepareStatement(insertProductSQL);
 
-                        //'id_pedido','name','description','unitary_price','quantity'
                         insertProductOrder.setInt(1,maxId);
-                        insertProductOrder.setInt(2,maxId);
+                        insertProductOrder.setInt(2,product.getId());
                         insertProductOrder.setFloat(3,product.getUnitaryPrice());
                         insertProductOrder.setInt(4,product.getQuantity());
 
@@ -102,7 +103,7 @@ public class PedidosMySqlDAO implements InterfaceDAOPedidos {
         }
     }
 
-    public PedidosMySqlDAO() {
+    public DAOPedidosMySQL() {
         try {
             this.con = new MySqlConnector().getConnection();
         } catch (Exception e) {

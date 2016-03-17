@@ -1,8 +1,8 @@
 package rc.diego.controller;
 
-import rc.diego.model.entities.Pedido;
-import rc.diego.model.entities.Product;
-import rc.diego.model.entities.User;
+import rc.diego.model.VO.VOShoppingCart;
+import rc.diego.model.VO.VOCd;
+import rc.diego.model.VO.VOUser;
 import rc.diego.model.task.*;
 
 import javax.servlet.http.HttpSession;
@@ -16,23 +16,23 @@ public class TaskMapper implements InterfaceTaskMapper{
     private TaskManager tm;
 
     @Override
-    public void initializeShoppingCart(HashMap<String, Product> shoppingCart) {
+    public void initializeShoppingCart(HashMap<String, VOCd> shoppingCart) {
         tm.runTask(new resetShoppingCart(shoppingCart));
     }
 
     @Override
-    public void addToShoppingCart(HashMap<String, Product> shoppingCart, Product product) {
-        tm.runTask(new addProduct(shoppingCart,product));
+    public void addToShoppingCart(VOShoppingCart shoppingCart, VOCd VOCd) {
+        tm.runTask(new addProduct(shoppingCart, VOCd));
     }
 
     @Override
-    public void removeFromShoppingCart(HashMap<String, Product> shoppingCart, Product product) {
-        tm.runTask(new removeProduct(shoppingCart, product));
+    public void removeFromShoppingCart(HashMap<String, VOCd> shoppingCart, VOCd VOCd) {
+        tm.runTask(new removeProduct(shoppingCart, VOCd));
     }
 
     @Override
-    public void updateShoppingCart(HashMap<String, Product> shoppingCart, Product product) {
-        tm.runTask(new updateProduct(shoppingCart, product));
+    public void updateShoppingCart(HashMap<String, VOCd> shoppingCart, VOCd VOCd) {
+        tm.runTask(new updateProduct(shoppingCart, VOCd));
     }
 
     @Override
@@ -41,18 +41,18 @@ public class TaskMapper implements InterfaceTaskMapper{
     }
 
     @Override
-    public void setUserData(String name, String email, User user) {
-        tm.runTask(new setUserData(name, email, user));
+    public void setUserData(String name, String email, VOUser VOUser) {
+        tm.runTask(new setUserData(name, email, VOUser));
     }
 
     @Override
-    public void pay(User user) {
+    public void pay(VOUser VOUser) {
         //TODO not implemented yet
     }
 
     @Override
-    public void insertPedido(Pedido pedido) {
-        tm.runTask(new insertPedido(pedido));
+    public void insertOrder(VOUser user, VOShoppingCart carrito) {
+        tm.runTask(new insertOrder(user,carrito));
     }
 
     public TaskMapper() {

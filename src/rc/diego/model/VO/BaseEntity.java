@@ -1,4 +1,4 @@
-package rc.diego.model.entities;
+package rc.diego.model.VO;
 
 import java.io.Serializable;
 

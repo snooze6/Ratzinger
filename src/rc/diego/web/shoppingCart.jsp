@@ -42,17 +42,17 @@
             </thead>
             <tbody>
 
-      				<c:forEach var="producto" items="${sessionScope.usuario.getShoppingCart()}">
+      				<c:forEach var="producto" items="${sessionScope.cart}">
 
       					<tr>
-      						<td>${producto.value.getName()}</td>
+      						<td>${producto.value.getTitle()}</td>
       						<td>${producto.value.getQuantity()}</td>
       						<td>${producto.value.getUnitaryPrice()}&euro;</td>
       						<td><fmt:formatNumber value="${producto.value.getUnitaryPrice() * producto.value.getQuantity()}" type="currency"/></td>
                                 <c:set var="total" value="${total + producto.value.getUnitaryPrice() * producto.value.getQuantity()}"></c:set>
       						<td>
                                 <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" >
-                                  <input type="checkbox" id="checkbox-${producto.value.getName()}" name="checkbox-${producto.value.getName()}" class="mdl-checkbox__input">
+                                  <input type="checkbox" id="checkbox-${producto.value.getTitle()}" name="checkbox-${producto.value.getTitle()}" class="mdl-checkbox__input">
                                 </label>
       						</td>
       					</tr>

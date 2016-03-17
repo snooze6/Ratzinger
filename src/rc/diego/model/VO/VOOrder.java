@@ -1,16 +1,13 @@
-package rc.diego.model.persistence.VO;
-
-import java.sql.Date;
+package rc.diego.model.VO;
 
 /**
- * Created by entakitos on 11/03/16.
+ * Created by entakitos on 1/03/16.
  */
-public class VOOrder {
+public class VOOrder extends BaseEntity{
     private int id;
     private String user;
-    private String email;
     private float total;
-    private Date date;
+    private java.sql.Date date;
 
     public int getId() {
         return id;
@@ -28,14 +25,6 @@ public class VOOrder {
         this.user = user;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public float getTotal() {
         return total;
     }
@@ -44,11 +33,11 @@ public class VOOrder {
         this.total = total;
     }
 
-    public Date getDate() {
+    public java.sql.Date getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(java.sql.Date date) {
         this.date = date;
     }
 
@@ -56,10 +45,9 @@ public class VOOrder {
         this.id = id;
     }
 
-    public VOOrder(int id, String user, String email, float total, Date date) {
+    public VOOrder(int id, String user, String email, float total, java.sql.Date date) {
         this.id = id;
         this.user = user;
-        this.email = email;
         this.total = total;
         this.date = date;
     }

@@ -1,17 +1,14 @@
 package rc.diego.controller;
 
-import rc.diego.model.entities.Pedido;
-import rc.diego.model.entities.Product;
-import rc.diego.model.entities.User;
+import rc.diego.model.VO.VOCd;
+import rc.diego.model.VO.VOShoppingCart;
+import rc.diego.model.VO.VOUser;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.StringTokenizer;
@@ -72,38 +69,35 @@ public class Controller extends CustomHttpServlet {
                 case ACTION_CONFIRM_PAYMENT:
 
                     getTaskMapper().setUserData(
-                            req.getParameter(User.PARAMETER_NAME),
-                            req.getParameter(User.PARAMETER_MAIL),
-                            (User) session.getAttribute(User.SESSION_ATTRIBUTE_USER)
+                            req.getParameter(VOUser.PARAMETER_NAME),
+                            req.getParameter(VOUser.PARAMETER_MAIL),
+                            (VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER)
                     );
 
 
                     final float[] total = {0};
-                    ((User) session.getAttribute(User.SESSION_ATTRIBUTE_USER)).getShoppingCart().entrySet().forEach(stringProductEntry -> {
-                        total[0] +=stringProductEntry.getValue().getQuantity() * stringProductEntry.getValue().getUnitaryPrice();
+                    ((VOShoppingCart) session.getAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART)).forEach((s, voCd) -> {
+                        total[0] +=voCd.getQuantity() * voCd.getUnitaryPrice();
                     });
 
-                    getTaskMapper().insertPedido(
-                            new Pedido(
-                                    (User) session.getAttribute(User.SESSION_ATTRIBUTE_USER),
-                                    new Date(),
-                                    total[0]
-                            )
+                    getTaskMapper().insertOrder(
+                            (VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER),
+                            (VOShoppingCart) session.getAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART)
                     );
 
                     getViewManager().showPayment();
 
                     break;
                 case ACTION_BUY_ITEM:
-                    Product p= obterProducto(
+                    VOCd p= obterProducto(
                             req.getParameter(PARAMETER_CD_LIST),
                             Integer.parseInt(req.getParameter(PARAMETER_QUANTITY))
                     );
 
-                    User u = (User) session.getAttribute(User.SESSION_ATTRIBUTE_USER);
-                    HashMap<String, Product> m=u.getShoppingCart();
+                    VOShoppingCart sc=(VOShoppingCart)session.getAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART);
+
                     getTaskMapper().addToShoppingCart(
-                            m,
+                            sc,
                             p
                     );
 
@@ -118,17 +112,14 @@ public class Controller extends CustomHttpServlet {
                         String element = (String)enumeration.nextElement();
 
                         if(element.contains("checkbox-")) {
-                            element.replace("checkbox-", "");
 
-                            User u3=(User) session.getAttribute(User.SESSION_ATTRIBUTE_USER);
-
-                            Product product=new Product();
-                            product.setName(element.replace("checkbox-", "").trim());
+                            VOCd VOCd =new VOCd();
+                            VOCd.setTitle(element.replace("checkbox-", "").trim());
 
                             try {
                                 getTaskMapper().removeFromShoppingCart(
-                                        u3.getShoppingCart(),
-                                        product
+                                        (VOShoppingCart) session.getAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART),
+                                        VOCd
                                 );
 
                                 /*
@@ -149,8 +140,10 @@ public class Controller extends CustomHttpServlet {
                     getViewManager().showShoppingCart();
                     break;
                 case ACTION_RESET:
-                    User u2 = (User) session.getAttribute(User.SESSION_ATTRIBUTE_USER);
-                    getTaskMapper().initializeShoppingCart(u2.getShoppingCart());
+                    getTaskMapper().initializeShoppingCart(
+                            (VOShoppingCart) session.getAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART)
+                    );
+
                     getViewManager().showIndex();
 
                     break;
@@ -164,10 +157,10 @@ public class Controller extends CustomHttpServlet {
     }
 
     //TODO:quitar de aqui
-    private Product obterProducto(String descripcionCD,int quantity){
-        Product p=new Product();
+    private VOCd obterProducto(String descripcionCD, int quantity){
+        VOCd p=new VOCd();
         StringTokenizer t = new StringTokenizer(descripcionCD,"|");
-        p.setName(t.nextToken().trim());
+        p.setTitle(t.nextToken().trim());
         p.setDescription("Autor: " + t.nextToken().trim() + " de " + t.nextToken().trim());
         p.setUnitaryPrice(Float.parseFloat(t.nextToken().replace('$',' ').trim()));
         p.setQuantity(quantity);

@@ -1,16 +1,16 @@
-package rc.diego.model.persistence.VO;
+package rc.diego.model.VO;
 
 /**
- * Created by entakitos on 11/03/16.
+ * Created by entakitos on 20/02/16.
  */
-public class VOProduct {
+public class VOCd extends BaseEntity{
     private int id;
-    private String name;
+    private String title;
     private String description;
     private String author;
     private String country;
-    private float unitary_price;
-    private int quantity;
+    private float unitaryPrice;
+    private int quantity; //usase quantity en vez de stock, porque así podemos usar a mesma clase para representarostck de CDs como para representar unha cantidad determinada seleccionada
 
     public int getId() {
         return id;
@@ -20,12 +20,12 @@ public class VOProduct {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -52,12 +52,12 @@ public class VOProduct {
         this.country = country;
     }
 
-    public float getUnitary_price() {
-        return unitary_price;
+    public float getUnitaryPrice() {
+        return unitaryPrice;
     }
 
-    public void setUnitary_price(float unitary_price) {
-        this.unitary_price = unitary_price;
+    public void setUnitaryPrice(float unitaryPrice) {
+        this.unitaryPrice = unitaryPrice;
     }
 
     public int getQuantity() {
@@ -68,17 +68,17 @@ public class VOProduct {
         this.quantity = quantity;
     }
 
-    public VOProduct() {
+    public VOCd() {
 
     }
 
-    public VOProduct(int id, String name, String description, String author, String country, float unitary_price, int quantity) {
+    public VOCd(int id, String title, String description, String author, String country, float unitaryPrice, int quantity) {
         this.id = id;
-        this.name = name;
+        this.title = title;
         this.description = description;
         this.author = author;
         this.country = country;
-        this.unitary_price = unitary_price;
+        this.unitaryPrice = unitaryPrice;
         this.quantity = quantity;
     }
 }

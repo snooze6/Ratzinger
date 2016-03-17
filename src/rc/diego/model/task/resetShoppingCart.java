@@ -1,6 +1,6 @@
 package rc.diego.model.task;
 
-import rc.diego.model.entities.Product;
+import rc.diego.model.VO.VOCd;
 
 import java.util.HashMap;
 
@@ -8,17 +8,17 @@ import java.util.HashMap;
  * Created by entakitos on 20/02/16.
  */
 public class resetShoppingCart implements InterfaceTask {
-    private HashMap<String,Product> shoppingCart;
+    private HashMap<String,VOCd> shoppingCart;
 
-    public HashMap<String,Product>  getShoppingCart() {
+    public HashMap<String,VOCd>  getShoppingCart() {
         return shoppingCart;
     }
 
-    public void setShoppingCart(HashMap<String,Product>  shoppingCart) {
+    public void setShoppingCart(HashMap<String,VOCd>  shoppingCart) {
         this.shoppingCart = shoppingCart;
     }
 
-    public resetShoppingCart(HashMap<String,Product>  shoppingCart) {
+    public resetShoppingCart(HashMap<String,VOCd>  shoppingCart) {
         this.shoppingCart = shoppingCart;
     }
 
