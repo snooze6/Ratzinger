@@ -16,7 +16,7 @@ public class TaskMapper implements InterfaceTaskMapper{
     private TaskManager tm;
 
     @Override
-    public void initializeShoppingCart(HashMap<String, VOCd> shoppingCart) {
+    public void initializeShoppingCart(VOShoppingCart shoppingCart) {
         tm.runTask(new resetShoppingCart(shoppingCart));
     }
 
@@ -26,12 +26,12 @@ public class TaskMapper implements InterfaceTaskMapper{
     }
 
     @Override
-    public void removeFromShoppingCart(HashMap<String, VOCd> shoppingCart, VOCd VOCd) {
+    public void removeFromShoppingCart(VOShoppingCart shoppingCart, VOCd VOCd) {
         tm.runTask(new removeProduct(shoppingCart, VOCd));
     }
 
     @Override
-    public void updateShoppingCart(HashMap<String, VOCd> shoppingCart, VOCd VOCd) {
+    public void updateShoppingCart(VOShoppingCart shoppingCart, VOCd VOCd) {
         tm.runTask(new updateProduct(shoppingCart, VOCd));
     }
 
@@ -53,6 +53,14 @@ public class TaskMapper implements InterfaceTaskMapper{
     @Override
     public void insertOrder(VOUser user, VOShoppingCart carrito) {
         tm.runTask(new insertOrder(user,carrito));
+    }
+
+    @Override
+    public VOShoppingCart getAllCds() {
+        getAllCdsFromDataBase task= new getAllCdsFromDataBase();
+        tm.runTask(task);
+        VOShoppingCart shoppingCart = task.getShoppingCart();
+        return shoppingCart;
     }
 
     public TaskMapper() {

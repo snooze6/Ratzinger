@@ -9,4 +9,9 @@ public class DAOFactoryMySQL implements InterfaceDAOFactory{
     public InterfaceDAOPedidos getDAOPedidos() {
         return new DAOPedidosMySQL();
     }
+
+    @Override
+    public InterfaceDAOCds getDAOCds() {
+        return new DAOCdsMySQL();
+    }
 }

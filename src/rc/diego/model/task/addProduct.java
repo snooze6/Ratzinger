@@ -36,11 +36,11 @@ public class addProduct  implements InterfaceTask {
     @Override
     public void run() {
 
-        if(shoppingCart.containsKey(VOCd.getTitle())){
-            VOCd p=shoppingCart.get(VOCd.getTitle());
+        if(shoppingCart.containsKey(VOCd.getId())){
+            VOCd p=shoppingCart.get(VOCd.getId());
             p.setQuantity(p.getQuantity() + VOCd.getQuantity());
         }else{
-            shoppingCart.put(VOCd.getTitle(), VOCd);
+            shoppingCart.put(VOCd.getId(), VOCd);
         }
 
     }

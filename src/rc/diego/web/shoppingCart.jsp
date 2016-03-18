@@ -52,7 +52,7 @@
                                 <c:set var="total" value="${total + producto.value.getUnitaryPrice() * producto.value.getQuantity()}"></c:set>
       						<td>
                                 <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" >
-                                  <input type="checkbox" id="checkbox-${producto.value.getTitle()}" name="checkbox-${producto.value.getTitle()}" class="mdl-checkbox__input">
+                                  <input type="checkbox" id="checkbox-${producto.value.getId()}" name="checkbox-${producto.value.getId()}" class="mdl-checkbox__input">
                                 </label>
       						</td>
       					</tr>

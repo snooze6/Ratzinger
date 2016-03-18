@@ -1,21 +1,20 @@
 package rc.diego.model.task;
 
 import rc.diego.model.VO.VOCd;
-
-import java.util.HashMap;
+import rc.diego.model.VO.VOShoppingCart;
 
 /**
  * Created by entakitos on 20/02/16.
  */
 public class removeProduct implements InterfaceTask {
-    private HashMap<String, VOCd> shoppingCart;
+    private VOShoppingCart shoppingCart;
     private VOCd VOCd;
 
-    public HashMap<String, VOCd>  getShoppingCart() {
+    public VOShoppingCart getShoppingCart() {
         return shoppingCart;
     }
 
-    public void setShoppingCart(HashMap<String, VOCd>  shoppingCart) {
+    public void setShoppingCart(VOShoppingCart shoppingCart) {
         this.shoppingCart = shoppingCart;
     }
 
@@ -27,7 +26,7 @@ public class removeProduct implements InterfaceTask {
         this.VOCd = VOCd;
     }
 
-    public removeProduct(HashMap<String, VOCd>  shoppingCart, VOCd VOCd) {
+    public removeProduct(VOShoppingCart shoppingCart, VOCd VOCd) {
         this.shoppingCart = shoppingCart;
         this.VOCd = VOCd;
     }
@@ -35,8 +34,8 @@ public class removeProduct implements InterfaceTask {
     @Override
     public void run() {
 
-        if(shoppingCart.containsKey(VOCd.getTitle())){
-            shoppingCart.remove(VOCd.getTitle());
+        if(shoppingCart.containsKey(VOCd.getId())){
+            shoppingCart.remove(VOCd.getId());
         }
 
     }

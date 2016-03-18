@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.StringTokenizer;
 
 /**
@@ -34,15 +33,7 @@ public class Controller extends CustomHttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        HttpSession session=req.getSession(false);
-
-        if(session == null) { //crease unha sesion si non existe
-            session = req.getSession(true);
-            getTaskMapper().initializeSession(session);
-        }
-
-        getViewManager().showIndex();
-
+       doPost(req,resp);
     }
 
     @Override
@@ -55,9 +46,12 @@ public class Controller extends CustomHttpServlet {
             getTaskMapper().initializeSession(session);
         }
 
-//        try {
+        try {
             switch ((String) req.getParameter(PARAMETER_ACTION)) {
                 case ACTION_SHOW_INDEX:
+                    VOShoppingCart shoppingCart=getTaskMapper().getAllCds();
+                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
+
                     getViewManager().showIndex();
                     break;
                 case ACTION_SHOW_SHOPPING_CART:
@@ -106,7 +100,6 @@ public class Controller extends CustomHttpServlet {
                 case ACTION_ERASE_ITEM:
 
                     Enumeration enumeration=req.getParameterNames();
-                    System.out.println("VALORES DE DEPURACION");
 
                     while (enumeration.hasMoreElements()) {
                         String element = (String)enumeration.nextElement();
@@ -114,7 +107,7 @@ public class Controller extends CustomHttpServlet {
                         if(element.contains("checkbox-")) {
 
                             VOCd VOCd =new VOCd();
-                            VOCd.setTitle(element.replace("checkbox-", "").trim());
+                            VOCd.setId(Integer.parseInt(element.replace("checkbox-", "").trim()));
 
                             try {
                                 getTaskMapper().removeFromShoppingCart(
@@ -144,15 +137,23 @@ public class Controller extends CustomHttpServlet {
                             (VOShoppingCart) session.getAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART)
                     );
 
+                    VOShoppingCart shoppingCart2=getTaskMapper().getAllCds();
+                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart2);
+
                     getViewManager().showIndex();
 
                     break;
                 default:
+                    VOShoppingCart shoppingCart3=getTaskMapper().getAllCds();
+                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart3);
+
                     getViewManager().showIndex();
             }
-//        }catch (NullPointerException e){
-//            getViewManager().showIndex();
-//        }
+        }catch (NullPointerException e){
+            VOShoppingCart shoppingCart3=getTaskMapper().getAllCds();
+            req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart3);
+            getViewManager().showIndex();
+        }
 
     }
 
@@ -160,9 +161,10 @@ public class Controller extends CustomHttpServlet {
     private VOCd obterProducto(String descripcionCD, int quantity){
         VOCd p=new VOCd();
         StringTokenizer t = new StringTokenizer(descripcionCD,"|");
+        p.setId(Integer.parseInt(t.nextToken().trim()));
         p.setTitle(t.nextToken().trim());
         p.setDescription("Autor: " + t.nextToken().trim() + " de " + t.nextToken().trim());
-        p.setUnitaryPrice(Float.parseFloat(t.nextToken().replace('$',' ').trim()));
+        p.setUnitaryPrice(Float.parseFloat(t.nextToken().replace('€',' ').trim()));
         p.setQuantity(quantity);
 
         return p;

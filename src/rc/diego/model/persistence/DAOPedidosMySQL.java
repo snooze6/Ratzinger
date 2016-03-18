@@ -11,9 +11,7 @@ import java.sql.*;
 /**
  * Created by entakitos on 17/02/16.
  */
-public class DAOPedidosMySQL implements InterfaceDAOPedidos {
-
-    private Connection con;
+public class DAOPedidosMySQL extends AbstractDAOMySQL implements InterfaceDAOPedidos {
 
     PreparedStatement insertOrder = null;
     PreparedStatement insertProductOrder = null;
@@ -26,10 +24,10 @@ public class DAOPedidosMySQL implements InterfaceDAOPedidos {
     public void insertarPedido(VOUser user, VOShoppingCart carrito) throws SQLException {
 
         try {
-            con.setAutoCommit(false);
+            getConnection().setAutoCommit(false);
 
             if(insertOrder == null)
-                insertOrder = con.prepareStatement(insertOrderSQL);
+                insertOrder = getConnection().prepareStatement(insertOrderSQL);
 //            insertOrder = con.prepareStatement(insertOrderSQL, Statement.RETURN_GENERATED_KEYS);
 
             insertOrder.setString(1, user.getName());
@@ -51,7 +49,7 @@ public class DAOPedidosMySQL implements InterfaceDAOPedidos {
 //            }
 
 
-            ResultSet setId=con.createStatement().executeQuery(maxOrderIdSQL);
+            ResultSet setId=getConnection().createStatement().executeQuery(maxOrderIdSQL);
 
             if(setId.next()) {
 
@@ -61,7 +59,7 @@ public class DAOPedidosMySQL implements InterfaceDAOPedidos {
                 carrito.forEach((s,product) -> {
                     try {
                         if (insertProductOrder == null)
-                            insertProductOrder=con.prepareStatement(insertProductSQL);
+                            insertProductOrder = getConnection().prepareStatement(insertProductSQL);
 
                         insertProductOrder.setInt(1,maxId);
                         insertProductOrder.setInt(2,product.getId());
@@ -77,17 +75,17 @@ public class DAOPedidosMySQL implements InterfaceDAOPedidos {
 
                 });
 
-                con.commit();
+                getConnection().commit();
             }else{
                 //TODO TERMINAR A EJECUCION DA CONSULTA E TIRAR UN ERROR
             }
 
         } catch (SQLException e ) {
             e.printStackTrace();
-            if (con != null) {
+            if (getConnection() != null) {
                 try {
                     System.err.print("Transaction is being rolled back");
-                    con.rollback();
+                    getConnection().rollback();
                 } catch(SQLException excep) {
                     excep.printStackTrace();
                 }
@@ -99,15 +97,11 @@ public class DAOPedidosMySQL implements InterfaceDAOPedidos {
             if (insertProductOrder != null) {
                 insertProductOrder.close();
             }
-            con.setAutoCommit(true);
+            getConnection().setAutoCommit(true);
         }
     }
 
     public DAOPedidosMySQL() {
-        try {
-            this.con = new MySqlConnector().getConnection();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super();
     }
 }

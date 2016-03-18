@@ -4,6 +4,7 @@ package rc.diego.model.VO;
  * Created by entakitos on 20/02/16.
  */
 public class VOCd extends BaseEntity{
+
     private int id;
     private String title;
     private String description;
