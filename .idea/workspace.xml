@@ -2,111 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="78691ed2-1f1c-4d1b-af16-b75c23dbe3b6" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/description.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/project-template.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DAWA-practica3.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/Main.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/controller/Controller.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/controller/CustomHttpServlet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/controller/HelperDispatcher.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/controller/InterfaceHelperDispatcher.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/controller/InterfaceTaskMapper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/controller/InterfaceViewManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/controller/TaskMapper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/controller/ViewManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/model/persistence/Connector/InterfaceConnector.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/model/persistence/Connector/MySqlConnector.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/model/persistence/InterfaceDAOPedidos.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/model/task/InterfaceTask.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/model/task/InterfaceTaskManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/model/task/TaskManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/model/task/addProduct.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/model/task/initializeSesion.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/model/task/removeProduct.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/model/task/resetShoppingCart.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/model/task/setUserData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/model/task/updateProduct.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/view/AbstractView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/view/Index.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/view/payment.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/view/paymentData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/view/shoppingCart.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/web/checkout.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/web/confirmBuy.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/web/css/material.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/web/css/material.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/web/css/myStyle.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/web/images/ic_shopping_cart_white_24px.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/web/images/online-music.bmp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/web/index.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/web/js/checkout.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/web/js/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/web/js/jquery-2.1.4.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/web/js/material.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/web/js/material.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/web/js/shoppingCart.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DAWA-practica3/rc/diego/web/shoppingCart.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/Main.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/controller/Controller.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/controller/CustomHttpServlet.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/controller/HelperDispatcher.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/controller/InterfaceHelperDispatcher.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/controller/InterfaceTaskMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/controller/InterfaceViewManager.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/controller/TaskMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/controller/ViewManager.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/VO/BaseEntity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/VO/VOCd.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/VO/VOOrder.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/VO/VOOrdersLine.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/VO/VOShoppingCart.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/VO/VOUser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/encryption/PBKDF2Encrypt.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/persistence/AbstractDAOMySQL.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/persistence/Connector/InterfaceConnector.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/persistence/Connector/MySQLContract.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/persistence/Connector/MySqlConnector.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/persistence/DAOCdsMySQL.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/persistence/DAOFactoryMySQL.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/persistence/DAOPedidosMySQL.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/persistence/InterfaceDAOCds.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/persistence/InterfaceDAOFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/persistence/InterfaceDAOPedidos.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/task/InterfaceTask.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/task/InterfaceTaskManager.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/task/TaskManager.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/task/addProduct.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/task/getAllCdsFromDataBase.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/task/initializeSesion.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/task/insertOrder.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/task/removeProduct.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/task/resetShoppingCart.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/task/setUserData.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/model/task/updateProduct.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/view/AbstractView.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/view/Index.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/view/payment.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/view/paymentData.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/view/shoppingCart.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/web/checkout.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/web/confirmBuy.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/web/css/material.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/web/css/material.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/web/css/myStyle.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/web/images/ic_shopping_cart_white_24px.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/web/images/online-music.bmp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/web/index.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/web/js/checkout.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/web/js/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/web/js/jquery-2.1.4.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/web/js/material.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/web/js/material.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/web/js/shoppingCart.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rc/diego/web/shoppingCart.jsp" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/checkout.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/checkout.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/confirmBuy.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/confirmBuy.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/main.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/main.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/shoppingCart.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/shoppingCart.jsp" />
     </list>
     <ignored path="ratzinger-maven.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -130,96 +31,62 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Index.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Index.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/rc/diego/view/Index.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state relative-caret-position="198">
+              <caret line="12" column="41" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="payment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/rc/diego/view/payment.java">
+      <file leaf-file-name="shoppingCart.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/shoppingCart.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+            <state relative-caret-position="204">
+              <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="paymentData.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/rc/diego/view/paymentData.java">
+      <file leaf-file-name="checkout.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/checkout.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+            <state relative-caret-position="168">
+              <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.jsp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="confirmBuy.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/confirmBuy.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="186">
+              <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="414">
+              <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/main.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="72">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ViewManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/rc/diego/controller/ViewManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#877#878#0" expanded="false" />
-                <element signature="e#947#948#0" expanded="false" />
-                <element signature="e#999#1000#0" expanded="false" />
-                <element signature="e#1068#1069#0" expanded="false" />
-                <element signature="e#1115#1116#0" expanded="false" />
-                <element signature="e#1180#1181#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/rc/diego/controller/Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="shoppingCart.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/rc/diego/view/shoppingCart.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -246,7 +113,6 @@
         <option value="$PROJECT_DIR$/src/main/java/rc/diego/controller/Controller.java" />
         <option value="/usr/lib/jvm/java-8-openjdk/jre/lib/rt.jar!/java/util/function/BiConsumer.class" />
         <option value="$PROJECT_DIR$/src/main/java/rc/diego/web/js/index.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/rc/diego/model/persistence/DAOCdsMySQL.java" />
         <option value="$PROJECT_DIR$/src/main/java/rc.diego/model/persistence/Connector/MySqlConnector.java" />
@@ -258,6 +124,11 @@
         <option value="$PROJECT_DIR$/src/main/java/rc/diego/view/paymentData.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/java/rc/diego/view/Index.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/main.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/checkout.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/confirmBuy.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/shoppingCart.jsp" />
       </list>
     </option>
   </component>
@@ -953,12 +824,12 @@
       <updated>1459186265313</updated>
       <workItem from="1459186270530" duration="5658000" />
       <workItem from="1459192355258" duration="316000" />
-      <workItem from="1459192698346" duration="11000" />
+      <workItem from="1459192698346" duration="477000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5985000" />
+    <option name="totallyTimeSpent" value="6451000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="352" y="1308" width="1920" height="1080" extended-state="6" />
@@ -974,13 +845,14 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32888147" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13525027" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4713243" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4713243" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17944622" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -991,7 +863,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1023,14 +894,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/rc/diego/view/Index.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/rc/diego/view/payment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -1235,14 +1098,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="28" column="12" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/diego/web/js/index.js" />
     <entry file="file://$PROJECT_DIR$/src/main/java/rc.diego/web/js/index.js" />
     <entry file="file://$PROJECT_DIR$/src/main/java/rc.diego/view/Index.java" />
@@ -1339,14 +1194,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/main.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -1357,8 +1204,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/rc/diego/view/Index.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="198">
+          <caret line="12" column="41" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/checkout.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/confirmBuy.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/shoppingCart.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/main.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding />
         </state>
       </provider>

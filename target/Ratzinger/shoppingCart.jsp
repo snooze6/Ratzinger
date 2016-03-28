@@ -10,11 +10,11 @@
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-      <link rel="stylesheet" href="./web/css/material.min.css">
-      <link rel="stylesheet" href="./web/css/myStyle.css">
-      <script src="./web/js/material.min.js"></script>
-      <script src="./web/js/jquery-2.1.4.js"></script>
-      <script src="./web/js/shoppingCart.js"></script>
+      <link rel="stylesheet" href="css/material.min.css">
+      <link rel="stylesheet" href="css/myStyle.css">
+      <script src="js/material.min.js"></script>
+      <script src="js/jquery-2.1.4.js"></script>
+      <script src="js/shoppingCart.js"></script>
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
       <title>Musica para DAA - Carrito</title>
@@ -22,7 +22,7 @@
     </head>
     <body>
 
-      <form id="form" action="/practica3_diego_reirizcores/index.jsp" method="POST">
+      <form id="form" action="/index.jsp" method="POST">
         <div class="demo-card-wide mdl-card mdl-shadow--2dp">
           <div class="mdl-card__title" id="cabeceraTarxetaCarrito">
             <h2 class="mdl-card__title-text">Carrito</h2>
@@ -91,7 +91,7 @@
             <!--fin contido tarxeta-->
 
           <div class="mdl-card__actions mdl-card--border">
-            <a href="/practica3_diego_reirizcores/index.jsp" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+            <a href="/index.jsp" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
               Volver
             </a>
             <c:choose>

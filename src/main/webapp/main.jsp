@@ -21,7 +21,7 @@
     </head>
     <body>
 
-      <form id="form" action="/practica3_diego_reirizcores/index.jsp" method="POST">
+      <form id="form" action="/index.jsp" method="POST">
         <div class="demo-card-wide mdl-card mdl-shadow--2dp">
           <div class="mdl-card__title" id="cabeceraTarxetaInicio">
             <h2 class="mdl-card__title-text">Welcome</h2>
