@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DAWA-practica3.iml" filepath="$PROJECT_DIR$/DAWA-practica3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ratzinger-maven.iml" filepath="$PROJECT_DIR$/ratzinger-maven.iml" />
     </modules>
   </component>
 </project>
