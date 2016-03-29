@@ -6,18 +6,18 @@
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-      <link rel="stylesheet" href="css/material.min.css">
-      <link rel="stylesheet" href="css/myStyle.css">
-      <script src="js/material.min.js"></script>
-      <script src="js/jquery-2.1.4.js"></script>
-      <script src="js/checkout.js"></script>
+      <link rel="stylesheet" href="./web/css/material.min.css">
+      <link rel="stylesheet" href="./web/css/myStyle.css">
+      <script src="./web/js/material.min.js"></script>
+      <script src="./web/js/jquery-2.1.4.js"></script>
+      <script src="./web/js/checkout.js"></script>
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
       <title>Musica para DAA</title>
     </head>
     <body>
 
-      <form action="/index.jsp" method="POST" id="form" >
+      <form action="./index.jsp" method="POST" id="form" >
         <div class="demo-card-wide mdl-card mdl-shadow--2dp">
           <div class="mdl-card__title" id="cabeceraTarxetaInicio">
             <h2 class="mdl-card__title-text">Datos de Compra</h2>

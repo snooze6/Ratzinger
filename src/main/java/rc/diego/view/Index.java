@@ -11,6 +11,6 @@ public class Index extends AbstractView {
     public Index(HttpServletRequest request, HttpServletResponse response) {
         super(request, response);
         //TODO usar setViewURL(String str) para especificar donde se encontra a páxina
-        setViewUrl("/main.jsp");
+        setViewUrl("/web/index.jsp");
     }
 }

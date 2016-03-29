@@ -13,7 +13,7 @@ public class MySqlConnector implements InterfaceConnector{
 //    private String passwd="ratztest";
 
     private String host="localhost";
-    private String database="";
+    private String database="dawa_04_test";
     private String user="root";
     private String passwd="root";
 
