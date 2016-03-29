@@ -7,10 +7,16 @@ import java.sql.DriverManager;
  * Created by entakitos on 1/03/16.
  */
 public class MySqlConnector implements InterfaceConnector{
-    private String host="ratztest.cdh6gtvsyebq.us-east-1.rds.amazonaws.com";
-    private String database="ratztest";
-    private String user="ratztest";
-    private String passwd="ratztest";
+//    private String host="ratztest.cdh6gtvsyebq.us-east-1.rds.amazonaws.com";
+//    private String database="ratztest";
+//    private String user="ratztest";
+//    private String passwd="ratztest";
+
+    private String host="localhost";
+    private String database="";
+    private String user="root";
+    private String passwd="root";
+
 
     public Connection getConnection()throws Exception
     {

@@ -6,6 +6,15 @@ package rc.diego.model.persistence.Connector;
 public class MySQLContract {
     final static String DATABASE_NAME = "";
 
+    public static class Users{
+        public static String TABLE_NAME="users";
+        public static String DNI = "DNI";
+        public static String firstName = "firstName";
+        public static String lastName = "lastName";
+        public static String mail = "mail";
+        public static String password = "password";
+    }
+
     public static class Products{
         public static String TABLE_NAME="products";
         public static String ID="id";
