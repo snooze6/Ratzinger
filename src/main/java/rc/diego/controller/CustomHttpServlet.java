@@ -29,6 +29,10 @@ public abstract class CustomHttpServlet extends HttpServlet{
         viewManager = new ViewManager(hd,req,resp);
 
         super.service(req, resp);
+
+        resp.setContentType("text/html");
+        resp.setCharacterEncoding("UTF-8");
+
     }
 
 

@@ -72,13 +72,7 @@ public class setUserData implements InterfaceTask{
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        try {
-            this.password = new PBKDF2Encrypt().generateStrongPasswordHash(password);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (InvalidKeySpecException e) {
-            e.printStackTrace();
-        }
+        this.password=password;
         this.VOUser = VOUser;
     }
 

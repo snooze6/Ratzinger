@@ -43,6 +43,9 @@ public class Controller extends CustomHttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        VOShoppingCart shoppingCart;
+        VOUser user;
+
         HttpSession session=req.getSession(false);
 
         if(session == null) { //crease unha sesion si non existe
@@ -53,7 +56,7 @@ public class Controller extends CustomHttpServlet {
         try {
             switch ((String) req.getParameter(PARAMETER_ACTION)) {
                 case ACTION_SHOW_INDEX:
-                    VOShoppingCart shoppingCart=getTaskMapper().getAllCds();
+                    shoppingCart=getTaskMapper().getAllCds();
                     req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
 
                     getViewManager().showIndex();
@@ -73,9 +76,6 @@ public class Controller extends CustomHttpServlet {
                 case ACTION_CONFIRM_PAYMENT:
 
                     //TODO:comprobar que o ususario se encontra registrado ates de realizar este punto
-
-
-
                     final float[] total = {0};
                     ((VOShoppingCart) session.getAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART)).forEach((s, voCd) -> {
                         total[0] +=voCd.getQuantity() * voCd.getUnitaryPrice();
@@ -95,10 +95,10 @@ public class Controller extends CustomHttpServlet {
                             Integer.parseInt(req.getParameter(PARAMETER_QUANTITY))
                     );
 
-                    VOShoppingCart sc=(VOShoppingCart)session.getAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART);
+                    shoppingCart=(VOShoppingCart)session.getAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART);
 
                     getTaskMapper().addToShoppingCart(
-                            sc,
+                            shoppingCart,
                             p
                     );
 
@@ -136,7 +136,7 @@ public class Controller extends CustomHttpServlet {
                     getViewManager().showShoppingCart();
                     break;
                 case ACTION_UPDATE_ITEM:
-                    //TODO:FALTA REALIZAR ACCION DE ACTUALIZAR
+                    //TODO:FALTA REALIZAR ACCION DE ACTUALIZAR UN ITEM
                     getViewManager().showShoppingCart();
                     break;
                 case ACTION_RESET:
@@ -147,8 +147,8 @@ public class Controller extends CustomHttpServlet {
                             (VOShoppingCart) session.getAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART)
                     );
 
-                    VOShoppingCart shoppingCart2=getTaskMapper().getAllCds();
-                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart2);
+                    shoppingCart=getTaskMapper().getAllCds();
+                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
 
                     getViewManager().showIndex();
 
@@ -172,14 +172,14 @@ public class Controller extends CustomHttpServlet {
                     }
 
                     //TODO: por ahora unha vez inicia sesion un usuario, se mostraa páxina inicial
-                    VOShoppingCart shoppingCart33=getTaskMapper().getAllCds();
-                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart33);
+                    shoppingCart=getTaskMapper().getAllCds();
+                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
 
                     getViewManager().showIndex();
                     break;
                 case ACTION_SIGN_UP:
 
-                    VOUser user=((VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
+                    user=((VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
 
                     getTaskMapper().setUserData(
                             req.getParameter(VOUser.PARAMETER_DNI),
@@ -197,20 +197,20 @@ public class Controller extends CustomHttpServlet {
                     //session.setAttribute(VOUser.SESSION_ATTRIBUTE_USER,user);
 
                     //TODO: por ahora unha vez se registra un usuario, se mostraa páxina inicial
-                    VOShoppingCart shoppingCart3=getTaskMapper().getAllCds();
-                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart3);
+                    shoppingCart=getTaskMapper().getAllCds();
+                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
 
                     getViewManager().showIndex();
 
                     break;
                 default:
-                    VOShoppingCart shoppingCart4=getTaskMapper().getAllCds();
-                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart4);
+                    shoppingCart=getTaskMapper().getAllCds();
+                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
 
                     getViewManager().showIndex();
             }
         }catch (NullPointerException e){
-            VOShoppingCart shoppingCart=getTaskMapper().getAllCds();
+            shoppingCart=getTaskMapper().getAllCds();
             req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
 
             getViewManager().showIndex();
@@ -218,7 +218,7 @@ public class Controller extends CustomHttpServlet {
 
     }
 
-    //TODO:quitar de aqui
+    //TODO:REFACER A SELECCION DE PRODUCTOS
     private VOCd obterProducto(String descripcionCD, int quantity){
         VOCd p=new VOCd();
         StringTokenizer t = new StringTokenizer(descripcionCD,"|");

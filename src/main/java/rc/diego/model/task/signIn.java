@@ -31,7 +31,7 @@ public class signIn implements InterfaceTask{
     public void run() {
         try {
             valid=factory.getDAOUsers().getUser(user);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             //TODO falta gestionar que pasa si non se  pode registrar o usuario
             e.printStackTrace();
         }
