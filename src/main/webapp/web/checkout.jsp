@@ -36,7 +36,7 @@
                     <c:forEach var="producto" items="${sessionScope.cart}">
 
                         <tr>
-                            <td class="text-left">${producto.value.getTitle()}</td>
+                            <td class="text-align-left">${producto.value.getTitle()}</td>
                             <td>${producto.value.getQuantity()}</td>
                             <td>${producto.value.getUnitaryPrice()}&euro;</td>
                             <td><fmt:formatNumber value="${producto.value.getUnitaryPrice() * producto.value.getQuantity()}" type="currency"/></td>

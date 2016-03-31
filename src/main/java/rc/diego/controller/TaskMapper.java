@@ -67,6 +67,13 @@ public class TaskMapper implements InterfaceTaskMapper{
         return shoppingCart;
     }
 
+    @Override
+    public boolean signInUser(VOUser voUser) {
+        signIn si=new signIn(voUser);
+        tm.runTask(si);
+        return si.isValid();
+    }
+
     public TaskMapper() {
         this.tm=new TaskManager();
     }

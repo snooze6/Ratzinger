@@ -14,13 +14,12 @@
     clear:both;
 }
 
-.text-left{
-    text-align:left;
+.text-align-left{
+    text-align:left !important;
 }
 
 .mdl-card__supporting-text {
   width: 96% !important;
-
 }
 
 .demo-card-wide.mdl-card {
@@ -28,6 +27,7 @@
   margin:auto;
   margin-top: 3%;
 }
+
 .demo-card-wide > #cabeceraTarxetaInicio {
   color: #fff;
   height: 176px;

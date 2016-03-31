@@ -140,6 +140,9 @@ public class Controller extends CustomHttpServlet {
                     getViewManager().showShoppingCart();
                     break;
                 case ACTION_RESET:
+
+                    session.setAttribute(VOUser.SESSION_ATTRIBUTE_USER,new VOUser());
+
                     getTaskMapper().initializeShoppingCart(
                             (VOShoppingCart) session.getAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART)
                     );
@@ -152,6 +155,21 @@ public class Controller extends CustomHttpServlet {
                     break;
                 case ACTION_SIGN_IN:
 
+
+                    VOUser user2=((VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
+
+                    getTaskMapper().setUserData(
+                            req.getParameter(VOUser.PARAMETER_DNI),
+                            null,
+                            null,
+                            null,
+                            req.getParameter(VOUser.PARAMETER_PASSWORD),
+                            user2
+                    );
+
+                    if(getTaskMapper().signInUser(user2)){  //usuario logueado correctamente
+
+                    }
 
                     //TODO: por ahora unha vez inicia sesion un usuario, se mostraa páxina inicial
                     VOShoppingCart shoppingCart33=getTaskMapper().getAllCds();
@@ -176,7 +194,7 @@ public class Controller extends CustomHttpServlet {
                     getTaskMapper().signUpUser(user);
 
                     //TODO: si se registra cargar o objeto da sesión cos datos do usuario
-                    session.setAttribute(VOUser.SESSION_ATTRIBUTE_USER,user);
+                    //session.setAttribute(VOUser.SESSION_ATTRIBUTE_USER,user);
 
                     //TODO: por ahora unha vez se registra un usuario, se mostraa páxina inicial
                     VOShoppingCart shoppingCart3=getTaskMapper().getAllCds();

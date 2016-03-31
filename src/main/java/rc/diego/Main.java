@@ -7,16 +7,25 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println(new TaskMapper().getAllCds());
-
+        TaskMapper tm=new TaskMapper();
         VOUser user=new VOUser();
-        user.setDNI("53481946B");
-        user.setFirstName("Diego");
-        user.setLastName("Reiriz Cores");
-        user.seteMail("diegoreiriz@asdasd.com");
-        user.setPassword("abcdefg");
+        user.setDNI("12345678Z");
+        user.setPassword("test");
 
-        new TaskMapper().signUpUser(user);
+        tm.setUserData(
+                user.getDNI(),
+                null,
+                null,
+                null,
+                user.getPassword(),
+                user
+        );
+
+        if(tm.signInUser(user)){  //usuario logueado correctamente
+            System.out.println("Existe o usuario");
+        }
+
+
     }
 
 }

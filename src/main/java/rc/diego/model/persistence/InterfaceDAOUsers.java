@@ -9,4 +9,5 @@ import java.sql.SQLException;
  */
 public interface InterfaceDAOUsers {
     void inserteUser(VOUser user) throws SQLException;
+    boolean getUser(VOUser user) throws SQLException;
 }

@@ -4,6 +4,7 @@ import rc.diego.model.VO.VOUser;
 import rc.diego.model.persistence.Connector.MySQLContract;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -12,7 +13,6 @@ import java.sql.SQLException;
 public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUsers{
 
     PreparedStatement insertUser = null;
-
     String insertUserSQL = "INSERT INTO `"+ MySQLContract.Users.TABLE_NAME+"` (`"+
             MySQLContract.Users.DNI+"`,`"+
             MySQLContract.Users.firstName+"`,`"+
@@ -48,19 +48,31 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
                 insertUser.close();
         }
 
-//        if(insertOrder == null)
-//            insertOrder = getConnection().prepareStatement(insertOrderSQL);
-//
-//        insertOrder.setString(1, user.getFirstName());
-//        insertOrder.setString(2, user.geteMail());
-//
-//        final float[] total = {0};
-//        carrito.forEach((s, voCd) -> {
-//            total[0] +=voCd.getQuantity()*voCd.getUnitaryPrice();
-//        });
-//
-//        insertOrder.setFloat(3, total[0]);
-//
-//        int row=insertOrder.executeUpdate();
+    }
+
+    @Override
+    public boolean getUser(VOUser user) throws SQLException {
+
+        String checkUser="SELECT * FROM `"+MySQLContract.Users.TABLE_NAME+
+                "` WHERE "+
+                MySQLContract.Users.DNI+"='"+user.getDNI()+"' AND "+
+                MySQLContract.Users.password+"='"+user.getPassword()+"' LIMIT 1;";
+
+        System.err.println("DEBUG");
+        System.err.println("=================");
+        System.err.println(checkUser);
+
+        ResultSet result=getConnection().createStatement().executeQuery(checkUser);
+
+        if(result.next()) {
+
+            user.setFirstName(result.getString(MySQLContract.Users.firstName));
+            user.setLastName(MySQLContract.Users.lastName);
+            user.seteMail(MySQLContract.Users.mail);
+
+            return true;
+        }else {
+            return false;
+        }
     }
 }

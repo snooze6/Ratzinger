@@ -18,6 +18,7 @@ public interface InterfaceTaskMapper {
     void initializeSession(HttpSession session);
     void setUserData(String dni, String firstName,String lastName, String email, String password, VOUser VOUser);
     void signUpUser( VOUser voUser);
+    boolean signInUser( VOUser voUser);
     void pay(VOUser VOUser);
 
     void insertOrder(VOUser user, VOShoppingCart carrito);
