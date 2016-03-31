@@ -14,9 +14,19 @@ public class DAOPedidosMySQL extends AbstractDAOMySQL implements InterfaceDAOPed
     PreparedStatement insertOrder = null;
     PreparedStatement insertProductOrder = null;
 
-    String insertOrderSQL = "INSERT INTO "+ MySQLContract.Orders.TABLE_NAME+"(`"+MySQLContract.Orders.USER_DNI +"``,`"+MySQLContract.Orders.TOTAL+"`)  VALUES(?,?)";
-    final String maxOrderIdSQL = "SELECT MAX(" + MySQLContract.Orders.ID + ") as "+MySQLContract.Orders.ID+" FROM "+ MySQLContract.Orders.TABLE_NAME + " LIMIT 1;";
-    String insertProductSQL = "INSERT INTO "+MySQLContract.OrderProducsts.TABLE_NAME+"(`"+MySQLContract.OrderProducsts.ID_ORDER+"`,`"+MySQLContract.OrderProducsts.ID_PRODUCT+"`,`"+MySQLContract.OrderProducsts.UNITARY_PRICE+"`,`"+MySQLContract.OrderProducsts.QUANTITY+"`) VALUES(?,?,?,?);";
+    String insertOrderSQL = "INSERT INTO "+ MySQLContract.Orders.TABLE_NAME+"(`"+
+            MySQLContract.Orders.USER_DNI +
+            "`,`"+MySQLContract.Orders.TOTAL+
+            "`) VALUES(?,?);";
+
+    final String maxOrderIdSQL = "SELECT MAX(" + MySQLContract.Orders.ID + ") as "+MySQLContract.Orders.ID+
+            " FROM "+ MySQLContract.Orders.TABLE_NAME + " LIMIT 1;";
+
+    String insertProductSQL = "INSERT INTO "+MySQLContract.OrderProducsts.TABLE_NAME+"(`"+
+            MySQLContract.OrderProducsts.ID_ORDER+"`,`"+
+            MySQLContract.OrderProducsts.ID_PRODUCT+"`,`"+
+            MySQLContract.OrderProducsts.UNITARY_PRICE+"`,`"+
+            MySQLContract.OrderProducsts.QUANTITY+"`) VALUES(?,?,?,?);";
 
     @Override
     public void insertarPedido(VOUser user, VOShoppingCart carrito) throws SQLException {
@@ -35,6 +45,8 @@ public class DAOPedidosMySQL extends AbstractDAOMySQL implements InterfaceDAOPed
             });
 
             insertOrder.setFloat(2, total[0]);
+
+            System.out.println(insertOrder);
 
             int row=insertOrder.executeUpdate();
 
