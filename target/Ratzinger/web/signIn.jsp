@@ -30,7 +30,7 @@
                 <label class="mdl-textfield__label" for="password">contraseña...</label>
               </div>
 
-               <input type="hidden" name="action" id="action" value="signIn">
+               <input type="hidden" name="action" id="action" value="signInUser">
             <!--fin contido tarxeta-->
           </div>
           <div class="mdl-card__actions mdl-card--border">

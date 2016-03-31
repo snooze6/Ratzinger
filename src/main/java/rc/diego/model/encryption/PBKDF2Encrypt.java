@@ -12,7 +12,7 @@ import java.security.spec.InvalidKeySpecException;
  */
 public class PBKDF2Encrypt {
     //funcion que se encarga de fifrar una contrase�a mediante el algoritmo PBKDF2
-    public static String generateStrongPasswordHash(String password) throws NoSuchAlgorithmException, InvalidKeySpecException
+    public String generateStrongPasswordHash(String password) throws NoSuchAlgorithmException, InvalidKeySpecException
     {
         int iterations = 1000;
         char[] chars = password.toCharArray();
@@ -25,7 +25,7 @@ public class PBKDF2Encrypt {
     }
 
     //genera un salt aleatorio que se usara para cifrar la contrase�a
-    private static String getSalt() throws NoSuchAlgorithmException
+    private String getSalt() throws NoSuchAlgorithmException
     {
         SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
         byte[] salt = new byte[16];
@@ -34,7 +34,7 @@ public class PBKDF2Encrypt {
     }
 
     //traduce la contrase�a a hexadecimal
-    private static String toHex(byte[] array) throws NoSuchAlgorithmException
+    private String toHex(byte[] array) throws NoSuchAlgorithmException
     {
         BigInteger bi = new BigInteger(1, array);
         String hex = bi.toString(16);
@@ -48,7 +48,7 @@ public class PBKDF2Encrypt {
     }
 
     //dada una contrase� si cifrar y otra cifrada, comprueba si ambas son iguales
-    public static boolean validatePassword(String originalPassword, String storedPassword) throws NoSuchAlgorithmException, InvalidKeySpecException
+    public boolean validatePassword(String originalPassword, String storedPassword) throws NoSuchAlgorithmException, InvalidKeySpecException
     {
         String[] parts = storedPassword.split(":");
         int iterations = Integer.parseInt(parts[0]);
@@ -68,7 +68,7 @@ public class PBKDF2Encrypt {
     }
 
     //traduce una contrase�a en hexadecimal
-    private static byte[] fromHex(String hex) throws NoSuchAlgorithmException
+    private byte[] fromHex(String hex) throws NoSuchAlgorithmException
     {
         byte[] bytes = new byte[hex.length() / 2];
         for(int i = 0; i<bytes.length ;i++)

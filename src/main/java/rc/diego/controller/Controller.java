@@ -23,12 +23,14 @@ public class Controller extends CustomHttpServlet {
 
     private final String ACTION_SHOW_INDEX = "index";
     private final String ACTION_SHOW_SHOPPING_CART = "shoppingCart";
+    private final String ACTION_SHOW_SIGN_IN = "signIn";
+    private final String ACTION_SHOW_SIGN_UP = "signUp";
     private final String ACTION_BUY_ITEM = "buyItem";
     private final String ACTION_ERASE_ITEM = "eraseItem";
     private final String ACTION_UPDATE_ITEM = "updateItem";
     private final String ACTION_CHECKOUT = "checkout";
-    private final String ACTION_SIGN_IN = "signIn";
-    private final String ACTION_SIGN_UP = "signUp";
+    private final String ACTION_SIGN_IN = "signInUser";
+    private final String ACTION_SIGN_UP = "signUpUser";
     private final String ACTION_CONFIRM_PAYMENT = "confirmPayment";
     private final String ACTION_RESET = "reset";
 
@@ -58,6 +60,12 @@ public class Controller extends CustomHttpServlet {
                     break;
                 case ACTION_SHOW_SHOPPING_CART:
                     getViewManager().showShoppingCart();
+                    break;
+                case ACTION_SHOW_SIGN_IN:
+                    getViewManager().showSignIn();
+                    break;
+                case ACTION_SHOW_SIGN_UP:
+                    getViewManager().showSignUp();
                     break;
                 case ACTION_CHECKOUT:
                     getViewManager().showPaymentData();
@@ -144,6 +152,11 @@ public class Controller extends CustomHttpServlet {
                     break;
                 case ACTION_SIGN_IN:
 
+
+                    //TODO: por ahora unha vez inicia sesion un usuario, se mostraa páxina inicial
+                    VOShoppingCart shoppingCart33=getTaskMapper().getAllCds();
+                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart33);
+
                     getViewManager().showIndex();
                     break;
                 case ACTION_SIGN_UP:
@@ -159,35 +172,30 @@ public class Controller extends CustomHttpServlet {
                             user
                     );
 
-                    System.err.println("DEBUG");
-                    System.err.println("========");
-                    System.err.println(user);
-                    System.err.println(user.getDNI());
-                    System.err.println(user.getFirstName());
-                    System.err.println(user.getLastName());
-                    System.err.println(user.geteMail());
-                    System.err.println(user.getPassword());
-
                     //TODO: Intentar registraro ususario na base de datos
                     getTaskMapper().signUpUser(user);
 
                     //TODO: si se registra cargar o objeto da sesión cos datos do usuario
                     session.setAttribute(VOUser.SESSION_ATTRIBUTE_USER,user);
+
+                    //TODO: por ahora unha vez se registra un usuario, se mostraa páxina inicial
+                    VOShoppingCart shoppingCart3=getTaskMapper().getAllCds();
+                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart3);
+
                     getViewManager().showIndex();
 
                     break;
                 default:
-                    VOShoppingCart shoppingCart3=getTaskMapper().getAllCds();
-                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart3);
+                    VOShoppingCart shoppingCart4=getTaskMapper().getAllCds();
+                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart4);
 
-                    //TODO: cambiar a index
-                    getViewManager().showSignUp();
+                    getViewManager().showIndex();
             }
         }catch (NullPointerException e){
-            VOShoppingCart shoppingCart3=getTaskMapper().getAllCds();
-            req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart3);
-            //TODO: cambiar a index
-            getViewManager().showSignUp();
+            VOShoppingCart shoppingCart=getTaskMapper().getAllCds();
+            req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
+
+            getViewManager().showIndex();
         }
 
     }

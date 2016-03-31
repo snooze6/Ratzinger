@@ -1,6 +1,10 @@
 package rc.diego.model.task;
 
 import rc.diego.model.VO.VOUser;
+import rc.diego.model.encryption.PBKDF2Encrypt;
+
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 /**
  * Created by entakitos on 29/02/16.
@@ -68,7 +72,13 @@ public class setUserData implements InterfaceTask{
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
+        try {
+            this.password = new PBKDF2Encrypt().generateStrongPasswordHash(password);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeySpecException e) {
+            e.printStackTrace();
+        }
         this.VOUser = VOUser;
     }
 

@@ -2,49 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="78691ed2-1f1c-4d1b-af16-b75c23dbe3b6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/rc/diego/model/persistence/DAOUsersMySQL.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/rc/diego/model/persistence/InterfaceDAOUsers.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/rc/diego/model/task/signUp.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/rc/diego/view/SignIn.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/rc/diego/view/SignUp.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/web/genericHeader.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/web/js/signIn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/web/js/signUp.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/web/menu.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/web/signIn.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/web/signUp.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/web/js/menu.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/rc/diego/Main.java" afterPath="$PROJECT_DIR$/src/main/java/rc/diego/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/rc/diego/controller/Controller.java" afterPath="$PROJECT_DIR$/src/main/java/rc/diego/controller/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/rc/diego/controller/InterfaceTaskMapper.java" afterPath="$PROJECT_DIR$/src/main/java/rc/diego/controller/InterfaceTaskMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/rc/diego/controller/InterfaceViewManager.java" afterPath="$PROJECT_DIR$/src/main/java/rc/diego/controller/InterfaceViewManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/rc/diego/controller/TaskMapper.java" afterPath="$PROJECT_DIR$/src/main/java/rc/diego/controller/TaskMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/rc/diego/controller/ViewManager.java" afterPath="$PROJECT_DIR$/src/main/java/rc/diego/controller/ViewManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/rc/diego/model/VO/VOUser.java" afterPath="$PROJECT_DIR$/src/main/java/rc/diego/model/VO/VOUser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/rc/diego/model/persistence/Connector/MySQLContract.java" afterPath="$PROJECT_DIR$/src/main/java/rc/diego/model/persistence/Connector/MySQLContract.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/rc/diego/model/persistence/DAOFactoryMySQL.java" afterPath="$PROJECT_DIR$/src/main/java/rc/diego/model/persistence/DAOFactoryMySQL.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/rc/diego/model/persistence/DAOPedidosMySQL.java" afterPath="$PROJECT_DIR$/src/main/java/rc/diego/model/persistence/DAOPedidosMySQL.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/rc/diego/model/persistence/InterfaceDAOFactory.java" afterPath="$PROJECT_DIR$/src/main/java/rc/diego/model/persistence/InterfaceDAOFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/rc/diego/model/encryption/PBKDF2Encrypt.java" afterPath="$PROJECT_DIR$/src/main/java/rc/diego/model/encryption/PBKDF2Encrypt.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/rc/diego/model/task/setUserData.java" afterPath="$PROJECT_DIR$/src/main/java/rc/diego/model/task/setUserData.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/web/checkout.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/web/checkout.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/web/confirmBuy.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/web/confirmBuy.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/web/css/myStyle.css" afterPath="$PROJECT_DIR$/src/main/webapp/web/css/myStyle.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/web/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/web/index.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/web/js/signIn.js" afterPath="$PROJECT_DIR$/src/main/webapp/web/js/signIn.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/web/js/signUp.js" afterPath="$PROJECT_DIR$/src/main/webapp/web/js/signUp.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/web/menu.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/web/menu.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/web/shoppingCart.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/web/shoppingCart.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/web/signIn.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/web/signIn.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/web/signUp.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/web/signUp.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/Ratzinger/web/checkout.jsp" afterPath="$PROJECT_DIR$/target/Ratzinger/web/checkout.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/Ratzinger/web/confirmBuy.jsp" afterPath="$PROJECT_DIR$/target/Ratzinger/web/confirmBuy.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/Ratzinger/web/css/myStyle.css" afterPath="$PROJECT_DIR$/target/Ratzinger/web/css/myStyle.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/Ratzinger/web/index.jsp" afterPath="$PROJECT_DIR$/target/Ratzinger/web/index.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/Ratzinger/web/menu.jsp" afterPath="$PROJECT_DIR$/target/Ratzinger/web/menu.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/Ratzinger/web/shoppingCart.jsp" afterPath="$PROJECT_DIR$/target/Ratzinger/web/shoppingCart.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/site/dependencies.html" afterPath="$PROJECT_DIR$/target/site/dependencies.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/site/dependency-convergence.html" afterPath="$PROJECT_DIR$/target/site/dependency-convergence.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/site/dependency-info.html" afterPath="$PROJECT_DIR$/target/site/dependency-info.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/site/index.html" afterPath="$PROJECT_DIR$/target/site/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/site/plugin-management.html" afterPath="$PROJECT_DIR$/target/site/plugin-management.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/site/plugins.html" afterPath="$PROJECT_DIR$/target/site/plugins.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/site/project-info.html" afterPath="$PROJECT_DIR$/target/site/project-info.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/site/project-summary.html" afterPath="$PROJECT_DIR$/target/site/project-summary.html" />
     </list>
     <ignored path="ratzinger-maven.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,21 +47,83 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="signUp.jsp" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/webapp/web/signUp.jsp">
+          <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/rc/diego/controller/Controller.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="253">
-                  <caret line="23" column="65" selection-start-line="23" selection-start-column="65" selection-end-line="23" selection-end-column="65" />
+                <state relative-caret-position="239">
+                  <caret line="157" column="88" selection-start-line="157" selection-start-column="88" selection-end-line="157" selection-end-column="88" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="setUserData.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="signUp.jsp" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/webapp/web/signUp.jsp">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="394">
+                  <caret line="47" column="79" selection-start-line="47" selection-start-column="79" selection-end-line="47" selection-end-column="79" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="signUp.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/webapp/web/js/signUp.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="45">
+                  <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="signIn.jsp" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/webapp/web/signIn.jsp">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="198">
+                  <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="signIn.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/webapp/web/js/signIn.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="165">
+                  <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="menu.jsp" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/webapp/web/menu.jsp">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="345">
+                  <caret line="23" column="60" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="60" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="setUserData.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/rc/diego/model/task/setUserData.java">
               <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="524">
+                  <caret line="73" column="27" selection-start-line="73" selection-start-column="27" selection-end-line="73" selection-end-column="27" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="PBKDF2Encrypt.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/rc/diego/model/encryption/PBKDF2Encrypt.java">
+              <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="838">
-                  <caret line="80" column="35" selection-start-line="80" selection-start-column="35" selection-end-line="80" selection-end-column="35" />
+                  <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -94,11 +133,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="VOUser.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/rc/diego/model/VO/VOUser.java">
+          <file leaf-file-name="menu.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/webapp/web/js/menu.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="135">
-                  <caret line="9" column="62" selection-start-line="9" selection-start-column="62" selection-end-line="9" selection-end-column="62" />
+                <state relative-caret-position="120">
+                  <caret line="8" column="44" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
                   <folding />
                 </state>
               </provider>
@@ -130,7 +169,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/js/index.js" />
         <option value="$PROJECT_DIR$/src/main/rc.diego/controller/Controller.java" />
         <option value="$PROJECT_DIR$/src/main/rc.diego/controller/CustomHttpServlet.java" />
         <option value="/usr/lib/jvm/java-8-openjdk/jre/lib/rt.jar!/java/util/function/BiConsumer.class" />
@@ -150,10 +188,7 @@
         <option value="$PROJECT_DIR$/src/main/java/rc/diego/view/paymentData.java" />
         <option value="$PROJECT_DIR$/src/main/java/rc/diego/view/shoppingCart.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/web/genericHeader.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/web/shoppingCart.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/web/index.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/web/menu.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/web/checkout.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/rc/diego/view/SignIn.java" />
         <option value="$PROJECT_DIR$/src/main/java/rc/diego/view/SignUp.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/web/signUP.jsp" />
@@ -162,24 +197,29 @@
         <option value="$PROJECT_DIR$/src/main/java/rc/diego/model/persistence/DAOFactoryMySQL.java" />
         <option value="$PROJECT_DIR$/src/main/java/rc/diego/model/task/signUpTask.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/web/css/myStyle.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/java/rc/diego/controller/TaskMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/rc/diego/controller/InterfaceTaskMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/rc/diego/controller/InterfaceViewManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/rc/diego/controller/ViewManager.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/web/confirmBuy.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/rc/diego/model/VO/VOUser.java" />
         <option value="$PROJECT_DIR$/src/main/java/rc/diego/model/persistence/Connector/MySQLContract.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/web/js/signUp.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/web/js/signIn.js" />
         <option value="$PROJECT_DIR$/src/main/java/rc/diego/model/persistence/DAOPedidosMySQL.java" />
         <option value="$PROJECT_DIR$/src/main/java/rc/diego/model/persistence/DAOUsersMySQL.java" />
         <option value="$PROJECT_DIR$/src/main/java/rc/diego/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/web/confirmBuy.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/web/css/myStyle.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/web/checkout.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/web/shoppingCart.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/web/signUp.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/web/signIn.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/rc/diego/controller/Controller.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/web/js/signIn.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/web/menu.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/rc/diego/model/encryption/PBKDF2Encrypt.java" />
         <option value="$PROJECT_DIR$/src/main/java/rc/diego/model/task/setUserData.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/web/js/menu.js" />
+        <option value="$PROJECT_DIR$/src/main/java/rc/diego/controller/Controller.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/web/js/signUp.js" />
       </list>
     </option>
   </component>
@@ -326,10 +366,6 @@
               <option name="myItemId" value="webapp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WEB-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -405,71 +441,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DAWA-practica3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DAWA-practica3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="diego" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DAWA-practica3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DAWA-practica3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="diego" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -500,10 +476,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VO" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -538,78 +510,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="task" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DAWA-practica3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DAWA-practica3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="diego" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="persistence" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DAWA-practica3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DAWA-practica3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="diego" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="persistence" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Connector" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -710,20 +610,20 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/webapp/web" />
+      <recent name="$PROJECT_DIR$/src/main" />
+      <recent name="$PROJECT_DIR$/src/main/webapp" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="rc.diego.view" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/webapp/web/js" />
       <recent name="$PROJECT_DIR$/src/main/webapp" />
       <recent name="$PROJECT_DIR$/src/main/webapp/web" />
       <recent name="$PROJECT_DIR$/src/main/java" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="rc.diego.view" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/webapp/web" />
-      <recent name="$PROJECT_DIR$/src/main" />
-      <recent name="$PROJECT_DIR$/src/main/webapp" />
     </key>
   </component>
   <component name="RunManager" selected="Maven.Ratzinger [clean,validate,compile,test...]">
@@ -1157,23 +1057,33 @@
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="6451000" />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3305509" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17467949" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.02173913" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2619565" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3173913" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18856838" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1188,7 +1098,6 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1197,7 +1106,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32888147" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1736111" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17467949" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -1206,14 +1115,14 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3305509" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3880435" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.02173913" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3173913" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18856838" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
@@ -1250,9 +1159,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/rc.diego/controller/Controller.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/rc.diego/model/persistence/Connector/MySqlConnector.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/rc/diego/web/js/index.js" />
     <entry file="file://$PROJECT_DIR$/src/main/java/rc/diego/view/AbstractView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -1325,48 +1231,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/genericHeader.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/shoppingCart.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1500">
-          <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="9" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/rc/diego/model/encryption/PBKDF2Encrypt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/menu.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/checkout.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/rc/diego/model/persistence/InterfaceDAOFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -1379,13 +1243,6 @@
         <state relative-caret-position="105">
           <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/css/myStyle.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -1469,13 +1326,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/confirmBuy.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="103" selection-start-line="20" selection-start-column="103" selection-end-line="20" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/rc/diego/model/task/insertOrder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-30">
@@ -1495,20 +1345,6 @@
         <state relative-caret-position="321">
           <caret line="57" column="55" selection-start-line="57" selection-start-column="55" selection-end-line="57" selection-end-column="55" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/js/signUp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="2" selection-end-line="8" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/js/signIn.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="2" selection-end-line="8" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -1569,42 +1405,148 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/signIn.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/genericHeader.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="32" column="75" selection-start-line="32" selection-start-column="75" selection-end-line="32" selection-end-column="75" />
+        <state relative-caret-position="120">
+          <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/rc/diego/controller/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/js/checkout.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/js/shoppingCart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/confirmBuy.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/css/myStyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/rc/diego/model/VO/VOUser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="62" selection-start-line="9" selection-start-column="62" selection-end-line="9" selection-end-column="62" />
+        <state relative-caret-position="540">
+          <caret line="52" column="29" selection-start-line="52" selection-start-column="18" selection-end-line="52" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/signUp.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/shoppingCart.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="23" column="65" selection-start-line="23" selection-start-column="65" selection-end-line="23" selection-end-column="65" />
+        <state relative-caret-position="570">
+          <caret line="40" column="48" selection-start-line="40" selection-start-column="48" selection-end-line="40" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/checkout.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="38" column="48" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/rc/diego/model/encryption/PBKDF2Encrypt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="838">
+          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/rc/diego/model/task/setUserData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="838">
-          <caret line="80" column="35" selection-start-line="80" selection-start-column="35" selection-end-line="80" selection-end-column="35" />
+        <state relative-caret-position="524">
+          <caret line="73" column="27" selection-start-line="73" selection-start-column="27" selection-end-line="73" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/menu.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="60" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/js/menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="44" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/rc/diego/controller/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="157" column="88" selection-start-line="157" selection-start-column="88" selection-end-line="157" selection-end-column="88" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/signUp.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="47" column="79" selection-start-line="47" selection-start-column="79" selection-end-line="47" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/signIn.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/js/signUp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/web/js/signIn.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
           <folding />
         </state>
       </provider>
