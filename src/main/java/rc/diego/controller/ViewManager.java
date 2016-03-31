@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import rc.diego.view.*;
+import rc.diego.view.admin.stock;
 
 /**
  * Created by entakitos on 20/02/16.
@@ -50,4 +51,12 @@ public class ViewManager implements InterfaceViewManager {
     public void showSignUp() {
         dispatcher.forward(new SignUp(request,response));
     }
+
+    @Override
+    public void showStocks() {
+        System.err.println("Estoy aquí");
+        dispatcher.forward(new stock(request,response));
+    }
+
+
 }

@@ -22,6 +22,7 @@ public class Controller extends CustomHttpServlet {
     private final String PARAMETER_QUANTITY = "cantidad";
 
     private final String ACTION_SHOW_INDEX = "index";
+    private final String ACTION_SHOW_STOCK = "stock";
     private final String ACTION_SHOW_SHOPPING_CART = "shoppingCart";
     private final String ACTION_SHOW_SIGN_IN = "signIn";
     private final String ACTION_SHOW_SIGN_UP = "signUp";
@@ -36,13 +37,11 @@ public class Controller extends CustomHttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
        doPost(req,resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         VOShoppingCart shoppingCart;
         VOUser user;
 
@@ -72,6 +71,12 @@ public class Controller extends CustomHttpServlet {
                     break;
                 case ACTION_CHECKOUT:
                     getViewManager().showPaymentData();
+                    break;
+                case ACTION_SHOW_STOCK:
+                    shoppingCart=getTaskMapper().getAllCds();
+                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
+
+                    getViewManager().showStocks();
                     break;
                 case ACTION_CONFIRM_PAYMENT:
 
