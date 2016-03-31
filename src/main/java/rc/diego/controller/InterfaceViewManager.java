@@ -8,4 +8,6 @@ public interface InterfaceViewManager {
     void showShoppingCart();
     void showPaymentData();
     void showPayment();
+    void showSignIn();
+    void showSignUp();
 }

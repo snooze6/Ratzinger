@@ -16,7 +16,8 @@ public interface InterfaceTaskMapper {
     void removeFromShoppingCart(VOShoppingCart shoppingCart, VOCd VOCd);
     void updateShoppingCart(VOShoppingCart shoppingCart, VOCd VOCd);
     void initializeSession(HttpSession session);
-    void setUserData(String name, String email, VOUser VOUser);
+    void setUserData(String dni, String firstName,String lastName, String email, String password, VOUser VOUser);
+    void signUpUser( VOUser voUser);
     void pay(VOUser VOUser);
 
     void insertOrder(VOUser user, VOShoppingCart carrito);

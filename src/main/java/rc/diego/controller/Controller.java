@@ -27,6 +27,8 @@ public class Controller extends CustomHttpServlet {
     private final String ACTION_ERASE_ITEM = "eraseItem";
     private final String ACTION_UPDATE_ITEM = "updateItem";
     private final String ACTION_CHECKOUT = "checkout";
+    private final String ACTION_SIGN_IN = "signIn";
+    private final String ACTION_SIGN_UP = "signUp";
     private final String ACTION_CONFIRM_PAYMENT = "confirmPayment";
     private final String ACTION_RESET = "reset";
 
@@ -62,11 +64,8 @@ public class Controller extends CustomHttpServlet {
                     break;
                 case ACTION_CONFIRM_PAYMENT:
 
-                    getTaskMapper().setUserData(
-                            req.getParameter(VOUser.PARAMETER_NAME),
-                            req.getParameter(VOUser.PARAMETER_MAIL),
-                            (VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER)
-                    );
+                    //TODO:comprobar que o ususario se encontra registrado ates de realizar este punto
+
 
 
                     final float[] total = {0};
@@ -143,16 +142,52 @@ public class Controller extends CustomHttpServlet {
                     getViewManager().showIndex();
 
                     break;
+                case ACTION_SIGN_IN:
+
+                    getViewManager().showIndex();
+                    break;
+                case ACTION_SIGN_UP:
+
+                    VOUser user=((VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
+
+                    getTaskMapper().setUserData(
+                            req.getParameter(VOUser.PARAMETER_DNI),
+                            req.getParameter(VOUser.PARAMETER_FIRST_NAME),
+                            req.getParameter(VOUser.PARAMETER_LAST_NAME),
+                            req.getParameter(VOUser.PARAMETER_MAIL),
+                            req.getParameter(VOUser.PARAMETER_PASSWORD),
+                            user
+                    );
+
+                    System.err.println("DEBUG");
+                    System.err.println("========");
+                    System.err.println(user);
+                    System.err.println(user.getDNI());
+                    System.err.println(user.getFirstName());
+                    System.err.println(user.getLastName());
+                    System.err.println(user.geteMail());
+                    System.err.println(user.getPassword());
+
+                    //TODO: Intentar registraro ususario na base de datos
+                    getTaskMapper().signUpUser(user);
+
+                    //TODO: si se registra cargar o objeto da sesión cos datos do usuario
+                    session.setAttribute(VOUser.SESSION_ATTRIBUTE_USER,user);
+                    getViewManager().showIndex();
+
+                    break;
                 default:
                     VOShoppingCart shoppingCart3=getTaskMapper().getAllCds();
                     req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart3);
 
-                    getViewManager().showIndex();
+                    //TODO: cambiar a index
+                    getViewManager().showSignUp();
             }
         }catch (NullPointerException e){
             VOShoppingCart shoppingCart3=getTaskMapper().getAllCds();
             req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart3);
-            getViewManager().showIndex();
+            //TODO: cambiar a index
+            getViewManager().showSignUp();
         }
 
     }

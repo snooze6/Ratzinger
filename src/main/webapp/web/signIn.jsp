@@ -6,7 +6,7 @@
     <head>
 
       <c:import url="./genericHeader.jsp" />
-      <script src="./web/js/checkout.js"></script>
+      <script src="./web/js/signIn.js"></script>
 
       <title>Musica para DAA</title>
     </head>
@@ -26,26 +26,11 @@
               </div>
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="nombre" name="nombre" pattern=".{2,}" required>
-                <label class="mdl-textfield__label" for="nombre">Nombre...</label>
-              </div>
-
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="apellidos" name="apellidos" pattern=".{2,}" required>
-                <label class="mdl-textfield__label" for="apellidos">Apellidos...</label>
-              </div>
-
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="email" id="email" name="email" required>
-                <label class="mdl-textfield__label" for="email">e-mail...</label>
-              </div>
-
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="password" id="password" name="password" required>
                 <label class="mdl-textfield__label" for="password">contraseña...</label>
               </div>
 
-               <input type="hidden" name="action" id="action" value="confirmPayment">
+               <input type="hidden" name="action" id="action" value="signIn">
             <!--fin contido tarxeta-->
           </div>
           <div class="mdl-card__actions mdl-card--border">

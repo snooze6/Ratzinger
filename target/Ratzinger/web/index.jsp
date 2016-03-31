@@ -7,15 +7,8 @@
 <html>
     <head>
 
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-      <link rel="stylesheet" href="./web/css/material.min.css">
-      <link rel="stylesheet" href="./web/css/myStyle.css">
-      <script src="./web/js/material.min.js"></script>
-      <script src="./web/js/jquery-2.1.4.js"></script>
-      <script src="./web/js/index.js"></script>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <c:import url="./genericHeader.jsp" />
+        <script src="./web/js/index.js"></script>
 
       <title>Musica para DAA</title>
     </head>
@@ -33,7 +26,7 @@
               <label for="listaCds">CD:</label>
       	      <select  name="listaCds" >
             		<c:forEach var="producto" items="${requestScope.cds}">
-            		    <option value="${producto.value.getId()} | ${producto.value.getTitle()} | ${producto.value.getAuthor()} | ${producto.value.getCountry()} | ${producto.value.getUnitaryPrice()}"><c:out value="${producto.value.getTitle()} | ${producto.value.getAuthor()} | ${producto.value.getCountry()} | ${producto.value.getUnitaryPrice()}&euro;" /> </option>
+            		    <option value="${producto.value.getId()} | ${producto.value.getTitle()} | ${producto.value.getAuthor()} | ${producto.value.getCountry()} | ${producto.value.getUnitaryPrice()}"><c:out value="${producto.value.getTitle()} | ${producto.value.getAuthor()} | ${producto.value.getCountry()} | ${producto.value.getUnitaryPrice()}€" /> </option>
             	    </c:forEach>
       	      </select>
 
@@ -47,6 +40,7 @@
             <input type="submit" value="Seleccionar Producto" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;">
             <input type="button" value="Ver Carrito" id="verCarrito" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;">
           </div>
+          <c:import url="./menu.jsp" />
 
         </div>
       </form>

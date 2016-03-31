@@ -4,14 +4,7 @@
   <html>
     <head>
 
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-      <link rel="stylesheet" href="./web/css/material.min.css">
-      <link rel="stylesheet" href="./web/css/myStyle.css">
-      <script src="./web/js/material.min.js"></script>
-      <script src="./web/js/jquery-2.1.4.js"></script>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <c:import url="./genericHeader.jsp" />
 
       <title>Musica para DAA</title>
     </head>
@@ -25,7 +18,7 @@
           <div class="mdl-card__supporting-text">
           <!--contido tarxeta-->
 
-               <p>Gracias por confiar en nosotros <strong><c:out value="${sessionScope.usuario.getName()}"/></strong>.</p>
+               <p>Gracias por confiar en nosotros <strong><c:out value="${sessionScope.usuario.getFirstName()}"/></strong>.</p>
               <p>Su compra se ha realizado con éxito, en breves le llegará un correo a <strong><c:out value="${sessionScope.usuario.geteMail()}"/></strong> con los datos de la compra efectuada.</p>
 
               <input type="hidden" name="action" value="reset">
@@ -35,7 +28,7 @@
           <div class="mdl-card__actions mdl-card--border">
               <input type="submit" value="Volver" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
           </div>
-
+          <c:import url="./menu.jsp" />
         </div>
       </form>
     </body>

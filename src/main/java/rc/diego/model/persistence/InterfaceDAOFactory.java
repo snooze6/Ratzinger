@@ -6,4 +6,5 @@ package rc.diego.model.persistence;
 public interface InterfaceDAOFactory {
     InterfaceDAOPedidos getDAOPedidos();
     InterfaceDAOCds getDAOCds();
+    InterfaceDAOUsers getDAOUsers();
 }

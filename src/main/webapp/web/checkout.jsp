@@ -1,17 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
     <head>
 
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-      <link rel="stylesheet" href="./web/css/material.min.css">
-      <link rel="stylesheet" href="./web/css/myStyle.css">
-      <script src="./web/js/material.min.js"></script>
-      <script src="./web/js/jquery-2.1.4.js"></script>
+      <c:import url="./genericHeader.jsp" />
       <script src="./web/js/checkout.js"></script>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
       <title>Musica para DAA</title>
     </head>
@@ -26,14 +21,28 @@
           <!--contido tarxeta-->
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="dni" name="dni" pattern="[1-9]{8,8}[A-Z]" required>
+                <label class="mdl-textfield__label" for="dni">DNI...</label>
+              </div>
+
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" id="nombre" name="nombre" pattern=".{2,}" required>
                 <label class="mdl-textfield__label" for="nombre">Nombre...</label>
               </div>
-              <br/>
+
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="apellidos" name="apellidos" pattern=".{2,}" required>
+                <label class="mdl-textfield__label" for="apellidos">Apellidos...</label>
+              </div>
 
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="email" id="email" name="email" required>
                 <label class="mdl-textfield__label" for="email">e-mail...</label>
+              </div>
+
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="password" id="password" name="password" required>
+                <label class="mdl-textfield__label" for="password">contraseña...</label>
               </div>
 
                <input type="hidden" name="action" id="action" value="confirmPayment">
@@ -43,7 +52,7 @@
             <input type="button" value="Volver" id="volver" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
             <input type="submit" value="Continuar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;">
           </div>
-
+          <c:import url="./menu.jsp" />
         </div>
       </form>
     </body>

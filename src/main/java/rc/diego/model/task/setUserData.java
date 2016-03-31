@@ -7,16 +7,36 @@ import rc.diego.model.VO.VOUser;
  */
 public class setUserData implements InterfaceTask{
 
-    private String name;
+    private String dni;
+    private String firstName;
+    private String lastName;
     private String email;
+    private String password;
     private VOUser VOUser;
 
-    public String getName() {
-        return name;
+
+    public String getDni() {
+        return dni;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -27,6 +47,14 @@ public class setUserData implements InterfaceTask{
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public VOUser getVOUser() {
         return VOUser;
     }
@@ -35,15 +63,21 @@ public class setUserData implements InterfaceTask{
         this.VOUser = VOUser;
     }
 
-    public setUserData(String name, String email, VOUser VOUser) {
-        this.name = name;
+    public setUserData(String dni, String firstName, String lastName, String email, String password, VOUser VOUser) {
+        this.dni = dni;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
+        this.password = password;
         this.VOUser = VOUser;
     }
 
     @Override
     public void run() {
-        VOUser.setName(name);
+        VOUser.setDNI(dni);
+        VOUser.setFirstName(firstName);
+        VOUser.setLastName(lastName);
         VOUser.seteMail(email);
+        VOUser.setPassword(password);
     }
 }

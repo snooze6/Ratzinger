@@ -3,10 +3,7 @@ package rc.diego.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import rc.diego.view.Index;
-import rc.diego.view.payment;
-import rc.diego.view.paymentData;
-import rc.diego.view.shoppingCart;
+import rc.diego.view.*;
 
 /**
  * Created by entakitos on 20/02/16.
@@ -42,5 +39,15 @@ public class ViewManager implements InterfaceViewManager {
     @Override
     public void showPayment() {
         dispatcher.forward(new payment(request,response));
+    }
+
+    @Override
+    public void showSignIn() {
+        dispatcher.forward(new SignIn(request,response));
+    }
+
+    @Override
+    public void showSignUp() {
+        dispatcher.forward(new SignUp(request,response));
     }
 }

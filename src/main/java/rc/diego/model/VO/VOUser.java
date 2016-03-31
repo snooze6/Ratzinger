@@ -6,8 +6,11 @@ package rc.diego.model.VO;
 public class VOUser extends BaseEntity{
 
     public final static String SESSION_ATTRIBUTE_USER="usuario";
-    public final static String PARAMETER_NAME ="nombre";
+    public final static String PARAMETER_FIRST_NAME ="nombre";
+    public final static String PARAMETER_LAST_NAME ="apellidos";
     public final static String PARAMETER_MAIL ="email";
+    public final static String PARAMETER_PASSWORD ="password";
+    public final static String PARAMETER_DNI ="dni";
 
     private String name;
     private String lastName;
@@ -15,11 +18,11 @@ public class VOUser extends BaseEntity{
     private String eMail;
     private String password;
 
-    public String getName() {
+    public String getFirstName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setFirstName(String name) {
         this.name = name;
     }
 
@@ -55,4 +58,11 @@ public class VOUser extends BaseEntity{
         this.password = password;
     }
 
+    public VOUser getCopy() {
+        try {
+            return (VOUser) this.clone();
+        }catch (CloneNotSupportedException e){
+            return null;
+        }
+    }
 }

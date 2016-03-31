@@ -14,7 +14,7 @@ public class DAOPedidosMySQL extends AbstractDAOMySQL implements InterfaceDAOPed
     PreparedStatement insertOrder = null;
     PreparedStatement insertProductOrder = null;
 
-    String insertOrderSQL = "INSERT INTO "+ MySQLContract.Orders.TABLE_NAME+"(`"+MySQLContract.Orders.USER+"`,`"+MySQLContract.Orders.EMAIL+"`,`"+MySQLContract.Orders.TOTAL+"`)  VALUES(?,?,?)";
+    String insertOrderSQL = "INSERT INTO "+ MySQLContract.Orders.TABLE_NAME+"(`"+MySQLContract.Orders.USER_DNI +"``,`"+MySQLContract.Orders.TOTAL+"`)  VALUES(?,?)";
     final String maxOrderIdSQL = "SELECT MAX(" + MySQLContract.Orders.ID + ") as "+MySQLContract.Orders.ID+" FROM "+ MySQLContract.Orders.TABLE_NAME + " LIMIT 1;";
     String insertProductSQL = "INSERT INTO "+MySQLContract.OrderProducsts.TABLE_NAME+"(`"+MySQLContract.OrderProducsts.ID_ORDER+"`,`"+MySQLContract.OrderProducsts.ID_PRODUCT+"`,`"+MySQLContract.OrderProducsts.UNITARY_PRICE+"`,`"+MySQLContract.OrderProducsts.QUANTITY+"`) VALUES(?,?,?,?);";
 
@@ -26,26 +26,17 @@ public class DAOPedidosMySQL extends AbstractDAOMySQL implements InterfaceDAOPed
 
             if(insertOrder == null)
                 insertOrder = getConnection().prepareStatement(insertOrderSQL);
-//            insertOrder = con.prepareStatement(insertOrderSQL, Statement.RETURN_GENERATED_KEYS);
 
-            insertOrder.setString(1, user.getName());
-            insertOrder.setString(2, user.geteMail());
+            insertOrder.setString(1, user.getDNI());
 
             final float[] total = {0};
             carrito.forEach((s, voCd) -> {
                 total[0] +=voCd.getQuantity()*voCd.getUnitaryPrice();
             });
 
-            insertOrder.setFloat(3, total[0]);
+            insertOrder.setFloat(2, total[0]);
 
             int row=insertOrder.executeUpdate();
-
-//            ResultSet generatedKeys=insertOrder.getGeneratedKeys();
-//            if (generatedKeys.next()) {
-//                int id = generatedKeys.getInt(MySQLContract.Orders.ID);
-//                System.out.println("ID --> "+id);
-//            }
-
 
             ResultSet setId=getConnection().createStatement().executeQuery(maxOrderIdSQL);
 
@@ -74,6 +65,7 @@ public class DAOPedidosMySQL extends AbstractDAOMySQL implements InterfaceDAOPed
                 });
 
                 getConnection().commit();
+                getConnection().setAutoCommit(true);
             }else{
                 //TODO TERMINAR A EJECUCION DA CONSULTA E TIRAR UN ERROR
             }
@@ -84,6 +76,7 @@ public class DAOPedidosMySQL extends AbstractDAOMySQL implements InterfaceDAOPed
                 try {
                     System.err.print("Transaction is being rolled back");
                     getConnection().rollback();
+                    getConnection().setAutoCommit(true);
                 } catch(SQLException excep) {
                     excep.printStackTrace();
                 }

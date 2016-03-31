@@ -40,8 +40,13 @@ public class TaskMapper implements InterfaceTaskMapper{
     }
 
     @Override
-    public void setUserData(String name, String email, VOUser VOUser) {
-        tm.runTask(new setUserData(name, email, VOUser));
+    public void setUserData(String dni, String firstName,String lastName, String email, String password, VOUser VOUser) {
+        tm.runTask(new setUserData(dni,firstName,lastName, email, password,VOUser));
+    }
+
+    @Override
+    public void signUpUser( VOUser voUser) {
+        tm.runTask(new signUp(voUser));
     }
 
     @Override

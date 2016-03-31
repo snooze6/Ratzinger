@@ -7,15 +7,8 @@
   <html>
     <head>
 
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-      <link rel="stylesheet" href="./web/css/material.min.css">
-      <link rel="stylesheet" href="./web/css/myStyle.css">
-      <script src="./web/js/material.min.js"></script>
-      <script src="./web/js/jquery-2.1.4.js"></script>
+      <c:import url="./genericHeader.jsp" />
       <script src="./web/js/shoppingCart.js"></script>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
       <title>Musica para DAA - Carrito</title>
 
@@ -91,7 +84,7 @@
             <!--fin contido tarxeta-->
 
           <div class="mdl-card__actions mdl-card--border">
-            <a href="/index.jsp" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+            <a href="./index.jsp" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
               Volver
             </a>
             <c:choose>
@@ -104,10 +97,9 @@
                     <input type="button" value="ELIMINAR" id="eliminar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;" disabled>
                 </c:otherwise>
             </c:choose>
-
-
-
           </div>
+
+          <c:import url="./menu.jsp" />
 
         </div>
       </form>

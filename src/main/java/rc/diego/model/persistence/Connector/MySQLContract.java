@@ -29,8 +29,7 @@ public class MySQLContract {
     public static class Orders{
         public static String TABLE_NAME="orders";
         public static String ID="id";
-        public static String USER="user";
-        public static String EMAIL="email";
+        public static String USER_DNI ="userDNI";
         public static String TOTAL="total";
         public static String DATE="date";
     }
