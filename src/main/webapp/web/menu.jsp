@@ -15,7 +15,7 @@
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
 
       <c:choose>
-          <c:when test="${fn:length(sessionScope.usuario.getPassword()) gt 0}">
+          <c:when test="${fn:length(sessionScope.usuario.getFirstName()) gt 0}">
             <li class="mdl-menu__item" id="linkPerfil" >Perf&iacute;l</li>
             <li class="mdl-menu__item" id="linkCerrarSesion" >Cerrar Sesi&oacute;n</li>
           </c:when>

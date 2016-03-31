@@ -1,8 +1,11 @@
 package rc.diego.model.persistence;
 
 import rc.diego.model.VO.VOUser;
+import rc.diego.model.encryption.PBKDF2Encrypt;
 import rc.diego.model.persistence.Connector.MySQLContract;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,14 +36,24 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
             insertUser.setString(2,user.getFirstName());
             insertUser.setString(3,user.getLastName());
             insertUser.setString(4,user.geteMail());
-            insertUser.setString(5,user.getPassword());
 
-            System.err.println("DEBUG");
-            System.err.println("=================");
-            System.err.println(insertUser.toString());
+            String password;
+            try {
+                 password= new PBKDF2Encrypt().generateStrongPasswordHash(user.getPassword());
 
-            insertUser.executeUpdate();
+                insertUser.setString(5,password);
 
+                System.err.println("DEBUG");
+                System.err.println("=================");
+                System.err.println(insertUser.toString());
+
+                insertUser.executeUpdate();
+
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            } catch (InvalidKeySpecException e) {
+                e.printStackTrace();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -51,12 +64,11 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
     }
 
     @Override
-    public boolean getUser(VOUser user) throws SQLException {
+    public boolean getUser(VOUser user) throws SQLException, InvalidKeySpecException, NoSuchAlgorithmException {
 
         String checkUser="SELECT * FROM `"+MySQLContract.Users.TABLE_NAME+
                 "` WHERE "+
-                MySQLContract.Users.DNI+"='"+user.getDNI()+"' AND "+
-                MySQLContract.Users.password+"='"+user.getPassword()+"' LIMIT 1;";
+                MySQLContract.Users.DNI+"='"+user.getDNI()+"' LIMIT 1;";
 
         System.err.println("DEBUG");
         System.err.println("=================");
@@ -64,7 +76,7 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
 
         ResultSet result=getConnection().createStatement().executeQuery(checkUser);
 
-        if(result.next()) {
+        if(result.next() &&  new PBKDF2Encrypt().validatePassword(user.getPassword(),result.getString(MySQLContract.Users.password))) {
 
             user.setFirstName(result.getString(MySQLContract.Users.firstName));
             user.setLastName(MySQLContract.Users.lastName);
