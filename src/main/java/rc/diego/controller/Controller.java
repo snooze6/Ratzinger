@@ -88,7 +88,7 @@ public class Controller extends CustomHttpServlet {
                         getViewManager().showPayment();
 
                     }else{
-                        getViewManager().showIndex();
+                        getViewManager().showSignIn();
                     }
 
                     break;
@@ -217,9 +217,10 @@ public class Controller extends CustomHttpServlet {
 
             }
         }catch (NullPointerException e){
-            req.setAttribute(PARAMETER_ERROR,"Se ha producido un error y no se ha podido completar la operación. Por favor, vuelva a intentarlo");
+            shoppingCart=getTaskMapper().getAllCds();
+            req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
 
-            getViewManager().showError();
+            getViewManager().showIndex();
         }
 
     }
