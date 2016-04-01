@@ -1,5 +1,7 @@
 package rc.diego.model.VO;
 
+import rc.diego.model.persistence.Connector.MySQLContract;
+
 /**
  * Created by entakitos on 20/02/16.
  */
@@ -17,6 +19,26 @@ public class VOUser extends BaseEntity{
     private String DNI;
     private String eMail;
     private String password;
+    private String images;
+    private MySQLContract.Tipo tipo = MySQLContract.Tipo.normal;
+
+    public MySQLContract.Tipo getTipo() {
+        return tipo;
+    }
+
+    public String getImages() {
+        return images;
+    }
+
+    public VOUser setImages(String images) {
+        this.images = images;
+        return this;
+    }
+
+    public VOUser setTipo(MySQLContract.Tipo tipo) {
+        this.tipo = tipo;
+        return this;
+    }
 
     public String getFirstName() {
         return name;

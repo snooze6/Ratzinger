@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import rc.diego.view.*;
 import rc.diego.view.Error;
+import rc.diego.view.admin.editProduct;
+import rc.diego.view.admin.stock;
 
 /**
  * Created by entakitos on 20/02/16.
@@ -56,4 +58,16 @@ public class ViewManager implements InterfaceViewManager {
     public void showError() {
         dispatcher.forward(new Error(request,response));
     }
+
+    @Override
+    public void showStocks() {
+        dispatcher.forward(new stock(request,response));
+    }
+
+    @Override
+    public void showEditProduct() {
+        dispatcher.forward(new editProduct(request,response));
+    }
+
+
 }

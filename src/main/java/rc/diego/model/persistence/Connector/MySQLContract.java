@@ -15,6 +15,11 @@ public class MySQLContract {
         public static String password = "password";
     }
 
+    public static class Admins{
+        public static String TABLE_NAME="admins";
+        public static String DNI = "DNI";
+    }
+
     public static class Products{
         public static String TABLE_NAME="products";
         public static String ID="id";
@@ -41,4 +46,6 @@ public class MySQLContract {
         public static String UNITARY_PRICE="unitaryPrice";
         public static String QUANTITY="quantity";
     }
+
+    public enum Tipo {normal, admin};
 }

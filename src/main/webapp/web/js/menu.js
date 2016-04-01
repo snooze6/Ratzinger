@@ -22,4 +22,9 @@ $('document').ready(function(){
         $("#form").submit();
     });
 
+    $('#linkStock').click(function(){
+        $("#action").val('stock');
+        $("#form").submit();
+    });
+
 });

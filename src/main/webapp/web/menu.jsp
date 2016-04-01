@@ -24,6 +24,7 @@
               <li class="mdl-menu__item" id="linkRegistrarse" >Registrarse</li>
           </c:otherwise>
       </c:choose>
+        <li class="mdl-menu__item" id="linkStock" >Ver Stock</li>
 
     </ul>
 

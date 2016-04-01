@@ -89,9 +89,30 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
             user.setLastName(MySQLContract.Users.lastName);
             user.seteMail(MySQLContract.Users.mail);
 
+            if (isAdmin(user)){
+                user.setTipo(MySQLContract.Tipo.admin);
+                System.err.println("Es administrador");
+            } else {
+                user.setTipo(MySQLContract.Tipo.normal);
+                System.err.println("No es administrador");
+            }
+
             return true;
         }else {
             return false;
         }
+    }
+
+    private boolean isAdmin(VOUser user) throws SQLException {
+        String checkUser="SELECT * FROM `"+MySQLContract.Admins.TABLE_NAME+
+                "` WHERE "+ MySQLContract.Users.DNI+"='"+user.getDNI()+"'  LIMIT 1;";
+
+        System.err.println("DEBUG");
+        System.err.println("=================");
+        System.err.println(checkUser);
+
+        ResultSet result=getConnection().createStatement().executeQuery(checkUser);
+
+        return result.next();
     }
 }
