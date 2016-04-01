@@ -12,6 +12,7 @@ $('document').ready(function(){
 
     $("#add").click(function(){
         $("#action").val('admin/edit');
+        $("#item").val('0');
         $("#form").submit();
     });
 

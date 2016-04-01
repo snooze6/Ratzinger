@@ -17,7 +17,14 @@
 <form id="form" action="./index.jsp" method="POST">
     <div class="demo-card-wide mdl-card mdl-shadow--2dp">
         <div class="mdl-card__title" id="cabeceraTarxetaCarrito">
-            <h2 class="mdl-card__title-text">Editar Producto</h2>
+            <c:choose>
+                <c:when test="${ requestScope.cd.getId()==0 }">
+                    <h2 class="mdl-card__title-text">Nuevo Producto</h2>
+                </c:when>
+                <c:otherwise>
+                    <h2 class="mdl-card__title-text">Editar Producto</h2>
+                </c:otherwise>
+            </c:choose>
         </div>
 
         <div class="mdl-card__actions mdl-card--border">
@@ -65,14 +72,14 @@
                     value="CANCELAR"
                     id="cancelar"
                     class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-                    onclick="alert('cancel');$('#action').val('admin/stock');$('#form').submit();"
+                    onclick="$('#action').val('admin/stock');$('#form').submit();"
             >
             <input type="button"
                    value="GUARDAR"
                    id="guardar"
                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
                    style="float:right;"
-                   onclick="alert('saved');$('#action').val('admin/save');$('#form').submit();"
+                   onclick="$('#action').val('admin/save');$('#form').submit();"
             >
         </div>
 

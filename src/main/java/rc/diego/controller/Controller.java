@@ -222,20 +222,28 @@ public class Controller extends CustomHttpServlet {
                     }
                     VOCd cd = new VOCd();
                     cd.setId(id);
-                    boolean aux = getTaskMapper().getCd(cd);
-                    if (id==0 && aux){
+
+                    if (id<0){
                         req.setAttribute(PARAMETER_ERROR,"Se ha producido un error. No se puede encontrar un cd con ese identificador");
                         getViewManager().showError();
                     } else {
-                        System.err.println("-- Edit item " + id);
-                        req.setAttribute(VOShoppingCart.SESSION_ITEM, cd);
-                        getViewManager().showEditProduct();
+                        if (getTaskMapper().getCd(cd)){
+                            System.err.println("-- Edit item " + id);
+                            req.setAttribute(VOShoppingCart.SESSION_ITEM, cd);
+                            getViewManager().showEditProduct();
+                        } else {
+                            System.err.println("-- Edit item " + 0);
+                            cd.setId(0);
+                            req.setAttribute(VOShoppingCart.SESSION_ITEM, cd);
+                            getViewManager().showEditProduct();
+                        }
+
                     }
                     break;
 
 
 
-                // Cosas del admin
+
                 case ADMIN_ACTION_SHOW_STOCK:
                     System.err.println("-- Show Stocks");
                     shoppingCart=getTaskMapper().getAllCds();

@@ -64,6 +64,7 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
                 cd.setDescription(results.getString(MySQLContract.Products.DESCRIPTION));
                 cd.setQuantity(results.getInt(MySQLContract.Products.QUANTITY));
                 cd.setUnitaryPrice(results.getFloat(MySQLContract.Products.UNITARY_PRICE));
+                return true;
             }
 
         } catch (SQLException e) {
