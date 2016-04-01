@@ -12,6 +12,6 @@ public class editProduct extends AbstractView {
 
     public editProduct(HttpServletRequest request, HttpServletResponse response) {
         super(request, response);
-        setViewUrl("/web/stocks.jsp");
+        setViewUrl("/web/editProducts.jsp");
     }
 }
