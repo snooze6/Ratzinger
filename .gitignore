@@ -7,6 +7,9 @@
 
 target/
 
+Ratzinger.iml
+ratzinger-maven.iml
+
 
 # Package Files #
 *.jar
