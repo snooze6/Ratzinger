@@ -39,6 +39,7 @@ public class Controller extends CustomHttpServlet {
     private final String ADMIN_ACTION_SHOW_STOCK = "admin/stock";
     private final String ADMIN_ACTION_EDIT_ITEM = "admin/edit";
     private final String ADMIN_ACTION_DELETE = "admin/delete";
+    private final String ADMIN_ACTION_SAVE = "admin/save";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -63,7 +64,6 @@ public class Controller extends CustomHttpServlet {
                 case ACTION_SHOW_INDEX:
                     shoppingCart=getTaskMapper().getAllCds();
                     req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
-
                     getViewManager().showIndex();
                     break;
                 case ACTION_SHOW_SHOPPING_CART:
@@ -228,11 +228,14 @@ public class Controller extends CustomHttpServlet {
                         getViewManager().showError();
                     } else {
                         System.err.println("-- Edit item " + id);
-                        System.err.println("-- Name: " + cd.getTitle());
-                        req.setAttribute("item", cd);
+                        req.setAttribute(VOShoppingCart.SESSION_ITEM, cd);
                         getViewManager().showEditProduct();
                     }
                     break;
+
+
+
+                // Cosas del admin
                 case ADMIN_ACTION_SHOW_STOCK:
                     System.err.println("-- Show Stocks");
                     shoppingCart=getTaskMapper().getAllCds();
@@ -241,6 +244,12 @@ public class Controller extends CustomHttpServlet {
                     break;
                 case ADMIN_ACTION_DELETE:
                     System.err.println("-- Delete items");
+                    req.setAttribute(PARAMETER_ERROR,"Not yet implemented");
+                    getViewManager().showError();
+                    break;
+                case ADMIN_ACTION_SAVE:
+                    System.err.println("-- Save item");
+                    req.setAttribute(PARAMETER_ERROR,"Not yet implemented");
                     getViewManager().showError();
                     break;
 
