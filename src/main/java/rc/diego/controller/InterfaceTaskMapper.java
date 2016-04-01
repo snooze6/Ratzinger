@@ -22,4 +22,6 @@ public interface InterfaceTaskMapper {
 
     void insertOrder(VOUser user, VOShoppingCart carrito);
     VOShoppingCart getAllCds();
+
+    boolean getCd(VOCd cd);
 }

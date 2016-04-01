@@ -18,7 +18,7 @@
 <form id="form" action="./index.jsp" method="POST">
     <div class="demo-card-wide mdl-card mdl-shadow--2dp">
         <div class="mdl-card__title" id="cabeceraTarxetaCarrito">
-            <h2 class="mdl-card__title-text">Editar Producto</h2>
+            <h2 class="mdl-card__title-text">Editar Producto ${ requestScope. }</h2>
         </div>
 
         <div class="mdl-card__actions mdl-card--border">
@@ -32,7 +32,7 @@
                 <div style="float: left">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label block">
                         <input class="mdl-textfield__input" type="text" id="name" name="name" required>
-                        <label class="mdl-textfield__label" for="name">Nombre...</label>
+                        <label class="mdl-textfield__label" for="name">Nombre...${param["item"].getTitle()}</label>
                     </div>
 
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label block">

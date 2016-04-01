@@ -44,6 +44,34 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
         return sc;
     }
 
+    @Override
+    public boolean getCD(VOCd cd) {
+
+        String getProductsSQL = "SELECT * FROM "+ MySQLContract.Products.TABLE_NAME +
+                " WHERE "+MySQLContract.Products.ID+"="+cd.getId()+";";
+
+        try {
+//            System.err.println("DEBUG");
+//            System.err.println("=================");
+//            System.err.println(getProductsSQL);
+
+            ResultSet results=getConnection().createStatement().executeQuery(getProductsSQL);
+
+            if (results.next()){
+                cd.setTitle(results.getString(MySQLContract.Products.NAME));
+                cd.setAuthor(results.getString(MySQLContract.Products.AUTHOR));
+                cd.setCountry(results.getString(MySQLContract.Products.COUNTRY));
+                cd.setDescription(results.getString(MySQLContract.Products.DESCRIPTION));
+                cd.setQuantity(results.getInt(MySQLContract.Products.QUANTITY));
+                cd.setUnitaryPrice(results.getFloat(MySQLContract.Products.UNITARY_PRICE));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public DAOCdsMySQL() {
         super();
     }

@@ -220,9 +220,18 @@ public class Controller extends CustomHttpServlet {
                     } catch (NumberFormatException e){
                         id = 0;
                     }
-
-                    System.err.println("-- Edit item "+id);
-                    getViewManager().showEditProduct();
+                    VOCd cd = new VOCd();
+                    cd.setId(id);
+                    boolean aux = getTaskMapper().getCd(cd);
+                    if (id==0 && aux){
+                        req.setAttribute(PARAMETER_ERROR,"Se ha producido un error. No se puede encontrar un cd con ese identificador");
+                        getViewManager().showError();
+                    } else {
+                        System.err.println("-- Edit item " + id);
+                        System.err.println("-- Name: " + cd.getTitle());
+                        req.setAttribute("item", cd);
+                        getViewManager().showEditProduct();
+                    }
                     break;
                 case ADMIN_ACTION_SHOW_STOCK:
                     System.err.println("-- Show Stocks");
@@ -231,13 +240,7 @@ public class Controller extends CustomHttpServlet {
                     getViewManager().showStocks();
                     break;
                 case ADMIN_ACTION_DELETE:
-                    try {
-                        id = Integer.parseInt(req.getParameter("item"));
-                    } catch (NumberFormatException e){
-                        id = 0;
-                    }
-
-                    System.err.println("-- Delete item"+id);
+                    System.err.println("-- Delete items");
                     getViewManager().showError();
                     break;
 
