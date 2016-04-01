@@ -2,6 +2,7 @@ package rc.diego.model.task;
 
 import rc.diego.model.VO.VOUser;
 import rc.diego.model.persistence.DAOFactoryMySQL;
+import rc.diego.model.persistence.DAOUsersMySQL;
 import rc.diego.model.persistence.InterfaceDAOFactory;
 
 import java.sql.SQLException;
@@ -13,6 +14,7 @@ public class signUp implements InterfaceTask{
 
     private InterfaceDAOFactory factory= new DAOFactoryMySQL();
     private VOUser user;
+    private boolean alreadyExists=false;
 
     public VOUser getUser() {
         return user;
@@ -22,13 +24,20 @@ public class signUp implements InterfaceTask{
         this.user = user;
     }
 
+    public boolean isAlreadyExists() {
+        return alreadyExists;
+    }
+
     @Override
     public void run() {
         try {
-            factory.getDAOUsers().inserteUser(user);
+            factory.getDAOUsers().insertUser(user);
         } catch (SQLException e) {
             //TODO falta gestionar que pasa si non se  pode registrar o usuario
             e.printStackTrace();
+        } catch (DAOUsersMySQL.UserAlreadyExistsException e) {
+            e.printStackTrace();
+            alreadyExists=true;
         }
     }
 

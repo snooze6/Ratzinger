@@ -5,7 +5,6 @@ import rc.diego.model.VO.VOCd;
 import rc.diego.model.VO.VOUser;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 
 /**
  * Created by entakitos on 20/02/16.
@@ -17,7 +16,7 @@ public interface InterfaceTaskMapper {
     void updateShoppingCart(VOShoppingCart shoppingCart, VOCd VOCd);
     void initializeSession(HttpSession session);
     void setUserData(String dni, String firstName,String lastName, String email, String password, VOUser VOUser);
-    void signUpUser( VOUser voUser);
+    boolean signUpUser(VOUser voUser);
     boolean signInUser( VOUser voUser);
     void pay(VOUser VOUser);
 

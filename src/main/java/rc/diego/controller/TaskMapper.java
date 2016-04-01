@@ -45,8 +45,10 @@ public class TaskMapper implements InterfaceTaskMapper{
     }
 
     @Override
-    public void signUpUser( VOUser voUser) {
-        tm.runTask(new signUp(voUser));
+    public boolean signUpUser(VOUser voUser) {
+        signUp su=new signUp(voUser);
+        tm.runTask(su);
+        return su.isAlreadyExists();
     }
 
     @Override

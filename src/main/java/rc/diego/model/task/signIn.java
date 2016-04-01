@@ -4,6 +4,8 @@ import rc.diego.model.VO.VOUser;
 import rc.diego.model.persistence.DAOFactoryMySQL;
 import rc.diego.model.persistence.InterfaceDAOFactory;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.SQLException;
 
 /**
@@ -29,12 +31,17 @@ public class signIn implements InterfaceTask{
 
     @Override
     public void run() {
+
         try {
-            valid=factory.getDAOUsers().getUser(user);
-        } catch (Exception e) {
-            //TODO falta gestionar que pasa si non se  pode registrar o usuario
+            valid = factory.getDAOUsers().getUser(user);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (InvalidKeySpecException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
+
     }
 
     public signIn(VOUser user) {

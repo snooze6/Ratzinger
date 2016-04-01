@@ -10,4 +10,5 @@ public interface InterfaceViewManager {
     void showPayment();
     void showSignIn();
     void showSignUp();
+    void showError();
 }

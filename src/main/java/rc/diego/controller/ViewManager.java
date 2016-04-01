@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import rc.diego.view.*;
+import rc.diego.view.Error;
 
 /**
  * Created by entakitos on 20/02/16.
@@ -49,5 +50,10 @@ public class ViewManager implements InterfaceViewManager {
     @Override
     public void showSignUp() {
         dispatcher.forward(new SignUp(request,response));
+    }
+
+    @Override
+    public void showError() {
+        dispatcher.forward(new Error(request,response));
     }
 }

@@ -15,6 +15,12 @@ import java.sql.SQLException;
  */
 public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUsers{
 
+    public class UserAlreadyExistsException extends Exception{
+        public UserAlreadyExistsException(String s) {
+            super(s);
+        }
+    }
+
     PreparedStatement insertUser = null;
     String insertUserSQL = "INSERT INTO `"+ MySQLContract.Users.TABLE_NAME+"` (`"+
             MySQLContract.Users.DNI+"`,`"+
@@ -25,7 +31,7 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
             "`)  VALUES(?,?,?,?,?);";
 
     @Override
-    public void inserteUser(VOUser user) throws SQLException {
+    public void insertUser(VOUser user) throws SQLException, UserAlreadyExistsException {
 
         try {
 
@@ -56,6 +62,7 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new UserAlreadyExistsException("Ya existe un usuario con el mismo DNI");
         } finally {
             if(insertUser != null)
                 insertUser.close();

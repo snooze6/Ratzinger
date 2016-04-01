@@ -10,6 +10,6 @@ import java.sql.SQLException;
  * Created by entakitos on 31/03/16.
  */
 public interface InterfaceDAOUsers {
-    void inserteUser(VOUser user) throws SQLException;
+    void insertUser(VOUser user) throws SQLException, DAOUsersMySQL.UserAlreadyExistsException;
     boolean getUser(VOUser user) throws SQLException, InvalidKeySpecException, NoSuchAlgorithmException;
 }

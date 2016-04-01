@@ -20,6 +20,7 @@ public class Controller extends CustomHttpServlet {
     private final String PARAMETER_ACTION = "action";
     private final String PARAMETER_CD_LIST = "listaCds";
     private final String PARAMETER_QUANTITY = "cantidad";
+    private final String PARAMETER_ERROR = "error";
 
     private final String ACTION_SHOW_INDEX = "index";
     private final String ACTION_SHOW_SHOPPING_CART = "shoppingCart";
@@ -76,17 +77,19 @@ public class Controller extends CustomHttpServlet {
                 case ACTION_CONFIRM_PAYMENT:
 
                     //TODO:comprobar que o ususario se encontra registrado ates de realizar este punto
-                    final float[] total = {0};
-                    ((VOShoppingCart) session.getAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART)).forEach((s, voCd) -> {
-                        total[0] +=voCd.getQuantity() * voCd.getUnitaryPrice();
-                    });
+                    user = user=((VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
 
-                    getTaskMapper().insertOrder(
-                            (VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER),
-                            (VOShoppingCart) session.getAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART)
-                    );
+                    if(user.getFirstName() != null && user.getFirstName().length() > 0) {
+                        getTaskMapper().insertOrder(
+                                (VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER),
+                                (VOShoppingCart) session.getAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART)
+                        );
 
-                    getViewManager().showPayment();
+                        getViewManager().showPayment();
+
+                    }else{
+                        getViewManager().showIndex();
+                    }
 
                     break;
                 case ACTION_BUY_ITEM:
@@ -154,9 +157,7 @@ public class Controller extends CustomHttpServlet {
 
                     break;
                 case ACTION_SIGN_IN:
-
-
-                    VOUser user2=((VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
+                    user=((VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
 
                     getTaskMapper().setUserData(
                             req.getParameter(VOUser.PARAMETER_DNI),
@@ -164,21 +165,25 @@ public class Controller extends CustomHttpServlet {
                             null,
                             null,
                             req.getParameter(VOUser.PARAMETER_PASSWORD),
-                            user2
+                            user
                     );
 
-                    if(getTaskMapper().signInUser(user2)){  //usuario logueado correctamente
+                    if(getTaskMapper().signInUser(user)){  //usuario logueado correctamente
+                        shoppingCart=getTaskMapper().getAllCds();
+                        req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
 
+                        getViewManager().showIndex();
+                    }else{
+                        req.setAttribute(PARAMETER_ERROR,"Los datos de usuario no son correctos o el usuario no existe. Por favor, inténtelo de nuevo.");
+
+                        getViewManager().showError();
                     }
 
-                    //TODO: por ahora unha vez inicia sesion un usuario, se mostraa páxina inicial
-                    shoppingCart=getTaskMapper().getAllCds();
-                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
-
-                    getViewManager().showIndex();
                     break;
                 case ACTION_SIGN_UP:
 
+
+                    //TODO:mensaxe de error ao rexistrar o usuario
                     user=((VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
 
                     getTaskMapper().setUserData(
@@ -191,16 +196,17 @@ public class Controller extends CustomHttpServlet {
                     );
 
                     //TODO: Intentar registraro ususario na base de datos
-                    getTaskMapper().signUpUser(user);
+                    if(getTaskMapper().signUpUser(user)) {
+                        //TODO: por ahora unha vez se registra un usuario, se mostraa páxina inicial
+                        shoppingCart = getTaskMapper().getAllCds();
+                        req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS, shoppingCart);
 
-                    //TODO: si se registra cargar o objeto da sesión cos datos do usuario
-                    //session.setAttribute(VOUser.SESSION_ATTRIBUTE_USER,user);
+                        getViewManager().showIndex();
+                    }else{
+                        req.setAttribute(PARAMETER_ERROR,"Se ha producido un error. No se puede registrar un usuario con ese DNI");
 
-                    //TODO: por ahora unha vez se registra un usuario, se mostraa páxina inicial
-                    shoppingCart=getTaskMapper().getAllCds();
-                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
-
-                    getViewManager().showIndex();
+                        getViewManager().showError();
+                    }
 
                     break;
                 default:
@@ -208,12 +214,12 @@ public class Controller extends CustomHttpServlet {
                     req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
 
                     getViewManager().showIndex();
+
             }
         }catch (NullPointerException e){
-            shoppingCart=getTaskMapper().getAllCds();
-            req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
+            req.setAttribute(PARAMETER_ERROR,"Se ha producido un error y no se ha podido completar la operación. Por favor, vuelva a intentarlo");
 
-            getViewManager().showIndex();
+            getViewManager().showError();
         }
 
     }
