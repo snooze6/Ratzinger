@@ -1,0 +1,14 @@
+<Context>
+    <!--<Resource name="jdbc/localhost" auth="Container" type="javax.sql.DataSource"-->
+              <!--maxActive="50" maxIdle="30" maxWait="10000"-->
+              <!--username="root" password="root"-->
+              <!--driverClassName="com.mysql.jdbc.Driver"-->
+              <!--url="jdbc:mysql://localhost:3306/dawa_04_test"-->
+    <!--/>-->
+    <Resource name="jdbc/amazon" auth="Container" type="javax.sql.DataSource"
+              maxActive="50" maxIdle="30" maxWait="10000"
+              username="ratztest" password="ratztest"
+              driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://ratztest.cdh6gtvsyebq.us-east-1.rds.amazonaws.com:3306/ratztest"
+    />
+</Context>
