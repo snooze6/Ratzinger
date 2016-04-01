@@ -23,8 +23,8 @@ $('document').ready(function(){
     });
 
     $('#linkStock').click(function(){
-        $("#action").val('stock');
+        $("#action").val('admin/stock');
         $("#form").submit();
     });
 
-});
+}); 

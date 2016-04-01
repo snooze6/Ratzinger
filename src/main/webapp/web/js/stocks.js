@@ -5,16 +5,14 @@
 $('document').ready(function(){
 
     $("#eliminar").click(function(){
-        $("#action").val('stock');
-
+        $("#action").val('admin/delete');
+        $("#item").val('0');
         $("#form").submit();
     });
 
     $("#add").click(function(){
-        $("#action").val('edit');
-
+        $("#action").val('admin/edit');
         $("#form").submit();
     });
-
 
 });

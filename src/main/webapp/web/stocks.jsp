@@ -45,7 +45,17 @@
                     <td>${producto.value.getQuantity()}&euro;</td>
                     <td>${producto.value.getUnitaryPrice()}&euro;</td>
                     <td>
-                        <input type="submit" value="EDITAR" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;">
+                        <input
+                                type="button"
+                                value="EDITAR"
+                                class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                                style="float:right;"
+                                onclick="
+                                        $('#action').val('admin/edit');
+                                        $('#item').val(${producto.value.getId()});
+                                        $('#form').submit();
+                                        "
+                        >
                     </td>
                     <td>
                         <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" >
@@ -60,6 +70,7 @@
         </table>
 
         <input type="hidden" name="action" id="action" value="checkout">
+        <input type="hidden" name="item" id="item" value="0">
         <!--fin contido tarxeta-->
 
         <div class="mdl-card__actions mdl-card--border">

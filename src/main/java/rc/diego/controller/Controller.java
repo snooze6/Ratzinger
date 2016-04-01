@@ -23,8 +23,6 @@ public class Controller extends CustomHttpServlet {
     private final String PARAMETER_ERROR = "error";
 
     private final String ACTION_SHOW_INDEX = "index";
-    private final String ACTION_SHOW_STOCK = "stock";
-    private final String ACTION_EDIT_ITEM = "edit";
 
     private final String ACTION_SHOW_SHOPPING_CART = "shoppingCart";
     private final String ACTION_SHOW_SIGN_IN = "signIn";
@@ -38,6 +36,10 @@ public class Controller extends CustomHttpServlet {
     private final String ACTION_CONFIRM_PAYMENT = "confirmPayment";
     private final String ACTION_RESET = "reset";
 
+    private final String ADMIN_ACTION_SHOW_STOCK = "admin/stock";
+    private final String ADMIN_ACTION_EDIT_ITEM = "admin/edit";
+    private final String ADMIN_ACTION_DELETE = "admin/delete";
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        doPost(req,resp);
@@ -47,6 +49,7 @@ public class Controller extends CustomHttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         VOShoppingCart shoppingCart;
         VOUser user;
+        int id;
 
         HttpSession session=req.getSession(false);
 
@@ -74,15 +77,6 @@ public class Controller extends CustomHttpServlet {
                     break;
                 case ACTION_CHECKOUT:
                     getViewManager().showPaymentData();
-                    break;
-                case ACTION_EDIT_ITEM:
-                    getViewManager().showEditProduct();
-                    break;
-                case ACTION_SHOW_STOCK:
-                    shoppingCart=getTaskMapper().getAllCds();
-                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
-
-                    getViewManager().showStocks();
                     break;
                 case ACTION_CONFIRM_PAYMENT:
                     //TODO:comprobar que o ususario se encontra registrado ates de realizar este punto
@@ -218,6 +212,35 @@ public class Controller extends CustomHttpServlet {
                     }
 
                     break;
+
+                // Admin things
+                case ADMIN_ACTION_EDIT_ITEM:
+                    try {
+                        id = Integer.parseInt(req.getParameter("item"));
+                    } catch (NumberFormatException e){
+                        id = 0;
+                    }
+
+                    System.err.println("-- Edit item "+id);
+                    getViewManager().showEditProduct();
+                    break;
+                case ADMIN_ACTION_SHOW_STOCK:
+                    System.err.println("-- Show Stocks");
+                    shoppingCart=getTaskMapper().getAllCds();
+                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
+                    getViewManager().showStocks();
+                    break;
+                case ADMIN_ACTION_DELETE:
+                    try {
+                        id = Integer.parseInt(req.getParameter("item"));
+                    } catch (NumberFormatException e){
+                        id = 0;
+                    }
+
+                    System.err.println("-- Delete item"+id);
+                    getViewManager().showError();
+                    break;
+
                 default:
                     shoppingCart=getTaskMapper().getAllCds();
                     req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
