@@ -6,54 +6,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%@include file="./genericHeader.jsp" %>
-    <script src="./web/js/index.js"></script>
 
-    <title>Musica para DAA</title>
+    <c:import url="./genericHeader.jsp" />
+    <script src="./web/js/stocks.js"></script>
+
+    <title>Musica para DAA - Stock</title>
+
 </head>
 <body>
 
 <form id="form" action="./index.jsp" method="POST">
     <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-        <div class="mdl-card__title" id="cabeceraTarxetaInicio">
-            <h2 class="mdl-card__title-text">Welcome</h2>
+        <div class="mdl-card__title" id="cabeceraTarxetaCarrito">
+            <h2 class="mdl-card__title-text">Stocks</h2>
         </div>
-
-        <style>
-            .demo-card-square.mdl-card {
-                width: 320px;
-                height: 320px;
-            }
-            .demo-card-square > .mdl-card__title {
-                color: #fff;
-                background-size: 100%;
-                background: url('https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQiIxa3WlAYrEOQCPgGYVefzFrRs8CCGVxRa7PX6z4JweBOAkmX') no-repeat;
-            }
-        </style>
-
-        <c:forEach var="producto" items="${requestScope.cds}">
-            <div class="demo-card-square mdl-card mdl-shadow--2dp">
-                <div class="mdl-card__title mdl-card--expand">
-                    <h2 class="mdl-card__title-text">Update</h2>
-                </div>
-                <div class="mdl-card__supporting-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Aenan convallis.
-                </div>
-                <div class="mdl-card__actions mdl-card--border">
-                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                        View Updates
-                    </a>
-                </div>
-            </div>
-        </c:forEach>
-
-        <!-- Square card -->
 
         <div class="mdl-card__actions mdl-card--border">
-            <input type="submit" value="Seleccionar Producto" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;">
-            <input type="button" value="Ver Carrito" id="verCarrito" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;">
+            <input type="button" id="add" value="AÑADIR" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;">
         </div>
+
+        <table class="mdl-data-table mdl-js-data-table">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">CD</th>
+                    <th>Cantidad</th>
+                    <th>Cantidad Restante</th>
+                    <th>Precio Unitario</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+            <c:forEach var="producto" items="${requestScope.cds}">
+                <tr>
+                    <td class="text-align-left">${producto.value.getTitle()}</td>
+                    <td>${producto.value.getQuantity()}</td>
+                    <td>${producto.value.getQuantity()}&euro;</td>
+                    <td>${producto.value.getUnitaryPrice()}&euro;</td>
+                    <td>
+                        <input type="submit" value="EDITAR" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;">
+                    </td>
+                    <td>
+                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" >
+                            <input type="checkbox" id="checkbox-${producto.value.getId()}" name="checkbox-${producto.value.getId()}" class="mdl-checkbox__input">
+                        </label>
+                    </td>
+                </tr>
+
+            </c:forEach>
+
+            </tbody>
+        </table>
+
+        <input type="hidden" name="action" id="action" value="checkout">
+        <!--fin contido tarxeta-->
+
+        <div class="mdl-card__actions mdl-card--border">
+            <a href="./index.jsp" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                Volver
+            </a>
+            <c:choose>
+                <c:when test="${total gt 0}">
+                    <input type="button" value="ELIMINAR" id="eliminar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;color:#F44336;">
+                </c:when>
+                <c:otherwise>
+                    <input type="button" value="ELIMINAR" id="eliminar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;" disabled>
+                </c:otherwise>
+            </c:choose>
+        </div>
+
         <c:import url="./menu.jsp" />
 
     </div>

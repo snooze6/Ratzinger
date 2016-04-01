@@ -23,6 +23,8 @@ public class Controller extends CustomHttpServlet {
 
     private final String ACTION_SHOW_INDEX = "index";
     private final String ACTION_SHOW_STOCK = "stock";
+    private final String ACTION_EDIT_ITEM = "edit";
+
     private final String ACTION_SHOW_SHOPPING_CART = "shoppingCart";
     private final String ACTION_SHOW_SIGN_IN = "signIn";
     private final String ACTION_SHOW_SIGN_UP = "signUp";
@@ -72,6 +74,9 @@ public class Controller extends CustomHttpServlet {
                 case ACTION_CHECKOUT:
                     getViewManager().showPaymentData();
                     break;
+                case ACTION_EDIT_ITEM:
+                    getViewManager().showEditProduct();
+                    break;
                 case ACTION_SHOW_STOCK:
                     shoppingCart=getTaskMapper().getAllCds();
                     req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
@@ -79,7 +84,6 @@ public class Controller extends CustomHttpServlet {
                     getViewManager().showStocks();
                     break;
                 case ACTION_CONFIRM_PAYMENT:
-
                     //TODO:comprobar que o ususario se encontra registrado ates de realizar este punto
                     final float[] total = {0};
                     ((VOShoppingCart) session.getAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART)).forEach((s, voCd) -> {

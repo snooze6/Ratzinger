@@ -11,4 +11,5 @@ public interface InterfaceViewManager {
     void showSignIn();
     void showSignUp();
     void showStocks();
+    void showEditProduct();
 }

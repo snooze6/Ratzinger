@@ -6,11 +6,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by entakitos on 20/02/16.
+ * Created by snooze on 4/1/16.
  */
-public class stock extends AbstractView {
+public class editProduct extends AbstractView {
 
-    public stock(HttpServletRequest request, HttpServletResponse response) {
+    public editProduct(HttpServletRequest request, HttpServletResponse response) {
         super(request, response);
         setViewUrl("/web/stocks.jsp");
     }

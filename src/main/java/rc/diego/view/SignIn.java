@@ -10,7 +10,6 @@ public class SignIn extends AbstractView {
 
     public SignIn(HttpServletRequest request, HttpServletResponse response) {
         super(request, response);
-        //TODO usar setViewURL(String str) para especificar donde se encontra a páxina
         setViewUrl("/web/signIn.jsp");
     }
 }

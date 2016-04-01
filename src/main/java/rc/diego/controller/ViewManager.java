@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import rc.diego.view.*;
+import rc.diego.view.admin.editProduct;
 import rc.diego.view.admin.stock;
 
 /**
@@ -54,8 +55,12 @@ public class ViewManager implements InterfaceViewManager {
 
     @Override
     public void showStocks() {
-        System.err.println("Estoy aquí");
         dispatcher.forward(new stock(request,response));
+    }
+
+    @Override
+    public void showEditProduct() {
+        dispatcher.forward(new editProduct(request,response));
     }
 
 
