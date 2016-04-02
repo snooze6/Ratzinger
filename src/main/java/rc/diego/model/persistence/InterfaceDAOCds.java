@@ -1,5 +1,6 @@
 package rc.diego.model.persistence;
 
+import rc.diego.model.VO.VOCd;
 import rc.diego.model.VO.VOShoppingCart;
 
 /**
@@ -7,4 +8,5 @@ import rc.diego.model.VO.VOShoppingCart;
  */
 public interface InterfaceDAOCds {
     VOShoppingCart getAllCDs();
+    boolean getCD(VOCd cd);
 }

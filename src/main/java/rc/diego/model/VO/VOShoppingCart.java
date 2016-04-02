@@ -10,5 +10,6 @@ public class VOShoppingCart extends HashMap<Integer,VOCd> implements Serializabl
 
     public final static String SESSION_ATTRIBUTE_SHOPPING_CART="cart";
     public final static String SESSION_ATTRIBUTE_CDS="cds";
+    public final static String SESSION_ITEM="cd";
 
 }

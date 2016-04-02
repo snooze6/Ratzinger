@@ -49,9 +49,9 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
 
                 insertUser.setString(5,password);
 
-                System.err.println("DEBUG");
-                System.err.println("=================");
-                System.err.println(insertUser.toString());
+//                System.err.println("DEBUG");
+//                System.err.println("=================");
+//                System.err.println(insertUser.toString());
 
                 insertUser.executeUpdate();
 
@@ -77,9 +77,9 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
                 "` WHERE "+
                 MySQLContract.Users.DNI+"='"+user.getDNI()+"' LIMIT 1;";
 
-        System.err.println("DEBUG");
-        System.err.println("=================");
-        System.err.println(checkUser);
+//        System.err.println("DEBUG");
+//        System.err.println("=================");
+//        System.err.println(checkUser);
 
         ResultSet result=getConnection().createStatement().executeQuery(checkUser);
 
@@ -107,9 +107,9 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
         String checkUser="SELECT * FROM `"+MySQLContract.Admins.TABLE_NAME+
                 "` WHERE "+ MySQLContract.Users.DNI+"='"+user.getDNI()+"'  LIMIT 1;";
 
-        System.err.println("DEBUG");
-        System.err.println("=================");
-        System.err.println(checkUser);
+//        System.err.println("DEBUG");
+//        System.err.println("=================");
+//        System.err.println(checkUser);
 
         ResultSet result=getConnection().createStatement().executeQuery(checkUser);
 

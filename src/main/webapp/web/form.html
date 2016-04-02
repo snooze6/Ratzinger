@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/material.min.css">
+    <link rel="stylesheet" href="css/myStyle.css">
+    <script src="js/material.min.js"></script>
+    <script src="js/jquery-2.1.4.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <script src="js/index.js"></script>
+
+    <title>Musica para DAA</title>
+</head>
+
+<body>
+
+    <form id="form" action="./index.jsp" method="POST">
+        <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title" id="cabeceraTarxetaInicio">
+                <h2 class="mdl-card__title-text">Welcome</h2>
+            </div>
+
+            
+            
+            <div class="mdl-card__supporting-text">
+            <!--contido tarxeta-->
+
+              <div style="float: left">
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label block">
+                    <input class="mdl-textfield__input" type="text" id="name" name="name" required>
+                    <label class="mdl-textfield__label" for="name">Nombre...</label>
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label block">
+                    <input class="mdl-textfield__input" type="text" id="author" name="author">
+                    <label class="mdl-textfield__label" for="author">Autor...</label>
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label block">
+                    <input class="mdl-textfield__input" type="text" id="country" name="country">
+                    <label class="mdl-textfield__label" for="country">País...</label>
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label block">
+                    <input class="mdl-textfield__input" type="text" id="price" name="price" required>
+                    <label class="mdl-textfield__label" for="price">Precio...</label>
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label block">
+                    <input class="mdl-textfield__input" type="text" id="quantity" name="quantity" pattern=".{2,}" required>
+                    <label class="mdl-textfield__label" for="quantity">Cantidad...</label>
+                  </div>
+              </div>
+                
+              <div class="mdl-textfield mdl-js-textfield" style="float: right;">
+                <textarea class="mdl-textfield__input" type="text" rows= "3" id="description" name="description" style="height: 300px"></textarea>
+                <label class="mdl-textfield__label" for="description">Description...</label>
+              </div>
+
+               <input type="hidden" name="action" id="action" value="signUpUser">
+            <!--fin contido tarxeta-->
+          </div>
+            
+            
+
+            
+            <div class="mdl-card__actions mdl-card--border">
+                <input type="submit" value="Seleccionar Producto" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;">
+                <input type="button" value="Ver Carrito" id="verCarrito" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;">
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
