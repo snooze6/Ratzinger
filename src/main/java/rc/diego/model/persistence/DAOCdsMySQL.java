@@ -48,7 +48,7 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
     public boolean getCD(VOCd cd) {
 
         String getProductsSQL = "SELECT * FROM "+ MySQLContract.Products.TABLE_NAME +
-                " WHERE "+MySQLContract.Products.ID+"="+cd.getId()+";";
+                " WHERE "+MySQLContract.Products.ID+"="+cd.getId()+" LIMIT 1;";
 
         try {
 //            System.err.println("DEBUG");

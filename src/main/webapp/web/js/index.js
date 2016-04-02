@@ -6,7 +6,7 @@ $('document').ready(function(){
     });
 
     $("button").click(function(){
-        $("product").val(this.id)
+        $("#product").val(this.id);
         $("#form").submit();
     });
 });

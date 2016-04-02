@@ -19,7 +19,7 @@ public class Controller extends CustomHttpServlet {
 
     private final String PARAMETER_ACTION = "action";
     private final String PARAMETER_PRODUCT = "product";
-    private final String PARAMETER_QUANTITY = "cantidad";
+    private final String PARAMETER_QUANTITY = "quantity";
     private final String PARAMETER_ERROR = "error";
 
     private final String ACTION_SHOW_INDEX = "index";
@@ -50,6 +50,7 @@ public class Controller extends CustomHttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         VOShoppingCart shoppingCart;
         VOUser user;
+        VOCd cd;
         int id;
 
         HttpSession session=req.getSession(false);
@@ -96,19 +97,28 @@ public class Controller extends CustomHttpServlet {
 
                     break;
                 case ACTION_BUY_ITEM:
+                    cd=new VOCd();
+                    cd.setId(Integer.parseInt(req.getParameter(PARAMETER_PRODUCT)));
 
-                            Integer.parseInt(req.getParameter(PARAMETER_PRODUCT))
-                            Integer.parseInt(req.getParameter(PARAMETER_QUANTITY))
+                    System.out.println("AQUI");
+
+                    if (getTaskMapper().getCd(cd)) {
+                        System.out.println("AQUI2");
+                        cd.setQuantity(Integer.parseInt(req.getParameter(PARAMETER_QUANTITY)));
 
 
-                    shoppingCart=(VOShoppingCart)session.getAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART);
+                        shoppingCart = (VOShoppingCart) session.getAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART);
+                        System.out.println("AQUI3");
+                        getTaskMapper().addToShoppingCart(
+                                shoppingCart,
+                                cd
+                        );
+                        System.out.println("AQUI4");
+                        getViewManager().showShoppingCart();
+                    }
 
-                    getTaskMapper().addToShoppingCart(
-                            shoppingCart,
-                            p
-                    );
+                    //TODO: cargar index
 
-                    getViewManager().showShoppingCart();
                     break;
                 case ACTION_ERASE_ITEM:
 
@@ -220,7 +230,7 @@ public class Controller extends CustomHttpServlet {
                     } catch (NumberFormatException e){
                         id = 0;
                     }
-                    VOCd cd = new VOCd();
+                    cd = new VOCd();
                     cd.setId(id);
 
                     if (id<0){
