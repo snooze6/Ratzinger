@@ -1,7 +1,7 @@
 package rc.diego.model.persistence;
 
 import rc.diego.model.VO.VOUser;
-import rc.diego.model.encryption.PBKDF2Encrypt;
+import rc.diego.model.utils.encryption.PBKDF2Encrypt;
 import rc.diego.model.persistence.Connector.MySQLContract;
 
 import java.security.NoSuchAlgorithmException;
@@ -21,8 +21,8 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
         }
     }
 
-    PreparedStatement insertUser = null;
-    String insertUserSQL = "INSERT INTO `"+ MySQLContract.Users.TABLE_NAME+"` (`"+
+    private PreparedStatement insertUser = null;
+    private String insertUserSQL = "INSERT INTO `"+ MySQLContract.Users.TABLE_NAME+"` (`"+
             MySQLContract.Users.DNI+"`,`"+
             MySQLContract.Users.firstName+"`,`"+
             MySQLContract.Users.lastName+"`,`"+
@@ -51,7 +51,7 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
 
 //                System.err.println("DEBUG");
 //                System.err.println("=================");
-//                System.err.println(insertUser.toString());
+//                System.err.println(updateCDQuantityStatement.toString());
 
                 insertUser.executeUpdate();
 

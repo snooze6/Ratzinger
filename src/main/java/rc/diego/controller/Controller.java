@@ -84,12 +84,15 @@ public class Controller extends CustomHttpServlet {
                     user = user=((VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
 
                     if(user.getFirstName() != null && user.getFirstName().length() > 0) {
-                        getTaskMapper().insertOrder(
+                        if(getTaskMapper().insertOrder(
                                 (VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER),
                                 (VOShoppingCart) session.getAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART)
-                        );
-
-                        getViewManager().showPayment();
+                        )) {
+                            getViewManager().showPayment();
+                        }else{
+                            req.setAttribute(PARAMETER_ERROR,"Se ha producido un error. No se dispone de suficiente sotck para algunos de los productos seleccionados");
+                            getViewManager().showError();
+                        }
 
                     }else{
                         getViewManager().showSignIn();
@@ -100,24 +103,26 @@ public class Controller extends CustomHttpServlet {
                     cd=new VOCd();
                     cd.setId(Integer.parseInt(req.getParameter(PARAMETER_PRODUCT)));
 
-                    System.out.println("AQUI");
-
                     if (getTaskMapper().getCd(cd)) {
-                        System.out.println("AQUI2");
+
                         cd.setQuantity(Integer.parseInt(req.getParameter(PARAMETER_QUANTITY)));
 
 
                         shoppingCart = (VOShoppingCart) session.getAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART);
-                        System.out.println("AQUI3");
+
                         getTaskMapper().addToShoppingCart(
                                 shoppingCart,
                                 cd
                         );
-                        System.out.println("AQUI4");
+
                         getViewManager().showShoppingCart();
+                    }else{
+                        shoppingCart=getTaskMapper().getAllCds();
+                        req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
+
+                        getViewManager().showIndex();
                     }
 
-                    //TODO: cargar index
 
                     break;
                 case ACTION_ERASE_ITEM:

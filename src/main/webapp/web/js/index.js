@@ -5,7 +5,7 @@ $('document').ready(function(){
         $("#form").submit();
     });
 
-    $("button").click(function(){
+    $(".boton-compra").click(function(){
         $("#product").val(this.id);
         $("#form").submit();
     });

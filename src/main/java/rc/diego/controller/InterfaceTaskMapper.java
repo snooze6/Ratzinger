@@ -20,7 +20,7 @@ public interface InterfaceTaskMapper {
     boolean signInUser( VOUser voUser);
     void pay(VOUser VOUser);
 
-    void insertOrder(VOUser user, VOShoppingCart carrito);
+    boolean insertOrder(VOUser user, VOShoppingCart carrito);
     VOShoppingCart getAllCds();
 
     boolean getCd(VOCd cd);

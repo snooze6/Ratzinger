@@ -1,10 +1,6 @@
 package rc.diego.model.task;
 
 import rc.diego.model.VO.VOUser;
-import rc.diego.model.encryption.PBKDF2Encrypt;
-
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 
 /**
  * Created by entakitos on 29/02/16.

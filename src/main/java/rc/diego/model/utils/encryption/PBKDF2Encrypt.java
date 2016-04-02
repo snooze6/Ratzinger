@@ -1,4 +1,4 @@
-package rc.diego.model.encryption;
+package rc.diego.model.utils.encryption;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;

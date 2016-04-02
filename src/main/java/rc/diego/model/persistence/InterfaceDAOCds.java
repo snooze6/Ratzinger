@@ -9,4 +9,5 @@ import rc.diego.model.VO.VOShoppingCart;
 public interface InterfaceDAOCds {
     VOShoppingCart getAllCDs();
     boolean getCD(VOCd cd);
+    boolean updateCDQuantity(VOCd cd);
 }

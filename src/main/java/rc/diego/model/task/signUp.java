@@ -1,7 +1,7 @@
 package rc.diego.model.task;
 
 import rc.diego.model.VO.VOUser;
-import rc.diego.model.persistence.DAOFactoryMySQL;
+import rc.diego.model.persistence.AbstractFactoryMySQL;
 import rc.diego.model.persistence.DAOUsersMySQL;
 import rc.diego.model.persistence.InterfaceDAOFactory;
 
@@ -12,7 +12,7 @@ import java.sql.SQLException;
  */
 public class signUp implements InterfaceTask{
 
-    private InterfaceDAOFactory factory= new DAOFactoryMySQL();
+    private InterfaceDAOFactory factory= new AbstractFactoryMySQL();
     private VOUser user;
     private boolean alreadyExists=false;
 

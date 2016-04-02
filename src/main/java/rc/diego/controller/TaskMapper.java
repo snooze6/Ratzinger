@@ -48,7 +48,7 @@ public class TaskMapper implements InterfaceTaskMapper{
     public boolean signUpUser(VOUser voUser) {
         signUp su=new signUp(voUser);
         tm.runTask(su);
-        return su.isAlreadyExists();
+        return !su.isAlreadyExists();
     }
 
     @Override
@@ -57,8 +57,10 @@ public class TaskMapper implements InterfaceTaskMapper{
     }
 
     @Override
-    public void insertOrder(VOUser user, VOShoppingCart carrito) {
-        tm.runTask(new insertOrder(user,carrito));
+    public boolean insertOrder(VOUser user, VOShoppingCart carrito) {
+        insertOrder order=new insertOrder(user,carrito);
+        tm.runTask(order);
+        return order.isEnough();
     }
 
     @Override

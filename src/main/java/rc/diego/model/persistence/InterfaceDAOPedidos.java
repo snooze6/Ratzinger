@@ -9,5 +9,5 @@ import java.sql.SQLException;
  * Created by entakitos on 17/02/16.
  */
 public interface InterfaceDAOPedidos {
-    void insertarPedido(VOUser user, VOShoppingCart carrito) throws SQLException;
+    boolean insertOrder(VOUser user, VOShoppingCart carrito) throws SQLException;
 }

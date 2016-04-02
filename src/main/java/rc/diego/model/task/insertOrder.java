@@ -2,7 +2,8 @@ package rc.diego.model.task;
 
 import rc.diego.model.VO.VOShoppingCart;
 import rc.diego.model.VO.VOUser;
-import rc.diego.model.persistence.DAOFactoryMySQL;
+import rc.diego.model.persistence.AbstractFactoryMySQL;
+import rc.diego.model.persistence.DAOPedidosMySQL;
 import rc.diego.model.persistence.InterfaceDAOFactory;
 
 import java.sql.SQLException;
@@ -12,9 +13,10 @@ import java.sql.SQLException;
  */
 public class insertOrder implements InterfaceTask {
 
-    private InterfaceDAOFactory daoFactory= new DAOFactoryMySQL();
+    private InterfaceDAOFactory daoFactory= new AbstractFactoryMySQL();
     private VOUser user;
     private VOShoppingCart carrito;
+    private boolean enoughStock=false;
 
     public InterfaceDAOFactory getDaoFactory() {
         return daoFactory;
@@ -40,10 +42,14 @@ public class insertOrder implements InterfaceTask {
         this.carrito = carrito;
     }
 
+    public boolean isEnough() {
+        return enoughStock;
+    }
+
     @Override
     public void run() {
         try {
-            daoFactory.getDAOPedidos().insertarPedido(user,carrito);
+            enoughStock=daoFactory.getDAOPedidos().insertOrder(user,carrito);
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -4,6 +4,7 @@ import rc.diego.model.VO.VOCd;
 import rc.diego.model.VO.VOShoppingCart;
 import rc.diego.model.persistence.Connector.MySQLContract;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -12,7 +13,12 @@ import java.sql.SQLException;
  */
 public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
 
-    final String getProductsSQL = "SELECT * FROM "+ MySQLContract.Products.TABLE_NAME + ";";
+    private final String getProductsSQL = "SELECT * FROM "+ MySQLContract.Products.TABLE_NAME + ";";
+
+    private PreparedStatement updateCDQuantityStatement = null;
+    private String updateCDQuantitySQL = "UPDATE `"+ MySQLContract.Products.TABLE_NAME
+            +"` SET "+MySQLContract.Products.QUANTITY+"=? " +
+            "WHERE "+MySQLContract.Products.ID+"=?;";
 
     @Override
     public VOShoppingCart getAllCDs() {
@@ -51,9 +57,6 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
                 " WHERE "+MySQLContract.Products.ID+"="+cd.getId()+" LIMIT 1;";
 
         try {
-//            System.err.println("DEBUG");
-//            System.err.println("=================");
-//            System.err.println(getProductsSQL);
 
             ResultSet results=getConnection().createStatement().executeQuery(getProductsSQL);
 
@@ -71,6 +74,35 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public boolean updateCDQuantity(VOCd cd) {
+
+        try {
+
+            if (updateCDQuantityStatement == null)
+                updateCDQuantityStatement = getConnection().prepareStatement(updateCDQuantitySQL);
+
+            updateCDQuantityStatement.setInt(1, cd.getQuantity());
+            updateCDQuantityStatement.setInt(2, cd.getId());
+
+            updateCDQuantityStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+
+        } finally {
+            if (updateCDQuantityStatement != null)
+                try {
+                    updateCDQuantityStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+        }
+
+        return true;
     }
 
     public DAOCdsMySQL() {
