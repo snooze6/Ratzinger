@@ -19,20 +19,109 @@
           <div class="mdl-card__title" id="cabeceraTarxetaInicio">
             <h2 class="mdl-card__title-text">Welcome</h2>
           </div>
-          <div class="mdl-card__supporting-text">
+            <div class="mdl-layout mdl-js-layout mdl-color--grey-100">
+                <main class="mdl-layout__content">
+                    <div class="mdl-grid">
           <!--contido tarxeta-->
 
 
-              <label for="listaCds">CD:</label>
-      	      <select  name="listaCds" >
-            		<c:forEach var="producto" items="${requestScope.cds}">
-            		    <option value="${producto.value.getId()} | ${producto.value.getTitle()} | ${producto.value.getAuthor()} | ${producto.value.getCountry()} | ${producto.value.getUnitaryPrice()}"><c:out value="${producto.value.getTitle()} | ${producto.value.getAuthor()} | ${producto.value.getCountry()} | ${producto.value.getUnitaryPrice()}€" /> </option>
-            	    </c:forEach>
-      	      </select>
 
-              <label for="cantidad">Cantidad:</label>
-              <input type="text" name="cantidad" value="1" pattern="[0-9]*">
-              <input type="hidden" name="action" id="action" value="buyItem">
+
+
+              <c:forEach var="producto" items="${requestScope.cds}">
+
+
+
+
+              <!-- Image card -->
+              <style>
+                  .demo-card-square > .mdl-card__title {
+                      color: #fff;
+                      background-size: 100%;
+                      background: url('https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQiIxa3WlAYrEOQCPgGYVefzFrRs8CCGVxRa7PX6z4JweBOAkmX') no-repeat;
+                  }
+
+                  .mdl-layout__container {
+                      position: relative;
+                      height: 100%;
+                  }
+
+                  .mdl-grid {
+                      margin-left: 1.3%;
+                  }
+
+                  .item {
+                      width: 270px;
+                      height: 400px;
+                      margin:
+                  }
+
+                  .mdl-card__media {
+                      margin: 0;
+                  }
+
+                  .mdl-card__media > img {
+                      max-width: 100%;
+                  }
+
+                  .mdl-card__actions {
+                      display: flex;
+                      box-sizing: border-box;
+                      align-items: center;
+                  }
+
+                  .mdl-card__actions > .mdl-button--icon {
+                      margin-right: 3px;
+                      margin-left: 3px;
+                  }
+
+                  .titulo_disco{
+                      font-size: medium;
+                      width:100%;
+                  }
+
+                  .ellipsis{
+                      text-overflow: ellipsis;
+                  }
+
+                  .item{
+                      height: 470px;
+                  }
+              </style>
+
+
+              <div class="item mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
+                  <figure class="mdl-card__media">
+                      <img src="http://cwallpaper.xyz/wp-content/uploads/halcyon-days-ellie-goulding-album-cover-6.jpg" alt="" />
+                  </figure>
+                  <div class="mdl-card__title">
+                      <h1 class="mdl-card__title-text titulo_disco" >${producto.value.getTitle()} </h1><h1 class="mdl-card__subtitle-text">${producto.value.getUnitaryPrice()}€</h1>
+                  </div>
+                  <div class="mdl-card__supporting-text ellipsis">
+                      <p>${producto.value.getDescription()}</p>
+                  </div>
+                  <div class="mdl-card__actions mdl-card--border">
+                      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Información</a>
+                      <div class="mdl-layout-spacer"></div>
+                      <button type="button" class="mdl-button mdl-button--icon mdl-button--colored" id="${producto.value.getId()}"><i class="material-icons">add_shopping_cart</i></button>
+                  </div>
+              </div>
+
+
+
+                      <%--<option value="${producto.value.getId()} | ${producto.value.getTitle()} | ${producto.value.getAuthor()} | ${producto.value.getCountry()} | ${producto.value.getUnitaryPrice()}"><c:out value="${producto.value.getTitle()} | ${producto.value.getAuthor()} | ${producto.value.getCountry()} | ${producto.value.getUnitaryPrice()}€" /> </option>--%>
+              </c:forEach>
+
+
+
+                    </div>
+                </main>
+            </div>
+
+
+            <input type="hidden" name="product" id="product" value="-1">
+            <input type="hidden" name="quantity" id="quantity" value="1">
+            <input type="hidden" name="action" id="action" value="buyItem">
 
             <!--fin contido tarxeta-->
           </div>

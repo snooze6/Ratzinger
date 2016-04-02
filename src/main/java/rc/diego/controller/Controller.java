@@ -18,7 +18,7 @@ import java.util.StringTokenizer;
 public class Controller extends CustomHttpServlet {
 
     private final String PARAMETER_ACTION = "action";
-    private final String PARAMETER_CD_LIST = "listaCds";
+    private final String PARAMETER_PRODUCT = "product";
     private final String PARAMETER_QUANTITY = "cantidad";
     private final String PARAMETER_ERROR = "error";
 
@@ -102,10 +102,10 @@ public class Controller extends CustomHttpServlet {
 
                     break;
                 case ACTION_BUY_ITEM:
-                    VOCd p= obterProducto(
-                            req.getParameter(PARAMETER_CD_LIST),
+
+                            Integer.parseInt(req.getParameter(PARAMETER_PRODUCT))
                             Integer.parseInt(req.getParameter(PARAMETER_QUANTITY))
-                    );
+
 
                     shoppingCart=(VOShoppingCart)session.getAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART);
 
@@ -232,19 +232,6 @@ public class Controller extends CustomHttpServlet {
             getViewManager().showIndex();
         }
 
-    }
-
-    //TODO:REFACER A SELECCION DE PRODUCTOS
-    private VOCd obterProducto(String descripcionCD, int quantity){
-        VOCd p=new VOCd();
-        StringTokenizer t = new StringTokenizer(descripcionCD,"|");
-        p.setId(Integer.parseInt(t.nextToken().trim()));
-        p.setTitle(t.nextToken().trim());
-        p.setDescription("Autor: " + t.nextToken().trim() + " de " + t.nextToken().trim());
-        p.setUnitaryPrice(Float.parseFloat(t.nextToken().replace('€',' ').trim()));
-        p.setQuantity(quantity);
-
-        return p;
     }
 }
 

@@ -5,4 +5,8 @@ $('document').ready(function(){
         $("#form").submit();
     });
 
+    $("button").click(function(){
+        $("product").val(this.id)
+        $("#form").submit();
+    });
 });
