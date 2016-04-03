@@ -48,24 +48,75 @@
                     </div>
 
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label block">
-                        <input class="mdl-textfield__input" type="text" id="price" name="price" required value="${ requestScope.cd.getUnitaryPrice() }">
+                        <input class="mdl-textfield__input" type="number" id="price" name="price" required value="${ requestScope.cd.getUnitaryPrice() }">
                         <label class="mdl-textfield__label" for="price">Precio...</label>
                     </div>
 
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label block">
-                        <input class="mdl-textfield__input" type="text" id="quantity" name="quantity" required value="${ requestScope.cd.getQuantity() }">
+                        <input class="mdl-textfield__input" id="quantity" name="quantity" required type="number" step="1" value="${ requestScope.cd.getQuantity() }">
                         <label class="mdl-textfield__label" for="quantity">Cantidad...</label>
+                    </div>
+
+                    <div class="mdl-textfield mdl-js-textfield">
+                        <textarea class="mdl-textfield__input" type="text" rows= "5" id="description" name="description" style="height: 150px" value="${requestScope.cd.getDescription()}"></textarea>
+                        <label class="mdl-textfield__label" for="description">Descripcion...</label>
                     </div>
                 </div>
 
-                <div class="mdl-textfield mdl-js-textfield" style="float: right;">
-                    <textarea class="mdl-textfield__input" type="text" rows= "3" id="description" name="description" style="height: 300px" value="${ requestScope.cd.getDescription() }"></textarea>
-                    <label class="mdl-textfield__label" for="description">Description...</label>
+
+
+                <div style="float: right">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label block">
+                        <input class="mdl-textfield__input" type="text" id="imagen" name="imagen" value="${requestScope.cd.getImage()}">
+                        <label class="mdl-textfield__label" for="imagen">Imagen</label>
+                    </div>
+                    <p><img src="${requestScope.cd.getImage()}" id="productimg" style="width:300px"></p>
                 </div>
 
                 <input type="hidden" name="action" id="action" value="admin/stock">
                 <!--fin contido tarxeta-->
             </div>
+
+            <script>
+                var valid=true;
+
+                function urlExists(url, callback){
+                    $.ajax({
+                        type: 'HEAD',
+                        url: url,
+                        success: function(){
+                            callback(true, url);
+                        },
+                        error: function() {
+                            callback(false, url);
+                        }
+                    });
+                }
+
+                function doit(sucess, imagesrc){
+                    if (sucess){
+                        if (!(/(jpg|jpeg|gif|png)$/i.test(imagesrc))) {
+                            //alert("the file is not an image");
+                            imagesrc = './web/images/notfound.png';
+                            $('#imagen').val('Not an image');
+                        } else {
+
+                        }
+                    } else {
+                        //alert("There's nothing");
+                        imagesrc = './web/images/notfound.png';
+                        $('#imagen').val('Invalid link');
+                    }
+                    $('#productimg').attr('src', imagesrc);
+                }
+
+                $('document').ready(function(){
+                    $('#imagen').focusout(function(){
+                        var imagesrc = $('#imagen').val();
+                        urlExists(imagesrc, doit);
+                    });
+                });
+            </script>
 
             <input
                     type="button"

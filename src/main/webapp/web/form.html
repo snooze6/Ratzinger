@@ -62,50 +62,55 @@
                 
               <div style="float: right">
                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label block">
-                    <input class="mdl-textfield__input" type="text" id="imagen" name="imagen" required value="http://45.media.tumblr.com/81c32734659aa35928faf5e5ceea44e6/tumblr_nwbxo7j1Q11s9ab4to1_400.gif">
+                    <input class="mdl-textfield__input" type="text" id="imagen" name="imagen" value="http://45.media.tumblr.com/81c32734659aa35928faf5e5ceea44e6/tumblr_nwbxo7j1Q11s9ab4to1_400.gif">
                     <label class="mdl-textfield__label" for="imagen">Imagen</label>
                   </div>
-                  <p><img src="http://45.media.tumblr.com/81c32734659aa35928faf5e5ceea44e6/tumblr_nwbxo7j1Q11s9ab4to1_400.gif" id="productimg"></p>
+                  <p><img src="http://www.puya.se/wp-content/uploads/2016/03/PuyaSubs-Gintama-S3-01-720pE5C140D3V2-013.jpg" id="productimg" style="width:300px"></p>
               </div>
 
                <input type="hidden" name="action" id="action" value="signUpUser">
             <!--fin contido tarxeta-->
           </div>
-            
+
             <script>
-                
-            function urlExists(url, callback){
-              $.ajax({
-                type: 'HEAD',
-                url: url,
-                success: function(){
-                  callback(true, url);
-                },
-                error: function() {
-                  callback(false, url);
+                var valid=true;
+
+                function urlExists(url, callback){
+                    $.ajax({
+                        type: 'HEAD',
+                        url: url,
+                        success: function(){
+                            callback(true, url);
+                        },
+                        error: function() {
+                            callback(false, url);
+                        }
+                    });
                 }
-              });
-            }
-                
-            function doit(sucess, imagesrc){
-                if (sucess){
-                    if (!(/(jpg|jpeg|gif|png)$/i.test(imagesrc))) {
-                        //alert("the file is not an image");
-                        imagesrc = 'http://3.bp.blogspot.com/-Ow1jPxl5gu8/UC7sZ7nKYlI/AAAAAAAAACo/sGDN7r5FOfI/s320/1345223419118.jpg';
+
+                function doit(sucess, imagesrc){
+                    if (sucess){
+                        if (!(/(jpg|jpeg|gif|png)$/i.test(imagesrc))) {
+                            //alert("the file is not an image");
+                            imagesrc = 'images/notfound.png';
+                            $('#imagen').val('Not an image');
+                        } else {
+
+                        }
+                    } else {
+                        //alert("There's nothing");
+                        imagesrc = 'images/notfound.png';
+                        $('#imagen').val('Invalid link');
                     }
-                } else {
-                    //alert("There's nothing");
-                    imagesrc = 'http://3.bp.blogspot.com/-Ow1jPxl5gu8/UC7sZ7nKYlI/AAAAAAAAACo/sGDN7r5FOfI/s320/1345223419118.jpg';
+                    $('#productimg').attr('src', imagesrc);
                 }
-                $('#productimg').attr('src', imagesrc);
-            }
-                
-             $('document').ready(function(){
-                $('#imagen').focusout(function(){
-                    var imagesrc = $('#imagen').val();
-                    urlExists(imagesrc,doit);
+
+                $('document').ready(function(){
+                    $('#imagen').focusout(function(){
+                        var imagesrc = $('#imagen').val();
+                        urlExists(imagesrc, doit);
+                    });
                 });
-            });                
             </script>
             
             
