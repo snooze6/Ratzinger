@@ -13,12 +13,12 @@ import java.sql.SQLException;
  */
 public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
 
-    private final String getProductsSQL = "SELECT * FROM "+ MySQLContract.Products.TABLE_NAME + ";";
+    private final String getProductsSQL = "SELECT * FROM "+ MySQLContract.Products.TABLE_NAME + " NATURAL JOIN "+MySQLContract.Quantities.TABLE_NAME+";";
 
     private PreparedStatement updateCDQuantityStatement = null;
-    private String updateCDQuantitySQL = "UPDATE `"+ MySQLContract.Products.TABLE_NAME
-            +"` SET "+MySQLContract.Products.QUANTITY+"=? " +
-            "WHERE "+MySQLContract.Products.ID+"=?;";
+    private String updateCDQuantitySQL = "UPDATE `"+ MySQLContract.Quantities.TABLE_NAME
+            +"` SET "+MySQLContract.Quantities.QUANT+"=? " +
+            "WHERE "+MySQLContract.Quantities.ID+"=?;";
 
     @Override
     public VOShoppingCart getAllCDs() {
@@ -37,8 +37,9 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
                 cd.setAuthor(results.getString(MySQLContract.Products.AUTHOR));
                 cd.setCountry(results.getString(MySQLContract.Products.COUNTRY));
                 cd.setDescription(results.getString(MySQLContract.Products.DESCRIPTION));
-                cd.setQuantity(results.getInt(MySQLContract.Products.QUANTITY));
+                cd.setQuantity(results.getInt(MySQLContract.Quantities.QUANT));
                 cd.setUnitaryPrice(results.getFloat(MySQLContract.Products.UNITARY_PRICE));
+                cd.setImage(results.getString(MySQLContract.Products.IMAGE));
 
                 sc.put(cd.getId(),cd);
             }
@@ -60,7 +61,7 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
     public boolean getCD(VOCd cd) {
 
         String getProductsSQL = "SELECT * FROM "+ MySQLContract.Products.TABLE_NAME +
-                " WHERE "+MySQLContract.Products.ID+"="+cd.getId()+" LIMIT 1;";
+                " NATURAL JOIN "+MySQLContract.Quantities.TABLE_NAME+" WHERE "+MySQLContract.Products.ID+"="+cd.getId()+" LIMIT 1;";
 
         try {
 
@@ -71,8 +72,9 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
                 cd.setAuthor(results.getString(MySQLContract.Products.AUTHOR));
                 cd.setCountry(results.getString(MySQLContract.Products.COUNTRY));
                 cd.setDescription(results.getString(MySQLContract.Products.DESCRIPTION));
-                cd.setQuantity(results.getInt(MySQLContract.Products.QUANTITY));
+                cd.setQuantity(results.getInt(MySQLContract.Quantities.QUANT));
                 cd.setUnitaryPrice(results.getFloat(MySQLContract.Products.UNITARY_PRICE));
+                cd.setImage(results.getString(MySQLContract.Products.IMAGE));
                 return true;
             }
 
@@ -92,7 +94,6 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
     public boolean updateCDQuantity(VOCd cd) {
 
         try {
-
             if (updateCDQuantityStatement == null)
                 updateCDQuantityStatement = getConnection().prepareStatement(updateCDQuantitySQL);
 
