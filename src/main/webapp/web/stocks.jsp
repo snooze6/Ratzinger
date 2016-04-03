@@ -58,9 +58,15 @@
                         >
                     </td>
                     <td>
-                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" >
-                            <input type="checkbox" id="checkbox-${producto.value.getId()}" name="checkbox-${producto.value.getId()}" class="mdl-checkbox__input">
-                        </label>
+                        <button type="button"
+                                class="mdl-button mdl-button--icon mdl-button--colored boton-compra"
+                                onclick="
+                                        $('#action').val('admin/delete');
+                                        $('#item').val(${producto.value.getId()});
+                                        $('#form').submit();
+                                        ">
+                            <i class="material-icons">delete</i>
+                        </button>
                     </td>
                 </tr>
 

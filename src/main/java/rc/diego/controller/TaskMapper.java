@@ -89,7 +89,6 @@ public class TaskMapper implements InterfaceTaskMapper{
 
     @Override
     public boolean createCd(VOCd cd2) {
-        System.err.println("Caca");
         createCD createcd = new createCD();
         createcd.setCD(cd2);
         tm.runTask(createcd);
@@ -108,7 +107,10 @@ public class TaskMapper implements InterfaceTaskMapper{
         tm.runAsyncTask(new sendConfirmPaymentMail(user,carrito));
     }
 
-
+    @Override
+    public void deleteCd(VOCd cd3) {
+        tm.runTask(new deleteCD().setCD(cd3));
+    }
 
     public TaskMapper() {
         this.tm=new TaskManager();

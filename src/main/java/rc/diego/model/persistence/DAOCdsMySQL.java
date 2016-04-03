@@ -45,6 +45,8 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
     private String insertCDSQL = "INSERT INTO "+MySQLContract.Products.TABLE_NAME+
                                  " VALUES(NULL, ?,?,?,?,?,?);";
     private String createQuantitySQL = "INSERT INTO "+MySQLContract.Quantities.TABLE_NAME+" VALUES(?,?);";
+    private String deleteCDSQL = "DELETE FROM "+MySQLContract.Quantities.TABLE_NAME+" WHERE id=?";
+    private String deleteQuantitySQL = "DELETE FROM "+MySQLContract.Quantities.TABLE_NAME+" WHERE id=?;";
     private String getLastIdSQL = "SELECT max(id) FROM "+MySQLContract.Products.TABLE_NAME+";";
 
     @Override
@@ -248,7 +250,26 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
         return 0;
     }
 
+    @Override
+    public boolean deleteCD(VOCd cd) {
+        String deleteCDSQL = "DELETE FROM "+MySQLContract.Quantities.TABLE_NAME+" WHERE id="+cd.getId();
+        String deleteQuantitySQL = "DELETE FROM "+MySQLContract.Quantities.TABLE_NAME+" WHERE id="+cd.getId();
 
+        try {
+            getConnection().createStatement().executeUpdate(deleteQuantitySQL);
+            getConnection().createStatement().executeUpdate(deleteCDSQL);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }finally {
+            try {
+                getConnection().close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return true;
+    }
 
     public DAOCdsMySQL() {
         super();

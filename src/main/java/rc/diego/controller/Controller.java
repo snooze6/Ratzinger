@@ -293,9 +293,21 @@ public class Controller extends CustomHttpServlet {
                     getViewManager().showStocks();
                     break;
                 case ADMIN_ACTION_DELETE:
-                    System.err.println("-- Delete items");
-                    req.setAttribute(PARAMETER_ERROR,"Not yet implemented");
-                    getViewManager().showError();
+                    VOCd cd3 = new VOCd();
+                    try {
+                        cd3.setId(Integer.parseInt(req.getParameter("item")));
+                        System.err.println("-- Delete item "+ cd3.getId());
+
+                        getTaskMapper().deleteCd(cd3);
+
+                        shoppingCart=getTaskMapper().getAllCds();
+                        req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
+                        getViewManager().showStocks();
+
+                    } catch (NumberFormatException e){
+                        req.setAttribute(PARAMETER_ERROR,"Not a number");
+                        getViewManager().showError();
+                    }
                     break;
                 case ADMIN_ACTION_SAVE:
                     System.err.println("-- Save item");
