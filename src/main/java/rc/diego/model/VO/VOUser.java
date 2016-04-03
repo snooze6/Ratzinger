@@ -20,6 +20,8 @@ public class VOUser extends BaseEntity{
     private String eMail;
     private String password;
     private String images;
+    private boolean vip;
+
     private MySQLContract.Tipo tipo = MySQLContract.Tipo.normal;
 
     public MySQLContract.Tipo getTipo() {
@@ -80,11 +82,11 @@ public class VOUser extends BaseEntity{
         this.password = password;
     }
 
-    public VOUser getCopy() {
-        try {
-            return (VOUser) this.clone();
-        }catch (CloneNotSupportedException e){
-            return null;
-        }
+    public boolean isVip() {
+        return vip;
+    }
+
+    public void setVip(boolean vip) {
+        this.vip = vip;
     }
 }

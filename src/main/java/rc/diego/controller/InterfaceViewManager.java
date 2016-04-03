@@ -5,12 +5,12 @@ package rc.diego.controller;
  */
 public interface InterfaceViewManager {
     void showIndex();
+    void showProductInfo();
     void showShoppingCart();
     void showPaymentData();
     void showPayment();
     void showSignIn();
     void showSignUp();
-
     void showError();
     void showStocks();
     void showEditProduct();

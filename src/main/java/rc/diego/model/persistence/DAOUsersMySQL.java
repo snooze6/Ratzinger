@@ -86,8 +86,9 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
         if(result.next() &&  new PBKDF2Encrypt().validatePassword(user.getPassword(),result.getString(MySQLContract.Users.password))) {
 
             user.setFirstName(result.getString(MySQLContract.Users.firstName));
-            user.setLastName(MySQLContract.Users.lastName);
-            user.seteMail(MySQLContract.Users.mail);
+            user.setLastName(result.getString(MySQLContract.Users.lastName));
+            user.seteMail(result.getString(MySQLContract.Users.mail));
+            user.setVip(result.getBoolean(MySQLContract.Users.vip));
 
             if (isAdmin(user)){
                 user.setTipo(MySQLContract.Tipo.admin);

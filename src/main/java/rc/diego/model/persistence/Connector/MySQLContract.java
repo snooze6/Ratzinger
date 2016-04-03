@@ -13,6 +13,7 @@ public class MySQLContract {
         public static String lastName = "lastName";
         public static String mail = "mail";
         public static String password = "password";
+        public static String vip = "vip";
     }
 
     public static class Admins{

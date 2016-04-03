@@ -34,7 +34,7 @@
               </tr>
             </thead>
             <tbody>
-
+                    <fmt:setLocale value="es_ES"/>
       				<c:forEach var="producto" items="${sessionScope.cart}">
 
       					<tr>

@@ -29,6 +29,11 @@ public class ViewManager implements InterfaceViewManager {
     }
 
     @Override
+    public void showProductInfo(){
+        dispatcher.forward(new product(request,response));
+    }
+
+    @Override
     public void showShoppingCart() {
         dispatcher.forward(new shoppingCart(request,response));
     }

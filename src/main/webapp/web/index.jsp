@@ -42,7 +42,7 @@
                                 <p>${producto.value.getDescription()}</p>
                             </div>
                             <div class="mdl-card__actions mdl-card--border">
-                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Información</a>
+                                <a id="a${producto.value.getId()}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect boton-info">Información</a>
                                 <div class="mdl-layout-spacer"></div>
                                 <button type="button"
                                         class="mdl-button mdl-button--icon mdl-button--colored boton-compra"
