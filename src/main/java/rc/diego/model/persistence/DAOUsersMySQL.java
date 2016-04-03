@@ -88,7 +88,6 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
             user.setFirstName(result.getString(MySQLContract.Users.firstName));
             user.setLastName(result.getString(MySQLContract.Users.lastName));
             user.seteMail(result.getString(MySQLContract.Users.mail));
-            user.setVip(result.getBoolean(MySQLContract.Users.vip));
 
             if (isAdmin(user)){
                 user.setTipo(MySQLContract.Tipo.admin);
@@ -98,13 +97,20 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
                 System.err.println("No es administrador");
             }
 
+            if (isVip(user))
+                user.setVip(true);
+            else
+                user.setVip(false);
+
+
             return true;
         }else {
             return false;
         }
     }
 
-    private boolean isAdmin(VOUser user) throws SQLException {
+    @Override
+    public boolean isAdmin(VOUser user) throws SQLException {
         String checkUser="SELECT * FROM `"+MySQLContract.Admins.TABLE_NAME+
                 "` WHERE "+ MySQLContract.Users.DNI+"='"+user.getDNI()+"'  LIMIT 1;";
 
@@ -116,4 +122,51 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
 
         return result.next();
     }
+
+    @Override
+    public boolean isVip(VOUser user) throws SQLException {
+        String checkUser="SELECT * FROM `"+MySQLContract.Vips.TABLE_NAME+
+                "` WHERE "+ MySQLContract.Users.DNI+"='"+user.getDNI()+"'  LIMIT 1;";
+
+
+        ResultSet result=getConnection().createStatement().executeQuery(checkUser);
+
+        return result.next();
+    }
+
+    @Override
+    public boolean checkVipCondition(VOUser user) throws SQLException {
+        String checkUser="SELECT sum("+MySQLContract.Orders.TOTAL+") as "+MySQLContract.Orders.TOTAL+
+                " FROM "+MySQLContract.Orders.TABLE_NAME+
+                " GROUP BY "+MySQLContract.Orders.USER_DNI+
+                " HAVING "+MySQLContract.Orders.USER_DNI+"='"+user.getDNI()+"' LIMIT 1;";
+
+        ResultSet result=getConnection().createStatement().executeQuery(checkUser);
+
+        if(result.next() && result.getFloat(MySQLContract.Orders.TOTAL) >= 100){
+
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    @Override
+    public boolean makeVip(VOUser user) throws SQLException {
+        String checkUser="INSERT INTO "+MySQLContract.Vips.TABLE_NAME+" "+
+                "('"+MySQLContract.Vips.DNI+"')" +
+                " VALUES " +
+                "("+user.getDNI()+");";
+
+        int i=getConnection().createStatement().executeUpdate(checkUser);
+
+        if(i > 0){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
 }

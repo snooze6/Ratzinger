@@ -21,6 +21,11 @@ public class MySQLContract {
         public static String DNI = "DNI";
     }
 
+    public static class Vips{
+        public static String TABLE_NAME="vips";
+        public static String DNI = "DNI";
+    }
+
     public static class Products{
         public static String TABLE_NAME="products";
         public static String ID="id";

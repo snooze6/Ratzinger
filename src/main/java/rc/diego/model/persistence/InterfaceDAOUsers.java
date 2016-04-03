@@ -12,4 +12,8 @@ import java.sql.SQLException;
 public interface InterfaceDAOUsers {
     void insertUser(VOUser user) throws SQLException, DAOUsersMySQL.UserAlreadyExistsException;
     boolean getUser(VOUser user) throws SQLException, InvalidKeySpecException, NoSuchAlgorithmException;
+    boolean isAdmin(VOUser user) throws SQLException;
+    boolean isVip(VOUser user) throws SQLException;
+    boolean checkVipCondition(VOUser user) throws SQLException;
+    boolean makeVip(VOUser user) throws SQLException;
 }

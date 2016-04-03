@@ -17,7 +17,7 @@
       <form action="./index.jsp" method="POST" id="form" >
         <div class="demo-card-wide mdl-card mdl-shadow--2dp">
           <div class="mdl-card__title" id="cabeceraTarxetaInicio">
-            <h2 class="mdl-card__title-text">Datos de Compra</h2>
+            <h2 class="mdl-card__title-text">Confirmación de Compra</h2>
           </div>
 
           <!--contido tarxeta-->
