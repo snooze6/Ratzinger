@@ -165,6 +165,7 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
     }
 
     private void close(PreparedStatement stat) {
+        //TODO: Destruir esto
         if (stat != null)
             try {
                 stat.close();

@@ -312,7 +312,7 @@ public class Controller extends CustomHttpServlet {
 
                         System.out.println(cd2.toString());
 
-                        if (cd2.getId()==0) {
+                        if (cd2.getId()!=0) {
                             getTaskMapper().updateCd(cd2);
                         } else {
                             getTaskMapper().createCd(cd2);

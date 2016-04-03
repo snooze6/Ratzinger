@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="mdl-textfield mdl-js-textfield">
-                        <textarea class="mdl-textfield__input" type="text" rows= "5" id="description" name="description" style="height: 150px" value="${requestScope.cd.getDescription()}"></textarea>
+                        <textarea class="mdl-textfield__input" type="text" rows= "5" id="description" name="description" style="height: 150px">${ requestScope.cd.getDescription() }</textarea>
                         <label class="mdl-textfield__label" for="description">Descripcion...</label>
                     </div>
                 </div>

@@ -89,6 +89,7 @@ public class TaskMapper implements InterfaceTaskMapper{
 
     @Override
     public boolean createCd(VOCd cd2) {
+        System.err.println("Caca");
         createCD createcd = new createCD();
         createcd.setCD(cd2);
         tm.runTask(createcd);
