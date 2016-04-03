@@ -5,6 +5,7 @@ import rc.diego.model.VO.VOCd;
 import rc.diego.model.VO.VOUser;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 /**
  * Created by entakitos on 20/02/16.
@@ -31,5 +32,7 @@ public interface InterfaceTaskMapper {
     boolean createCd(VOCd cd2);
 
     void deleteCd(VOCd cd3);
+
+    ArrayList<VOUser> getAllUsers();
 }
 

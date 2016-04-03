@@ -89,4 +89,9 @@ public class VOUser extends BaseEntity{
     public void setVip(boolean vip) {
         this.vip = vip;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario: "+name+" - DNI: "+DNI+" - Email: "+eMail+" - Admin: "+tipo;
+    }
 }

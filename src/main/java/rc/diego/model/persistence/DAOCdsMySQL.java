@@ -171,17 +171,6 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
         return true;
     }
 
-    private void close(PreparedStatement stat) {
-        //TODO: Destruir esto
-        if (stat != null)
-            try {
-                stat.close();
-                //getConnection().close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-    }
-
     @Override
     public boolean create(VOCd cd) {
         try {

@@ -6,6 +6,7 @@ import rc.diego.model.VO.VOUser;
 import rc.diego.model.task.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 /**
  * Created by entakitos on 21/02/16.
@@ -114,5 +115,12 @@ public class TaskMapper implements InterfaceTaskMapper{
 
     public TaskMapper() {
         this.tm=new TaskManager();
+    }
+
+    @Override
+    public ArrayList<VOUser> getAllUsers() {
+        getAllUsers ge = new getAllUsers();
+        tm.runTask(ge);
+        return ge.getUsers();
     }
 }

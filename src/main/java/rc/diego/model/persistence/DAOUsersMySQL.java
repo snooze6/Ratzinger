@@ -9,6 +9,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * Created by entakitos on 31/03/16.
@@ -92,15 +93,7 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
             user.setLastName(result.getString(MySQLContract.Users.lastName));
             user.seteMail(result.getString(MySQLContract.Users.mail));
 
-
-
-            if (isAdmin(user)){
-                user.setTipo(MySQLContract.Tipo.admin);
-                System.err.println("Es administrador");
-            } else {
-                user.setTipo(MySQLContract.Tipo.normal);
-                System.err.println("No es administrador");
-            }
+            isAdmin(user);
 
             if (isVip(user))
                 user.setVip(true);
@@ -128,7 +121,13 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
 
         boolean b= result.next();
 
-
+        if (b){
+            user.setTipo(MySQLContract.Tipo.admin);
+            System.err.println("Es administrador");
+        } else {
+            user.setTipo(MySQLContract.Tipo.normal);
+            System.err.println("No es administrador");
+        }
 
         return b;
     }
@@ -188,4 +187,49 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
 
     }
 
+
+    private PreparedStatement getUsers = null;
+    private final String getUsersSQL = "SELECT * FROM "+MySQLContract.Users.TABLE_NAME;
+
+    @Override
+    public ArrayList<VOUser> getUsers() throws SQLException {
+        ArrayList<VOUser> ret = new ArrayList<>();
+        try {
+            if (getUsers == null)
+                getUsers = getConnection().prepareStatement(getUsersSQL);
+
+            ResultSet res = getUsers.executeQuery();
+
+            while (res.next()){
+                VOUser user = new VOUser();
+                user.setFirstName(res.getString(MySQLContract.Users.firstName));
+                user.setLastName(res.getString(MySQLContract.Users.lastName));
+                user.seteMail(res.getString(MySQLContract.Users.mail));
+                user.setDNI(res.getString(MySQLContract.Users.DNI));
+
+                isAdmin(user);
+                if (isVip(user))
+                    user.setVip(true);
+                else
+                    user.setVip(false);
+                ret.add(user);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            close(getUsers);
+        }
+        return ret;
+    }
+
+    @Override
+    public boolean updateUser(VOUser user) throws SQLException {
+        return false;
+    }
+
+    @Override
+    public boolean deleteUser(VOUser user) throws SQLException {
+        return false;
+    }
 }
