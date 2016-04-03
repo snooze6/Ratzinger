@@ -14,7 +14,7 @@ public class MySqlConnector implements InterfaceConnector{
     public Connection getConnection()throws Exception{
         try {
             Context ctx = new InitialContext();
-            return ((DataSource)ctx.lookup("java:comp/env/jdbc/amazon")).getConnection();
+            return ((DataSource)ctx.lookup("java:comp/env/jdbc/localhost")).getConnection();
 
         } catch (NamingException e) {
             e.printStackTrace();

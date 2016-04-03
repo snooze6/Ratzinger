@@ -66,6 +66,8 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
         } finally {
             if(insertUser != null)
                 insertUser.close();
+
+            getConnection().close();
         }
 
     }
@@ -89,6 +91,8 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
             user.setLastName(result.getString(MySQLContract.Users.lastName));
             user.seteMail(result.getString(MySQLContract.Users.mail));
 
+
+
             if (isAdmin(user)){
                 user.setTipo(MySQLContract.Tipo.admin);
                 System.err.println("Es administrador");
@@ -105,6 +109,7 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
 
             return true;
         }else {
+            getConnection().close();
             return false;
         }
     }
@@ -120,7 +125,11 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
 
         ResultSet result=getConnection().createStatement().executeQuery(checkUser);
 
-        return result.next();
+        boolean b= result.next();
+
+
+
+        return b;
     }
 
     @Override
@@ -131,7 +140,11 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
 
         ResultSet result=getConnection().createStatement().executeQuery(checkUser);
 
-        return result.next();
+        boolean b= result.next();
+
+
+
+        return b;
     }
 
     @Override
@@ -144,9 +157,10 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
         ResultSet result=getConnection().createStatement().executeQuery(checkUser);
 
         if(result.next() && result.getFloat(MySQLContract.Orders.TOTAL) >= 100){
-
+            getConnection().close();
             return true;
         }else{
+            getConnection().close();
             return false;
         }
 
@@ -154,12 +168,16 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
 
     @Override
     public boolean makeVip(VOUser user) throws SQLException {
-        String checkUser="INSERT INTO "+MySQLContract.Vips.TABLE_NAME+" "+
-                "('"+MySQLContract.Vips.DNI+"')" +
-                " VALUES " +
-                "("+user.getDNI()+");";
+        String checkUser="INSERT INTO "+MySQLContract.Vips.TABLE_NAME+
+                "("+MySQLContract.Vips.DNI+")" +
+                " VALUES" +
+                "('"+user.getDNI()+"');";
+
+        System.out.println(checkUser);
 
         int i=getConnection().createStatement().executeUpdate(checkUser);
+
+        getConnection().close();
 
         if(i > 0){
             return true;

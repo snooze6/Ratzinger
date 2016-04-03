@@ -45,6 +45,12 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            try {
+                getConnection().close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return sc;
@@ -72,6 +78,12 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            try {
+                getConnection().close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return false;
     }
@@ -97,9 +109,12 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
             if (updateCDQuantityStatement != null)
                 try {
                     updateCDQuantityStatement.close();
+                    getConnection().close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+
+
         }
 
         return true;

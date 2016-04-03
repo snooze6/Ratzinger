@@ -98,6 +98,8 @@ public class DAOPedidosMySQL extends AbstractDAOMySQL implements InterfaceDAOPed
                 getConnection().commit();
                 getConnection().setAutoCommit(true);
             }else{
+                getConnection().rollback();
+                getConnection().setAutoCommit(true);
                 return false;
 
             }
@@ -124,6 +126,7 @@ public class DAOPedidosMySQL extends AbstractDAOMySQL implements InterfaceDAOPed
                 insertProductOrder.close();
             }
             getConnection().setAutoCommit(true);
+            getConnection().close();
         }
 
         return true;

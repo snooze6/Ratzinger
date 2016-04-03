@@ -49,7 +49,14 @@ public class insertOrder implements InterfaceTask {
     @Override
     public void run() {
         try {
+            System.out.println("YES");
             enoughStock=daoFactory.getDAOPedidos().insertOrder(user,carrito);
+            System.out.println("YES2");
+            if(!user.isVip() && daoFactory.getDAOUsers().checkVipCondition(user)) {
+                System.out.println("YES3");
+                daoFactory.getDAOUsers().makeVip(user);
+                System.out.println("YES4");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
