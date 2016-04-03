@@ -106,7 +106,7 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
             else
                 user.setVip(false);
 
-
+            getConnection().close();
             return true;
         }else {
             getConnection().close();

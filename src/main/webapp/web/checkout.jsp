@@ -55,18 +55,48 @@
                   <th><fmt:formatNumber value="${total}" type="currency"/></th>
 
                 </tr>
-                <tr>
-                  <th class="mdl-data-table__cell--non-numeric">IVA(21%):</th>
-                  <th></th>
-                  <th></th>
-                  <th><fmt:formatNumber value="${total * 21 / 100}" type="currency"/></th>
+                <c:choose>
+                    <c:when test="${sessionScope.usuario.isVip()}">
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">Descuento VIP(20%):</th>
+                            <th></th>
+                            <th></th>
+                            <th><fmt:formatNumber value="${total * 0.8}" type="currency"/></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">IVA(21%):</th>
+                            <th></th>
+                            <th></th>
+                            <th><fmt:formatNumber value="${total * 21 / 100}" type="currency"/></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">Precio Total:</th>
+                            <th></th>
+                            <th></th>
+                            <th><fmt:formatNumber value="${total * 0.8 + total * 21 / 100}" type="currency"/></th>
+                            <th></th>
+                        </tr>
+                    </c:when>
+                    <c:otherwise>
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">IVA(21%):</th>
+                            <th></th>
+                            <th></th>
+                            <th><fmt:formatNumber value="${total * 21 / 100}" type="currency"/></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">Precio Total:</th>
+                            <th></th>
+                            <th></th>
+                            <th><fmt:formatNumber value="${total + total * 21 / 100}" type="currency"/></th>
+                            <th></th>
+                        </tr>
+                    </c:otherwise>
+                </c:choose>
 
-                </tr>
-                <tr>
-                  <th class="mdl-data-table__cell--non-numeric">Precio Total:</th>
-                  <th></th>
-                  <th></th>
-                  <th><fmt:formatNumber value="${total + total * 21 / 100}" type="currency"/></th>
 
                 </tr>
 
