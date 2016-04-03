@@ -12,8 +12,6 @@
     <script src="js/jquery-2.1.4.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-    <script src="js/index.js"></script>
-
     <title>Musica para DAA</title>
 </head>
 
@@ -52,19 +50,63 @@
                   </div>
 
                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label block">
-                    <input class="mdl-textfield__input" type="text" id="quantity" name="quantity" pattern=".{2,}" required>
+                    <input class="mdl-textfield__input" type="text" id="quantity" name="quantity" required>
                     <label class="mdl-textfield__label" for="quantity">Cantidad...</label>
+                  </div>
+                
+                  <div class="mdl-textfield mdl-js-textfield">
+                    <textarea class="mdl-textfield__input" type="text" rows= "5" id="description" name="description" style="height: 150px"></textarea>
+                    <label class="mdl-textfield__label" for="description">Descripcion...</label>
                   </div>
               </div>
                 
-              <div class="mdl-textfield mdl-js-textfield" style="float: right;">
-                <textarea class="mdl-textfield__input" type="text" rows= "3" id="description" name="description" style="height: 300px"></textarea>
-                <label class="mdl-textfield__label" for="description">Description...</label>
+              <div style="float: right">
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label block">
+                    <input class="mdl-textfield__input" type="text" id="imagen" name="imagen" required value="http://45.media.tumblr.com/81c32734659aa35928faf5e5ceea44e6/tumblr_nwbxo7j1Q11s9ab4to1_400.gif">
+                    <label class="mdl-textfield__label" for="imagen">Imagen</label>
+                  </div>
+                  <p><img src="http://45.media.tumblr.com/81c32734659aa35928faf5e5ceea44e6/tumblr_nwbxo7j1Q11s9ab4to1_400.gif" id="productimg"></p>
               </div>
 
                <input type="hidden" name="action" id="action" value="signUpUser">
             <!--fin contido tarxeta-->
           </div>
+            
+            <script>
+                
+            function urlExists(url, callback){
+              $.ajax({
+                type: 'HEAD',
+                url: url,
+                success: function(){
+                  callback(true, url);
+                },
+                error: function() {
+                  callback(false, url);
+                }
+              });
+            }
+                
+            function doit(sucess, imagesrc){
+                if (sucess){
+                    if (!(/(jpg|jpeg|gif|png)$/i.test(imagesrc))) {
+                        //alert("the file is not an image");
+                        imagesrc = 'http://3.bp.blogspot.com/-Ow1jPxl5gu8/UC7sZ7nKYlI/AAAAAAAAACo/sGDN7r5FOfI/s320/1345223419118.jpg';
+                    }
+                } else {
+                    //alert("There's nothing");
+                    imagesrc = 'http://3.bp.blogspot.com/-Ow1jPxl5gu8/UC7sZ7nKYlI/AAAAAAAAACo/sGDN7r5FOfI/s320/1345223419118.jpg';
+                }
+                $('#productimg').attr('src', imagesrc);
+            }
+                
+             $('document').ready(function(){
+                $('#imagen').focusout(function(){
+                    var imagesrc = $('#imagen').val();
+                    urlExists(imagesrc,doit);
+                });
+            });                
+            </script>
             
             
 
