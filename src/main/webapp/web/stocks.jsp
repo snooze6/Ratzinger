@@ -58,9 +58,15 @@
                         >
                     </td>
                     <td>
-                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" >
-                            <input type="checkbox" id="checkbox-${producto.value.getId()}" name="checkbox-${producto.value.getId()}" class="mdl-checkbox__input">
-                        </label>
+                        <button type="button"
+                                class="mdl-button mdl-button--icon mdl-button--colored boton-compra"
+                                onclick="
+                                        $('#action').val('admin/delete');
+                                        $('#item').val(${producto.value.getId()});
+                                        $('#form').submit();
+                                        ">
+                            <i class="material-icons">delete</i>
+                        </button>
                     </td>
                 </tr>
 
@@ -77,14 +83,14 @@
             <a href="./index.jsp" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                 Volver
             </a>
-            <c:choose>
-                <c:when test="${total gt 0}">
-                    <input type="button" value="ELIMINAR" id="eliminar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;color:#F44336;">
-                </c:when>
-                <c:otherwise>
-                    <input type="button" value="ELIMINAR" id="eliminar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;" disabled>
-                </c:otherwise>
-            </c:choose>
+            <%--<c:choose>--%>
+                <%--<c:when test="${total gt 0}">--%>
+                    <%--<input type="button" value="ELIMINAR" id="eliminar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;color:#F44336;">--%>
+                <%--</c:when>--%>
+                <%--<c:otherwise>--%>
+                    <%--<input type="button" value="ELIMINAR" id="eliminar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;" disabled>--%>
+                <%--</c:otherwise>--%>
+            <%--</c:choose>--%>
         </div>
 
         <c:import url="./menu.jsp" />

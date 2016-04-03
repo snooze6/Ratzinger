@@ -27,5 +27,9 @@ public interface InterfaceTaskMapper {
 
     boolean getCd(VOCd cd);
     boolean updateCd(VOCd cd);
+
+    boolean createCd(VOCd cd2);
+
+    void deleteCd(VOCd cd3);
 }
 

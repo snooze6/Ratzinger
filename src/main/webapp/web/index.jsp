@@ -31,7 +31,7 @@
 
                         <div class="item mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
                             <figure class="mdl-card__media">
-                                <img src="http://cwallpaper.xyz/wp-content/uploads/halcyon-days-ellie-goulding-album-cover-6.jpg"
+                                <img src="${ producto.value.getImage() }"
                                      alt=""/>
                             </figure>
                             <div class="mdl-card__title">

@@ -7,6 +7,7 @@ import rc.diego.model.persistence.Connector.MySQLContract;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * Created by entakitos on 17/03/16.
@@ -19,6 +20,8 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
     private PreparedStatement updateCDQuantityStatement = null;
     private PreparedStatement updateCD = null;
     private PreparedStatement getCD = null;
+    private PreparedStatement insertCD = null;
+    private PreparedStatement getLastId = null;
 
     private final String getProductsSQL = "SELECT * FROM "+ MySQLContract.Products.TABLE_NAME + " NATURAL JOIN "+MySQLContract.Quantities.TABLE_NAME+";";
 
@@ -38,6 +41,14 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
             ", "+MySQLContract.Products.NAME+"=? "+
             ", "+MySQLContract.Products.UNITARY_PRICE+"=?"+
             " WHERE "+MySQLContract.Products.ID+"=?; ";
+
+    private String insertCDSQL = "INSERT INTO "+MySQLContract.Products.TABLE_NAME+
+                                 " VALUES(NULL, ?,?,?,?,?,?);";
+    private String createQuantitySQL = "INSERT INTO "+MySQLContract.Quantities.TABLE_NAME+" VALUES(?,?);";
+    private String deleteCDSQL = "DELETE FROM "+MySQLContract.Quantities.TABLE_NAME+" WHERE id=?";
+    private String deleteQuantitySQL = "DELETE FROM "+MySQLContract.Quantities.TABLE_NAME+" WHERE id=?;";
+    private String getLastIdSQL = "SELECT max(id) FROM "+MySQLContract.Products.TABLE_NAME+";";
+
     @Override
     public VOShoppingCart getAllCDs() {
 
@@ -161,13 +172,108 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
     }
 
     private void close(PreparedStatement stat) {
+        //TODO: Destruir esto
         if (stat != null)
             try {
                 stat.close();
+                //getConnection().close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+    }
+
+    @Override
+    public boolean create(VOCd cd) {
+        try {
+            if (insertCD == null)
+                insertCD = getConnection().prepareStatement(insertCDSQL);
+
+            insertCD.setString(1, cd.getTitle());
+            insertCD.setString(2, cd.getDescription());
+            insertCD.setString(3, cd.getAuthor());
+            insertCD.setString(4, cd.getCountry());
+            insertCD.setFloat(5, cd.getUnitaryPrice());
+            insertCD.setString(6, cd.getImage());
+            System.err.println("Creating CD");
+            System.err.println("DEBUG");
+            System.err.println("=================");
+            System.err.println(insertCD.toString());
+
+            insertCD.executeUpdate();
+            cd.setId(getLastId());
+            createQuant(cd);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }finally {
+            close(insertCD);
+        }
+        return true;
+    }
+
+    private boolean createQuant(VOCd cd) {
+        String createQuantitySQL = "INSERT INTO "+MySQLContract.Quantities.TABLE_NAME+" VALUES("+cd.getId()+","+cd.getQuantity()+");";
+
+        VOShoppingCart sc = new VOShoppingCart();
+        try {
+            getConnection().createStatement().executeUpdate(createQuantitySQL);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }finally {
+            try {
                 getConnection().close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }
+        return true;
+    }
+
+    private int getLastId(){
+        try {
+            if (getLastId == null)
+                getLastId = getConnection().prepareStatement(getLastIdSQL);
+
+            System.err.println("DEBUG");
+            System.err.println("=================");
+            System.err.println(getLastId.toString());
+
+            ResultSet r = getLastId.executeQuery();
+
+            if (r.next()){
+                return r.getInt("max(id)");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }finally {
+            close(getLastId);
+        }
+        return 0;
+    }
+
+    @Override
+    public boolean deleteCD(VOCd cd) {
+        String deleteCDSQL = "DELETE FROM "+MySQLContract.Quantities.TABLE_NAME+" WHERE id="+cd.getId();
+        String deleteQuantitySQL = "DELETE FROM "+MySQLContract.Quantities.TABLE_NAME+" WHERE id="+cd.getId();
+
+        try {
+            getConnection().createStatement().executeUpdate(deleteQuantitySQL);
+            getConnection().createStatement().executeUpdate(deleteCDSQL);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }finally {
+            try {
+                getConnection().close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return true;
     }
 
     public DAOCdsMySQL() {

@@ -88,6 +88,14 @@ public class TaskMapper implements InterfaceTaskMapper{
     }
 
     @Override
+    public boolean createCd(VOCd cd2) {
+        createCD createcd = new createCD();
+        createcd.setCD(cd2);
+        tm.runTask(createcd);
+        return createcd.isOk();
+    }
+
+    @Override
     public boolean signInUser(VOUser voUser) {
         signIn si=new signIn(voUser);
         tm.runTask(si);
@@ -97,6 +105,11 @@ public class TaskMapper implements InterfaceTaskMapper{
     @Override
     public void sendConfirmPaymentMail(VOUser user, VOShoppingCart carrito) {
         tm.runAsyncTask(new sendConfirmPaymentMail(user,carrito));
+    }
+
+    @Override
+    public void deleteCd(VOCd cd3) {
+        tm.runTask(new deleteCD().setCD(cd3));
     }
 
     public TaskMapper() {
