@@ -34,7 +34,8 @@ public class MySQLContract {
         public static String AUTHOR="author";
         public static String COUNTRY="country";
         public static String UNITARY_PRICE="unitary_price";
-        public static String QUANTITY="quantity";
+//        public static String QUANTITY="quantity";
+        public static String IMAGE="image";
     }
 
     public static class Orders{
@@ -51,6 +52,12 @@ public class MySQLContract {
         public static String ID_PRODUCT="idproduct";
         public static String UNITARY_PRICE="unitaryPrice";
         public static String QUANTITY="quantity";
+    }
+
+    public static class Quantities{
+        public static String TABLE_NAME="quantities";
+        public static String ID="id";
+        public static String QUANT="quantity";
     }
 
     public enum Tipo {normal, admin};
