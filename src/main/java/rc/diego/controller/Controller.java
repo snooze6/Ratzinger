@@ -104,7 +104,7 @@ public class Controller extends CustomHttpServlet {
                     getViewManager().showPaymentData();
                     break;
                 case ACTION_CONFIRM_PAYMENT:
-                    //TODO:comprobar que o ususario se encontra registrado ates de realizar este punto
+
                     user = user=((VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
 
                     if(user.getFirstName() != null && user.getFirstName().length() > 0) {
@@ -112,7 +112,14 @@ public class Controller extends CustomHttpServlet {
                                 (VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER),
                                 (VOShoppingCart) session.getAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART)
                         )) {
+
+                            getTaskMapper().sendConfirmPaymentMail(
+                                    (VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER),
+                                    (VOShoppingCart) session.getAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART)
+                            );
+
                             getViewManager().showPayment();
+
                         }else{
                             req.setAttribute(PARAMETER_ERROR,"Se ha producido un error. No se dispone de suficiente sotck para algunos de los productos seleccionados");
                             getViewManager().showError();

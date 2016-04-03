@@ -1,5 +1,8 @@
 package rc.diego.model.utils.mail;
 
+import rc.diego.model.VO.VOShoppingCart;
+import rc.diego.model.VO.VOUser;
+
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -18,15 +21,13 @@ import javax.mail.internet.MimeMessage;
 public class JavaMail {
 
     private final String from = "dawatest4@gmail.com";
-    private final String username = "4testdawa";//change accordingly
+    private final String username = "dawatest4@gmail.com";//change accordingly
     private final String password = "4testdawa";//change accordingly
 
     private final Properties props = new Properties();
 
-    public void sendMail(String to) {
+    public void sendMail(String to, VOUser user, VOShoppingCart cart) {
         // Recipient's email ID needs to be mentioned.
-        to = "destinationemail@gmail.com";
-
 
         Session session = Session.getInstance(props,
                 new javax.mail.Authenticator() {
@@ -41,9 +42,23 @@ public class JavaMail {
             message.setFrom(new InternetAddress(from));
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(to));
-            message.setSubject("Testing Subject");
-            message.setText("Dear Mail Crawler,"
-                    + "\n\n No spam to my email, please!");
+            message.setSubject("Confirmación de compra");
+
+            StringBuilder texto=new StringBuilder();
+            texto.append("Hola "+user.getFirstName()+","
+                    + "\n\n Este es un correo con el resumen de su compra. Por favor, no responda a este correo" +
+                    "\n\nProductos comprados:" +
+                    "\nProducto"+
+                    "\tCantidad"+
+                    "\tPrecio");
+
+            cart.forEach((integer, voCd) -> {
+                texto.append("\n"+voCd.getTitle()+
+                        "\t"+voCd.getQuantity()+
+                        "\t"+voCd.getUnitaryPrice());
+            });
+
+            message.setText(texto.toString());
 
             Transport.send(message);
 
@@ -59,7 +74,6 @@ public class JavaMail {
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
-
 
     }
 }

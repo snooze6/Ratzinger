@@ -35,6 +35,6 @@ public class sendConfirmPaymentMail implements InterfaceTask{
 
     public sendConfirmPaymentMail(VOUser user, VOShoppingCart cart) {
         this.user = user;
-        new JavaMail().sendMail(user.geteMail());
+        new JavaMail().sendMail(user.geteMail(),user,cart);
     }
 }

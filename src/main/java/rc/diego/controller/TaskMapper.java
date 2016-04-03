@@ -86,6 +86,11 @@ public class TaskMapper implements InterfaceTaskMapper{
         return si.isValid();
     }
 
+    @Override
+    public void sendConfirmPaymentMail(VOUser user, VOShoppingCart carrito) {
+        tm.runAsyncTask(new sendConfirmPaymentMail(user,carrito));
+    }
+
     public TaskMapper() {
         this.tm=new TaskManager();
     }
