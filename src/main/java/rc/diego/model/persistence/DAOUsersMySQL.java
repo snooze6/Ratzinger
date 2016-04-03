@@ -85,6 +85,7 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
 
         ResultSet result=getConnection().createStatement().executeQuery(checkUser);
 
+        // Es gracioso como esto y la limitación de caracteres se carga la inyección SQL
         if(result.next() &&  new PBKDF2Encrypt().validatePassword(user.getPassword(),result.getString(MySQLContract.Users.password))) {
 
             user.setFirstName(result.getString(MySQLContract.Users.firstName));
