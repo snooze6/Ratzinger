@@ -19,6 +19,7 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
     private PreparedStatement updateCDQuantityStatement = null;
     private PreparedStatement updateCD = null;
     private PreparedStatement getCD = null;
+    private PreparedStatement insertCD = null;
 
     private final String getProductsSQL = "SELECT * FROM "+ MySQLContract.Products.TABLE_NAME + " NATURAL JOIN "+MySQLContract.Quantities.TABLE_NAME+";";
 
@@ -38,6 +39,11 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
             ", "+MySQLContract.Products.NAME+"=? "+
             ", "+MySQLContract.Products.UNITARY_PRICE+"=?"+
             " WHERE "+MySQLContract.Products.ID+"=?; ";
+
+    private String insertCDSQL = "INSERT INTO "+MySQLContract.Products.TABLE_NAME+
+                                 " VALUES(?,?,?,?,?,?);"+
+                                 " INSERT INTO "+MySQLContract.Quantities.TABLE_NAME+" VALUES(?,?);";
+
     @Override
     public VOShoppingCart getAllCDs() {
 
@@ -163,6 +169,37 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+    }
+
+    @Override
+    public boolean create(VOCd cd) {
+        try {
+            if (insertCD == null)
+                insertCD = getConnection().prepareStatement(insertCDSQL);
+
+            insertCD.setString(1, cd.getTitle());
+            insertCD.setString(2, cd.getDescription());
+            insertCD.setString(3, cd.getAuthor());
+            insertCD.setString(4, cd.getCountry());
+            insertCD.setFloat(5, cd.getUnitaryPrice());
+            insertCD.setString(6, cd.getImage());
+            insertCD.setInt(7, cd.getId());
+            insertCD.setInt(8, cd.getQuantity());
+
+            System.err.println("DEBUG");
+            System.err.println("=================");
+            System.err.println(updateCD.toString());
+
+            insertCD.executeUpdate();
+            updateCDQuantity(cd);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }finally {
+            close(insertCD);
+        }
+        return true;
     }
 
     public DAOCdsMySQL() {

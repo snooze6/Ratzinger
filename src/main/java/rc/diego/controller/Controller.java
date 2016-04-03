@@ -283,12 +283,8 @@ public class Controller extends CustomHttpServlet {
                             req.setAttribute(VOShoppingCart.SESSION_ITEM, cd);
                             getViewManager().showEditProduct();
                         }
-
                     }
                     break;
-
-
-
 
                 case ADMIN_ACTION_SHOW_STOCK:
                     System.err.println("-- Show Stocks");
@@ -303,8 +299,33 @@ public class Controller extends CustomHttpServlet {
                     break;
                 case ADMIN_ACTION_SAVE:
                     System.err.println("-- Save item");
-                    req.setAttribute(PARAMETER_ERROR,"Not yet implemented");
-                    getViewManager().showError();
+                    VOCd cd2 = new VOCd();
+                    try {
+                        cd2.setId(Integer.parseInt(req.getParameter("id")));
+                        cd2.setTitle(req.getParameter("name"));
+                        cd2.setImage(req.getParameter("imagen"));
+                        cd2.setAuthor(req.getParameter("author"));
+                        cd2.setQuantity(Integer.parseInt(req.getParameter("quantity")));
+                        cd2.setUnitaryPrice(Float.parseFloat(req.getParameter("price")));
+                        cd2.setDescription(req.getParameter("description"));
+                        cd2.setCountry(req.getParameter("country"));
+
+                        System.out.println(cd2.toString());
+
+                        if (cd2.getId()==0) {
+                            getTaskMapper().updateCd(cd2);
+                        } else {
+                            getTaskMapper().createCd(cd2);
+                        }
+
+                        shoppingCart=getTaskMapper().getAllCds();
+                        req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
+                        getViewManager().showStocks();
+                    } catch (NumberFormatException e) {
+                        System.err.println("[ERR] Not a Number");
+                        req.setAttribute(PARAMETER_ERROR,"Not a number");
+                        getViewManager().showError();
+                    }
                     break;
 
                 default:
@@ -312,7 +333,6 @@ public class Controller extends CustomHttpServlet {
                     req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
 
                     getViewManager().showIndex();
-
             }
         }catch (NullPointerException e){
             shoppingCart=getTaskMapper().getAllCds();

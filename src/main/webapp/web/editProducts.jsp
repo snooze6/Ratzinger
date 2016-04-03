@@ -73,6 +73,7 @@
                     <p><img src="${requestScope.cd.getImage()}" id="productimg" style="width:300px"></p>
                 </div>
 
+                <input type="hidden" name="id" value="${ requestScope.cd.getId()}">
                 <input type="hidden" name="action" id="action" value="admin/stock">
                 <!--fin contido tarxeta-->
             </div>

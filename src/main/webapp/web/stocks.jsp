@@ -77,14 +77,14 @@
             <a href="./index.jsp" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                 Volver
             </a>
-            <c:choose>
-                <c:when test="${total gt 0}">
-                    <input type="button" value="ELIMINAR" id="eliminar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;color:#F44336;">
-                </c:when>
-                <c:otherwise>
-                    <input type="button" value="ELIMINAR" id="eliminar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;" disabled>
-                </c:otherwise>
-            </c:choose>
+            <%--<c:choose>--%>
+                <%--<c:when test="${total gt 0}">--%>
+                    <%--<input type="button" value="ELIMINAR" id="eliminar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;color:#F44336;">--%>
+                <%--</c:when>--%>
+                <%--<c:otherwise>--%>
+                    <%--<input type="button" value="ELIMINAR" id="eliminar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;" disabled>--%>
+                <%--</c:otherwise>--%>
+            <%--</c:choose>--%>
         </div>
 
         <c:import url="./menu.jsp" />
