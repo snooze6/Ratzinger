@@ -3,6 +3,7 @@ package rc.diego.model.utils.mail;
 import rc.diego.model.VO.VOShoppingCart;
 import rc.diego.model.VO.VOUser;
 
+import java.text.DecimalFormat;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -34,7 +35,8 @@ public class JavaMail {
                     protected PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication(username, password);
                     }
-                });
+                }
+        );
 
         try {
 
@@ -44,25 +46,37 @@ public class JavaMail {
                     InternetAddress.parse(to));
             message.setSubject("Confirmación de compra");
 
+            final float[] total = {0};
+
             StringBuilder texto=new StringBuilder();
             texto.append("Hola "+user.getFirstName()+","
-                    + "\n\n Este es un correo con el resumen de su compra. Por favor, no responda a este correo" +
-                    "\n\nProductos comprados:" +
-                    "\nProducto"+
-                    "\tCantidad"+
-                    "\tPrecio");
+                    + "\n\nEste es un correo con el resumen de su compra. Por favor, no responda a este correo" +
+                    "\n\nProductos comprados: <table><tr>"+
+                    "<th>Producto</th>"+
+                    "<th>Cantidad</th>"+
+                    "<th>Precio</th>" +
+                    "</tr>");
 
             cart.forEach((integer, voCd) -> {
-                texto.append("\n"+voCd.getTitle()+
-                        "\t"+voCd.getQuantity()+
-                        "\t"+voCd.getUnitaryPrice());
+                texto.append("<tr>"+
+                        "<td>"+voCd.getTitle()+"</td>"+
+                        "<td>"+voCd.getQuantity()+"</td>"+
+                        "<td>"+voCd.getUnitaryPrice()+"€</td>"+
+                        "</tr>");
+                total[0] +=voCd.getQuantity()*voCd.getUnitaryPrice();
             });
 
-            message.setText(texto.toString());
+            texto.append("</table>");
+
+            if(user.isVip()) {
+                texto.append("\n\nDescuento VIP(20%): "+ new DecimalFormat("#.##").format(total[0] * 0.8F)+"€");
+                texto.append("\n\nTotal+IVA(21%): "+ new DecimalFormat("#.##").format(total[0] * 0.8F * 1.21)+"€");
+            }else{
+
+            }
+            message.setContent(texto.toString(), "text/html; charset=utf-8");
 
             Transport.send(message);
-
-            System.out.println("Done");
 
         } catch (MessagingException e) {
             throw new RuntimeException(e);
