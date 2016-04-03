@@ -7,4 +7,5 @@ public interface InterfaceDAOFactory {
     InterfaceDAOPedidos getDAOPedidos();
     InterfaceDAOCds getDAOCds();
     InterfaceDAOUsers getDAOUsers();
+    InterfaceDAOComments getDAOComments();
 }
