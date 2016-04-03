@@ -120,7 +120,12 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
             e.printStackTrace();
             return false;
         } finally {
-            close(updateCDQuantityStatement);
+            try {
+                updateCDQuantityStatement.close();
+                updateCDQuantityStatement=null;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return true;
     }

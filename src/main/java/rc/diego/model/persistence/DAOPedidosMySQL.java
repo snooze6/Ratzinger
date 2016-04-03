@@ -73,7 +73,8 @@ public class DAOPedidosMySQL extends AbstractDAOMySQL implements InterfaceDAOPed
                         if(daoCds.getCD(cd) && cd.getQuantity() >= product.getQuantity()) {
 
                             cd.setQuantity(cd.getQuantity() - product.getQuantity());
-                            daoCds.updateCDQuantity(cd);
+
+                            new DAOCdsMySQL().updateCDQuantity(cd);
 
                             insertProductOrder.setInt(1, maxId);
                             insertProductOrder.setInt(2, product.getId());
