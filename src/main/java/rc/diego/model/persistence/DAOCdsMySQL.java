@@ -7,6 +7,7 @@ import rc.diego.model.persistence.Connector.MySQLContract;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * Created by entakitos on 17/03/16.
@@ -20,6 +21,7 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
     private PreparedStatement updateCD = null;
     private PreparedStatement getCD = null;
     private PreparedStatement insertCD = null;
+    private PreparedStatement getLastId = null;
 
     private final String getProductsSQL = "SELECT * FROM "+ MySQLContract.Products.TABLE_NAME + " NATURAL JOIN "+MySQLContract.Quantities.TABLE_NAME+";";
 
@@ -41,8 +43,9 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
             " WHERE "+MySQLContract.Products.ID+"=?; ";
 
     private String insertCDSQL = "INSERT INTO "+MySQLContract.Products.TABLE_NAME+
-                                 " VALUES(?,?,?,?,?,?);"+
-                                 " INSERT INTO "+MySQLContract.Quantities.TABLE_NAME+" VALUES(?,?);";
+                                 " VALUES(NULL, ?,?,?,?,?,?);";
+    private String createQuantitySQL = "INSERT INTO "+MySQLContract.Quantities.TABLE_NAME+" VALUES(?,?);";
+    private String getLastIdSQL = "SELECT max(id) FROM "+MySQLContract.Products.TABLE_NAME+";";
 
     @Override
     public VOShoppingCart getAllCDs() {
@@ -165,7 +168,7 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
         if (stat != null)
             try {
                 stat.close();
-                getConnection().close();
+                //getConnection().close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -183,15 +186,14 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
             insertCD.setString(4, cd.getCountry());
             insertCD.setFloat(5, cd.getUnitaryPrice());
             insertCD.setString(6, cd.getImage());
-            insertCD.setInt(7, cd.getId());
-            insertCD.setInt(8, cd.getQuantity());
-
+            System.err.println("Creating CD");
             System.err.println("DEBUG");
             System.err.println("=================");
-            System.err.println(updateCD.toString());
+            System.err.println(insertCD.toString());
 
             insertCD.executeUpdate();
-            updateCDQuantity(cd);
+            cd.setId(getLastId());
+            createQuant(cd);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -201,6 +203,51 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
         }
         return true;
     }
+
+    private boolean createQuant(VOCd cd) {
+        String createQuantitySQL = "INSERT INTO "+MySQLContract.Quantities.TABLE_NAME+" VALUES("+cd.getId()+","+cd.getQuantity()+");";
+
+        VOShoppingCart sc = new VOShoppingCart();
+        try {
+            getConnection().createStatement().executeUpdate(createQuantitySQL);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }finally {
+            try {
+                getConnection().close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return true;
+    }
+
+    private int getLastId(){
+        try {
+            if (getLastId == null)
+                getLastId = getConnection().prepareStatement(getLastIdSQL);
+
+            System.err.println("DEBUG");
+            System.err.println("=================");
+            System.err.println(getLastId.toString());
+
+            ResultSet r = getLastId.executeQuery();
+
+            if (r.next()){
+                return r.getInt("max(id)");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }finally {
+            close(getLastId);
+        }
+        return 0;
+    }
+
+
 
     public DAOCdsMySQL() {
         super();
