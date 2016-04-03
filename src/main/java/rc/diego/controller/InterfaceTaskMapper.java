@@ -24,4 +24,6 @@ public interface InterfaceTaskMapper {
     VOShoppingCart getAllCds();
 
     boolean getCd(VOCd cd);
+    boolean updateCd(VOCd cd);
 }
+

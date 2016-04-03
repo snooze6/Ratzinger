@@ -10,4 +10,5 @@ public interface InterfaceDAOCds {
     VOShoppingCart getAllCDs();
     boolean getCD(VOCd cd);
     boolean updateCDQuantity(VOCd cd);
+    boolean updateCD(VOCd cd);
 }

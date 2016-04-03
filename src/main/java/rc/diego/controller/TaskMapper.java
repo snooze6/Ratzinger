@@ -74,7 +74,15 @@ public class TaskMapper implements InterfaceTaskMapper{
     @Override
     public boolean getCd(VOCd cd) {
         getCD ge = new getCD();
-        ge.setShoppingCart(cd);
+        ge.setCD(cd);
+        tm.runTask(ge);
+        return ge.isOk();
+    }
+
+    @Override
+    public boolean updateCd(VOCd cd) {
+        updateCD ge = new updateCD();
+        ge.setCD(cd);
         tm.runTask(ge);
         return ge.isOk();
     }
