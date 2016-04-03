@@ -30,7 +30,6 @@
                 <tr>
                     <th class="mdl-data-table__cell--non-numeric">CD</th>
                     <th>Cantidad</th>
-                    <th>Cantidad Restante</th>
                     <th>Precio Unitario</th>
                     <th></th>
                     <th></th>
@@ -42,7 +41,6 @@
                 <tr>
                     <td class="text-align-left">${producto.value.getTitle()}</td>
                     <td>${producto.value.getQuantity()}</td>
-                    <td>${producto.value.getQuantity()}&euro;</td>
                     <td>${producto.value.getUnitaryPrice()}&euro;</td>
                     <td>
                         <input

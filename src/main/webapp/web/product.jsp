@@ -49,7 +49,9 @@
     <!--fin contido tarxeta-->
 
           <div class="mdl-card__actions mdl-card--border">
-            <input type="button" value="Volver" id="volver" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+              <a href="./index.jsp" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                  Volver
+              </a>
             <input type="submit" value="Comprar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;">
           </div>
           <c:import url="./menu.jsp" />
