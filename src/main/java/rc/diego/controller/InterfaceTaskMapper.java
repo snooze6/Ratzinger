@@ -23,6 +23,8 @@ public interface InterfaceTaskMapper {
     boolean insertOrder(VOUser user, VOShoppingCart carrito);
     VOShoppingCart getAllCds();
 
+    void sendConfirmPaymentMail(VOUser user, VOShoppingCart carrito);
+
     boolean getCd(VOCd cd);
     boolean updateCd(VOCd cd);
 }

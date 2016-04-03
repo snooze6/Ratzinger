@@ -46,7 +46,11 @@ public class DAOPedidosMySQL extends AbstractDAOMySQL implements InterfaceDAOPed
                 total[0] +=voCd.getQuantity()*voCd.getUnitaryPrice();
             });
 
-            insertOrder.setFloat(2, total[0]);
+            if (user.isVip())
+                insertOrder.setFloat(2, total[0]);
+            else
+                insertOrder.setFloat(2, total[0] * 0.8F);
+
             insertOrder.executeUpdate();
 
             //OBTENSE O ID QUE SE ASIGNOU AUTOMATICAMENTE NA BASE DE DATOS AO PEDIDO QUE SE ACABA DE CREAR
@@ -73,7 +77,12 @@ public class DAOPedidosMySQL extends AbstractDAOMySQL implements InterfaceDAOPed
 
                             insertProductOrder.setInt(1, maxId);
                             insertProductOrder.setInt(2, product.getId());
-                            insertProductOrder.setFloat(3, product.getUnitaryPrice());
+
+                            if (user.isVip())
+                                insertProductOrder.setFloat(3, product.getUnitaryPrice() * 0.8F);
+                            else
+                                insertProductOrder.setFloat(3, product.getUnitaryPrice());
+
                             insertProductOrder.setInt(4, product.getQuantity());
 
                             insertProductOrder.executeUpdate();
