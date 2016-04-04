@@ -4,7 +4,7 @@ import rc.diego.model.VO.VOCd;
 import rc.diego.model.VO.VOComment;
 import rc.diego.model.VO.VOShoppingCart;
 import rc.diego.model.VO.VOUser;
-
+import rc.diego.model.persistence.MySQL.Connector.MySQLContract;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +24,7 @@ public class Controller extends CustomHttpServlet {
     private final String PARAMETER_ERROR = "error";
 
     private final String ACTION_SHOW_INDEX = "index";
+    private final String ACTION_SEARCH = "search";
     private final String ACTION_SHOW_PRODUCT_INFO = "productInfo";
     private final String ACTION_SHOW_SHOPPING_CART = "shoppingCart";
     private final String ACTION_SHOW_SIGN_IN = "signIn";
@@ -41,12 +42,11 @@ public class Controller extends CustomHttpServlet {
     private final String ADMIN_ACTION_EDIT_ITEM = "admin/products/edit";
     private final String ADMIN_ACTION_DELETE_ITEM = "admin/products/delete";
     private final String ADMIN_ACTION_SAVE_ITEM = "admin/products/save";
-
     private final String ADMIN_ACTION_SHOW_USERS = "admin/users/show";
     private final String ADMIN_ACTION_EDIT_USER = "admin/users/edit";
     private final String ADMIN_ACTION_ACTIVATE_USER = "admin/users/activate";
     private final String ADMIN_ACTION_DEACTIVATE_USER = "admin/users/deactivate";
-    private final String ADMIN_ACTION_SAVE_USER = "admin${user.getDNI()}/users/save";
+    private final String ADMIN_ACTION_SAVE_USER = "admin/users/save";
 
     private final String ADD_COMMENT ="addComment";
 
@@ -76,6 +76,12 @@ public class Controller extends CustomHttpServlet {
                     shoppingCart=getTaskMapper().getAllCds();
                     req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
                     getViewManager().showIndex();
+                    break;
+                case ACTION_SEARCH:
+                    System.out.println(req.getParameter("searchFilter"));
+                    shoppingCart=getTaskMapper().getCdsByFilter(req.getParameter("searchFilter"));
+                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
+                    getViewManager().showSearch();
                     break;
                 case ACTION_SHOW_PRODUCT_INFO:
                     ArrayList<VOComment> comments;
@@ -119,7 +125,6 @@ public class Controller extends CustomHttpServlet {
                     getViewManager().showPaymentData();
                     break;
                 case ACTION_CONFIRM_PAYMENT:
-
                     user = user=((VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
 
                     if(user.getFirstName() != null && user.getFirstName().length() > 0) {
@@ -221,7 +226,9 @@ public class Controller extends CustomHttpServlet {
 
                     break;
                 case ACTION_SIGN_IN:
-                    user=((VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
+//                    user = ((VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
+                    System.err.println("Sing-in "+req.getParameter(VOUser.PARAMETER_DNI));
+                    user = new VOUser();
 
                     getTaskMapper().setUserData(
                             req.getParameter(VOUser.PARAMETER_DNI),
@@ -232,14 +239,21 @@ public class Controller extends CustomHttpServlet {
                             user
                     );
 
+                    System.err.println("######################");
+
                     if(getTaskMapper().signInUser(user)){  //usuario logueado correctamente
+                        System.err.println("--Login");
+                        req.getSession().setAttribute(VOUser.SESSION_ATTRIBUTE_USER, user);
+                        System.err.println(user.toString());
+
                         shoppingCart=getTaskMapper().getAllCds();
                         req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
-
                         getViewManager().showIndex();
                     }else{
-                        req.setAttribute(PARAMETER_ERROR,"Los datos de usuario no son correctos o el usuario no existe. Por favor, inténtelo de nuevo.");
+                        System.err.println("--Not Login");
+                        req.getSession().removeAttribute(VOUser.SESSION_ATTRIBUTE_USER);
 
+                        req.setAttribute(PARAMETER_ERROR,"Los datos de usuario no son correctos o el usuario no existe. Por favor, inténtelo de nuevo.");
                         getViewManager().showError();
                     }
 
@@ -274,21 +288,78 @@ public class Controller extends CustomHttpServlet {
 
                     break;
 
-                // Admin things
+                default:
+                    if (!adminActions(req, resp, (String) req.getParameter(PARAMETER_ACTION))) {
+                        shoppingCart = getTaskMapper().getAllCds();
+                        req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS, shoppingCart);
+                        getViewManager().showIndex();
+                    }
+            }
+        }catch (NullPointerException e){
+            shoppingCart=getTaskMapper().getAllCds();
+            req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
+
+            getViewManager().showIndex();
+        }
+
+    }
+
+    private void bindUser(HttpServletRequest req, VOUser user5) {
+        user5.setFirstName(req.getParameter("name"));
+        user5.setLastName(req.getParameter("lastname"));
+        user5.seteMail(req.getParameter("email"));
+        String pass = req.getParameter("password");
+        if (pass.equals("")){
+//                            System.out.println("Contraseña vacía");
+            user5.setPassword(null);
+        } else {
+//                            System.out.println("Contraseña: "+pass);
+            user5.setPassword(pass);
+        }
+
+//                        System.out.println("Active: "+req.getParameter("active")+" - Vip: "+req.getParameter("vip")+" - Tipo: "+req.getParameter("tipo"));
+        switch (Integer.parseInt(req.getParameter("tipo"))){
+            case 2:
+                user5.setTipo(MySQLContract.Tipo.normal);
+                break;
+            case 3:
+                user5.setTipo(MySQLContract.Tipo.admin);
+                break;
+        }
+
+        user5.setActive(req.getParameter("active")!=null);
+        user5.setVip(req.getParameter("vip")!=null);
+
+        System.out.println(user5.toString());
+    }
+
+    private boolean adminActions(HttpServletRequest req, HttpServletResponse resp, String url){
+
+        VOUser ruser = ((VOUser) req.getSession().getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
+
+        if(ruser.getFirstName() != null && ruser.getFirstName().length() > 0 && ruser.isAdmin()) {
+            // Variables aquí fiscadas
+            VOCd cd;
+            VOShoppingCart shoppingCart;
+            ArrayList<VOUser> users;
+            VOUser user;
+
+            switch (url) {
                 case ADMIN_ACTION_EDIT_ITEM:
+                    int id;
                     try {
                         id = Integer.parseInt(req.getParameter("item"));
-                    } catch (NumberFormatException e){
+                    } catch (NumberFormatException e) {
                         id = 0;
                     }
                     cd = new VOCd();
                     cd.setId(id);
 
-                    if (id<0){
-                        req.setAttribute(PARAMETER_ERROR,"Se ha producido un error. No se puede encontrar un cd con ese identificador");
+                    if (id < 0) {
+                        req.setAttribute(PARAMETER_ERROR, "Se ha producido un error. No se puede encontrar un cd con ese identificador");
                         getViewManager().showError();
                     } else {
-                        if (getTaskMapper().getCd(cd)){
+                        if (getTaskMapper().getCd(cd)) {
                             System.err.println("-- Edit item " + id);
                             req.setAttribute(VOShoppingCart.SESSION_ITEM, cd);
                             getViewManager().showEditProduct();
@@ -303,54 +374,55 @@ public class Controller extends CustomHttpServlet {
 
                 case ADMIN_ACTION_SHOW_STOCK:
                     System.err.println("-- Show Stocks");
-                    shoppingCart=getTaskMapper().getAllCds();
-                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
+                    shoppingCart = getTaskMapper().getAllCds();
+                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS, shoppingCart);
                     getViewManager().showStocks();
                     break;
+
                 case ADMIN_ACTION_DELETE_ITEM:
-                    VOCd cd3 = new VOCd();
+                    cd = new VOCd();
                     try {
-                        cd3.setId(Integer.parseInt(req.getParameter("item")));
-                        System.err.println("-- Delete item "+ cd3.getId());
+                        cd.setId(Integer.parseInt(req.getParameter("item")));
+                        System.err.println("-- Delete item " + cd.getId());
 
-                        getTaskMapper().deleteCd(cd3);
+                        getTaskMapper().deleteCd(cd);
 
-                        shoppingCart=getTaskMapper().getAllCds();
-                        req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
+                        shoppingCart = getTaskMapper().getAllCds();
+                        req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS, shoppingCart);
                         getViewManager().showStocks();
 
-                    } catch (NumberFormatException e){
-                        req.setAttribute(PARAMETER_ERROR,"Not a number");
+                    } catch (NumberFormatException e) {
+                        req.setAttribute(PARAMETER_ERROR, "Not a number");
                         getViewManager().showError();
                     }
                     break;
                 case ADMIN_ACTION_SAVE_ITEM:
                     System.err.println("-- Save item");
-                    VOCd cd2 = new VOCd();
+                    cd = new VOCd();
                     try {
-                        cd2.setId(Integer.parseInt(req.getParameter("id")));
-                        cd2.setTitle(req.getParameter("name"));
-                        cd2.setImage(req.getParameter("imagen"));
-                        cd2.setAuthor(req.getParameter("author"));
-                        cd2.setQuantity(Integer.parseInt(req.getParameter("quantity")));
-                        cd2.setUnitaryPrice(Float.parseFloat(req.getParameter("price")));
-                        cd2.setDescription(req.getParameter("description"));
-                        cd2.setCountry(req.getParameter("country"));
+                        cd.setId(Integer.parseInt(req.getParameter("id")));
+                        cd.setTitle(req.getParameter("name"));
+                        cd.setImage(req.getParameter("imagen"));
+                        cd.setAuthor(req.getParameter("author"));
+                        cd.setQuantity(Integer.parseInt(req.getParameter("quantity")));
+                        cd.setUnitaryPrice(Float.parseFloat(req.getParameter("price")));
+                        cd.setDescription(req.getParameter("description"));
+                        cd.setCountry(req.getParameter("country"));
 
-                        System.out.println(cd2.toString());
+                        System.out.println(cd.toString());
 
-                        if (cd2.getId()!=0) {
-                            getTaskMapper().updateCd(cd2);
+                        if (cd.getId() != 0) {
+                            getTaskMapper().updateCd(cd);
                         } else {
-                            getTaskMapper().createCd(cd2);
+                            getTaskMapper().createCd(cd);
                         }
 
-                        shoppingCart=getTaskMapper().getAllCds();
-                        req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
+                        shoppingCart = getTaskMapper().getAllCds();
+                        req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS, shoppingCart);
                         getViewManager().showStocks();
                     } catch (NumberFormatException e) {
                         System.err.println("[ERR] Not a Number");
-                        req.setAttribute(PARAMETER_ERROR,"Not a number");
+                        req.setAttribute(PARAMETER_ERROR, "Not a number");
                         getViewManager().showError();
                     }
                     break;
@@ -358,19 +430,17 @@ public class Controller extends CustomHttpServlet {
 
                 case ADMIN_ACTION_SHOW_USERS:
                     System.err.println("-- Show Users");
-
                     users = getTaskMapper().getAllUsers();
                     req.setAttribute("users", users);
                     getViewManager().showUsers();
-
                     break;
 
                 case ADMIN_ACTION_DEACTIVATE_USER:
-                    VOUser user2 = new VOUser();
-                    user2.setDNI(req.getParameter("item"));
+                    user = new VOUser();
+                    user.setDNI(req.getParameter("item"));
 
-                    System.err.println("-- Deactivate User: "+user2.getDNI());
-                    getTaskMapper().deactivateUser(user2);
+                    System.err.println("-- Deactivate User: " + user.getDNI());
+                    getTaskMapper().deactivateUser(user);
 
                     users = getTaskMapper().getAllUsers();
                     req.setAttribute("users", users);
@@ -378,11 +448,11 @@ public class Controller extends CustomHttpServlet {
                     break;
 
                 case ADMIN_ACTION_ACTIVATE_USER:
-                    VOUser user3 = new VOUser();
-                    user3.setDNI(req.getParameter("item"));
+                    user = new VOUser();
+                    user.setDNI(req.getParameter("item"));
 
-                    System.err.println("-- Activate User: "+user3.getDNI());
-                    getTaskMapper().activateUser(user3);
+                    System.err.println("-- Activate User: " + user.getDNI());
+                    getTaskMapper().activateUser(user);
 
                     users = getTaskMapper().getAllUsers();
                     req.setAttribute("users", users);
@@ -390,18 +460,18 @@ public class Controller extends CustomHttpServlet {
                     break;
 
                 case ADMIN_ACTION_EDIT_USER:
-                    VOUser user4 = new VOUser();
-                    user4.setDNI(req.getParameter("item"));
+                    user = new VOUser();
+                    user.setDNI(req.getParameter("item"));
 
-                    System.err.println("-- Edit User: "+user4.getDNI());
-                    if (user4.getDNI().equals("new")){
-                        req.setAttribute("euser", user4);
+                    System.err.println("-- Edit User: " + user.getDNI());
+                    if (user.getDNI().equals("new")) {
+                        req.setAttribute("euser", user);
                         getViewManager().showEditUsers();
                     } else {
-                        boolean allUser = getTaskMapper().getAllUser(user4);
+                        boolean allUser = getTaskMapper().getAllUser(user);
                         if (allUser) {
                             System.err.println("-- El usuario está");
-                            req.setAttribute("euser", user4);
+                            req.setAttribute("euser", user);
                             getViewManager().showEditUsers();
                         } else {
                             System.err.println("-- El usuario no está");
@@ -412,26 +482,47 @@ public class Controller extends CustomHttpServlet {
                     break;
 
                 case ADMIN_ACTION_SAVE_USER:
-                    VOUser user5 = new VOUser();
-                    user5.setDNI(req.getParameter("item"));
-
-                    System.err.println("-- Save User: "+user5.getDNI());
-                    req.setAttribute(PARAMETER_ERROR,"Not yet implemented");
-                    getViewManager().showError();
+                    user = new VOUser();
+                    user.setDNI(req.getParameter("DNI"));
+                    System.err.println("-- Save User: " + user.getDNI());
+                    if (getTaskMapper().getAllUser(user)) {
+                        bindUser(req, user);
+                        getTaskMapper().updateUser(user);
+                    } else {
+                        System.err.println("Not registered");
+                        /*
+                         * Aquí, si intentas crear un usuario con el mismo DNI que
+                         * uno ya existente lo edita
+                         * TODO: Saber si esto está bien
+                         */
+                        bindUser(req, user);
+                        getTaskMapper().signUpUser(user);
+                        getTaskMapper().updateUser(user);
+                    }
+                    users = getTaskMapper().getAllUsers();
+                    req.setAttribute("users", users);
+                    getViewManager().showUsers();
                     break;
 
                 default:
+
                     shoppingCart=getTaskMapper().getAllCds();
                     req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
                     getViewManager().showIndex();
+
+                    return false;
             }
-        }catch (NullPointerException e){
-            shoppingCart=getTaskMapper().getAllCds();
-            req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
+        } else {
+            System.out.println("Not loged");
+            if (url.contains("admin")){
+                req.setAttribute(PARAMETER_ERROR,"Acceso restringido a únicamente a los administradores");
+                getViewManager().showError();
+            } else {
+                return false;
 
-            getViewManager().showIndex();
+            }
         }
-
+        return true;
     }
 }
 

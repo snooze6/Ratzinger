@@ -24,6 +24,7 @@ public interface InterfaceTaskMapper {
 
     boolean insertOrder(VOUser user, VOShoppingCart carrito);
     VOShoppingCart getAllCds();
+    VOShoppingCart getCdsByFilter(String filter);
 
     void sendConfirmPaymentMail(VOUser user, VOShoppingCart carrito);
 
@@ -40,6 +41,7 @@ public interface InterfaceTaskMapper {
     ArrayList<VOComment> getAllComments(VOCd cd);
     void deactivateUser(VOUser user);
     void activateUser(VOUser user);
+    void updateUser(VOUser user);
     boolean getUser(VOUser user, boolean active);
     boolean getAllUser(VOUser user);
 

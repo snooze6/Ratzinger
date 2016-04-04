@@ -10,7 +10,7 @@
     <c:import url="./genericHeader.jsp"/>
 
     <link rel="stylesheet" href="./web/css/escaparate.css">
-    <script src="./web/js/index.js"></script>
+    <script src="./web/js/search.js"></script>
 
     <title>Musica para DAA</title>
 </head>
@@ -31,6 +31,9 @@
                 <input type="button" value="Buscar" id="searchButton"
                        class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect right">
 
+                <input type="button" value="Mostrar todo" id="showAllButton"
+                       class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect right">
+
             <div class="mdl-layout-spacer"></div>
             <input type="button" value="Ver Carrito" id="verCarrito"
                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect right">
@@ -45,10 +48,17 @@
 
 
                 <div class="mdl-grid">
-                    <!--contido tarxeta-->
 
 
-                    <c:forEach var="user" items="${requestScope.cds}">
+
+                    <c:if test="${requestScope.cds.isEmpty()}">
+                        <p>No hay resultados para la búsqueda<p>
+                    </c:if>
+
+
+                        <!--contido tarxeta-->
+
+                        <c:forEach var="user" items="${requestScope.cds}">
 
                         <div class="item mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
                             <figure class="mdl-card__media">
@@ -60,33 +70,32 @@
                                 <h1 class="mdl-card__subtitle-text">${user.value.getUnitaryPrice()}€</h1>
                             </div>
                             <div class="mdl-card__supporting-text ellipsis">
-                                <p>${user.value.getDescription()}</p>
-                            </div>
-                            <div class="mdl-card__actions mdl-card--border">
-                                <a id="a${user.value.getId()}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect boton-info">Información</a>
-                                <div class="mdl-layout-spacer"></div>
-                                <button type="button"
-                                        class="mdl-button mdl-button--icon mdl-button--colored boton-compra"
-                                        id="${user.value.getId()}"><i class="material-icons">add_shopping_cart</i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <%--<option value="${producto.value.getId()} | ${producto.value.getTitle()} | ${producto.value.getAuthor()} | ${producto.value.getCountry()} | ${producto.value.getUnitaryPrice()}"><c:out value="${producto.value.getTitle()} | ${producto.value.getAuthor()} | ${producto.value.getCountry()} | ${producto.value.getUnitaryPrice()}€" /> </option>--%>
-                    </c:forEach>
-
-
+                        <p>${user.value.getDescription()}</p>
                 </div>
-            </main>
+                <div class="mdl-card__actions mdl-card--border">
+                    <a id="a${user.value.getId()}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect boton-info">Información</a>
+                    <div class="mdl-layout-spacer"></div>
+                    <button type="button"
+                            class="mdl-button mdl-button--icon mdl-button--colored boton-compra"
+                            id="${user.value.getId()}"><i class="material-icons">add_shopping_cart</i>
+                    </button>
+                </div>
         </div>
 
+            <%--<option value="${producto.value.getId()} | ${producto.value.getTitle()} | ${producto.value.getAuthor()} | ${producto.value.getCountry()} | ${producto.value.getUnitaryPrice()}"><c:out value="${producto.value.getTitle()} | ${producto.value.getAuthor()} | ${producto.value.getCountry()} | ${producto.value.getUnitaryPrice()}€" /> </option>--%>
+        </c:forEach>
 
-        <input type="hidden" name="product" id="product" value="-1">
-        <input type="hidden" name="quantity" id="quantity" value="1">
-        <input type="hidden" name="action" id="action" value="buyItem">
 
-        <c:import url="./menu.jsp"/>
+    </div>
+    </main>
+    </div>
 
+
+    <input type="hidden" name="product" id="product" value="-1">
+    <input type="hidden" name="quantity" id="quantity" value="1">
+    <input type="hidden" name="action" id="action" value="buyItem">
+
+    <c:import url="./menu.jsp"/>
 
 
 

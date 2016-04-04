@@ -18,9 +18,7 @@ import java.util.HashMap;
  * Created by entakitos on 4/04/16.
  */
 public abstract class DataManager{
-    
-    //private static List<AbstractDAOFactory> sources;
-    
+
     private static AbstractDAOFactory remote;
 
     private static HashMap<Integer,VOCd> cacheCds = new HashMap<>();
@@ -112,7 +110,16 @@ public abstract class DataManager{
         @Override
         public boolean getCD(VOCd cd) {
             if(isCacheValid) {
-                cd=cacheCds.get(cd.getId());
+                VOCd cd2=cacheCds.get(cd.getId());
+                cd.setId(cd2.getId());
+                cd.setQuantity(cd2.getQuantity());
+                cd.setAuthor(cd2.getAuthor());
+                cd.setCountry(cd2.getCountry());
+                cd.setDescription(cd2.getDescription());
+                cd.setImage(cd2.getImage());
+                cd.setTitle(cd2.getTitle());
+                cd.setUnitaryPrice(cd2.getUnitaryPrice());
+
                 return true;
             }
 
@@ -159,6 +166,13 @@ public abstract class DataManager{
             }else{
                 return false;
             }
+        }
+
+        @Override
+        public VOShoppingCart getCDsByFilter(String filter) {
+            //TODO: filtrar sobre a cache
+
+            return remote.getDAOCds().getCDsByFilter(filter);
         }
     }
 

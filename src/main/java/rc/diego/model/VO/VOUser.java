@@ -40,6 +40,10 @@ public class VOUser extends BaseEntity{
         return this;
     }
 
+    public boolean isAdmin(){
+        return tipo == MySQLContract.Tipo.admin;
+    }
+
     public String getImages() {
         return images;
     }
@@ -104,6 +108,6 @@ public class VOUser extends BaseEntity{
 
     @Override
     public String toString() {
-        return "Usuario: "+name+" - DNI: "+DNI+" - Email: "+eMail+" - Admin: "+tipo;
+        return "Usuario: "+name+" - DNI: "+DNI+" - Email: "+eMail+" - Admin: "+tipo+" - VIP: "+vip+" - Active: "+active;
     }
 }

@@ -77,6 +77,10 @@ public class ViewManager implements InterfaceViewManager {
     }
 
     @Override
+
+    public void showSearch() {dispatcher.forward(new Search(request,response));}
+
+
     public void showUsers() {
         dispatcher.forward(new showusers(request,response));
     }

@@ -104,6 +104,15 @@ public class TaskMapper implements InterfaceTaskMapper{
         return si.isValid();
     }
 
+
+    public VOShoppingCart getCdsByFilter(String filter) {
+        getCDsByFilter task = new getCDsByFilter();
+        task.setFilter(filter);
+        tm.runTask(task);
+        VOShoppingCart shoppingCart = task.getShoppingCart();
+        return shoppingCart;
+    }
+
     @Override
     public void sendConfirmPaymentMail(VOUser user, VOShoppingCart carrito) {
         tm.runAsyncTask(new sendConfirmPaymentMail(user,carrito));
@@ -112,6 +121,7 @@ public class TaskMapper implements InterfaceTaskMapper{
     @Override
     public void deleteCd(VOCd cd3) {
         tm.runTask(new deleteCD().setCD(cd3));
+
     }
 
     public TaskMapper() {
@@ -164,4 +174,10 @@ public class TaskMapper implements InterfaceTaskMapper{
         return ge.isOk();
 
     }
+
+    @Override
+    public void updateUser(VOUser user) {
+        tm.runTask(new updateUser().setUser(user));
+    }
+
 }

@@ -29,6 +29,16 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
             +"` SET "+MySQLContract.Quantities.QUANT+"=? " +
             "WHERE "+MySQLContract.Quantities.ID+"=?;";
 
+
+
+    private final String getProductsByFilter = "SELECT * FROM "+ MySQLContract.Products.TABLE_NAME + " NATURAL JOIN "+MySQLContract.Quantities.TABLE_NAME+
+            " WHERE LOWER( " + MySQLContract.Products.NAME +" ) LIKE ? OR "+
+            " LOWER( " + MySQLContract.Products.AUTHOR +" ) LIKE ? OR "+
+            " LOWER( " + MySQLContract.Products.COUNTRY +" ) LIKE ? OR "+
+            " LOWER( " + MySQLContract.Products.DESCRIPTION +" ) LIKE ? ";
+
+
+
     private String getProductSQL = "SELECT * FROM `"+ MySQLContract.Products.TABLE_NAME +
             "` NATURAL JOIN `"+MySQLContract.Quantities.TABLE_NAME+
             "` WHERE "+MySQLContract.Products.ID+"=? "+" LIMIT 1;";
@@ -49,6 +59,7 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
     private String deleteQuantitySQL = "DELETE FROM "+MySQLContract.Quantities.TABLE_NAME+" WHERE id=?;";
     private String getLastIdSQL = "SELECT max(id) FROM "+MySQLContract.Products.TABLE_NAME+";";
 
+
     @Override
     public VOShoppingCart getAllCDs() {
 
@@ -59,6 +70,74 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
 
             while(results.next()){
                 VOCd cd=new VOCd();
+
+                cd.setId(results.getInt(MySQLContract.Products.ID));
+                cd.setTitle(results.getString(MySQLContract.Products.NAME));
+                cd.setAuthor(results.getString(MySQLContract.Products.AUTHOR));
+                cd.setCountry(results.getString(MySQLContract.Products.COUNTRY));
+                cd.setDescription(results.getString(MySQLContract.Products.DESCRIPTION));
+                cd.setQuantity(results.getInt(MySQLContract.Quantities.QUANT));
+                cd.setUnitaryPrice(results.getFloat(MySQLContract.Products.UNITARY_PRICE));
+                cd.setImage(results.getString(MySQLContract.Products.IMAGE));
+
+                sc.put(cd.getId(),cd);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                getConnection().close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return sc;
+    }
+
+
+    @Override
+    public VOShoppingCart getCDsByFilter(String filter){
+
+        VOShoppingCart sc = new VOShoppingCart();
+
+        try {
+
+            if(filter.trim().length()==0) {
+                return sc;
+            }
+
+            String finalQuery = getProductsByFilter;
+            if(filter.split(" ").length>1) {
+                for(int i = 1; i<filter.split(" ").length;i++){
+                    finalQuery = finalQuery + " UNION ";
+                    finalQuery = finalQuery + getProductsByFilter;
+
+                }
+            }
+            finalQuery  = finalQuery + " ;";
+            System.out.println(filter.split(" ").length);
+            System.out.println(finalQuery);
+
+            PreparedStatement  statement = getConnection().prepareStatement(finalQuery);
+            for(int i = 0; i<filter.split(" ").length;i++){
+                statement.setString((i*4)+1, "%"+filter.split(" ")[i] +"%");
+                statement.setString((i*4)+2, "%"+filter.split(" ")[i] +"%");
+                statement.setString((i*4)+3, "%"+filter.split(" ")[i] +"%");
+                statement.setString((i*4)+4, "%"+filter.split(" ")[i] +"%");
+            }
+
+
+
+            ResultSet results=statement.executeQuery();
+
+
+
+            while(results.next()){
+                VOCd cd=new VOCd();
+
+                System.out.println("ALGOOOO");
 
                 cd.setId(results.getInt(MySQLContract.Products.ID));
                 cd.setTitle(results.getString(MySQLContract.Products.NAME));
@@ -240,6 +319,7 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
             return 0;
         }finally {
             close(getLastId);
+
         }
         return 0;
     }

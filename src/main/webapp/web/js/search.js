@@ -10,14 +10,9 @@ $('document').ready(function(){
         $("#form").submit();
     });
 
-
-    $( "#searchFilter" ).keypress(function() {
-        if (e.which == 13) {
-            console.log("pulsaste algo y tal");
-            e.preventDefault();
-            $("#action").val('search');
-            $("#form").submit();
-        }
+    $('#showAllButton').click(function(){
+        $("#action").val('index');
+        $("#form").submit();
     });
 
     $(".boton-compra").click(function(){
