@@ -15,8 +15,17 @@ public class VOComment {
     private String DNI;
     private String content;
     private String date;
+    public final static String COMMENTS ="comments";
+    private int deep;
 
 
+    public int getDeep() {
+        return deep;
+    }
+
+    public void setDeep(int deep) {
+        this.deep = deep;
+    }
 
     public VOComment(){
         this.childCommentsArray = new ArrayList<VOComment>();

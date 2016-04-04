@@ -18,6 +18,7 @@ import java.util.Enumeration;
  */
 public class Controller extends CustomHttpServlet {
 
+    private final String COMMENTS = "comments";
     private final String PARAMETER_ACTION = "action";
     private final String PARAMETER_PRODUCT = "product";
     private final String PARAMETER_QUANTITY = "quantity";
@@ -48,11 +49,11 @@ public class Controller extends CustomHttpServlet {
     private final String ADMIN_ACTION_DEACTIVATE_USER = "admin/users/deactivate";
     private final String ADMIN_ACTION_SAVE_USER = "admin/users/save";
 
-    private final String ADD_COMMENT ="addComment";
+    private final String ADD_COMMENT = "addComment";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       doPost(req,resp);
+        doPost(req, resp);
     }
 
     @Override
@@ -63,18 +64,19 @@ public class Controller extends CustomHttpServlet {
         ArrayList<VOUser> users;
         int id;
 
-        HttpSession session=req.getSession(false);
+        HttpSession session = req.getSession(false);
 
-        if(session == null) { //crease unha sesion si non existe
+        if (session == null) { //crease unha sesion si non existe
             session = req.getSession(true);
             getTaskMapper().initializeSession(session);
         }
 
         try {
+            System.out.println("El valor es " + req.getParameter(PARAMETER_ACTION));
             switch ((String) req.getParameter(PARAMETER_ACTION)) {
                 case ACTION_SHOW_INDEX:
-                    shoppingCart=getTaskMapper().getAllCds();
-                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
+                    shoppingCart = getTaskMapper().getAllCds();
+                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS, shoppingCart);
                     getViewManager().showIndex();
                     break;
                 case ACTION_SEARCH:
@@ -86,9 +88,13 @@ public class Controller extends CustomHttpServlet {
                 case ACTION_SHOW_PRODUCT_INFO:
                     ArrayList<VOComment> comments;
 
-                    cd=new VOCd();
+                    cd = new VOCd();
                     cd.setId(Integer.parseInt(req.getParameter(PARAMETER_PRODUCT)));
-                   comments = getTaskMapper().getAllComments(cd);
+
+                    //Adding comments
+                    comments = getTaskMapper().getAllComments(cd);
+                    req.setAttribute(VOComment.COMMENTS,comments);
+
                     if (getTaskMapper().getCd(cd)) {
 
                         shoppingCart = new VOShoppingCart();
@@ -98,11 +104,11 @@ public class Controller extends CustomHttpServlet {
                                 cd
                         );
 
-                        req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
+                        req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS, shoppingCart);
                         getViewManager().showProductInfo();
-                    }else{
-                        shoppingCart=getTaskMapper().getAllCds();
-                        req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
+                    } else {
+                        shoppingCart = getTaskMapper().getAllCds();
+                        req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS, shoppingCart);
 
                         getViewManager().showIndex();
                     }
@@ -112,7 +118,39 @@ public class Controller extends CustomHttpServlet {
                     getViewManager().showShoppingCart();
                     break;
                 case ADD_COMMENT:
+                    System.out.println("------------_> Ejecutando");
+                    VOComment comment = new VOComment();
 
+                    String title=  req.getParameter("title");
+                    System.out.println(title);
+                    String content = req.getParameter("content");
+                    System.out.println(content);
+                    String idProduct = req.getParameter("idProducto1");
+                    System.out.println(idProduct);
+                    String DNI = req.getParameter("DNI");
+                    System.out.println(DNI);
+                    System.out.println("------------_> Ejecutando 2");
+                    int idProductComment = Integer.parseInt(idProduct);
+                    String idParentComment = req.getParameter("idCommentParent");
+                    System.out.println(idParentComment);
+                    int idParentCommentInt;
+                    System.out.println("------------_> Ejecutando 3");
+                    if(!idParentComment.equals("null")){
+                        System.out.println("No deberia entrar aqui");
+                        idParentCommentInt = Integer.parseInt(idParentComment);
+                        comment.setIdCommentParent(idParentCommentInt);
+                    }
+
+
+                    VOUser ruser = ((VOUser) req.getSession().getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
+
+
+                    comment.setTitle(ruser.getFirstName() + ruser.getLastName());
+                    comment.setContent(content);
+                    comment.setIdProduct(idProductComment);
+                    comment.setDNI(ruser.getDNI());
+
+                    getTaskMapper().addComment(comment);
                     break;
 
                 case ACTION_SHOW_SIGN_IN:
@@ -125,10 +163,11 @@ public class Controller extends CustomHttpServlet {
                     getViewManager().showPaymentData();
                     break;
                 case ACTION_CONFIRM_PAYMENT:
-                    user = user=((VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
 
-                    if(user.getFirstName() != null && user.getFirstName().length() > 0) {
-                        if(getTaskMapper().insertOrder(
+                    user = user = ((VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
+
+                    if (user.getFirstName() != null && user.getFirstName().length() > 0) {
+                        if (getTaskMapper().insertOrder(
                                 (VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER),
                                 (VOShoppingCart) session.getAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART)
                         )) {
@@ -140,18 +179,18 @@ public class Controller extends CustomHttpServlet {
 
                             getViewManager().showPayment();
 
-                        }else{
-                            req.setAttribute(PARAMETER_ERROR,"Se ha producido un error. No se dispone de suficiente sotck para algunos de los productos seleccionados");
+                        } else {
+                            req.setAttribute(PARAMETER_ERROR, "Se ha producido un error. No se dispone de suficiente sotck para algunos de los productos seleccionados");
                             getViewManager().showError();
                         }
 
-                    }else{
+                    } else {
                         getViewManager().showSignIn();
                     }
 
                     break;
                 case ACTION_BUY_ITEM:
-                    cd=new VOCd();
+                    cd = new VOCd();
                     cd.setId(Integer.parseInt(req.getParameter(PARAMETER_PRODUCT)));
 
                     if (getTaskMapper().getCd(cd)) {
@@ -167,9 +206,9 @@ public class Controller extends CustomHttpServlet {
                         );
 
                         getViewManager().showShoppingCart();
-                    }else{
-                        shoppingCart=getTaskMapper().getAllCds();
-                        req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
+                    } else {
+                        shoppingCart = getTaskMapper().getAllCds();
+                        req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS, shoppingCart);
 
                         getViewManager().showIndex();
                     }
@@ -178,14 +217,14 @@ public class Controller extends CustomHttpServlet {
                     break;
                 case ACTION_ERASE_ITEM:
 
-                    Enumeration enumeration=req.getParameterNames();
+                    Enumeration enumeration = req.getParameterNames();
 
                     while (enumeration.hasMoreElements()) {
-                        String element = (String)enumeration.nextElement();
+                        String element = (String) enumeration.nextElement();
 
-                        if(element.contains("checkbox-")) {
+                        if (element.contains("checkbox-")) {
 
-                            VOCd VOCd =new VOCd();
+                            VOCd VOCd = new VOCd();
                             VOCd.setId(Integer.parseInt(element.replace("checkbox-", "").trim()));
 
                             try {
@@ -199,7 +238,7 @@ public class Controller extends CustomHttpServlet {
                                     posibilidade de que se manipulara o html
                                     e se intentara borrar un elemento que non existe no carrito
                                  */
-                            }catch (Exception e){
+                            } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         }
@@ -213,22 +252,23 @@ public class Controller extends CustomHttpServlet {
                     break;
                 case ACTION_RESET:
 
-                    session.setAttribute(VOUser.SESSION_ATTRIBUTE_USER,new VOUser());
+                    session.setAttribute(VOUser.SESSION_ATTRIBUTE_USER, new VOUser());
 
                     getTaskMapper().initializeShoppingCart(
                             (VOShoppingCart) session.getAttribute(VOShoppingCart.SESSION_ATTRIBUTE_SHOPPING_CART)
                     );
 
-                    shoppingCart=getTaskMapper().getAllCds();
-                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
+                    shoppingCart = getTaskMapper().getAllCds();
+                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS, shoppingCart);
 
                     getViewManager().showIndex();
 
                     break;
                 case ACTION_SIGN_IN:
-//                    user = ((VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
+
                     System.err.println("Sing-in "+req.getParameter(VOUser.PARAMETER_DNI));
                     user = new VOUser();
+
 
                     getTaskMapper().setUserData(
                             req.getParameter(VOUser.PARAMETER_DNI),
@@ -260,8 +300,6 @@ public class Controller extends CustomHttpServlet {
                     break;
                 case ACTION_SIGN_UP:
 
-
-
                     user=((VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
 
                     getTaskMapper().setUserData(
@@ -274,14 +312,14 @@ public class Controller extends CustomHttpServlet {
                     );
 
                     //TODO: Intentar registraro ususario na base de datos
-                    if(getTaskMapper().signUpUser(user)) {
+                    if (getTaskMapper().signUpUser(user)) {
                         //TODO: por ahora unha vez se registra un usuario, se mostraa páxina inicial
                         shoppingCart = getTaskMapper().getAllCds();
                         req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS, shoppingCart);
 
                         getViewManager().showIndex();
-                    }else{
-                        req.setAttribute(PARAMETER_ERROR,"Se ha producido un error. No se puede registrar un usuario con ese DNI");
+                    } else {
+                        req.setAttribute(PARAMETER_ERROR, "Se ha producido un error. No se puede registrar un usuario con ese DNI");
 
                         getViewManager().showError();
                     }
@@ -359,6 +397,7 @@ public class Controller extends CustomHttpServlet {
                         req.setAttribute(PARAMETER_ERROR, "Se ha producido un error. No se puede encontrar un cd con ese identificador");
                         getViewManager().showError();
                     } else {
+                        System.out.println("\nASSDASDASD");
                         if (getTaskMapper().getCd(cd)) {
                             System.err.println("-- Edit item " + id);
                             req.setAttribute(VOShoppingCart.SESSION_ITEM, cd);
@@ -400,6 +439,7 @@ public class Controller extends CustomHttpServlet {
                     System.err.println("-- Save item");
                     cd = new VOCd();
                     try {
+
                         cd.setId(Integer.parseInt(req.getParameter("id")));
                         cd.setTitle(req.getParameter("name"));
                         cd.setImage(req.getParameter("imagen"));
@@ -505,13 +545,14 @@ public class Controller extends CustomHttpServlet {
                     break;
 
                 default:
-
                     shoppingCart=getTaskMapper().getAllCds();
                     req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
+
                     getViewManager().showIndex();
 
                     return false;
             }
+
         } else {
             System.out.println("Not loged");
             if (url.contains("admin")){

@@ -109,6 +109,7 @@ public abstract class DataManager{
 
         @Override
         public boolean getCD(VOCd cd) {
+            /*
             if(isCacheValid) {
                 VOCd cd2=cacheCds.get(cd.getId());
                 cd.setId(cd2.getId());
@@ -120,8 +121,10 @@ public abstract class DataManager{
                 cd.setTitle(cd2.getTitle());
                 cd.setUnitaryPrice(cd2.getUnitaryPrice());
 
+
                 return true;
-            }
+            }*/
+
 
             return remote.getDAOCds().getCD(cd);
         }

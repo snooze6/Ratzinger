@@ -22,7 +22,9 @@ public class getCD implements InterfaceTask{
 
     @Override
     public void run() {
+
         ok = DataManager.getDAOCds().getCD(cd);
+
     }
 
     public boolean isOk(){

@@ -2,8 +2,11 @@ package rc.diego.model.persistence.MySQL;
 
 import rc.diego.model.VO.VOCd;
 import rc.diego.model.VO.VOComment;
-import rc.diego.model.persistence.InterfaceDAOComments;
+
+import rc.diego.model.VO.VOUser;
+import rc.diego.model.persistence.InterfaceDAOFactory;
 import rc.diego.model.persistence.MySQL.Connector.MySQLContract;
+import rc.diego.model.persistence.InterfaceDAOComments;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,9 +18,11 @@ import java.util.ArrayList;
  */
 public class DAOCommentsMySQL extends AbstractDAOMySQL implements InterfaceDAOComments {
 
-    private final String getProductsSQL = "SELECT * FROM "+ MySQLContract.Comments.TABLE_NAME + " WHERE " +MySQLContract.Comments.idCommentParent+ " IS NULL" + ";";
+    private final String getProductsSQL = "SELECT * FROM "+ MySQLContract.Comments.TABLE_NAME + " WHERE " +MySQLContract.Comments.idCommentParent+ " IS NULL" +" AND "+ MySQLContract.Comments.idProduct + " = ?" + ";";
 
     private PreparedStatement statementGetChild = null;
+
+    private PreparedStatement statementGetComments = null;
 
     private String getChild = "SELECT * FROM " + MySQLContract.Comments.TABLE_NAME+ " WHERE " +MySQLContract.Comments.idCommentParent + " = ? ; ";
 
@@ -34,7 +39,7 @@ public class DAOCommentsMySQL extends AbstractDAOMySQL implements InterfaceDAOCo
 
     @Override
     public boolean insertComment(VOComment comment)  {
-
+        System.out.println("Hemos llegado al DAO");
         try {
 
 
@@ -45,6 +50,7 @@ public class DAOCommentsMySQL extends AbstractDAOMySQL implements InterfaceDAOCo
                 insertComment.setNull(1, java.sql.Types.INTEGER);
 
             }
+
             insertComment.setString(2, comment.getTitle());
             insertComment.setString(3, comment.getContent());
             insertComment.setInt(4, comment.getIdProduct());
@@ -69,10 +75,19 @@ public class DAOCommentsMySQL extends AbstractDAOMySQL implements InterfaceDAOCo
 
     @Override
     public ArrayList<VOComment> getCommentsByProduct(VOCd cd) throws Exception {
+
+
+        System.out.println(getProductsSQL);
+        statementGetComments = getConnection().prepareStatement(getProductsSQL);
+
+
         ArrayList<VOComment> comments = new ArrayList<VOComment>();
         System.out.println("Executing");
         try {
-            ResultSet results=getConnection().createStatement().executeQuery(getProductsSQL);
+            getConnection().setAutoCommit(false);
+            statementGetComments.setInt(1,cd.getId());
+
+            ResultSet results=statementGetComments.executeQuery();
 
             while(results.next()){
                 VOComment comment=new VOComment();
@@ -82,13 +97,20 @@ public class DAOCommentsMySQL extends AbstractDAOMySQL implements InterfaceDAOCo
                 comment.setDNI(results.getString(MySQLContract.Comments.DNI));
                 comment.setTitle(results.getString(MySQLContract.Comments.tittle));
                 comments.add(comment);
-                System.out.println("El padre con id "+comment.getIdComment());
+               // System.out.println("El padre con id "+comment.getIdComment());
                 getChild(comment);
 
             }
+            getConnection().commit();
+            getConnection().setAutoCommit(true);
 
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                getConnection().rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
         }finally {
             try {
                 getConnection().close();
@@ -96,37 +118,38 @@ public class DAOCommentsMySQL extends AbstractDAOMySQL implements InterfaceDAOCo
                 e.printStackTrace();
             }
         }
-/*        try {
-            comments.get(0).setIdComment(100);
-            insertComment(comments.get(0));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
         return comments;
     }
 
-    private void getChild(VOComment comment) throws SQLException {
+    private void getChild(VOComment comment)  {
 //        ResultSet resultsChild = getConnection().createStatement().executeQuery(getChild);
+        try {
 
-        getConnection().setAutoCommit(false);
-        statementGetChild = getConnection().prepareStatement(getChild);
-        statementGetChild.setInt(1, comment.getIdComment());
 
-        ResultSet resultsChild= statementGetChild.executeQuery();
-        while(resultsChild.next()){
-            VOComment child = new VOComment();
-            child.setIdComment(resultsChild.getInt(MySQLContract.Comments.idComment));
-            child.setIdComment(resultsChild.getInt(MySQLContract.Comments.idComment));
-            child.setIdProduct(resultsChild.getInt(MySQLContract.Comments.idProduct));
-            child.setContent(resultsChild.getString(MySQLContract.Comments.content));
-            child.setDNI(resultsChild.getString(MySQLContract.Comments.DNI));
-            child.setTitle(resultsChild.getString(MySQLContract.Comments.tittle));
-            child.setIdCommentParent(resultsChild.getInt(MySQLContract.Comments.idCommentParent));
-            child.getChildCommentsArray().add(child);
-            System.out.println("Hijo de " +comment.getIdComment() + " introducido con ID "+ child.getIdComment() );
-            getChild(child);
+            statementGetChild = getConnection().prepareStatement(getChild);
+            statementGetChild.setInt(1, comment.getIdComment());
+
+            ResultSet resultsChild = statementGetChild.executeQuery();
+            while (resultsChild.next()) {
+                VOComment child = new VOComment();
+                child.setIdComment(resultsChild.getInt(MySQLContract.Comments.idComment));
+                child.setIdComment(resultsChild.getInt(MySQLContract.Comments.idComment));
+                child.setIdProduct(resultsChild.getInt(MySQLContract.Comments.idProduct));
+                child.setContent(resultsChild.getString(MySQLContract.Comments.content));
+                child.setDNI(resultsChild.getString(MySQLContract.Comments.DNI));
+                child.setTitle(resultsChild.getString(MySQLContract.Comments.tittle));
+                child.setIdCommentParent(resultsChild.getInt(MySQLContract.Comments.idCommentParent));
+                comment.getChildCommentsArray().add(child);
+                //System.out.println("Hijo de " + comment.getIdComment() + " introducido con ID " + child.getIdComment());
+                getChild(child);
+            }
+
+
         }
-        getConnection().setAutoCommit(true);
+        catch (SQLException e) {
+
+            e.printStackTrace();
+        }
     }
 
 

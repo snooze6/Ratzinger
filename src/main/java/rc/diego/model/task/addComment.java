@@ -29,7 +29,9 @@ public class addComment implements InterfaceTask {
 
     @Override
     public void run() {
+
         ok = DataManager.getDAOComments().insertComment(comment);
+
     }
 
     public boolean isOk(){

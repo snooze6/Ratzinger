@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class getAllCommentsFromDataBase implements InterfaceTask{
 
     private VOCd cd;
-
+    private ArrayList<VOComment> commentsUnrrolled = new ArrayList<VOComment>();
     public getAllCommentsFromDataBase(VOCd cd) {
         this.cd = cd;
     }
@@ -23,6 +23,21 @@ public class getAllCommentsFromDataBase implements InterfaceTask{
 
     public ArrayList<VOComment> getComments() {
         return comments;
+    }
+
+    public void getCommentsUnrrolled(ArrayList<VOComment> comments,int deep){
+        int i=0;
+        for(i=0;i<comments.size();i++){
+            comments.get(i).setDeep(deep);
+            commentsUnrrolled.add(comments.get(i));
+            //System.out.println("El tamaño del hijo es " + comments.get(i).getChildCommentsArray().size());
+            getCommentsUnrrolled(comments.get(i).getChildCommentsArray(),deep+1);
+        }
+    }
+
+    public ArrayList<VOComment> getCommentsUnrrolled() {
+        getCommentsUnrrolled(comments,0);
+        return commentsUnrrolled;
     }
 
     public void setComments(ArrayList<VOComment> comments) {
