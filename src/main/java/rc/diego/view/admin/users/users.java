@@ -1,4 +1,4 @@
-package rc.diego.view.admin;
+package rc.diego.view.admin.users;
 
 import rc.diego.view.AbstractView;
 
@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by entakitos on 20/02/16.
  */
-public class stock extends AbstractView {
+public class users extends AbstractView {
 
-    public stock(HttpServletRequest request, HttpServletResponse response) {
+    public users(HttpServletRequest request, HttpServletResponse response) {
         super(request, response);
         setViewUrl("/web/stocks.jsp");
     }

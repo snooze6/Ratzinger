@@ -5,8 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import rc.diego.view.*;
 import rc.diego.view.Error;
-import rc.diego.view.admin.editProduct;
-import rc.diego.view.admin.stock;
+import rc.diego.view.admin.products.editProduct;
+import rc.diego.view.admin.products.stock;
 
 /**
  * Created by entakitos on 20/02/16.

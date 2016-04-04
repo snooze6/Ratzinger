@@ -49,7 +49,7 @@
                                 class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
                                 style="float:right;"
                                 onclick="
-                                        $('#action').val('admin/edit');
+                                        $('#action').val('admin/products/edit');
                                         $('#item').val(${producto.value.getId()});
                                         $('#form').submit();
                                         "
@@ -59,7 +59,7 @@
                         <button type="button"
                                 class="mdl-button mdl-button--icon mdl-button--colored boton-compra"
                                 onclick="
-                                        $('#action').val('admin/delete');
+                                        $('#action').val('admin/products/delete');
                                         $('#item').val(${producto.value.getId()});
                                         $('#form').submit();
                                         ">
