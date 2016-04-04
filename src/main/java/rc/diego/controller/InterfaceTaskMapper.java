@@ -5,6 +5,7 @@ import rc.diego.model.VO.VOCd;
 import rc.diego.model.VO.VOUser;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 /**
  * Created by entakitos on 20/02/16.
@@ -24,5 +25,21 @@ public interface InterfaceTaskMapper {
     VOShoppingCart getAllCds();
     VOShoppingCart getCdsByFilter(String filter);
 
+    void sendConfirmPaymentMail(VOUser user, VOShoppingCart carrito);
+
     boolean getCd(VOCd cd);
+    boolean updateCd(VOCd cd);
+
+    boolean createCd(VOCd cd2);
+
+    void deleteCd(VOCd cd3);
+
+    ArrayList<VOUser> getAllUsers();
+
+    void deactivateUser(VOUser user);
+    void activateUser(VOUser user);
+    void updateUser(VOUser user);
+    boolean getUser(VOUser user, boolean active);
+    boolean getAllUser(VOUser user);
 }
+

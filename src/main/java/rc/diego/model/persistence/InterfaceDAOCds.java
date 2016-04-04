@@ -11,5 +11,12 @@ public interface InterfaceDAOCds {
     boolean getCD(VOCd cd);
     boolean updateCDQuantity(VOCd cd);
 
+
     VOShoppingCart getCDsByFilter(String filter);
+
+    boolean updateCD(VOCd cd);
+    boolean create(VOCd cd);
+
+    boolean deleteCD(VOCd cd);
+
 }

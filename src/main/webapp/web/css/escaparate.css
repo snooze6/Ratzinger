@@ -25,6 +25,7 @@
 
 .mdl-card__media > img {
   max-width: 100%;
+  height: 275px;
 }
 
 .mdl-card__actions {

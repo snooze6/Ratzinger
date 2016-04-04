@@ -6,6 +6,7 @@ import rc.diego.model.VO.VOUser;
 import rc.diego.model.task.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 /**
  * Created by entakitos on 21/02/16.
@@ -74,9 +75,25 @@ public class TaskMapper implements InterfaceTaskMapper{
     @Override
     public boolean getCd(VOCd cd) {
         getCD ge = new getCD();
-        ge.setShoppingCart(cd);
+        ge.setCD(cd);
         tm.runTask(ge);
         return ge.isOk();
+    }
+
+    @Override
+    public boolean updateCd(VOCd cd) {
+        updateCD ge = new updateCD();
+        ge.setCD(cd);
+        tm.runTask(ge);
+        return ge.isOk();
+    }
+
+    @Override
+    public boolean createCd(VOCd cd2) {
+        createCD createcd = new createCD();
+        createcd.setCD(cd2);
+        tm.runTask(createcd);
+        return createcd.isOk();
     }
 
     @Override
@@ -86,15 +103,67 @@ public class TaskMapper implements InterfaceTaskMapper{
         return si.isValid();
     }
 
-    public VOShoppingCart getCdsByFilter(String filter){
-        getCDsByFilter task= new getCDsByFilter();
+
+    public VOShoppingCart getCdsByFilter(String filter) {
+        getCDsByFilter task = new getCDsByFilter();
         task.setFilter(filter);
         tm.runTask(task);
         VOShoppingCart shoppingCart = task.getShoppingCart();
         return shoppingCart;
     }
 
+    @Override
+    public void sendConfirmPaymentMail(VOUser user, VOShoppingCart carrito) {
+        tm.runAsyncTask(new sendConfirmPaymentMail(user,carrito));
+    }
+
+    @Override
+    public void deleteCd(VOCd cd3) {
+        tm.runTask(new deleteCD().setCD(cd3));
+
+    }
+
     public TaskMapper() {
         this.tm=new TaskManager();
     }
+
+    @Override
+    public ArrayList<VOUser> getAllUsers() {
+        getAllUsers ge = new getAllUsers();
+        tm.runTask(ge);
+        return ge.getUsers();
+    }
+
+    @Override
+    public void deactivateUser(VOUser user) {
+        tm.runTask(new deactivateUser().setUser(user));
+    }
+
+    @Override
+    public void activateUser(VOUser user) {
+        tm.runTask(new activateUser().setUser(user));
+    }
+
+    @Override
+    public boolean getUser(VOUser user, boolean active) {
+        getUserTask user1 = new getUserTask();
+        user1.setUser(user);
+        user1.setActive(active);
+        tm.runTask(user1);
+        return user1.isOk();
+    }
+
+    @Override
+    public boolean getAllUser(VOUser user) {
+        getAllUserTask ge = new getAllUserTask();
+        ge.setUser(user);
+        tm.runTask(ge);
+        return ge.isOk();
+    }
+
+    @Override
+    public void updateUser(VOUser user) {
+        tm.runTask(new updateUser().setUser(user));
+    }
+
 }

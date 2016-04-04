@@ -20,12 +20,28 @@ public class VOUser extends BaseEntity{
     private String eMail;
     private String password;
     private String images;
+    private boolean active;
     private boolean vip;
+
+
 
     private MySQLContract.Tipo tipo = MySQLContract.Tipo.normal;
 
     public MySQLContract.Tipo getTipo() {
         return tipo;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public VOUser setActive(boolean active) {
+        this.active = active;
+        return this;
+    }
+
+    public boolean isAdmin(){
+        return tipo == MySQLContract.Tipo.admin;
     }
 
     public String getImages() {
@@ -88,5 +104,10 @@ public class VOUser extends BaseEntity{
 
     public void setVip(boolean vip) {
         this.vip = vip;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario: "+name+" - DNI: "+DNI+" - Email: "+eMail+" - Admin: "+tipo+" - VIP: "+vip+" - Active: "+active;
     }
 }

@@ -19,4 +19,9 @@ public class AbstractFactoryMySQL implements InterfaceDAOFactory{
     public InterfaceDAOUsers getDAOUsers() {
         return new DAOUsersMySQL();
     }
+
+    @Override
+    public InterfaceDAOComments getDAOComments() {
+        return new DAOCommentsMySQL();
+    }
 }

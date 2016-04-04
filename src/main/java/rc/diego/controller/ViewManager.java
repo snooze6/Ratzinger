@@ -5,8 +5,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import rc.diego.view.*;
 import rc.diego.view.Error;
-import rc.diego.view.admin.editProduct;
-import rc.diego.view.admin.stock;
+import rc.diego.view.admin.products.editProduct;
+import rc.diego.view.admin.products.stock;
+import rc.diego.view.admin.users.editUser;
+import rc.diego.view.admin.users.showusers;
 
 /**
  * Created by entakitos on 20/02/16.
@@ -75,7 +77,16 @@ public class ViewManager implements InterfaceViewManager {
     }
 
     @Override
+
     public void showSearch() {dispatcher.forward(new Search(request,response));}
 
 
+    public void showUsers() {
+        dispatcher.forward(new showusers(request,response));
+    }
+
+    @Override
+    public void showEditUsers() {
+        dispatcher.forward(new editUser(request,response));
+    }
 }

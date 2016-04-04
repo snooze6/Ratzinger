@@ -7,7 +7,7 @@
 }
 
 .right{
-    flota:right;
+    float:right;
 }
 
 .clear{
@@ -41,6 +41,15 @@
   color: #fff;
   height: 176px;
   background: url('../images/ic_shopping_cart_white_24px.svg') center / cover;
+  background-repeat: no-repeat;
+  background-size: 185px;
+  background-color: #0194E1;
+}
+
+.demo-card-wide > #cabeceraTarxetaSettings {
+  color: #fff;
+  height: 176px;
+  background: url('../images/settings.png') center / cover;
   background-repeat: no-repeat;
   background-size: 185px;
   background-color: #0194E1;

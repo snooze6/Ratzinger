@@ -7,7 +7,7 @@ import rc.diego.model.persistence.InterfaceDAOFactory;
 /**
  * Created by entakitos on 17/03/16.
  */
-public class getCD implements InterfaceTask{
+public class deleteCD implements InterfaceTask{
     private VOCd cd;
     private InterfaceDAOFactory daoFactory;
     private boolean ok;
@@ -16,14 +16,15 @@ public class getCD implements InterfaceTask{
         return cd;
     }
 
-    public void setCD(VOCd cd) {
+    public deleteCD setCD(VOCd cd) {
         this.cd = cd;
+        return this;
     }
 
     @Override
     public void run() {
         daoFactory = new AbstractFactoryMySQL();
-        ok = daoFactory.getDAOCds().getCD(cd);
+        ok = daoFactory.getDAOCds().deleteCD(cd);
     }
 
     public boolean isOk(){

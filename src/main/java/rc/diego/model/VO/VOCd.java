@@ -12,7 +12,7 @@ public class VOCd extends BaseEntity{
     private String country;
     private float unitaryPrice;
     private int quantity; //usase quantity en vez de stock, porque así podemos usar a mesma clase para representarostck de CDs como para representar unha cantidad determinada seleccionada
-    private String image;
+    private String image = "./web/images/notfound.png";
 
     public String getImage() {
         return image;
@@ -91,5 +91,17 @@ public class VOCd extends BaseEntity{
         this.country = country;
         this.unitaryPrice = unitaryPrice;
         this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return  "Id:          "+id+"\n"+
+                "Title:       "+title+"\n"+
+                "Author:      "+author+"\n"+
+                "Country:     "+country+"\n"+
+                "Price:       "+unitaryPrice+"\n"+
+                "Quantity:    "+quantity+"\n"+
+                "Description: "+description+"\n"+
+                "Image:       "+image+"\n";
     }
 }

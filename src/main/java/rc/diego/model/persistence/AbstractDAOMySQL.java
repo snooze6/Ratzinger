@@ -3,6 +3,8 @@ package rc.diego.model.persistence;
 import rc.diego.model.persistence.Connector.MySqlConnector;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
  * Created by entakitos on 17/03/16.
@@ -25,5 +27,16 @@ public abstract class AbstractDAOMySQL {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void close(PreparedStatement stat) {
+        //TODO: Destruir esto
+        if (stat != null)
+            try {
+                stat.close();
+                //getConnection().close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
     }
 }
