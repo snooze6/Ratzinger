@@ -74,5 +74,8 @@ public class ViewManager implements InterfaceViewManager {
         dispatcher.forward(new editProduct(request,response));
     }
 
+    @Override
+    public void showSearch() {dispatcher.forward(new Search(request,response));}
+
 
 }

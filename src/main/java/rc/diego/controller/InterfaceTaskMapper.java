@@ -22,6 +22,7 @@ public interface InterfaceTaskMapper {
 
     boolean insertOrder(VOUser user, VOShoppingCart carrito);
     VOShoppingCart getAllCds();
+    VOShoppingCart getCdsByFilter(String filter);
 
     boolean getCd(VOCd cd);
 }

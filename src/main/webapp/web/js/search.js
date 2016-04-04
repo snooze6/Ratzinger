@@ -10,6 +10,11 @@ $('document').ready(function(){
         $("#form").submit();
     });
 
+    $('#showAllButton').click(function(){
+        $("#action").val('index');
+        $("#form").submit();
+    });
+
     $(".boton-compra").click(function(){
         $("#product").val(this.id);
         $("#form").submit();

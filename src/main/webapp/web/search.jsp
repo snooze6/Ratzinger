@@ -10,7 +10,7 @@
     <c:import url="./genericHeader.jsp"/>
 
     <link rel="stylesheet" href="./web/css/escaparate.css">
-    <script src="./web/js/index.js"></script>
+    <script src="./web/js/search.js"></script>
 
     <title>Musica para DAA</title>
 </head>
@@ -34,11 +34,21 @@
                     </div>
                     <input type="button" value="Buscar" id="searchButton"
                            class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect right">
+
+                    <input type="button" value="Mostrar todo" id="showAllButton"
+                           class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect right">
                 </div>
 
                 <div class="mdl-grid">
-                    <!--contido tarxeta-->
 
+
+
+                    <c:if test="${requestScope.cds.isEmpty()}">
+                        <p>No hay resultados para la búsqueda<p>
+                    </c:if>
+
+
+                        <!--contido tarxeta-->
 
                     <c:forEach var="producto" items="${requestScope.cds}">
 

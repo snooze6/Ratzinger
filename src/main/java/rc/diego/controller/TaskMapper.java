@@ -86,6 +86,14 @@ public class TaskMapper implements InterfaceTaskMapper{
         return si.isValid();
     }
 
+    public VOShoppingCart getCdsByFilter(String filter){
+        getCDsByFilter task= new getCDsByFilter();
+        task.setFilter(filter);
+        tm.runTask(task);
+        VOShoppingCart shoppingCart = task.getShoppingCart();
+        return shoppingCart;
+    }
+
     public TaskMapper() {
         this.tm=new TaskManager();
     }

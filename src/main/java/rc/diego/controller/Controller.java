@@ -23,6 +23,7 @@ public class Controller extends CustomHttpServlet {
     private final String PARAMETER_ERROR = "error";
 
     private final String ACTION_SHOW_INDEX = "index";
+    private final String ACTION_SEARCH = "search";
     private final String ACTION_SHOW_PRODUCT_INFO = "productInfo";
     private final String ACTION_SHOW_SHOPPING_CART = "shoppingCart";
     private final String ACTION_SHOW_SIGN_IN = "signIn";
@@ -66,6 +67,12 @@ public class Controller extends CustomHttpServlet {
                     shoppingCart=getTaskMapper().getAllCds();
                     req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
                     getViewManager().showIndex();
+                    break;
+                case ACTION_SEARCH:
+                    System.out.println(req.getParameter("searchFilter"));
+                    shoppingCart=getTaskMapper().getCdsByFilter(req.getParameter("searchFilter"));
+                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
+                    getViewManager().showSearch();
                     break;
                 case ACTION_SHOW_PRODUCT_INFO:
 

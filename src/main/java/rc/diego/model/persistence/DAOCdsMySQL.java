@@ -7,6 +7,7 @@ import rc.diego.model.persistence.Connector.MySQLContract;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * Created by entakitos on 17/03/16.
@@ -20,6 +21,15 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
             +"` SET "+MySQLContract.Quantities.QUANT+"=? " +
             "WHERE "+MySQLContract.Quantities.ID+"=?;";
 
+
+    private final String getProductsByFilter = "SELECT * FROM "+ MySQLContract.Products.TABLE_NAME + " NATURAL JOIN "+MySQLContract.Quantities.TABLE_NAME+
+            " WHERE LOWER( " + MySQLContract.Products.NAME +" ) LIKE ? OR "+
+            " LOWER( " + MySQLContract.Products.AUTHOR +" ) LIKE ? OR "+
+            " LOWER( " + MySQLContract.Products.COUNTRY +" ) LIKE ? OR "+
+            " LOWER( " + MySQLContract.Products.DESCRIPTION +" ) LIKE ? ";
+
+
+
     @Override
     public VOShoppingCart getAllCDs() {
 
@@ -31,6 +41,74 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
 
             while(results.next()){
                 VOCd cd=new VOCd();
+
+                cd.setId(results.getInt(MySQLContract.Products.ID));
+                cd.setTitle(results.getString(MySQLContract.Products.NAME));
+                cd.setAuthor(results.getString(MySQLContract.Products.AUTHOR));
+                cd.setCountry(results.getString(MySQLContract.Products.COUNTRY));
+                cd.setDescription(results.getString(MySQLContract.Products.DESCRIPTION));
+                cd.setQuantity(results.getInt(MySQLContract.Quantities.QUANT));
+                cd.setUnitaryPrice(results.getFloat(MySQLContract.Products.UNITARY_PRICE));
+                cd.setImage(results.getString(MySQLContract.Products.IMAGE));
+
+                sc.put(cd.getId(),cd);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                getConnection().close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return sc;
+    }
+
+
+    @Override
+    public VOShoppingCart getCDsByFilter(String filter){
+
+        VOShoppingCart sc = new VOShoppingCart();
+
+        try {
+
+            if(filter.trim().length()==0) {
+                return sc;
+            }
+
+            String finalQuery = getProductsByFilter;
+            if(filter.split(" ").length>1) {
+                for(int i = 1; i<filter.split(" ").length;i++){
+                    finalQuery = finalQuery + " UNION ";
+                    finalQuery = finalQuery + getProductsByFilter;
+
+                }
+            }
+            finalQuery  = finalQuery + " ;";
+            System.out.println(filter.split(" ").length);
+            System.out.println(finalQuery);
+
+            PreparedStatement  statement = getConnection().prepareStatement(finalQuery);
+            for(int i = 0; i<filter.split(" ").length;i++){
+                statement.setString((i*4)+1, "%"+filter.split(" ")[i] +"%");
+                statement.setString((i*4)+2, "%"+filter.split(" ")[i] +"%");
+                statement.setString((i*4)+3, "%"+filter.split(" ")[i] +"%");
+                statement.setString((i*4)+4, "%"+filter.split(" ")[i] +"%");
+            }
+
+
+
+            ResultSet results=statement.executeQuery();
+
+
+
+            while(results.next()){
+                VOCd cd=new VOCd();
+
+                System.out.println("ALGOOOO");
 
                 cd.setId(results.getInt(MySQLContract.Products.ID));
                 cd.setTitle(results.getString(MySQLContract.Products.NAME));
@@ -114,7 +192,6 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-
 
         }
 
