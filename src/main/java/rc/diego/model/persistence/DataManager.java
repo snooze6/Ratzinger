@@ -1,6 +1,7 @@
 package rc.diego.model.persistence;
 
 import rc.diego.model.VO.VOCd;
+import rc.diego.model.VO.VOComment;
 import rc.diego.model.VO.VOShoppingCart;
 import rc.diego.model.VO.VOUser;
 import rc.diego.model.persistence.MySQL.AbstractFactoryMySQL;
@@ -63,6 +64,14 @@ public abstract class DataManager{
         return new FachadeDAOUsers();
     }
 
+    public static InterfaceDAOComments getDAOComments(){
+        if(!initialized) {
+            initialiceManager();
+            initialized=true;
+        }
+
+        return new FachadeDAOComments();
+    }
 
     /*-------------------*/
     /*    DAO PEDIDOS    */
@@ -201,6 +210,22 @@ public abstract class DataManager{
         @Override
         public boolean deleteUser(VOUser user) throws SQLException {
             return remote.getDAOUsers().deleteUser(user);
+        }
+    }
+
+    /*-------------------*/
+    /*    DAO Commens    */
+    /*-------------------*/
+
+    private static class FachadeDAOComments implements InterfaceDAOComments{
+        @Override
+        public ArrayList<VOComment> getCommentsByProduct(VOCd cd) throws Exception {
+            return remote.getDAOComments().getCommentsByProduct(cd);
+        }
+
+        @Override
+        public boolean insertComment(VOComment comment) {
+            return remote.getDAOComments().insertComment(comment);
         }
     }
 }

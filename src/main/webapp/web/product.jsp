@@ -8,7 +8,13 @@
     <head>
 
       <c:import url="./genericHeader.jsp" />
+
       <script src="./web/js/product.js"></script>
+
+
+<%--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+         <script src="js/checkout.js"></script>
+        <link rel="stylesheet" href="./web/css/product.css">--%>
 
       <title>Musica para DAA</title>
     </head>
@@ -66,6 +72,22 @@
           <c:import url="./menu.jsp" />
         </div>
       </form>
+    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+        <!-- Floating Multiline Textfield -->
+        <form action=".#" method="POST">
+            <div class="mdl-card__supporting-text">
+                <strong>Comentario:</strong>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield comment">
+                <textarea class="mdl-textfield__input" type="text" rows= "6" id="sample5" ></textarea>
+                <label class="mdl-textfield__label" for="sample5">Escriba su comentario</label>
+            </div>
+            <input type="button" value="Comentar" id="comentar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+        </form>
+    </div>
+
+
+
     </c:forEach>
     </body>
 </html>

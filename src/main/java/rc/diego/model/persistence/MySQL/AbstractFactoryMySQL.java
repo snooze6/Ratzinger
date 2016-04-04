@@ -22,4 +22,9 @@ public class AbstractFactoryMySQL extends AbstractDAOFactory {
         return new DAOUsersMySQL();
     }
 
+    @Override
+    public InterfaceDAOComments getDAOComments() {
+        return new DAOCommentsMySQL();
+    }
+
 }

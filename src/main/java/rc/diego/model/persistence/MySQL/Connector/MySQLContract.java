@@ -61,4 +61,15 @@ public class MySQLContract {
     }
 
     public enum Tipo {normal, admin};
+
+    public static class Comments{
+        public static String TABLE_NAME="Comments";
+        public static String DNI = "DNI";
+        public static String content="content";
+        public static String idComment="idComment";
+        public static String tittle="title";
+        public static String idCommentParent="idCommentParent";
+        public static String idProduct = "idProduct";
+        public static String dt="dt";
+    }
 }

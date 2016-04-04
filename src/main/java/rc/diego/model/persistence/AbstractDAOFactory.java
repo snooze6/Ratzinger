@@ -6,6 +6,8 @@ package rc.diego.model.persistence;
 public abstract class AbstractDAOFactory {
 
     public abstract InterfaceDAOPedidos getDAOPedidos();
-    public abstract  InterfaceDAOCds getDAOCds();
-    public abstract  InterfaceDAOUsers getDAOUsers();
+    public abstract InterfaceDAOCds getDAOCds();
+    public abstract InterfaceDAOUsers getDAOUsers();
+    public abstract InterfaceDAOComments getDAOComments();
+
 }
