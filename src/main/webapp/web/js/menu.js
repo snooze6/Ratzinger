@@ -23,7 +23,7 @@ $('document').ready(function(){
     });
 
     $('#linkStock').click(function(){
-        $("#action").val('admin/products/stock');
+        $("#action").val('admin/products/show');
         $("#form").submit();
     });
 

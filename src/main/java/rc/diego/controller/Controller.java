@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 /**
@@ -35,15 +36,15 @@ public class Controller extends CustomHttpServlet {
     private final String ACTION_CONFIRM_PAYMENT = "confirmPayment";
     private final String ACTION_RESET = "reset";
 
-    private final String ADMIN_ACTION_SHOW_STOCK = "admin/products/stock";
+    private final String ADMIN_ACTION_SHOW_STOCK = "admin/products/show";
     private final String ADMIN_ACTION_EDIT_ITEM = "admin/products/edit";
     private final String ADMIN_ACTION_DELETE_ITEM = "admin/products/delete";
     private final String ADMIN_ACTION_SAVE_ITEM = "admin/products/save";
 
-    private final String ADMIN_ACTION_SHOW_USERS = "admin/products/stock";
-    private final String ADMIN_ACTION_EDIT_USER = "admin/products/edit";
-    private final String ADMIN_ACTION_DELETE_USER = "admin/products/delete";
-    private final String ADMIN_ACTION_SAVE_USER = "admin/products/save";
+    private final String ADMIN_ACTION_SHOW_USERS = "admin/users/show";
+    private final String ADMIN_ACTION_EDIT_USER = "admin/users/edit";
+    private final String ADMIN_ACTION_DELETE_USER = "admin/users/delete";
+    private final String ADMIN_ACTION_SAVE_USER = "admin/users/save";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -342,6 +343,16 @@ public class Controller extends CustomHttpServlet {
                         req.setAttribute(PARAMETER_ERROR,"Not a number");
                         getViewManager().showError();
                     }
+                    break;
+
+
+                case ADMIN_ACTION_SHOW_USERS:
+                    System.err.println("-- Show Users");
+
+                    ArrayList<VOUser> users= getTaskMapper().getAllUsers();
+                    req.setAttribute("users", users);
+                    getViewManager().showUsers();
+
                     break;
 
                 default:

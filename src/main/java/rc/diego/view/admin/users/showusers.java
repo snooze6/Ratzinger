@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by entakitos on 20/02/16.
  */
-public class users extends AbstractView {
+public class showusers extends AbstractView {
 
-    public users(HttpServletRequest request, HttpServletResponse response) {
+    public showusers(HttpServletRequest request, HttpServletResponse response) {
         super(request, response);
-        setViewUrl("/web/stocks.jsp");
+        setViewUrl("/web/users.jsp");
     }
 }

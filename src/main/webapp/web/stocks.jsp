@@ -22,6 +22,9 @@
         </div>
 
         <div class="mdl-card__actions mdl-card--border">
+            <a href="./index.jsp" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                Volver
+            </a>
             <input type="button" id="add" value="AÑADIR" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;">
         </div>
 
@@ -37,11 +40,11 @@
             </thead>
             <tbody>
 
-            <c:forEach var="producto" items="${requestScope.cds}">
+            <c:forEach var="user" items="${requestScope.cds}">
                 <tr>
-                    <td class="text-align-left">${producto.value.getTitle()}</td>
-                    <td>${producto.value.getQuantity()}</td>
-                    <td>${producto.value.getUnitaryPrice()}&euro;</td>
+                    <td class="text-align-left">${user.value.getTitle()}</td>
+                    <td>${user.value.getQuantity()}</td>
+                    <td>${user.value.getUnitaryPrice()}&euro;</td>
                     <td>
                         <input
                                 type="button"
@@ -50,7 +53,7 @@
                                 style="float:right;"
                                 onclick="
                                         $('#action').val('admin/products/edit');
-                                        $('#item').val(${producto.value.getId()});
+                                        $('#item').val(${user.value.getId()});
                                         $('#form').submit();
                                         "
                         >
@@ -60,7 +63,7 @@
                                 class="mdl-button mdl-button--icon mdl-button--colored boton-compra"
                                 onclick="
                                         $('#action').val('admin/products/delete');
-                                        $('#item').val(${producto.value.getId()});
+                                        $('#item').val(${user.value.getId()});
                                         $('#form').submit();
                                         ">
                             <i class="material-icons">delete</i>
@@ -77,19 +80,19 @@
         <input type="hidden" name="item" id="item" value="0">
         <!--fin contido tarxeta-->
 
-        <div class="mdl-card__actions mdl-card--border">
-            <a href="./index.jsp" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                Volver
-            </a>
-            <%--<c:choose>--%>
-                <%--<c:when test="${total gt 0}">--%>
-                    <%--<input type="button" value="ELIMINAR" id="eliminar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;color:#F44336;">--%>
-                <%--</c:when>--%>
-                <%--<c:otherwise>--%>
-                    <%--<input type="button" value="ELIMINAR" id="eliminar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;" disabled>--%>
-                <%--</c:otherwise>--%>
-            <%--</c:choose>--%>
-        </div>
+        <%--<div class="mdl-card__actions mdl-card--border">--%>
+            <%--<a href="./index.jsp" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">--%>
+                <%--Volver--%>
+            <%--</a>--%>
+            <%--&lt;%&ndash;<c:choose>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<c:when test="${total gt 0}">&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<input type="button" value="ELIMINAR" id="eliminar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;color:#F44336;">&ndash;%&gt;--%>
+                <%--&lt;%&ndash;</c:when>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<c:otherwise>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<input type="button" value="ELIMINAR" id="eliminar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;" disabled>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;</c:otherwise>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;</c:choose>&ndash;%&gt;--%>
+        <%--</div>--%>
 
         <c:import url="./menu.jsp" />
 

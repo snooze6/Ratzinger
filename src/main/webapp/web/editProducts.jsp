@@ -74,7 +74,7 @@
                 </div>
 
                 <input type="hidden" name="id" value="${ requestScope.cd.getId()}">
-                <input type="hidden" name="action" id="action" value="admin/products/stock">
+                <input type="hidden" name="action" id="action" value="admin/products/show">
                 <!--fin contido tarxeta-->
             </div>
 
@@ -124,7 +124,7 @@
                     value="CANCELAR"
                     id="cancelar"
                     class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-                    onclick="$('#action').val('admin/products/stock');$('#form').submit();"
+                    onclick="$('#action').val('admin/products/show');$('#form').submit();"
             >
             <input type="button"
                    value="GUARDAR"

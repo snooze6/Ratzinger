@@ -35,17 +35,17 @@
             </thead>
             <tbody>
                     <fmt:setLocale value="es_ES"/>
-      				<c:forEach var="producto" items="${sessionScope.cart}">
+      				<c:forEach var="user" items="${sessionScope.cart}">
 
       					<tr>
-      						<td class="text-align-left">${producto.value.getTitle()}</td>
-      						<td>${producto.value.getQuantity()}</td>
-      						<td>${producto.value.getUnitaryPrice()}&euro;</td>
-      						<td><fmt:formatNumber value="${producto.value.getUnitaryPrice() * producto.value.getQuantity()}" type="currency"/></td>
-                                <c:set var="total" value="${total + producto.value.getUnitaryPrice() * producto.value.getQuantity()}"></c:set>
+      						<td class="text-align-left">${user.value.getTitle()}</td>
+      						<td>${user.value.getQuantity()}</td>
+      						<td>${user.value.getUnitaryPrice()}&euro;</td>
+      						<td><fmt:formatNumber value="${user.value.getUnitaryPrice() * user.value.getQuantity()}" type="currency"/></td>
+                                <c:set var="total" value="${total + user.value.getUnitaryPrice() * user.value.getQuantity()}"></c:set>
       						<td>
                                 <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" >
-                                  <input type="checkbox" id="checkbox-${producto.value.getId()}" name="checkbox-${producto.value.getId()}" class="mdl-checkbox__input">
+                                  <input type="checkbox" id="checkbox-${user.value.getId()}" name="checkbox-${user.value.getId()}" class="mdl-checkbox__input">
                                 </label>
       						</td>
       					</tr>
