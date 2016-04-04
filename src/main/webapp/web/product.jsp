@@ -81,8 +81,8 @@
         <c:forEach var="comentario" items="${requestScope.comments}">
             <div style="margin-left: ${comentario.getDeep()*8}% ; padding:8px " id="${comentario.getIdComment()}">
                 <strong>${comentario.getTitle()} </strong>
-                <p>${comentario.getContent()}</p>
-
+                <strong>   Valoracion: ${comentario.getValoracion()}</strong>
+                <p>${comentario.getContent()}  </p>
                 <c:choose>
                     <c:when test="${fn:length(sessionScope.usuario.getFirstName()) gt 0}">
                         <a href="#" id="-${comentario.getIdComment()}"  class="linkReply" title="${comentario.getIdComment()}">Reply </a>
@@ -109,6 +109,13 @@
                     </div>
                     <input type="button" value="Comentar" id="comentar"
                            class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect comentar">
+                    <strong>Valoracion: <select id="valoracion" class="valoracion">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select></strong>
                 </form>
             </div>
         </c:when>

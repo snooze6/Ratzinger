@@ -33,8 +33,9 @@ public class DAOCommentsMySQL extends AbstractDAOMySQL implements InterfaceDAOCo
             MySQLContract.Comments.tittle+"`,`"+
             MySQLContract.Comments.content+"`,`"+
             MySQLContract.Comments.idProduct+"`,`"+
-            MySQLContract.Comments.DNI+
-            "`)  VALUES(?,?,?,?,?);";
+            MySQLContract.Comments.DNI+"`,`"+
+            MySQLContract.Comments.valoracion+
+            "`)  VALUES(?,?,?,?,?,?);";
 
 
     @Override
@@ -55,6 +56,7 @@ public class DAOCommentsMySQL extends AbstractDAOMySQL implements InterfaceDAOCo
             insertComment.setString(3, comment.getContent());
             insertComment.setInt(4, comment.getIdProduct());
             insertComment.setString(5, comment.getDNI());
+            insertComment.setInt(6, comment.getValoracion());
             insertComment.executeUpdate();
 
         }catch (SQLException e) {
@@ -96,6 +98,7 @@ public class DAOCommentsMySQL extends AbstractDAOMySQL implements InterfaceDAOCo
                 comment.setContent(results.getString(MySQLContract.Comments.content));
                 comment.setDNI(results.getString(MySQLContract.Comments.DNI));
                 comment.setTitle(results.getString(MySQLContract.Comments.tittle));
+                comment.setValoracion(results.getInt(MySQLContract.Comments.valoracion));
                 comments.add(comment);
                // System.out.println("El padre con id "+comment.getIdComment());
                 getChild(comment);
@@ -139,6 +142,7 @@ public class DAOCommentsMySQL extends AbstractDAOMySQL implements InterfaceDAOCo
                 child.setDNI(resultsChild.getString(MySQLContract.Comments.DNI));
                 child.setTitle(resultsChild.getString(MySQLContract.Comments.tittle));
                 child.setIdCommentParent(resultsChild.getInt(MySQLContract.Comments.idCommentParent));
+                child.setValoracion(resultsChild.getInt(MySQLContract.Comments.valoracion));
                 comment.getChildCommentsArray().add(child);
                 //System.out.println("Hijo de " + comment.getIdComment() + " introducido con ID " + child.getIdComment());
                 getChild(child);
