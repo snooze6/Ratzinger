@@ -212,8 +212,9 @@ public class Controller extends CustomHttpServlet {
 
                     break;
                 case ACTION_SIGN_IN:
-                    user = ((VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
+//                    user = ((VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
                     System.err.println("Sing-in "+req.getParameter(VOUser.PARAMETER_DNI));
+                    user = new VOUser();
 
                     getTaskMapper().setUserData(
                             req.getParameter(VOUser.PARAMETER_DNI),
@@ -224,9 +225,11 @@ public class Controller extends CustomHttpServlet {
                             user
                     );
 
+                    System.err.println("######################");
+
                     if(getTaskMapper().signInUser(user)){  //usuario logueado correctamente
                         System.err.println("--Login");
-//                        req.getSession().setAttribute(VOUser.SESSION_ATTRIBUTE_USER, user);
+                        req.getSession().setAttribute(VOUser.SESSION_ATTRIBUTE_USER, user);
                         System.err.println(user.toString());
 
                         shoppingCart=getTaskMapper().getAllCds();

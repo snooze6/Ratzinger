@@ -58,7 +58,7 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
             if(insertUser != null)
                 insertUser.close();
 
-            getConnection().close();
+//            getConnection().close();
         }
 
     }
@@ -86,7 +86,8 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
         ResultSet result=getConnection().createStatement().executeQuery(checkUser);
         // Es gracioso como esto y la limitación de caracteres se carga la inyección SQL
         if(result.next()) {
-            if (new PBKDF2Encrypt().validatePassword(user.getPassword(),result.getString(MySQLContract.Users.password))) {
+            String hash = result.getString(MySQLContract.Users.password);
+            if (new PBKDF2Encrypt().validatePassword(user.getPassword(),hash)) {
                 boolean u = assignUser(user, result);
                 System.err.println("Bien");
                 System.err.println(user.toString());
@@ -94,10 +95,10 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
                 System.err.println(user.toString());
                 return u;
             } else {
-                getConnection().close();
+//                getConnection().close();
                 encriptpass(user);
                 System.err.println("Pass: "+user.getPassword());
-                System.err.println("Good: "+result.getString(MySQLContract.Users.password));
+                System.err.println("Good: "+hash);
                 System.err.println("Difieren");
                 return false;
             }
@@ -121,7 +122,7 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
         user.setActive(result.getBoolean(MySQLContract.Users.active));
         System.err.println("Active: "+result.getBoolean(MySQLContract.Users.active));
 //        System.err.println(user.toString());
-        getConnection().close();
+//        getConnection().close();
         return true;
     }
 
@@ -151,7 +152,7 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
         if(result.next()) {
             return assignUser(user, result);
         }else {
-            getConnection().close();
+//            getConnection().close();
             return false;
         }
     }
@@ -205,10 +206,10 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
         ResultSet result=getConnection().createStatement().executeQuery(checkUser);
 
         if(result.next() && result.getFloat(MySQLContract.Orders.TOTAL) >= 100){
-            getConnection().close();
+//            getConnection().close();
             return true;
         }else{
-            getConnection().close();
+//            getConnection().close();
             return false;
         }
 
@@ -225,7 +226,7 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
 
         int i=getConnection().createStatement().executeUpdate(checkUser);
 
-        getConnection().close();
+//        getConnection().close();
 
         if(i > 0){
             return true;
