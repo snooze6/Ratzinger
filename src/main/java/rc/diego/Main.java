@@ -4,6 +4,7 @@ import rc.diego.controller.TaskMapper;
 import rc.diego.model.VO.VOCd;
 import rc.diego.model.VO.VOUser;
 import rc.diego.model.persistence.AbstractFactoryMySQL;
+import rc.diego.model.persistence.Connector.MySQLContract;
 
 import java.util.ArrayList;
 
@@ -43,19 +44,40 @@ public class Main {
 //            System.out.println(users.get(i).toString());
 //        }
 
-//        VOUser user = new VOUser();
-//        user.setDNI("12345678Z");
-//        tm.deactivateUser(user);
+        VOUser user = new VOUser();
+        user.setDNI("12345678Z");
+        tm.getAllUser(user);
+        System.out.println("Before");
+        System.out.println(user.toString());
+        user.setFirstName("Yui-sama");
+        user.setTipo(MySQLContract.Tipo.admin);
+        user.setVip(true);
+        user.setPassword("asdfasdf");
+        user.setActive(true);
+        tm.updateUser(user);
+        tm.getAllUser(user);
+        System.out.println("After");
+        System.out.println(user.toString());
 
-        AbstractFactoryMySQL daoFactory = new AbstractFactoryMySQL();
-        VOCd cd = new VOCd();
-        cd.setId(1);
-        try {
-            daoFactory.getDAOComments().getCommentsByProduct(cd);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        // daoFactory.getDAOCds().getAllCDs();
+        VOUser user2 = new VOUser();
+            user2.setDNI("12345678Z");
+            user2.setPassword("asdfasdf");
+
+        System.out.println("Before");
+        System.out.println(user2.toString());
+        tm.signInUser(user2);
+        System.out.println("After");
+        System.out.println(user2.toString());
+
+//        AbstractFactoryMySQL daoFactory = new AbstractFactoryMySQL();
+//        VOCd cd = new VOCd();
+//        cd.setId(1);
+//        try {
+//            daoFactory.getDAOComments().getCommentsByProduct(cd);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        // daoFactory.getDAOCds().getAllCDs();
     }
 
 }

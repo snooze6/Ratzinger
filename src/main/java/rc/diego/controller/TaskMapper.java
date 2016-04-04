@@ -150,4 +150,10 @@ public class TaskMapper implements InterfaceTaskMapper{
         tm.runTask(ge);
         return ge.isOk();
     }
+
+    @Override
+    public void updateUser(VOUser user) {
+        tm.runTask(new updateUser().setUser(user));
+    }
+
 }

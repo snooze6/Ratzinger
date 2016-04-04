@@ -23,7 +23,6 @@ public interface InterfaceDAOUsers {
 
     ArrayList<VOUser> getUsers() throws SQLException;
     boolean updateUser(VOUser user) throws SQLException;
-
     boolean deactivateUser(VOUser user) throws SQLException;
     boolean activateUser(VOUser user) throws SQLException;
 

@@ -37,6 +37,7 @@ public interface InterfaceTaskMapper {
 
     void deactivateUser(VOUser user);
     void activateUser(VOUser user);
+    void updateUser(VOUser user);
     boolean getUser(VOUser user, boolean active);
     boolean getAllUser(VOUser user);
 }
