@@ -8,7 +8,7 @@
     <head>
 
       <c:import url="./genericHeader.jsp" />
-      <script src="js/checkout.js"></script>
+      <script src="./web/js/product.js"></script>
 
       <title>Musica para DAA</title>
     </head>
@@ -24,24 +24,35 @@
             </h2>
           </div>
 
+            <div style="position: relative;height: 100%;clear: both;">
           <!--contido tarxeta-->
-            <div class="mdl-card__supporting-text">
-                <strong>Descripci&oacute;n: </strong>
-                ${producto.value.getDescription()}
+                <div class="left">
+                    <div class="mdl-card__supporting-text">
+                        <strong>Descripci&oacute;n: </strong>
+                        ${producto.value.getDescription()}
+                    </div>
+    
+                    <div class="mdl-card__supporting-text">
+                        <strong>Autor:</strong>
+                        ${producto.value.getAuthor()}
+                    </div>
+    
+                    <div class="mdl-card__supporting-text">
+                        <strong>Pa&iacute;s</strong>
+                        ${producto.value.getCountry()}
+                    </div>
+    
+                    <div class="mdl-card__supporting-text">
+                        <strong>Disponibles:</strong>
+                            ${producto.value.getQuantity()}
+                    </div>
+                </div>
+                <%--<option value="${producto.value.getId()} | ${producto.value.getTitle()} | ${producto.value.getAuthor()} | ${producto.value.getCountry()} | ${producto.value.getUnitaryPrice()}"><c:out value="${producto.value.getTitle()} | ${producto.value.getAuthor()} | ${producto.value.getCountry()} | ${producto.value.getUnitaryPrice()}€" /> </option>--%>
+                <div class="right" style="width:300px;margin:8px;">
+                    <p><img src="${producto.value.getImage()}" id="productimg" style="width:300px"></p>
+                </div>
+
             </div>
-
-            <div class="mdl-card__supporting-text">
-                <strong>Autor:</strong>
-                ${producto.value.getAuthor()}
-            </div>
-
-            <div class="mdl-card__supporting-text">
-                <strong>Pa&iacute;s</strong>
-                ${producto.value.getCountry()}
-            </div>
-
-
-            <%--<option value="${producto.value.getId()} | ${producto.value.getTitle()} | ${producto.value.getAuthor()} | ${producto.value.getCountry()} | ${producto.value.getUnitaryPrice()}"><c:out value="${producto.value.getTitle()} | ${producto.value.getAuthor()} | ${producto.value.getCountry()} | ${producto.value.getUnitaryPrice()}€" /> </option>--%>
 
             <input type="hidden" name="product" id="product" value="${producto.value.getId()}">
             <input type="hidden" name="quantity" id="quantity" value="1">
@@ -49,9 +60,7 @@
     <!--fin contido tarxeta-->
 
           <div class="mdl-card__actions mdl-card--border">
-              <a href="./index.jsp" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                  Volver
-              </a>
+            <input type="button" value="Volver" id="volver" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
             <input type="submit" value="Comprar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;">
           </div>
           <c:import url="./menu.jsp" />
