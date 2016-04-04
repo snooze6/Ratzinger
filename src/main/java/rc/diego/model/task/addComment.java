@@ -33,6 +33,7 @@ public class addComment implements InterfaceTask {
 
     @Override
     public void run() {
+        System.out.println("AddComentClass");
         daoFactory = new AbstractFactoryMySQL();
         ok = daoFactory.getDAOComments().insertComment(comment);
     }

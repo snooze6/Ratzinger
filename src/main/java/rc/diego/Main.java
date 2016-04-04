@@ -2,6 +2,7 @@ package rc.diego;
 
 import rc.diego.controller.TaskMapper;
 import rc.diego.model.VO.VOCd;
+import rc.diego.model.VO.VOComment;
 import rc.diego.model.VO.VOUser;
 import rc.diego.model.persistence.AbstractFactoryMySQL;
 
@@ -11,8 +12,13 @@ public class Main {
 
     public static void main(String[] args) {
 
+        VOCd cd = new VOCd();
+        cd.setId(1);
 
-
+       ArrayList<VOComment> comments =  new TaskMapper().getAllComments( cd);
+        for (VOComment comment : comments) {
+            System.out.println(comment.getIdComment() +"Profundidad " + comment.getDeep());
+        }
 
 /*        TaskMapper tm=new TaskMapper();
         VOUser user=new VOUser();
@@ -31,14 +37,14 @@ public class Main {
         if(tm.signInUser(user)){  //usuario logueado correctamente
             System.out.println("Existe o usuario");
         }*/
-       AbstractFactoryMySQL daoFactory = new AbstractFactoryMySQL();
+/*       AbstractFactoryMySQL daoFactory = new AbstractFactoryMySQL();
         VOCd cd = new VOCd();
         cd.setId(1);
         try {
             daoFactory.getDAOComments().getCommentsByProduct(cd);
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
         // daoFactory.getDAOCds().getAllCDs();
 
     }

@@ -127,6 +127,7 @@ public class TaskMapper implements InterfaceTaskMapper{
 
     @Override
     public void addComment(VOComment comment) {
+        System.out.println("TaskMapper ejecuta run add comment");
         tm.runTask(new addComment(comment));
 
     }
@@ -135,6 +136,6 @@ public class TaskMapper implements InterfaceTaskMapper{
     public ArrayList<VOComment> getAllComments(VOCd cd) {
         getAllCommentsFromDataBase comments = new getAllCommentsFromDataBase(cd);
         tm.runTask(comments);
-        return comments.getComments();
+        return comments.getCommentsUnrrolled();
     }
 }
