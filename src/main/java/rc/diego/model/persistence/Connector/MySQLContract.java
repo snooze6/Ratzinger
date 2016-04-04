@@ -71,6 +71,7 @@ public class MySQLContract {
         public static String idCommentParent="idCommentParent";
         public static String idProduct = "idProduct";
         public static String dt="dt";
+        public static String valoracion="valoracion";
     }
 
 }

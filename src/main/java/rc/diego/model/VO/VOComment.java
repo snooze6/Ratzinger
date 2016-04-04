@@ -17,6 +17,8 @@ public class VOComment {
     private String date;
     public final static String COMMENTS ="comments";
     private int deep;
+    private int valoracion=3;
+
 
 
     public int getDeep() {
@@ -111,7 +113,12 @@ public class VOComment {
         childCommentsArray.add(childComment);
     }
 
+    public int getValoracion() {
+        return valoracion;
+    }
 
-
+    public void setValoracion(int valoracion) {
+        this.valoracion = valoracion;
+    }
 }
 

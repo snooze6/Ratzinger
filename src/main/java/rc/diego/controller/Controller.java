@@ -127,7 +127,8 @@ public class Controller extends CustomHttpServlet {
                         idParentCommentInt = Integer.parseInt(idParentComment);
                         comment.setIdCommentParent(idParentCommentInt);
                     }
-
+                    String valoracion= req.getParameter("valoracion");
+                    int val= Integer.parseInt(valoracion);
 
                     VOUser ruser = ((VOUser) req.getSession().getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
 
@@ -136,6 +137,7 @@ public class Controller extends CustomHttpServlet {
                     comment.setContent(content);
                     comment.setIdProduct(idProductComment);
                     comment.setDNI(ruser.getDNI());
+                    comment.setValoracion(val);
 
                     getTaskMapper().addComment(comment);
                     break;
