@@ -21,6 +21,13 @@
         <div class="mdl-card__title" id="cabeceraTarxetaInicio">
             <h2 class="mdl-card__title-text">Welcome</h2>
         </div>
+
+        <div class="mdl-card__actions mdl-card--border">
+            <div class="mdl-layout-spacer"></div>
+            <input type="button" value="Ver Carrito" id="verCarrito"
+                   class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect right">
+        </div>
+
         <div class="mdl-layout mdl-js-layout mdl-color--grey-100">
             <main class="mdl-layout__content">
                 <div class="mdl-grid">
@@ -64,13 +71,6 @@
         <input type="hidden" name="quantity" id="quantity" value="1">
         <input type="hidden" name="action" id="action" value="buyItem">
 
-        <!--fin contido tarxeta-->
-
-        <div class="mdl-card__actions mdl-card--border">
-            <div class="mdl-layout-spacer"></div>
-            <input type="button" value="Ver Carrito" id="verCarrito"
-                   class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect right">
-        </div>
         <c:import url="./menu.jsp"/>
 
     </div>

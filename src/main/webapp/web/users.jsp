@@ -6,12 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <c:import url="./genericHeader.jsp" />
-    <script src="./web/js/stocks.js"></script>
-
     <title>Musica para DAA - Stock</title>
-
 </head>
 <body>
 
@@ -25,14 +21,23 @@
             <a href="./index.jsp" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                 Volver
             </a>
-            <input type="button" id="add" value="AÑADIR" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;">
+            <input type="button"
+                   id="add"
+                   value="AÑADIR"
+                   class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                   style="float:right;"
+                   onclick="
+                           $('#action').val('admin/users/edit');
+                           $('#item').val(null);
+                           $('#form').submit();
+                           "
+            >
         </div>
 
         <table class="mdl-data-table mdl-js-data-table">
             <thead>
                 <tr>
-                    <th class="mdl-data-table__cell--non-numeric">CD</th>
-                    <th>DNI</th>
+                    <th class="mdl-data-table__cell--non-numeric">DNI</th>
                     <th>Nombre</th>
                     <th>Email</th>
                     <th>Tipo</th>
@@ -58,7 +63,7 @@
                                 style="float:right;"
                                 onclick="
                                         $('#action').val('admin/users/edit');
-                                        $('#item').val(${user.getDNI()});
+                                        $('#item').val('${user.getDNI()}');
                                         $('#form').submit();
                                         "
                         >
@@ -69,8 +74,8 @@
                                 <button type="button"
                                         class="mdl-button mdl-button--icon mdl-button--colored boton-compra"
                                         onclick="
-                                                $('#action').val('admin/users/delete');
-                                                $('#item').val(${user.getDNI()});
+                                                $('#action').val('admin/users/deactivate');
+                                                $('#item').val('${user.getDNI()}');
                                                 $('#form').submit();
                                                 ">
                                     <i class="material-icons">lock_outline</i>
@@ -80,8 +85,8 @@
                                 <button type="button"
                                         class="mdl-button mdl-button--icon mdl-button--colored boton-compra"
                                         onclick="
-                                                $('#action').val('admin/users/delete');
-                                                $('#item').val(${user.getDNI()});
+                                                $('#action').val('admin/users/activate');
+                                                $('#item').val('${user.getDNI()}');
                                                 $('#form').submit();
                                                 ">
                                     <i class="material-icons">lock_open</i>

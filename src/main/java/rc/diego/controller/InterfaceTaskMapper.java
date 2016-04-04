@@ -35,6 +35,7 @@ public interface InterfaceTaskMapper {
 
     ArrayList<VOUser> getAllUsers();
 
-    void deleteUser(VOUser user);
+    void deactivateUser(VOUser user);
+    void activateUser(VOUser user);
 }
 

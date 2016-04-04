@@ -125,8 +125,12 @@ public class TaskMapper implements InterfaceTaskMapper{
     }
 
     @Override
-    public void deleteUser(VOUser user) {
-        tm.runTask(new deleteUser().setUser(user));
+    public void deactivateUser(VOUser user) {
+        tm.runTask(new deactivateUser().setUser(user));
+    }
 
+    @Override
+    public void activateUser(VOUser user) {
+        tm.runTask(new activateUser().setUser(user));
     }
 }

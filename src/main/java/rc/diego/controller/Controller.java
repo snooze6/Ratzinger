@@ -43,8 +43,9 @@ public class Controller extends CustomHttpServlet {
 
     private final String ADMIN_ACTION_SHOW_USERS = "admin/users/show";
     private final String ADMIN_ACTION_EDIT_USER = "admin/users/edit";
-    private final String ADMIN_ACTION_DELETE_USER = "admin/users/delete";
-    private final String ADMIN_ACTION_SAVE_USER = "admin/users/save";
+    private final String ADMIN_ACTION_ACTIVATE_USER = "admin/users/activate";
+    private final String ADMIN_ACTION_DEACTIVATE_USER = "admin/users/deactivate";
+    private final String ADMIN_ACTION_SAVE_USER = "admin${user.getDNI()}/users/save";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -356,15 +357,46 @@ public class Controller extends CustomHttpServlet {
 
                     break;
 
-                case ADMIN_ACTION_DELETE_USER:
+                case ADMIN_ACTION_DEACTIVATE_USER:
                     VOUser user2 = new VOUser();
                     user2.setDNI(req.getParameter("item"));
 
-                    getTaskMapper().deleteUser(user2);
+                    System.err.println("-- Deactivate User: "+user2.getDNI());
+                    getTaskMapper().deactivateUser(user2);
 
                     users = getTaskMapper().getAllUsers();
                     req.setAttribute("users", users);
                     getViewManager().showUsers();
+                    break;
+
+                case ADMIN_ACTION_ACTIVATE_USER:
+                    VOUser user3 = new VOUser();
+                    user3.setDNI(req.getParameter("item"));
+
+                    System.err.println("-- Activate User: "+user3.getDNI());
+                    getTaskMapper().activateUser(user3);
+
+                    users = getTaskMapper().getAllUsers();
+                    req.setAttribute("users", users);
+                    getViewManager().showUsers();
+                    break;
+
+                case ADMIN_ACTION_EDIT_USER:
+                    VOUser user4 = new VOUser();
+                    user4.setDNI(req.getParameter("item"));
+
+                    System.err.println("-- Edit User: "+user4.getDNI());
+                    req.setAttribute(PARAMETER_ERROR,"Not yet implemented");
+                    getViewManager().showError();
+                    break;
+
+                case ADMIN_ACTION_SAVE_USER:
+                    VOUser user5 = new VOUser();
+                    user5.setDNI(req.getParameter("item"));
+
+                    System.err.println("-- Save User: "+user5.getDNI());
+                    req.setAttribute(PARAMETER_ERROR,"Not yet implemented");
+                    getViewManager().showError();
                     break;
 
                 default:

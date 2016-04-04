@@ -29,11 +29,10 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
             MySQLContract.Users.lastName+"`,`"+
             MySQLContract.Users.mail+"`,`"+
             MySQLContract.Users.password+
-            "`)  VALUES(?,?,?,?,?);";
+            "`)  VALUES(?,?,?,?,?,1);";
 
     @Override
     public void insertUser(VOUser user) throws SQLException, UserAlreadyExistsException {
-
         try {
 
             if(insertUser == null)
@@ -77,7 +76,7 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
     public boolean getUser(VOUser user) throws SQLException, InvalidKeySpecException, NoSuchAlgorithmException {
 
         String checkUser="SELECT * FROM `"+MySQLContract.Users.TABLE_NAME+
-                "` WHERE "+
+                "` WHERE "+MySQLContract.Users.active+"=1 "+
                 MySQLContract.Users.DNI+"='"+user.getDNI()+"' LIMIT 1;";
 
 //        System.err.println("DEBUG");
@@ -123,10 +122,10 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
 
         if (b){
             user.setTipo(MySQLContract.Tipo.admin);
-            System.err.println("Es administrador");
+//            System.err.println("Es administrador");
         } else {
             user.setTipo(MySQLContract.Tipo.normal);
-            System.err.println("No es administrador");
+//            System.err.println("No es administrador");
         }
 
         return b;
@@ -229,15 +228,31 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
         return false;
     }
 
-    private final String deleteUserSQL = "UPDATE "+MySQLContract.Users.TABLE_NAME+
+    private final String deactivateUserSQL = "UPDATE "+MySQLContract.Users.TABLE_NAME+
             " SET "+MySQLContract.Users.active+"=0 WHERE "+MySQLContract.Users.DNI+"=";
     @Override
-    public boolean deleteUser(VOUser user) throws SQLException {
+    public boolean deactivateUser(VOUser user) throws SQLException {
         try {
             System.err.println("DEBUG");
             System.err.println("=================");
-            System.err.println(deleteUserSQL+"'"+user.getDNI()+"'");
-            getConnection().createStatement().executeUpdate(deleteUserSQL+"'"+user.getDNI()+"'");
+            System.err.println(deactivateUserSQL+"'"+user.getDNI()+"'");
+            getConnection().createStatement().executeUpdate(deactivateUserSQL+"'"+user.getDNI()+"'");
+        } catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    private final String activateUserSQL = "UPDATE "+MySQLContract.Users.TABLE_NAME+
+            " SET "+MySQLContract.Users.active+"=1 WHERE "+MySQLContract.Users.DNI+"=";
+    @Override
+    public boolean activateUser(VOUser user) throws SQLException {
+        try {
+            System.err.println("DEBUG");
+            System.err.println("=================");
+            System.err.println(activateUserSQL+"'"+user.getDNI()+"'");
+            getConnection().createStatement().executeUpdate(activateUserSQL+"'"+user.getDNI()+"'");
         } catch (SQLException e){
             e.printStackTrace();
             return false;

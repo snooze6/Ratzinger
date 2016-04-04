@@ -11,7 +11,7 @@ import java.sql.SQLException;
 /**
  * Created by entakitos on 17/03/16.
  */
-public class deleteUser implements InterfaceTask{
+public class deactivateUser implements InterfaceTask{
     private VOUser users;
     private InterfaceDAOFactory daoFactory;
 
@@ -19,7 +19,7 @@ public class deleteUser implements InterfaceTask{
         return users;
     }
 
-    public deleteUser setUser(VOUser cd) {
+    public deactivateUser setUser(VOUser cd) {
         this.users = cd;
         return this;
     }
@@ -28,7 +28,7 @@ public class deleteUser implements InterfaceTask{
     public void run() {
         daoFactory = new AbstractFactoryMySQL();
         try {
-            daoFactory.getDAOUsers().deleteUser(users);
+            daoFactory.getDAOUsers().deactivateUser(users);
         } catch (SQLException e) {
             e.printStackTrace();
         }

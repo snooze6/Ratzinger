@@ -44,7 +44,7 @@ public class Main {
 
         VOUser user = new VOUser();
         user.setDNI("12345678Z");
-        tm.deleteUser(user);
+        tm.deactivateUser(user);
     }
 
 }
