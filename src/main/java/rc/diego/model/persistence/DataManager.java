@@ -208,8 +208,23 @@ public abstract class DataManager{
         }
 
         @Override
-        public boolean deleteUser(VOUser user) throws SQLException {
-            return remote.getDAOUsers().deleteUser(user);
+        public boolean getUser(VOUser user, boolean active) throws SQLException, InvalidKeySpecException, NoSuchAlgorithmException {
+            return remote.getDAOUsers().getUser(user,active);
+        }
+
+        @Override
+        public boolean getAllUser(VOUser user) throws SQLException, InvalidKeySpecException, NoSuchAlgorithmException {
+            return remote.getDAOUsers().getAllUser(user);
+        }
+
+        @Override
+        public boolean deactivateUser(VOUser user) throws SQLException {
+            return remote.getDAOUsers().deactivateUser(user);
+        }
+
+        @Override
+        public boolean activateUser(VOUser user) throws SQLException {
+            return remote.getDAOUsers().activateUser(user);
         }
     }
 

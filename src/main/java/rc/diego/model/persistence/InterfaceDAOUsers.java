@@ -16,6 +16,9 @@ public interface InterfaceDAOUsers {
 
     void insertUser(VOUser user) throws SQLException, DAOUsersMySQL.UserAlreadyExistsException;
     boolean getUser(VOUser user) throws SQLException, InvalidKeySpecException, NoSuchAlgorithmException;
+    boolean getUser(VOUser user, boolean active) throws SQLException, InvalidKeySpecException, NoSuchAlgorithmException;
+    boolean getAllUser(VOUser user) throws SQLException, InvalidKeySpecException, NoSuchAlgorithmException;
+
     boolean isAdmin(VOUser user) throws SQLException;
     boolean isVip(VOUser user) throws SQLException;
     boolean checkVipCondition(VOUser user) throws SQLException;
@@ -23,6 +26,8 @@ public interface InterfaceDAOUsers {
 
     ArrayList<VOUser> getUsers() throws SQLException;
     boolean updateUser(VOUser user) throws SQLException;
-    boolean deleteUser(VOUser user) throws SQLException;
+
+    boolean deactivateUser(VOUser user) throws SQLException;
+    boolean activateUser(VOUser user) throws SQLException;
 
 }

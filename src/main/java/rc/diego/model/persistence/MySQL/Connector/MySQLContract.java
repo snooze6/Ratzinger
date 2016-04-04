@@ -14,6 +14,7 @@ public class MySQLContract {
         public static String mail = "mail";
         public static String password = "password";
         public static String vip = "vip";
+        public static String active = "active";
     }
 
     public static class Admins{

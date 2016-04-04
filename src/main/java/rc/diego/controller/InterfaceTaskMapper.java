@@ -38,6 +38,10 @@ public interface InterfaceTaskMapper {
 
    void addComment(VOComment comment);
     ArrayList<VOComment> getAllComments(VOCd cd);
+    void deactivateUser(VOUser user);
+    void activateUser(VOUser user);
+    boolean getUser(VOUser user, boolean active);
+    boolean getAllUser(VOUser user);
 
 }
 

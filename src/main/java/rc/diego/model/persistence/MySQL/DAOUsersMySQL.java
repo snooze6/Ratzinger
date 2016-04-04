@@ -34,9 +34,8 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements InterfaceDAOUsers
 
     @Override
     public void insertUser(VOUser user) throws SQLException, UserAlreadyExistsException {
-
         try {
-
+            //TODO Test this
             if(insertUser == null)
                 insertUser=getConnection().prepareStatement(insertUserSQL);
 
@@ -76,33 +75,69 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements InterfaceDAOUsers
 
     @Override
     public boolean getUser(VOUser user) throws SQLException, InvalidKeySpecException, NoSuchAlgorithmException {
+        String checkUser="SELECT * FROM `"+MySQLContract.Users.TABLE_NAME+
+                "` WHERE "+MySQLContract.Users.active+"=1 AND "+
+                MySQLContract.Users.DNI+"='"+user.getDNI()+"' LIMIT 1;";
 
+        //        System.err.println("DEBUG");
+//        System.err.println("=================");
+//        System.err.println(checkUser);
+
+        ResultSet result=getConnection().createStatement().executeQuery(checkUser);
+        // Es gracioso como esto y la limitación de caracteres se carga la inyección SQL
+        if(result.next() &&  new PBKDF2Encrypt().validatePassword(user.getPassword(),result.getString(MySQLContract.Users.password))) {
+
+            return assignUser(user, result);
+        }else {
+            getConnection().close();
+            return false;
+        }
+    }
+
+    private boolean assignUser(VOUser user, ResultSet result) throws SQLException {
+        user.setFirstName(result.getString(MySQLContract.Users.firstName));
+        user.setLastName(result.getString(MySQLContract.Users.lastName));
+        user.seteMail(result.getString(MySQLContract.Users.mail));
+
+        isAdmin(user);
+
+        if (isVip(user))
+            user.setVip(true);
+        else
+            user.setVip(false);
+
+        System.err.println("cacacccca");
+
+        getConnection().close();
+        return true;
+    }
+
+    @Override
+    public boolean getUser(VOUser user, boolean active) throws SQLException, InvalidKeySpecException, NoSuchAlgorithmException {
+        String checkUser="SELECT * FROM `"+MySQLContract.Users.TABLE_NAME+
+                "` WHERE "+MySQLContract.Users.active+"="+active+" AND "+
+                MySQLContract.Users.DNI+"='"+user.getDNI()+"' LIMIT 1;";
+        return getDBUSer(user, checkUser);
+    }
+
+    @Override
+    public boolean getAllUser(VOUser user) throws SQLException, InvalidKeySpecException, NoSuchAlgorithmException {
         String checkUser="SELECT * FROM `"+MySQLContract.Users.TABLE_NAME+
                 "` WHERE "+
                 MySQLContract.Users.DNI+"='"+user.getDNI()+"' LIMIT 1;";
+        return getDBUSer(user, checkUser);
+    }
 
+    private boolean getDBUSer(VOUser user, String checkUser) throws SQLException, NoSuchAlgorithmException, InvalidKeySpecException {
 //        System.err.println("DEBUG");
 //        System.err.println("=================");
 //        System.err.println(checkUser);
 
         ResultSet result=getConnection().createStatement().executeQuery(checkUser);
-
         // Es gracioso como esto y la limitación de caracteres se carga la inyección SQL
-        if(result.next() &&  new PBKDF2Encrypt().validatePassword(user.getPassword(),result.getString(MySQLContract.Users.password))) {
+        if(result.next()) {
 
-            user.setFirstName(result.getString(MySQLContract.Users.firstName));
-            user.setLastName(result.getString(MySQLContract.Users.lastName));
-            user.seteMail(result.getString(MySQLContract.Users.mail));
-
-            isAdmin(user);
-
-            if (isVip(user))
-                user.setVip(true);
-            else
-                user.setVip(false);
-
-            getConnection().close();
-            return true;
+            return assignUser(user, result);
         }else {
             getConnection().close();
             return false;
@@ -124,10 +159,10 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements InterfaceDAOUsers
 
         if (b){
             user.setTipo(MySQLContract.Tipo.admin);
-            System.err.println("Es administrador");
+//            System.err.println("Es administrador");
         } else {
             user.setTipo(MySQLContract.Tipo.normal);
-            System.err.println("No es administrador");
+//            System.err.println("No es administrador");
         }
 
         return b;
@@ -207,6 +242,7 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements InterfaceDAOUsers
                 user.setLastName(res.getString(MySQLContract.Users.lastName));
                 user.seteMail(res.getString(MySQLContract.Users.mail));
                 user.setDNI(res.getString(MySQLContract.Users.DNI));
+                user.setActive(res.getBoolean(MySQLContract.Users.active));
 
                 isAdmin(user);
                 if (isVip(user))
@@ -229,8 +265,35 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements InterfaceDAOUsers
         return false;
     }
 
+    private final String deactivateUserSQL = "UPDATE "+MySQLContract.Users.TABLE_NAME+
+            " SET "+MySQLContract.Users.active+"=0 WHERE "+MySQLContract.Users.DNI+"=";
     @Override
-    public boolean deleteUser(VOUser user) throws SQLException {
-        return false;
+    public boolean deactivateUser(VOUser user) throws SQLException {
+        try {
+            System.err.println("DEBUG");
+            System.err.println("=================");
+            System.err.println(deactivateUserSQL+"'"+user.getDNI()+"'");
+            getConnection().createStatement().executeUpdate(deactivateUserSQL+"'"+user.getDNI()+"'");
+        } catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    private final String activateUserSQL = "UPDATE "+MySQLContract.Users.TABLE_NAME+
+            " SET "+MySQLContract.Users.active+"=1 WHERE "+MySQLContract.Users.DNI+"=";
+    @Override
+    public boolean activateUser(VOUser user) throws SQLException {
+        try {
+            System.err.println("DEBUG");
+            System.err.println("=================");
+            System.err.println(activateUserSQL+"'"+user.getDNI()+"'");
+            getConnection().createStatement().executeUpdate(activateUserSQL+"'"+user.getDNI()+"'");
+        } catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }

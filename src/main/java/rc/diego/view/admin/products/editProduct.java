@@ -1,4 +1,4 @@
-package rc.diego.view.admin;
+package rc.diego.view.admin.products;
 
 import rc.diego.view.AbstractView;
 

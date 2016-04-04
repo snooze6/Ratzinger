@@ -137,4 +137,31 @@ public class TaskMapper implements InterfaceTaskMapper{
         tm.runTask(comments);
         return comments.getComments();
     }
+
+    public void deactivateUser(VOUser user) {
+        tm.runTask(new deactivateUser().setUser(user));
+    }
+
+    @Override
+    public void activateUser(VOUser user) {
+        tm.runTask(new activateUser().setUser(user));
+    }
+
+    @Override
+    public boolean getUser(VOUser user, boolean active) {
+        getUserTask user1 = new getUserTask();
+        user1.setUser(user);
+        user1.setActive(active);
+        tm.runTask(user1);
+        return user1.isOk();
+    }
+
+    @Override
+    public boolean getAllUser(VOUser user) {
+        getAllUserTask ge = new getAllUserTask();
+        ge.setUser(user);
+        tm.runTask(ge);
+        return ge.isOk();
+
+    }
 }

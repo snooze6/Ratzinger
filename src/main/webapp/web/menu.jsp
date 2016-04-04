@@ -25,7 +25,12 @@
               <li class="mdl-menu__item" id="linkRegistrarse" >Registrarse</li>
           </c:otherwise>
       </c:choose>
-        <li class="mdl-menu__item" id="linkStock" >Ver Stock</li>
+        <li class="mdl-menu__item" id="linkStock" >Administrar Stock</li>
+        <li class="mdl-menu__item"
+            id="linkUsers"
+            onclick="$('#action').val('admin/users/show');$('#form').submit();">
+            Administrar Usuarios
+        </li>
 
     </ul>
 

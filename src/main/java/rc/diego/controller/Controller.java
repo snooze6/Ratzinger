@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.StringTokenizer;
 
 /**
  * Created by entakitos on 19/02/16.
@@ -38,10 +37,16 @@ public class Controller extends CustomHttpServlet {
     private final String ACTION_CONFIRM_PAYMENT = "confirmPayment";
     private final String ACTION_RESET = "reset";
 
-    private final String ADMIN_ACTION_SHOW_STOCK = "admin/stock";
-    private final String ADMIN_ACTION_EDIT_ITEM = "admin/edit";
-    private final String ADMIN_ACTION_DELETE = "admin/delete";
-    private final String ADMIN_ACTION_SAVE = "admin/save";
+    private final String ADMIN_ACTION_SHOW_STOCK = "admin/products/show";
+    private final String ADMIN_ACTION_EDIT_ITEM = "admin/products/edit";
+    private final String ADMIN_ACTION_DELETE_ITEM = "admin/products/delete";
+    private final String ADMIN_ACTION_SAVE_ITEM = "admin/products/save";
+
+    private final String ADMIN_ACTION_SHOW_USERS = "admin/users/show";
+    private final String ADMIN_ACTION_EDIT_USER = "admin/users/edit";
+    private final String ADMIN_ACTION_ACTIVATE_USER = "admin/users/activate";
+    private final String ADMIN_ACTION_DEACTIVATE_USER = "admin/users/deactivate";
+    private final String ADMIN_ACTION_SAVE_USER = "admin${user.getDNI()}/users/save";
 
     private final String ADD_COMMENT ="addComment";
 
@@ -55,6 +60,7 @@ public class Controller extends CustomHttpServlet {
         VOShoppingCart shoppingCart;
         VOUser user;
         VOCd cd;
+        ArrayList<VOUser> users;
         int id;
 
         HttpSession session=req.getSession(false);
@@ -301,7 +307,7 @@ public class Controller extends CustomHttpServlet {
                     req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
                     getViewManager().showStocks();
                     break;
-                case ADMIN_ACTION_DELETE:
+                case ADMIN_ACTION_DELETE_ITEM:
                     VOCd cd3 = new VOCd();
                     try {
                         cd3.setId(Integer.parseInt(req.getParameter("item")));
@@ -318,7 +324,7 @@ public class Controller extends CustomHttpServlet {
                         getViewManager().showError();
                     }
                     break;
-                case ADMIN_ACTION_SAVE:
+                case ADMIN_ACTION_SAVE_ITEM:
                     System.err.println("-- Save item");
                     VOCd cd2 = new VOCd();
                     try {
@@ -347,6 +353,71 @@ public class Controller extends CustomHttpServlet {
                         req.setAttribute(PARAMETER_ERROR,"Not a number");
                         getViewManager().showError();
                     }
+                    break;
+
+
+                case ADMIN_ACTION_SHOW_USERS:
+                    System.err.println("-- Show Users");
+
+                    users = getTaskMapper().getAllUsers();
+                    req.setAttribute("users", users);
+                    getViewManager().showUsers();
+
+                    break;
+
+                case ADMIN_ACTION_DEACTIVATE_USER:
+                    VOUser user2 = new VOUser();
+                    user2.setDNI(req.getParameter("item"));
+
+                    System.err.println("-- Deactivate User: "+user2.getDNI());
+                    getTaskMapper().deactivateUser(user2);
+
+                    users = getTaskMapper().getAllUsers();
+                    req.setAttribute("users", users);
+                    getViewManager().showUsers();
+                    break;
+
+                case ADMIN_ACTION_ACTIVATE_USER:
+                    VOUser user3 = new VOUser();
+                    user3.setDNI(req.getParameter("item"));
+
+                    System.err.println("-- Activate User: "+user3.getDNI());
+                    getTaskMapper().activateUser(user3);
+
+                    users = getTaskMapper().getAllUsers();
+                    req.setAttribute("users", users);
+                    getViewManager().showUsers();
+                    break;
+
+                case ADMIN_ACTION_EDIT_USER:
+                    VOUser user4 = new VOUser();
+                    user4.setDNI(req.getParameter("item"));
+
+                    System.err.println("-- Edit User: "+user4.getDNI());
+                    if (user4.getDNI().equals("new")){
+                        req.setAttribute("euser", user4);
+                        getViewManager().showEditUsers();
+                    } else {
+                        boolean allUser = getTaskMapper().getAllUser(user4);
+                        if (allUser) {
+                            System.err.println("-- El usuario está");
+                            req.setAttribute("euser", user4);
+                            getViewManager().showEditUsers();
+                        } else {
+                            System.err.println("-- El usuario no está");
+                            req.setAttribute(PARAMETER_ERROR, "Los datos de usuario no son correctos o el usuario no existe. Por favor, inténtelo de nuevo.");
+                            getViewManager().showError();
+                        }
+                    }
+                    break;
+
+                case ADMIN_ACTION_SAVE_USER:
+                    VOUser user5 = new VOUser();
+                    user5.setDNI(req.getParameter("item"));
+
+                    System.err.println("-- Save User: "+user5.getDNI());
+                    req.setAttribute(PARAMETER_ERROR,"Not yet implemented");
+                    getViewManager().showError();
                     break;
 
                 default:
