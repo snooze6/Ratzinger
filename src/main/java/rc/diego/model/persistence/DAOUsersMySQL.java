@@ -29,12 +29,12 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
             MySQLContract.Users.lastName+"`,`"+
             MySQLContract.Users.mail+"`,`"+
             MySQLContract.Users.password+
-            "`)  VALUES(?,?,?,?,?,1);";
+            "`)  VALUES(?,?,?,?,?);";
 
     @Override
     public void insertUser(VOUser user) throws SQLException, UserAlreadyExistsException {
         try {
-
+            //TODO Test this
             if(insertUser == null)
                 insertUser=getConnection().prepareStatement(insertUserSQL);
 
@@ -74,33 +74,69 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
 
     @Override
     public boolean getUser(VOUser user) throws SQLException, InvalidKeySpecException, NoSuchAlgorithmException {
-
         String checkUser="SELECT * FROM `"+MySQLContract.Users.TABLE_NAME+
                 "` WHERE "+MySQLContract.Users.active+"=1 AND "+
                 MySQLContract.Users.DNI+"='"+user.getDNI()+"' LIMIT 1;";
 
+        //        System.err.println("DEBUG");
+//        System.err.println("=================");
+//        System.err.println(checkUser);
+
+        ResultSet result=getConnection().createStatement().executeQuery(checkUser);
+        // Es gracioso como esto y la limitación de caracteres se carga la inyección SQL
+        if(result.next() &&  new PBKDF2Encrypt().validatePassword(user.getPassword(),result.getString(MySQLContract.Users.password))) {
+
+            return assignUser(user, result);
+        }else {
+            getConnection().close();
+            return false;
+        }
+    }
+
+    private boolean assignUser(VOUser user, ResultSet result) throws SQLException {
+        user.setFirstName(result.getString(MySQLContract.Users.firstName));
+        user.setLastName(result.getString(MySQLContract.Users.lastName));
+        user.seteMail(result.getString(MySQLContract.Users.mail));
+
+        isAdmin(user);
+
+        if (isVip(user))
+            user.setVip(true);
+        else
+            user.setVip(false);
+
+        System.err.println("cacacccca");
+
+        getConnection().close();
+        return true;
+    }
+
+    @Override
+    public boolean getUser(VOUser user, boolean active) throws SQLException, InvalidKeySpecException, NoSuchAlgorithmException {
+        String checkUser="SELECT * FROM `"+MySQLContract.Users.TABLE_NAME+
+                "` WHERE "+MySQLContract.Users.active+"="+active+" AND "+
+                MySQLContract.Users.DNI+"='"+user.getDNI()+"' LIMIT 1;";
+        return getDBUSer(user, checkUser);
+    }
+
+    @Override
+    public boolean getAllUser(VOUser user) throws SQLException, InvalidKeySpecException, NoSuchAlgorithmException {
+        String checkUser="SELECT * FROM `"+MySQLContract.Users.TABLE_NAME+
+                "` WHERE "+
+                MySQLContract.Users.DNI+"='"+user.getDNI()+"' LIMIT 1;";
+        return getDBUSer(user, checkUser);
+    }
+
+    private boolean getDBUSer(VOUser user, String checkUser) throws SQLException, NoSuchAlgorithmException, InvalidKeySpecException {
 //        System.err.println("DEBUG");
 //        System.err.println("=================");
 //        System.err.println(checkUser);
 
         ResultSet result=getConnection().createStatement().executeQuery(checkUser);
-
         // Es gracioso como esto y la limitación de caracteres se carga la inyección SQL
-        if(result.next() &&  new PBKDF2Encrypt().validatePassword(user.getPassword(),result.getString(MySQLContract.Users.password))) {
+        if(result.next()) {
 
-            user.setFirstName(result.getString(MySQLContract.Users.firstName));
-            user.setLastName(result.getString(MySQLContract.Users.lastName));
-            user.seteMail(result.getString(MySQLContract.Users.mail));
-
-            isAdmin(user);
-
-            if (isVip(user))
-                user.setVip(true);
-            else
-                user.setVip(false);
-
-            getConnection().close();
-            return true;
+            return assignUser(user, result);
         }else {
             getConnection().close();
             return false;

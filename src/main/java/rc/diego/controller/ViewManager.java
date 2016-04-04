@@ -7,6 +7,7 @@ import rc.diego.view.*;
 import rc.diego.view.Error;
 import rc.diego.view.admin.products.editProduct;
 import rc.diego.view.admin.products.stock;
+import rc.diego.view.admin.users.editUser;
 import rc.diego.view.admin.users.showusers;
 
 /**
@@ -78,5 +79,10 @@ public class ViewManager implements InterfaceViewManager {
     @Override
     public void showUsers() {
         dispatcher.forward(new showusers(request,response));
+    }
+
+    @Override
+    public void showEditUsers() {
+        dispatcher.forward(new editUser(request,response));
     }
 }

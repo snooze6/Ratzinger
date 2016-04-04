@@ -16,4 +16,5 @@ public interface InterfaceViewManager {
     void showEditProduct();
 
     void showUsers();
+    void showEditUsers();
 }

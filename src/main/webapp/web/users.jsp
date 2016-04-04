@@ -28,7 +28,7 @@
                    style="float:right;"
                    onclick="
                            $('#action').val('admin/users/edit');
-                           $('#item').val(null);
+                           $('#item').val('new');
                            $('#form').submit();
                            "
             >

@@ -386,8 +386,21 @@ public class Controller extends CustomHttpServlet {
                     user4.setDNI(req.getParameter("item"));
 
                     System.err.println("-- Edit User: "+user4.getDNI());
-                    req.setAttribute(PARAMETER_ERROR,"Not yet implemented");
-                    getViewManager().showError();
+                    if (user4.getDNI().equals("new")){
+                        req.setAttribute("euser", user4);
+                        getViewManager().showEditUsers();
+                    } else {
+                        boolean allUser = getTaskMapper().getAllUser(user4);
+                        if (allUser) {
+                            System.err.println("-- El usuario está");
+                            req.setAttribute("euser", user4);
+                            getViewManager().showEditUsers();
+                        } else {
+                            System.err.println("-- El usuario no está");
+                            req.setAttribute(PARAMETER_ERROR, "Los datos de usuario no son correctos o el usuario no existe. Por favor, inténtelo de nuevo.");
+                            getViewManager().showError();
+                        }
+                    }
                     break;
 
                 case ADMIN_ACTION_SAVE_USER:
