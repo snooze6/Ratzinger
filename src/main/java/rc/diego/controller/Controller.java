@@ -404,55 +404,25 @@ public class Controller extends CustomHttpServlet {
 
                 case ADMIN_ACTION_SAVE_USER:
                     VOUser user5 = new VOUser();
-                    user5.setDNI(req.getParameter("id"));
+                    user5.setDNI(req.getParameter("DNI"));
 
                     System.err.println("-- Save User: "+user5.getDNI());
 
                     if (getTaskMapper().getAllUser(user5)){
-                        user5.setFirstName(req.getParameter("name"));
-                        user5.setLastName(req.getParameter("lastname"));
-                        user5.seteMail(req.getParameter("email"));
-                        String pass = req.getParameter("password");
-                        if (pass.equals("")){
-//                            System.out.println("Contraseña vacía");
-                            user5.setPassword(null);
-                        } else {
-//                            System.out.println("Contraseña: "+pass);
-                            user5.setPassword(pass);
-                        }
-
-//                        System.out.println("Active: "+req.getParameter("active")+" - Vip: "+req.getParameter("vip")+" - Tipo: "+req.getParameter("tipo"));
-                        switch (Integer.parseInt(req.getParameter("tipo"))){
-                            case 2:
-                                user5.setTipo(MySQLContract.Tipo.normal);
-                                break;
-                            case 3:
-                                user5.setTipo(MySQLContract.Tipo.admin);
-                                break;
-                        }
-
-//                        if (req.getParameter("active")!=null){
-//                            System.out.println("Active");
-//                        } else {
-//                            System.out.println("No active");
-//                        }
-
-                        user5.setActive(req.getParameter("active")!=null);
-                        user5.setVip(req.getParameter("vip")!=null);
-
-                        System.out.println(user5.toString());
+                        bindUser(req, user5);
 
                         getTaskMapper().updateUser(user5);
-
-                        users = getTaskMapper().getAllUsers();
-                        req.setAttribute("users", users);
-                        getViewManager().showUsers();
-
                     } else {
-                        System.err.println("[ERR] Not a Number");
-                        req.setAttribute(PARAMETER_ERROR,"Not an user");
-                        getViewManager().showError();
+                        System.err.println("Not registered");
+
+                        bindUser(req, user5);
+                        getTaskMapper().signUpUser(user5);
+                        getTaskMapper().updateUser(user5);
                     }
+
+                    users = getTaskMapper().getAllUsers();
+                    req.setAttribute("users", users);
+                    getViewManager().showUsers();
                     break;
 
                 default:
@@ -468,6 +438,35 @@ public class Controller extends CustomHttpServlet {
             getViewManager().showIndex();
         }
 
+    }
+
+    private void bindUser(HttpServletRequest req, VOUser user5) {
+        user5.setFirstName(req.getParameter("name"));
+        user5.setLastName(req.getParameter("lastname"));
+        user5.seteMail(req.getParameter("email"));
+        String pass = req.getParameter("password");
+        if (pass.equals("")){
+//                            System.out.println("Contraseña vacía");
+            user5.setPassword(null);
+        } else {
+//                            System.out.println("Contraseña: "+pass);
+            user5.setPassword(pass);
+        }
+
+//                        System.out.println("Active: "+req.getParameter("active")+" - Vip: "+req.getParameter("vip")+" - Tipo: "+req.getParameter("tipo"));
+        switch (Integer.parseInt(req.getParameter("tipo"))){
+            case 2:
+                user5.setTipo(MySQLContract.Tipo.normal);
+                break;
+            case 3:
+                user5.setTipo(MySQLContract.Tipo.admin);
+                break;
+        }
+
+        user5.setActive(req.getParameter("active")!=null);
+        user5.setVip(req.getParameter("vip")!=null);
+
+        System.out.println(user5.toString());
     }
 }
 

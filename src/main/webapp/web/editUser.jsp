@@ -31,8 +31,20 @@
         <div class="mdl-card__actions mdl-card--border">
             <div class="mdl-card__supporting-text">
                 <!--contido tarxeta-->
-
                 <div style="float: left">
+                    <c:choose>
+                        <c:when test="${ requestScope.euser.getDNI()=='new' }">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label block">
+                                <input class="mdl-textfield__input" type="text" id="DNI" name="DNI" required pattern="[1-9]{8,8}[A-Z]">
+                                <label class="mdl-textfield__label" for="DNI">DNI...</label>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <input type="hidden" name="DNI" value="${ requestScope.euser.getDNI()}">
+                        </c:otherwise>
+                    </c:choose>
+
+
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label block">
                         <input class="mdl-textfield__input" type="text" id="name" name="name" required value="${ requestScope.euser.getFirstName() }">
                         <label class="mdl-textfield__label" for="name">Nombre...</label>
@@ -66,14 +78,18 @@
                     </c:choose>
                     <!-- TODO: Meter EL+JSTL -->
                     <select name="tipo">
-                        <option value="1">No cambiar</option>
-                    <%
-                        for (int i=2; i< MySQLContract.Tipo.values().length+2; i++){
-                            %>
-                             <option value="<%= i %>"><%= MySQLContract.Tipo.values()[i-2] %></option>
-                            <%
-                        }
-                    %>
+                        <c:choose>
+                            <c:when test="${ requestScope.euser.getDNI()!='new' }">
+                                <option value="1">No cambiar</option>
+                            </c:when>
+                        </c:choose>
+                        <%
+                            for (int i=2; i< MySQLContract.Tipo.values().length+2; i++){
+                                %>
+                                 <option value="<%= i %>"><%= MySQLContract.Tipo.values()[i-2] %></option>
+                                <%
+                            }
+                        %>
                     </select>
                     <p></p>
                     <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="active">
@@ -105,7 +121,6 @@
 
                 </div>
 
-                <input type="hidden" name="id" value="${ requestScope.euser.getDNI()}">
                 <input type="hidden" name="action" id="action" value="admin/users/show">
                 <!--fin contido tarxeta-->
             </div>
