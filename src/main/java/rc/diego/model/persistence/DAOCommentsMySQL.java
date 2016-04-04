@@ -32,34 +32,38 @@ public class DAOCommentsMySQL extends AbstractDAOMySQL implements InterfaceDAOCo
 
 
     @Override
-    public void insertComment(VOComment comment) throws Exception {
+    public boolean insertComment(VOComment comment)  {
 
         try {
 
 
-            insertComment =getConnection().prepareStatement(insertCommentSQL);
-            if(comment.getIdCommentParent()!=-1){
-                insertComment.setInt(1,comment.getIdCommentParent());
-            }
-            else{
-                insertComment.setNull(1,java.sql.Types.INTEGER);
+            insertComment = getConnection().prepareStatement(insertCommentSQL);
+            if (comment.getIdCommentParent() != -1) {
+                insertComment.setInt(1, comment.getIdCommentParent());
+            } else {
+                insertComment.setNull(1, java.sql.Types.INTEGER);
 
             }
-            insertComment.setString(2,comment.getTitle());
-            insertComment.setString(3,comment.getContent());
-            insertComment.setInt(4,comment.getIdProduct());
-            insertComment.setString(5,comment.getDNI());
+            insertComment.setString(2, comment.getTitle());
+            insertComment.setString(3, comment.getContent());
+            insertComment.setInt(4, comment.getIdProduct());
+            insertComment.setString(5, comment.getDNI());
             insertComment.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new Exception("Ya existe un comentario con ese id");
-        } finally {
+
+        }catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }finally {
             if(insertComment != null)
-                insertComment.close();
+                try {
+                    insertComment.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
 
-            getConnection().close();
-        }
 
+    return true;
     }
 
     @Override

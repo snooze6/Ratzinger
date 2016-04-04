@@ -75,20 +75,18 @@
     <div class="demo-card-wide mdl-card mdl-shadow--2dp">
         <!-- Floating Multiline Textfield -->
         <form action=".#" method="POST">
-
+            <div class="mdl-card__supporting-text">
+                <strong>Comentario:</strong>
+            </div>
             <div class="mdl-textfield mdl-js-textfield comment">
-
-                <div class="mdl-card__supporting-text">
-                    <strong>Comentario:</strong>
-                </div>
-
                 <textarea class="mdl-textfield__input" type="text" rows= "6" id="sample5" ></textarea>
-                <label class="mdl-textfield__label" for="sample5">Text lines...</label>
+                <label class="mdl-textfield__label" for="sample5">Escriba su comentario</label>
             </div>
             <input type="button" value="Comentar" id="comentar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-
         </form>
     </div>
+
+
 
     </c:forEach>
     </body>

@@ -1,6 +1,7 @@
 package rc.diego.controller;
 
 import rc.diego.model.VO.VOCd;
+import rc.diego.model.VO.VOComment;
 import rc.diego.model.VO.VOShoppingCart;
 import rc.diego.model.VO.VOUser;
 
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.StringTokenizer;
 
@@ -41,6 +43,8 @@ public class Controller extends CustomHttpServlet {
     private final String ADMIN_ACTION_DELETE = "admin/delete";
     private final String ADMIN_ACTION_SAVE = "admin/save";
 
+    private final String ADD_COMMENT ="addComment";
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        doPost(req,resp);
@@ -68,10 +72,11 @@ public class Controller extends CustomHttpServlet {
                     getViewManager().showIndex();
                     break;
                 case ACTION_SHOW_PRODUCT_INFO:
+                    ArrayList<VOComment> comments;
 
                     cd=new VOCd();
                     cd.setId(Integer.parseInt(req.getParameter(PARAMETER_PRODUCT)));
-
+                   comments = getTaskMapper().getAllComments(cd);
                     if (getTaskMapper().getCd(cd)) {
 
                         shoppingCart = new VOShoppingCart();
@@ -94,6 +99,10 @@ public class Controller extends CustomHttpServlet {
                 case ACTION_SHOW_SHOPPING_CART:
                     getViewManager().showShoppingCart();
                     break;
+                case ADD_COMMENT:
+
+                    break;
+
                 case ACTION_SHOW_SIGN_IN:
                     getViewManager().showSignIn();
                     break;
@@ -343,7 +352,6 @@ public class Controller extends CustomHttpServlet {
                 default:
                     shoppingCart=getTaskMapper().getAllCds();
                     req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
-
                     getViewManager().showIndex();
             }
         }catch (NullPointerException e){
