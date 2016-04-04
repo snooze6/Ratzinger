@@ -4,6 +4,7 @@ import rc.diego.model.VO.VOCd;
 import rc.diego.model.VO.VOShoppingCart;
 import rc.diego.model.VO.VOUser;
 import rc.diego.model.persistence.Connector.MySQLContract;
+import rc.diego.model.persistence.DAOCdsMySQL;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -416,6 +417,9 @@ public class Controller extends CustomHttpServlet {
                     } catch (NumberFormatException e) {
                         System.err.println("[ERR] Not a Number");
                         req.setAttribute(PARAMETER_ERROR, "Not a number");
+                        getViewManager().showError();
+                    } catch (DAOCdsMySQL.CdAlreadyExistsException e){
+                        req.setAttribute(PARAMETER_ERROR,"El cd ya existe");
                         getViewManager().showError();
                     }
                     break;

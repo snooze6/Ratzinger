@@ -3,6 +3,7 @@ package rc.diego.controller;
 import rc.diego.model.VO.VOShoppingCart;
 import rc.diego.model.VO.VOCd;
 import rc.diego.model.VO.VOUser;
+import rc.diego.model.persistence.DAOCdsMySQL;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public interface InterfaceTaskMapper {
     boolean getCd(VOCd cd);
     boolean updateCd(VOCd cd);
 
-    boolean createCd(VOCd cd2);
+    boolean createCd(VOCd cd2) throws DAOCdsMySQL.CdAlreadyExistsException;
 
     void deleteCd(VOCd cd3);
 

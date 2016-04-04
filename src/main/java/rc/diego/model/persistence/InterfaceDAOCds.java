@@ -15,7 +15,7 @@ public interface InterfaceDAOCds {
     VOShoppingCart getCDsByFilter(String filter);
 
     boolean updateCD(VOCd cd);
-    boolean create(VOCd cd);
+    boolean create(VOCd cd) throws DAOCdsMySQL.CdAlreadyExistsException;
 
     boolean deleteCD(VOCd cd);
 

@@ -3,6 +3,7 @@ package rc.diego.controller;
 import rc.diego.model.VO.VOShoppingCart;
 import rc.diego.model.VO.VOCd;
 import rc.diego.model.VO.VOUser;
+import rc.diego.model.persistence.DAOCdsMySQL;
 import rc.diego.model.task.*;
 
 import javax.servlet.http.HttpSession;
@@ -89,7 +90,7 @@ public class TaskMapper implements InterfaceTaskMapper{
     }
 
     @Override
-    public boolean createCd(VOCd cd2) {
+    public boolean createCd(VOCd cd2) throws DAOCdsMySQL.CdAlreadyExistsException {
         createCD createcd = new createCD();
         createcd.setCD(cd2);
         tm.runTask(createcd);

@@ -250,34 +250,59 @@ public class DAOCdsMySQL extends AbstractDAOMySQL implements InterfaceDAOCds {
         return true;
     }
 
+    public class CdAlreadyExistsException extends Exception{
+        public CdAlreadyExistsException(String s) {
+            super(s);
+        }
+    }
+
     @Override
-    public boolean create(VOCd cd) {
+    public boolean create(VOCd cd) throws CdAlreadyExistsException {
+        if (exists(cd)) {
+            throw new CdAlreadyExistsException("El cd ya existe");
+        } else{
+            try {
+                if (insertCD == null)
+                    insertCD = getConnection().prepareStatement(insertCDSQL);
+
+                insertCD.setString(1, cd.getTitle());
+                insertCD.setString(2, cd.getDescription());
+                insertCD.setString(3, cd.getAuthor());
+                insertCD.setString(4, cd.getCountry());
+                insertCD.setFloat(5, cd.getUnitaryPrice());
+                insertCD.setString(6, cd.getImage());
+                System.err.println("Creating CD");
+                System.err.println("DEBUG");
+                System.err.println("=================");
+                System.err.println(insertCD.toString());
+
+                insertCD.executeUpdate();
+                cd.setId(getLastId());
+                createQuant(cd);
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            } finally {
+                close(insertCD);
+            }
+            return true;
+        }
+    }
+
+    private boolean exists(VOCd cd){
         try {
-            if (insertCD == null)
-                insertCD = getConnection().prepareStatement(insertCDSQL);
-
-            insertCD.setString(1, cd.getTitle());
-            insertCD.setString(2, cd.getDescription());
-            insertCD.setString(3, cd.getAuthor());
-            insertCD.setString(4, cd.getCountry());
-            insertCD.setFloat(5, cd.getUnitaryPrice());
-            insertCD.setString(6, cd.getImage());
-            System.err.println("Creating CD");
-            System.err.println("DEBUG");
+            System.err.println("DEBUG [Exists]");
             System.err.println("=================");
-            System.err.println(insertCD.toString());
-
-            insertCD.executeUpdate();
-            cd.setId(getLastId());
-            createQuant(cd);
-
+            System.err.println("SELECT * FROM " + MySQLContract.Products.TABLE_NAME + " WHERE " + MySQLContract.Products.NAME + "='" + cd.getTitle()+"'");
+            ResultSet resultSet = getConnection().createStatement().executeQuery("SELECT * FROM " + MySQLContract.Products.TABLE_NAME + " WHERE " + MySQLContract.Products.NAME + "='" + cd.getTitle()+"'");
+            if (resultSet.next()){
+                return true;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
-        }finally {
-            close(insertCD);
         }
-        return true;
+        return false;
     }
 
     private boolean createQuant(VOCd cd) {
