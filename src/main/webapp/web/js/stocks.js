@@ -5,13 +5,13 @@
 $('document').ready(function(){
 
     $("#eliminar").click(function(){
-        $("#action").val('admin/delete');
+        $("#action").val('admin/products/delete');
         $("#item").val('0');
         $("#form").submit();
     });
 
     $("#add").click(function(){
-        $("#action").val('admin/edit');
+        $("#action").val('admin/products/edit');
         $("#item").val('0');
         $("#form").submit();
     });

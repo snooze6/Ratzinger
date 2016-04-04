@@ -14,4 +14,6 @@ public interface InterfaceViewManager {
     void showError();
     void showStocks();
     void showEditProduct();
+
+    void showUsers();
 }

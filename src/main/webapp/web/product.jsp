@@ -8,13 +8,7 @@
     <head>
 
       <c:import url="./genericHeader.jsp" />
-
-      <script src="./web/js/product.js"></script>
-
-
-<%--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-         <script src="js/checkout.js"></script>
-        <link rel="stylesheet" href="./web/css/product.css">--%>
+      <script src="js/checkout.js"></script>
 
       <title>Musica para DAA</title>
     </head>
@@ -37,17 +31,17 @@
                         <strong>Descripci&oacute;n: </strong>
                         ${producto.value.getDescription()}
                     </div>
-    
+
                     <div class="mdl-card__supporting-text">
                         <strong>Autor:</strong>
                         ${producto.value.getAuthor()}
                     </div>
-    
+
                     <div class="mdl-card__supporting-text">
                         <strong>Pa&iacute;s</strong>
                         ${producto.value.getCountry()}
                     </div>
-    
+
                     <div class="mdl-card__supporting-text">
                         <strong>Disponibles:</strong>
                             ${producto.value.getQuantity()}
@@ -60,13 +54,15 @@
 
             </div>
 
-            <input type="hidden" name="product" id="product" value="${producto.value.getId()}">
+            <input type="hidden" name="product" id="product" value="${user.value.getId()}">
             <input type="hidden" name="quantity" id="quantity" value="1">
             <input type="hidden" name="action" id="action" value="buyItem">
     <!--fin contido tarxeta-->
 
           <div class="mdl-card__actions mdl-card--border">
-            <input type="button" value="Volver" id="volver" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+              <a href="./index.jsp" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                  Volver
+              </a>
             <input type="submit" value="Comprar" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="float:right;">
           </div>
           <c:import url="./menu.jsp" />
