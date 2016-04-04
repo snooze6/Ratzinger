@@ -3,6 +3,7 @@ package rc.diego.controller;
 import rc.diego.model.VO.VOCd;
 import rc.diego.model.VO.VOShoppingCart;
 import rc.diego.model.VO.VOUser;
+import rc.diego.model.persistence.Connector.MySQLContract;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -45,7 +46,7 @@ public class Controller extends CustomHttpServlet {
     private final String ADMIN_ACTION_EDIT_USER = "admin/users/edit";
     private final String ADMIN_ACTION_ACTIVATE_USER = "admin/users/activate";
     private final String ADMIN_ACTION_DEACTIVATE_USER = "admin/users/deactivate";
-    private final String ADMIN_ACTION_SAVE_USER = "admin${user.getDNI()}/users/save";
+    private final String ADMIN_ACTION_SAVE_USER = "admin/users/save";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -350,11 +351,9 @@ public class Controller extends CustomHttpServlet {
 
                 case ADMIN_ACTION_SHOW_USERS:
                     System.err.println("-- Show Users");
-
                     users = getTaskMapper().getAllUsers();
                     req.setAttribute("users", users);
                     getViewManager().showUsers();
-
                     break;
 
                 case ADMIN_ACTION_DEACTIVATE_USER:
@@ -405,11 +404,55 @@ public class Controller extends CustomHttpServlet {
 
                 case ADMIN_ACTION_SAVE_USER:
                     VOUser user5 = new VOUser();
-                    user5.setDNI(req.getParameter("item"));
+                    user5.setDNI(req.getParameter("id"));
 
                     System.err.println("-- Save User: "+user5.getDNI());
-                    req.setAttribute(PARAMETER_ERROR,"Not yet implemented");
-                    getViewManager().showError();
+
+                    if (getTaskMapper().getAllUser(user5)){
+                        user5.setFirstName(req.getParameter("name"));
+                        user5.setLastName(req.getParameter("lastname"));
+                        user5.seteMail(req.getParameter("email"));
+                        String pass = req.getParameter("password");
+                        if (pass.equals("")){
+//                            System.out.println("Contraseña vacía");
+                            user5.setPassword(null);
+                        } else {
+//                            System.out.println("Contraseña: "+pass);
+                            user5.setPassword(pass);
+                        }
+
+//                        System.out.println("Active: "+req.getParameter("active")+" - Vip: "+req.getParameter("vip")+" - Tipo: "+req.getParameter("tipo"));
+                        switch (Integer.parseInt(req.getParameter("tipo"))){
+                            case 2:
+                                user5.setTipo(MySQLContract.Tipo.normal);
+                                break;
+                            case 3:
+                                user5.setTipo(MySQLContract.Tipo.admin);
+                                break;
+                        }
+
+//                        if (req.getParameter("active")!=null){
+//                            System.out.println("Active");
+//                        } else {
+//                            System.out.println("No active");
+//                        }
+
+                        user5.setActive(req.getParameter("active")!=null);
+                        user5.setVip(req.getParameter("vip")!=null);
+
+                        System.out.println(user5.toString());
+
+                        getTaskMapper().updateUser(user5);
+
+                        users = getTaskMapper().getAllUsers();
+                        req.setAttribute("users", users);
+                        getViewManager().showUsers();
+
+                    } else {
+                        System.err.println("[ERR] Not a Number");
+                        req.setAttribute(PARAMETER_ERROR,"Not an user");
+                        getViewManager().showError();
+                    }
                     break;
 
                 default:

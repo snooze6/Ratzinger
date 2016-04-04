@@ -61,7 +61,7 @@ public class MySQLContract {
         public static String QUANT="quantity";
     }
 
-    public enum Tipo {normal, admin};
+    public static enum Tipo {normal, admin};
 
     public static class Comments{
         public static String TABLE_NAME="Comments";

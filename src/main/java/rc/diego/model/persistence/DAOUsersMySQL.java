@@ -103,14 +103,16 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
         user.setFirstName(result.getString(MySQLContract.Users.firstName));
         user.setLastName(result.getString(MySQLContract.Users.lastName));
         user.seteMail(result.getString(MySQLContract.Users.mail));
-        System.err.println(user.toString());
+//        System.err.println(user.toString());
         isAdmin(user);
-        System.err.println(user.toString());
+//        System.err.println(user.toString());
         if (isVip(user))
             user.setVip(true);
         else
             user.setVip(false);
-        System.err.println(user.toString());
+        user.setActive(result.getBoolean(MySQLContract.Users.active));
+        System.err.println("Active: "+result.getBoolean(MySQLContract.Users.active));
+//        System.err.println(user.toString());
         getConnection().close();
         return true;
     }
@@ -139,7 +141,6 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
         ResultSet result=getConnection().createStatement().executeQuery(checkUser);
         // Es gracioso como esto y la limitación de caracteres se carga la inyección SQL
         if(result.next()) {
-
             return assignUser(user, result);
         }else {
             getConnection().close();
