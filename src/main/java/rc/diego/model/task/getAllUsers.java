@@ -1,8 +1,9 @@
 package rc.diego.model.task;
 
 import rc.diego.model.VO.VOUser;
-import rc.diego.model.persistence.AbstractFactoryMySQL;
-import rc.diego.model.persistence.InterfaceDAOFactory;
+import rc.diego.model.persistence.DataManager;
+import rc.diego.model.persistence.MySQL.AbstractFactoryMySQL;
+import rc.diego.model.persistence.AbstractDAOFactory;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,7 +13,6 @@ import java.util.ArrayList;
  */
 public class getAllUsers implements InterfaceTask{
     private ArrayList<VOUser> users;
-    private InterfaceDAOFactory daoFactory;
 
     public ArrayList<VOUser> getUsers() {
         return users;
@@ -24,9 +24,9 @@ public class getAllUsers implements InterfaceTask{
 
     @Override
     public void run() {
-        daoFactory = new AbstractFactoryMySQL();
+
         try {
-            users = daoFactory.getDAOUsers().getUsers();
+            users = DataManager.getDAOUsers().getUsers();
         } catch (SQLException e) {
             e.printStackTrace();
             users = new ArrayList<>();

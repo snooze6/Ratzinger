@@ -1,15 +1,15 @@
 package rc.diego.model.task;
 
 import rc.diego.model.VO.VOCd;
-import rc.diego.model.persistence.AbstractFactoryMySQL;
-import rc.diego.model.persistence.InterfaceDAOFactory;
+import rc.diego.model.persistence.DataManager;
+import rc.diego.model.persistence.MySQL.AbstractFactoryMySQL;
+import rc.diego.model.persistence.AbstractDAOFactory;
 
 /**
  * Created by entakitos on 17/03/16.
  */
 public class deleteCD implements InterfaceTask{
     private VOCd cd;
-    private InterfaceDAOFactory daoFactory;
     private boolean ok;
 
     public VOCd getCD() {
@@ -23,8 +23,8 @@ public class deleteCD implements InterfaceTask{
 
     @Override
     public void run() {
-        daoFactory = new AbstractFactoryMySQL();
-        ok = daoFactory.getDAOCds().deleteCD(cd);
+
+        ok = DataManager.getDAOCds().deleteCD(cd);
     }
 
     public boolean isOk(){

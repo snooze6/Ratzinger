@@ -1,4 +1,4 @@
-package rc.diego.model.persistence.Connector;
+package rc.diego.model.persistence.MySQL.Connector;
 
 /**
  * Created by entakitos on 8/03/16.

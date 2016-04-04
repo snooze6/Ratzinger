@@ -1,4 +1,4 @@
-package rc.diego.model.persistence.Connector;
+package rc.diego.model.persistence;
 
 import java.sql.Connection;
 

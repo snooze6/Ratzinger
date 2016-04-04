@@ -1,9 +1,10 @@
 package rc.diego.model.task;
 
 import rc.diego.model.VO.VOUser;
-import rc.diego.model.persistence.AbstractFactoryMySQL;
-import rc.diego.model.persistence.DAOUsersMySQL;
-import rc.diego.model.persistence.InterfaceDAOFactory;
+import rc.diego.model.persistence.DataManager;
+import rc.diego.model.persistence.MySQL.AbstractFactoryMySQL;
+import rc.diego.model.persistence.MySQL.DAOUsersMySQL;
+import rc.diego.model.persistence.AbstractDAOFactory;
 
 import java.sql.SQLException;
 
@@ -12,7 +13,6 @@ import java.sql.SQLException;
  */
 public class signUp implements InterfaceTask{
 
-    private InterfaceDAOFactory factory= new AbstractFactoryMySQL();
     private VOUser user;
     private boolean alreadyExists=false;
 
@@ -31,7 +31,7 @@ public class signUp implements InterfaceTask{
     @Override
     public void run() {
         try {
-            factory.getDAOUsers().insertUser(user);
+            DataManager.getDAOUsers().insertUser(user);
         } catch (SQLException e) {
             //TODO falta gestionar que pasa si non se  pode registrar o usuario
             e.printStackTrace();

@@ -232,7 +232,7 @@ public class Controller extends CustomHttpServlet {
                 case ACTION_SIGN_UP:
 
 
-                    //TODO:mensaxe de error ao rexistrar o usuario
+
                     user=((VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
 
                     getTaskMapper().setUserData(

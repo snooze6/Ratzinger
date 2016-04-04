@@ -1,16 +1,14 @@
-package rc.diego.model.persistence.Connector;
+package rc.diego.model.persistence.MySQL.Connector;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
+import rc.diego.model.persistence.InterfaceConnector;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 /**
  * Created by entakitos on 1/03/16.
  */
-public class MySqlConnector implements InterfaceConnector{
+public class MySqlConnector implements InterfaceConnector {
 
     public Connection getConnection()throws Exception{
 

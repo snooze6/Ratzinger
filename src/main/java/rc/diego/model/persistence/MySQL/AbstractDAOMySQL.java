@@ -1,6 +1,6 @@
-package rc.diego.model.persistence;
+package rc.diego.model.persistence.MySQL;
 
-import rc.diego.model.persistence.Connector.MySqlConnector;
+import rc.diego.model.persistence.MySQL.Connector.MySqlConnector;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

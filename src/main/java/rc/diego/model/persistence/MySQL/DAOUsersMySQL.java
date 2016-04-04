@@ -1,8 +1,9 @@
-package rc.diego.model.persistence;
+package rc.diego.model.persistence.MySQL;
 
 import rc.diego.model.VO.VOUser;
+import rc.diego.model.persistence.InterfaceDAOUsers;
 import rc.diego.model.utils.encryption.PBKDF2Encrypt;
-import rc.diego.model.persistence.Connector.MySQLContract;
+import rc.diego.model.persistence.MySQL.Connector.MySQLContract;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 /**
  * Created by entakitos on 31/03/16.
  */
-public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUsers{
+public class DAOUsersMySQL extends AbstractDAOMySQL implements InterfaceDAOUsers {
 
     public class UserAlreadyExistsException extends Exception{
         public UserAlreadyExistsException(String s) {
