@@ -3,7 +3,6 @@ package rc.diego.model.task;
 import rc.diego.model.VO.VOCd;
 import rc.diego.model.VO.VOComment;
 import rc.diego.model.VO.VOShoppingCart;
-import rc.diego.model.persistence.AbstractFactoryMySQL;
 import rc.diego.model.persistence.DataManager;
 import rc.diego.model.persistence.InterfaceDAOFactory;
 
