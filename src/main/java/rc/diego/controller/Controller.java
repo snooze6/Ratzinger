@@ -41,7 +41,6 @@ public class Controller extends CustomHttpServlet {
     private final String ADMIN_ACTION_EDIT_ITEM = "admin/products/edit";
     private final String ADMIN_ACTION_DELETE_ITEM = "admin/products/delete";
     private final String ADMIN_ACTION_SAVE_ITEM = "admin/products/save";
-
     private final String ADMIN_ACTION_SHOW_USERS = "admin/users/show";
     private final String ADMIN_ACTION_EDIT_USER = "admin/users/edit";
     private final String ADMIN_ACTION_ACTIVATE_USER = "admin/users/activate";
@@ -112,7 +111,6 @@ public class Controller extends CustomHttpServlet {
                     getViewManager().showPaymentData();
                     break;
                 case ACTION_CONFIRM_PAYMENT:
-
                     user = user=((VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
 
                     if(user.getFirstName() != null && user.getFirstName().length() > 0) {
@@ -214,7 +212,8 @@ public class Controller extends CustomHttpServlet {
 
                     break;
                 case ACTION_SIGN_IN:
-                    user=((VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
+                    user = ((VOUser) session.getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
+                    System.err.println("Sing-in "+req.getParameter(VOUser.PARAMETER_DNI));
 
                     getTaskMapper().setUserData(
                             req.getParameter(VOUser.PARAMETER_DNI),
@@ -226,13 +225,18 @@ public class Controller extends CustomHttpServlet {
                     );
 
                     if(getTaskMapper().signInUser(user)){  //usuario logueado correctamente
+                        System.err.println("--Login");
+//                        req.getSession().setAttribute(VOUser.SESSION_ATTRIBUTE_USER, user);
+                        System.err.println(user.toString());
+
                         shoppingCart=getTaskMapper().getAllCds();
                         req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS,shoppingCart);
-
                         getViewManager().showIndex();
                     }else{
-                        req.setAttribute(PARAMETER_ERROR,"Los datos de usuario no son correctos o el usuario no existe. Por favor, inténtelo de nuevo.");
+                        System.err.println("--Not Login");
+                        req.getSession().removeAttribute(VOUser.SESSION_ATTRIBUTE_USER);
 
+                        req.setAttribute(PARAMETER_ERROR,"Los datos de usuario no son correctos o el usuario no existe. Por favor, inténtelo de nuevo.");
                         getViewManager().showError();
                     }
 
@@ -312,178 +316,189 @@ public class Controller extends CustomHttpServlet {
         System.out.println(user5.toString());
     }
 
-    private boolean adminActions(HttpServletRequest req,HttpServletResponse resp, String url){
+    private boolean adminActions(HttpServletRequest req, HttpServletResponse resp, String url){
 
-        // Variables aquí fiscadas
-        VOCd cd;
-        VOShoppingCart shoppingCart;
-        ArrayList<VOUser> users;
-        VOUser user;
+        VOUser ruser = ((VOUser) req.getSession().getAttribute(VOUser.SESSION_ATTRIBUTE_USER));
 
-        switch (url) {
-            case ADMIN_ACTION_EDIT_ITEM:
-                int id;
-                try {
-                    id = Integer.parseInt(req.getParameter("item"));
-                } catch (NumberFormatException e) {
-                    id = 0;
-                }
-                cd = new VOCd();
-                cd.setId(id);
+        if(ruser.getFirstName() != null && ruser.getFirstName().length() > 0 && ruser.isAdmin()) {
+            // Variables aquí fiscadas
+            VOCd cd;
+            VOShoppingCart shoppingCart;
+            ArrayList<VOUser> users;
+            VOUser user;
 
-                if (id < 0) {
-                    req.setAttribute(PARAMETER_ERROR, "Se ha producido un error. No se puede encontrar un cd con ese identificador");
-                    getViewManager().showError();
-                } else {
-                    if (getTaskMapper().getCd(cd)) {
-                        System.err.println("-- Edit item " + id);
-                        req.setAttribute(VOShoppingCart.SESSION_ITEM, cd);
-                        getViewManager().showEditProduct();
-                    } else {
-                        System.err.println("-- Edit item " + 0);
-                        cd.setId(0);
-                        req.setAttribute(VOShoppingCart.SESSION_ITEM, cd);
-                        getViewManager().showEditProduct();
+            switch (url) {
+                case ADMIN_ACTION_EDIT_ITEM:
+                    int id;
+                    try {
+                        id = Integer.parseInt(req.getParameter("item"));
+                    } catch (NumberFormatException e) {
+                        id = 0;
                     }
-                }
-                break;
+                    cd = new VOCd();
+                    cd.setId(id);
 
-            case ADMIN_ACTION_SHOW_STOCK:
-                System.err.println("-- Show Stocks");
-                shoppingCart = getTaskMapper().getAllCds();
-                req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS, shoppingCart);
-                getViewManager().showStocks();
-                break;
+                    if (id < 0) {
+                        req.setAttribute(PARAMETER_ERROR, "Se ha producido un error. No se puede encontrar un cd con ese identificador");
+                        getViewManager().showError();
+                    } else {
+                        if (getTaskMapper().getCd(cd)) {
+                            System.err.println("-- Edit item " + id);
+                            req.setAttribute(VOShoppingCart.SESSION_ITEM, cd);
+                            getViewManager().showEditProduct();
+                        } else {
+                            System.err.println("-- Edit item " + 0);
+                            cd.setId(0);
+                            req.setAttribute(VOShoppingCart.SESSION_ITEM, cd);
+                            getViewManager().showEditProduct();
+                        }
+                    }
+                    break;
 
-            case ADMIN_ACTION_DELETE_ITEM:
-                cd = new VOCd();
-                try {
-                    cd.setId(Integer.parseInt(req.getParameter("item")));
-                    System.err.println("-- Delete item " + cd.getId());
-
-                    getTaskMapper().deleteCd(cd);
-
+                case ADMIN_ACTION_SHOW_STOCK:
+                    System.err.println("-- Show Stocks");
                     shoppingCart = getTaskMapper().getAllCds();
                     req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS, shoppingCart);
                     getViewManager().showStocks();
+                    break;
 
-                } catch (NumberFormatException e) {
-                    req.setAttribute(PARAMETER_ERROR, "Not a number");
-                    getViewManager().showError();
-                }
-                break;
-            case ADMIN_ACTION_SAVE_ITEM:
-                System.err.println("-- Save item");
-                cd = new VOCd();
-                try {
-                    cd.setId(Integer.parseInt(req.getParameter("id")));
-                    cd.setTitle(req.getParameter("name"));
-                    cd.setImage(req.getParameter("imagen"));
-                    cd.setAuthor(req.getParameter("author"));
-                    cd.setQuantity(Integer.parseInt(req.getParameter("quantity")));
-                    cd.setUnitaryPrice(Float.parseFloat(req.getParameter("price")));
-                    cd.setDescription(req.getParameter("description"));
-                    cd.setCountry(req.getParameter("country"));
+                case ADMIN_ACTION_DELETE_ITEM:
+                    cd = new VOCd();
+                    try {
+                        cd.setId(Integer.parseInt(req.getParameter("item")));
+                        System.err.println("-- Delete item " + cd.getId());
 
-                    System.out.println(cd.toString());
+                        getTaskMapper().deleteCd(cd);
 
-                    if (cd.getId() != 0) {
-                        getTaskMapper().updateCd(cd);
-                    } else {
-                        getTaskMapper().createCd(cd);
+                        shoppingCart = getTaskMapper().getAllCds();
+                        req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS, shoppingCart);
+                        getViewManager().showStocks();
+
+                    } catch (NumberFormatException e) {
+                        req.setAttribute(PARAMETER_ERROR, "Not a number");
+                        getViewManager().showError();
                     }
+                    break;
+                case ADMIN_ACTION_SAVE_ITEM:
+                    System.err.println("-- Save item");
+                    cd = new VOCd();
+                    try {
+                        cd.setId(Integer.parseInt(req.getParameter("id")));
+                        cd.setTitle(req.getParameter("name"));
+                        cd.setImage(req.getParameter("imagen"));
+                        cd.setAuthor(req.getParameter("author"));
+                        cd.setQuantity(Integer.parseInt(req.getParameter("quantity")));
+                        cd.setUnitaryPrice(Float.parseFloat(req.getParameter("price")));
+                        cd.setDescription(req.getParameter("description"));
+                        cd.setCountry(req.getParameter("country"));
 
-                    shoppingCart = getTaskMapper().getAllCds();
-                    req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS, shoppingCart);
-                    getViewManager().showStocks();
-                } catch (NumberFormatException e) {
-                    System.err.println("[ERR] Not a Number");
-                    req.setAttribute(PARAMETER_ERROR, "Not a number");
-                    getViewManager().showError();
-                }
-                break;
+                        System.out.println(cd.toString());
+
+                        if (cd.getId() != 0) {
+                            getTaskMapper().updateCd(cd);
+                        } else {
+                            getTaskMapper().createCd(cd);
+                        }
+
+                        shoppingCart = getTaskMapper().getAllCds();
+                        req.setAttribute(VOShoppingCart.SESSION_ATTRIBUTE_CDS, shoppingCart);
+                        getViewManager().showStocks();
+                    } catch (NumberFormatException e) {
+                        System.err.println("[ERR] Not a Number");
+                        req.setAttribute(PARAMETER_ERROR, "Not a number");
+                        getViewManager().showError();
+                    }
+                    break;
 
 
-            case ADMIN_ACTION_SHOW_USERS:
-                System.err.println("-- Show Users");
-                users = getTaskMapper().getAllUsers();
-                req.setAttribute("users", users);
-                getViewManager().showUsers();
-                break;
+                case ADMIN_ACTION_SHOW_USERS:
+                    System.err.println("-- Show Users");
+                    users = getTaskMapper().getAllUsers();
+                    req.setAttribute("users", users);
+                    getViewManager().showUsers();
+                    break;
 
-            case ADMIN_ACTION_DEACTIVATE_USER:
-                user = new VOUser();
-                user.setDNI(req.getParameter("item"));
+                case ADMIN_ACTION_DEACTIVATE_USER:
+                    user = new VOUser();
+                    user.setDNI(req.getParameter("item"));
 
-                System.err.println("-- Deactivate User: " + user.getDNI());
-                getTaskMapper().deactivateUser(user);
+                    System.err.println("-- Deactivate User: " + user.getDNI());
+                    getTaskMapper().deactivateUser(user);
 
-                users = getTaskMapper().getAllUsers();
-                req.setAttribute("users", users);
-                getViewManager().showUsers();
-                break;
+                    users = getTaskMapper().getAllUsers();
+                    req.setAttribute("users", users);
+                    getViewManager().showUsers();
+                    break;
 
-            case ADMIN_ACTION_ACTIVATE_USER:
-                user = new VOUser();
-                user.setDNI(req.getParameter("item"));
+                case ADMIN_ACTION_ACTIVATE_USER:
+                    user = new VOUser();
+                    user.setDNI(req.getParameter("item"));
 
-                System.err.println("-- Activate User: " + user.getDNI());
-                getTaskMapper().activateUser(user);
+                    System.err.println("-- Activate User: " + user.getDNI());
+                    getTaskMapper().activateUser(user);
 
-                users = getTaskMapper().getAllUsers();
-                req.setAttribute("users", users);
-                getViewManager().showUsers();
-                break;
+                    users = getTaskMapper().getAllUsers();
+                    req.setAttribute("users", users);
+                    getViewManager().showUsers();
+                    break;
 
-            case ADMIN_ACTION_EDIT_USER:
-                user = new VOUser();
-                user.setDNI(req.getParameter("item"));
+                case ADMIN_ACTION_EDIT_USER:
+                    user = new VOUser();
+                    user.setDNI(req.getParameter("item"));
 
-                System.err.println("-- Edit User: " + user.getDNI());
-                if (user.getDNI().equals("new")) {
-                    req.setAttribute("euser", user);
-                    getViewManager().showEditUsers();
-                } else {
-                    boolean allUser = getTaskMapper().getAllUser(user);
-                    if (allUser) {
-                        System.err.println("-- El usuario está");
+                    System.err.println("-- Edit User: " + user.getDNI());
+                    if (user.getDNI().equals("new")) {
                         req.setAttribute("euser", user);
                         getViewManager().showEditUsers();
                     } else {
-                        System.err.println("-- El usuario no está");
-                        req.setAttribute(PARAMETER_ERROR, "Los datos de usuario no son correctos o el usuario no existe. Por favor, inténtelo de nuevo.");
-                        getViewManager().showError();
+                        boolean allUser = getTaskMapper().getAllUser(user);
+                        if (allUser) {
+                            System.err.println("-- El usuario está");
+                            req.setAttribute("euser", user);
+                            getViewManager().showEditUsers();
+                        } else {
+                            System.err.println("-- El usuario no está");
+                            req.setAttribute(PARAMETER_ERROR, "Los datos de usuario no son correctos o el usuario no existe. Por favor, inténtelo de nuevo.");
+                            getViewManager().showError();
+                        }
                     }
-                }
-                break;
+                    break;
 
-            case ADMIN_ACTION_SAVE_USER:
-                user = new VOUser();
-                user.setDNI(req.getParameter("DNI"));
-                System.err.println("-- Save User: " + user.getDNI());
-                if (getTaskMapper().getAllUser(user)) {
-                    bindUser(req, user);
-                    getTaskMapper().updateUser(user);
-                } else {
-                    System.err.println("Not registered");
+                case ADMIN_ACTION_SAVE_USER:
+                    user = new VOUser();
+                    user.setDNI(req.getParameter("DNI"));
+                    System.err.println("-- Save User: " + user.getDNI());
+                    if (getTaskMapper().getAllUser(user)) {
+                        bindUser(req, user);
+                        getTaskMapper().updateUser(user);
+                    } else {
+                        System.err.println("Not registered");
                         /*
                          * Aquí, si intentas crear un usuario con el mismo DNI que
                          * uno ya existente lo edita
                          * TODO: Saber si esto está bien
                          */
-                    bindUser(req, user);
-                    getTaskMapper().signUpUser(user);
-                    getTaskMapper().updateUser(user);
-                }
-                users = getTaskMapper().getAllUsers();
-                req.setAttribute("users", users);
-                getViewManager().showUsers();
-                break;
+                        bindUser(req, user);
+                        getTaskMapper().signUpUser(user);
+                        getTaskMapper().updateUser(user);
+                    }
+                    users = getTaskMapper().getAllUsers();
+                    req.setAttribute("users", users);
+                    getViewManager().showUsers();
+                    break;
 
-            default:
+                default:
+                    return false;
+            }
+        } else {
+            System.out.println("Not loged");
+            if (url.contains("admin")){
+                req.setAttribute(PARAMETER_ERROR,"Acceso restringido a únicamente a los administradores");
+                getViewManager().showError();
+            } else {
                 return false;
+            }
         }
-
         return true;
     }
 }

@@ -40,6 +40,10 @@ public class VOUser extends BaseEntity{
         return this;
     }
 
+    public boolean isAdmin(){
+        return tipo == MySQLContract.Tipo.admin;
+    }
+
     public String getImages() {
         return images;
     }

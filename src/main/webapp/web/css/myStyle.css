@@ -46,6 +46,15 @@
   background-color: #0194E1;
 }
 
+.demo-card-wide > #cabeceraTarxetaSettings {
+  color: #fff;
+  height: 176px;
+  background: url('../images/settings.png') center / cover;
+  background-repeat: no-repeat;
+  background-size: 185px;
+  background-color: #0194E1;
+}
+
 .demo-card-wide > #cabeceraTarxetaInicioError {
   color: #fff;
   height: 176px;

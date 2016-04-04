@@ -16,7 +16,7 @@
 
 <form id="form" action="./index.jsp" method="POST">
     <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-        <div class="mdl-card__title" id="cabeceraTarxetaCarrito">
+        <div class="mdl-card__title" id="cabeceraTarxetaSettings">
             <c:choose>
                 <c:when test="${ requestScope.cd.getId()==0 }">
                     <h2 class="mdl-card__title-text">Nuevo Producto</h2>

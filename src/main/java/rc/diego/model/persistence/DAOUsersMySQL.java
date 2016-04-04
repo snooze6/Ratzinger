@@ -85,16 +85,24 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
 
         ResultSet result=getConnection().createStatement().executeQuery(checkUser);
         // Es gracioso como esto y la limitación de caracteres se carga la inyección SQL
-        if(result.next() &&  new PBKDF2Encrypt().validatePassword(user.getPassword(),result.getString(MySQLContract.Users.password))) {
-            boolean u = assignUser(user, result);
-            user.setActive(true);
-            return u;
+        if(result.next()) {
+            if (new PBKDF2Encrypt().validatePassword(user.getPassword(),result.getString(MySQLContract.Users.password))) {
+                boolean u = assignUser(user, result);
+                System.err.println("Bien");
+                System.err.println(user.toString());
+                user.setActive(true);
+                System.err.println(user.toString());
+                return u;
+            } else {
+                getConnection().close();
+                encriptpass(user);
+                System.err.println("Pass: "+user.getPassword());
+                System.err.println("Good: "+result.getString(MySQLContract.Users.password));
+                System.err.println("Difieren");
+                return false;
+            }
         }else {
-            getConnection().close();
-            encriptpass(user);
-            System.err.println(user.getPassword());
-            System.err.println(result.getString(MySQLContract.Users.password));
-            System.err.println("Difieren");
+            System.err.println("No such user");
             return false;
         }
     }

@@ -13,7 +13,7 @@
 
 <form id="form" action="./index.jsp" method="POST">
     <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-        <div class="mdl-card__title" id="cabeceraTarxetaCarrito">
+        <div class="mdl-card__title" id="cabeceraTarxetaSettings">
             <h2 class="mdl-card__title-text">Stocks</h2>
         </div>
 
