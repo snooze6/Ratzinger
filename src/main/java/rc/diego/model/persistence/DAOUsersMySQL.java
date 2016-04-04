@@ -206,6 +206,7 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
                 user.setLastName(res.getString(MySQLContract.Users.lastName));
                 user.seteMail(res.getString(MySQLContract.Users.mail));
                 user.setDNI(res.getString(MySQLContract.Users.DNI));
+                user.setActive(res.getBoolean(MySQLContract.Users.active));
 
                 isAdmin(user);
                 if (isVip(user))
@@ -228,8 +229,19 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
         return false;
     }
 
+    private final String deleteUserSQL = "UPDATE "+MySQLContract.Users.TABLE_NAME+
+            " SET "+MySQLContract.Users.active+"=0 WHERE "+MySQLContract.Users.DNI+"=";
     @Override
     public boolean deleteUser(VOUser user) throws SQLException {
-        return false;
+        try {
+            System.err.println("DEBUG");
+            System.err.println("=================");
+            System.err.println(deleteUserSQL+"'"+user.getDNI()+"'");
+            getConnection().createStatement().executeUpdate(deleteUserSQL+"'"+user.getDNI()+"'");
+        } catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }

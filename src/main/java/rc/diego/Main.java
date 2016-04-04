@@ -37,11 +37,14 @@ public class Main {
 //
 //        tm.createCd(cd2);
 
-        ArrayList<VOUser> users = tm.getAllUsers();
-        for (int i=0; i<users.size(); i++){
-            System.out.println(users.get(i).toString());
-        }
+//        ArrayList<VOUser> users = tm.getAllUsers();
+//        for (int i=0; i<users.size(); i++){
+//            System.out.println(users.get(i).toString());
+//        }
 
+        VOUser user = new VOUser();
+        user.setDNI("12345678Z");
+        tm.deleteUser(user);
     }
 
 }

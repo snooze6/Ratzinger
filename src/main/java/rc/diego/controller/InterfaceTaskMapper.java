@@ -34,5 +34,7 @@ public interface InterfaceTaskMapper {
     void deleteCd(VOCd cd3);
 
     ArrayList<VOUser> getAllUsers();
+
+    void deleteUser(VOUser user);
 }
 

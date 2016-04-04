@@ -123,4 +123,10 @@ public class TaskMapper implements InterfaceTaskMapper{
         tm.runTask(ge);
         return ge.getUsers();
     }
+
+    @Override
+    public void deleteUser(VOUser user) {
+        tm.runTask(new deleteUser().setUser(user));
+
+    }
 }

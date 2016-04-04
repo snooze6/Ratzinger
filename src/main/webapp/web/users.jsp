@@ -57,22 +57,37 @@
                                 class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
                                 style="float:right;"
                                 onclick="
-                                        $('#action').val('admin/products/edit');
+                                        $('#action').val('admin/users/edit');
                                         $('#item').val(${user.getDNI()});
                                         $('#form').submit();
                                         "
                         >
                     </td>
                     <td>
-                        <button type="button"
-                                class="mdl-button mdl-button--icon mdl-button--colored boton-compra"
-                                onclick="
-                                        $('#action').val('admin/products/delete');
-                                        $('#item').val(${user.getDNI()});
-                                        $('#form').submit();
-                                        ">
-                            <i class="material-icons">delete</i>
-                        </button>
+                        <c:choose>
+                            <c:when test="${user.isActive()}">
+                                <button type="button"
+                                        class="mdl-button mdl-button--icon mdl-button--colored boton-compra"
+                                        onclick="
+                                                $('#action').val('admin/users/delete');
+                                                $('#item').val(${user.getDNI()});
+                                                $('#form').submit();
+                                                ">
+                                    <i class="material-icons">lock_outline</i>
+                                </button>
+                            </c:when>
+                            <c:otherwise>
+                                <button type="button"
+                                        class="mdl-button mdl-button--icon mdl-button--colored boton-compra"
+                                        onclick="
+                                                $('#action').val('admin/users/delete');
+                                                $('#item').val(${user.getDNI()});
+                                                $('#form').submit();
+                                                ">
+                                    <i class="material-icons">lock_open</i>
+                                </button>
+                            </c:otherwise>
+                        </c:choose>
                     </td>
                 </tr>
 

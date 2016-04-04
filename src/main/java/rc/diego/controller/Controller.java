@@ -56,6 +56,7 @@ public class Controller extends CustomHttpServlet {
         VOShoppingCart shoppingCart;
         VOUser user;
         VOCd cd;
+        ArrayList<VOUser> users;
         int id;
 
         HttpSession session=req.getSession(false);
@@ -349,10 +350,21 @@ public class Controller extends CustomHttpServlet {
                 case ADMIN_ACTION_SHOW_USERS:
                     System.err.println("-- Show Users");
 
-                    ArrayList<VOUser> users= getTaskMapper().getAllUsers();
+                    users = getTaskMapper().getAllUsers();
                     req.setAttribute("users", users);
                     getViewManager().showUsers();
 
+                    break;
+
+                case ADMIN_ACTION_DELETE_USER:
+                    VOUser user2 = new VOUser();
+                    user2.setDNI(req.getParameter("item"));
+
+                    getTaskMapper().deleteUser(user2);
+
+                    users = getTaskMapper().getAllUsers();
+                    req.setAttribute("users", users);
+                    getViewManager().showUsers();
                     break;
 
                 default:
