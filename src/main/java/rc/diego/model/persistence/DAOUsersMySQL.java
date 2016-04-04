@@ -76,7 +76,7 @@ public class DAOUsersMySQL extends AbstractDAOMySQL implements  InterfaceDAOUser
     public boolean getUser(VOUser user) throws SQLException, InvalidKeySpecException, NoSuchAlgorithmException {
 
         String checkUser="SELECT * FROM `"+MySQLContract.Users.TABLE_NAME+
-                "` WHERE "+MySQLContract.Users.active+"=1 "+
+                "` WHERE "+MySQLContract.Users.active+"=1 AND "+
                 MySQLContract.Users.DNI+"='"+user.getDNI()+"' LIMIT 1;";
 
 //        System.err.println("DEBUG");
