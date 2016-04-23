@@ -1,5 +1,7 @@
 package rc.diego.model.task;
 
+import rc.diego.model.persistence.MySQL.DAOCdsMySQL;
+
 import java.util.List;
 
 /**

@@ -2,6 +2,7 @@ package rc.diego.model.persistence;
 
 import rc.diego.model.VO.VOCd;
 import rc.diego.model.VO.VOShoppingCart;
+import rc.diego.model.persistence.MySQL.DAOCdsMySQL;
 
 /**
  * Created by entakitos on 17/03/16.

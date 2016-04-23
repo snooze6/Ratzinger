@@ -5,6 +5,8 @@ import rc.diego.model.VO.VOComment;
 import rc.diego.model.VO.VOShoppingCart;
 import rc.diego.model.VO.VOUser;
 import rc.diego.model.persistence.MySQL.Connector.MySQLContract;
+import rc.diego.model.persistence.MySQL.DAOCdsMySQL;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -456,7 +458,28 @@ public class Controller extends CustomHttpServlet {
                         if (cd.getId() != 0) {
                             getTaskMapper().updateCd(cd);
                         } else {
-                            getTaskMapper().createCd(cd);
+                            try {
+                                getTaskMapper().createCd(cd);
+                            } catch (DAOCdsMySQL.CdAlreadyExistsException e) {
+                                System.err.println("[ERR] Disk already exists ----------------------");
+                                req.setAttribute(PARAMETER_ERROR, "El disco ya existe");
+                                getViewManager().showError();
+                                return true;
+                            }
+//                            switch (){
+//                                case 0:
+//                                    break;
+//                                case -1:
+//                                    System.err.println("[ERR] Disk already exists");
+//                                    req.setAttribute(PARAMETER_ERROR, "El disco ya existe");
+//                                    getViewManager().showError();Gothic Lolita Doctrine
+//                                    break;
+//                                default:
+//                                    System.err.println("[ERR] Unknown error");
+//                                    req.setAttribute(PARAMETER_ERROR, "Unknown error");
+//                                    getViewManager().showError();
+//                                    break;
+//                            }
                         }
 
                         shoppingCart = getTaskMapper().getAllCds();

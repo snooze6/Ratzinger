@@ -5,6 +5,7 @@ import rc.diego.model.VO.VOComment;
 import rc.diego.model.VO.VOShoppingCart;
 import rc.diego.model.VO.VOUser;
 import rc.diego.model.persistence.MySQL.AbstractFactoryMySQL;
+import rc.diego.model.persistence.MySQL.DAOCdsMySQL;
 import rc.diego.model.persistence.MySQL.DAOUsersMySQL;
 
 import java.security.NoSuchAlgorithmException;
@@ -152,7 +153,7 @@ public abstract class DataManager{
         }
 
         @Override
-        public boolean create(VOCd cd){
+        public boolean create(VOCd cd) throws DAOCdsMySQL.CdAlreadyExistsException {
             if(remote.getDAOCds().create(cd)){
                 cacheCds.put(cd.getId(),cd);
                 return true;

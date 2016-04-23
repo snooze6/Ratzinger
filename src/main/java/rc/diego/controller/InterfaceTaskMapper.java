@@ -1,10 +1,10 @@
 package rc.diego.controller;
 
+import rc.diego.model.VO.VOCd;
 import rc.diego.model.VO.VOComment;
 import rc.diego.model.VO.VOShoppingCart;
-import rc.diego.model.VO.VOCd;
 import rc.diego.model.VO.VOUser;
-import rc.diego.model.persistence.DAOCdsMySQL;
+import rc.diego.model.persistence.MySQL.DAOCdsMySQL;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
