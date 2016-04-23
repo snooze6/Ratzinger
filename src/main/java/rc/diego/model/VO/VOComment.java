@@ -15,8 +15,19 @@ public class VOComment {
     private String DNI;
     private String content;
     private String date;
+    public final static String COMMENTS ="comments";
+    private int deep;
+    private int valoracion=3;
 
 
+
+    public int getDeep() {
+        return deep;
+    }
+
+    public void setDeep(int deep) {
+        this.deep = deep;
+    }
 
     public VOComment(){
         this.childCommentsArray = new ArrayList<VOComment>();
@@ -102,7 +113,12 @@ public class VOComment {
         childCommentsArray.add(childComment);
     }
 
+    public int getValoracion() {
+        return valoracion;
+    }
 
-
+    public void setValoracion(int valoracion) {
+        this.valoracion = valoracion;
+    }
 }
 

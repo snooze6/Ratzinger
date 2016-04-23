@@ -1,15 +1,13 @@
 package rc.diego.model.task;
 
 import rc.diego.model.VO.VOShoppingCart;
-import rc.diego.model.persistence.AbstractFactoryMySQL;
-import rc.diego.model.persistence.InterfaceDAOFactory;
+import rc.diego.model.persistence.DataManager;
 
 /**
  * Created by pablo on 3/4/16.
  */
 public class getCDsByFilter implements InterfaceTask {
     private VOShoppingCart shoppingCart;
-    private InterfaceDAOFactory daoFactory;
     String filter = "";
 
 
@@ -32,7 +30,6 @@ public class getCDsByFilter implements InterfaceTask {
 
     @Override
     public void run() {
-        daoFactory = new AbstractFactoryMySQL();
-        shoppingCart = daoFactory.getDAOCds().getCDsByFilter(filter);
+        shoppingCart = DataManager.getDAOCds().getCDsByFilter(filter);
     }
 }

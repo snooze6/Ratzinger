@@ -1,6 +1,6 @@
 package rc.diego.model.VO;
 
-import rc.diego.model.persistence.Connector.MySQLContract;
+import rc.diego.model.persistence.MySQL.Connector.MySQLContract;
 
 /**
  * Created by entakitos on 20/02/16.

@@ -1,8 +1,7 @@
 package rc.diego.model.task;
 
 import rc.diego.model.VO.VOUser;
-import rc.diego.model.persistence.AbstractFactoryMySQL;
-import rc.diego.model.persistence.InterfaceDAOFactory;
+import rc.diego.model.persistence.DataManager;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -13,7 +12,6 @@ import java.sql.SQLException;
  */
 public class getUserTask implements InterfaceTask{
     private VOUser user;
-    private InterfaceDAOFactory daoFactory;
     private boolean active = true;
     private boolean ok = false;
 
@@ -36,10 +34,9 @@ public class getUserTask implements InterfaceTask{
 
     @Override
     public void run() {
-        daoFactory = new AbstractFactoryMySQL();
 
         try {
-             ok = daoFactory.getDAOUsers().getUser(user, active);
+             ok = DataManager.getDAOUsers().getUser(user, active);
         } catch (SQLException | NoSuchAlgorithmException | InvalidKeySpecException e) {
             e.printStackTrace(); ok = false;
         }

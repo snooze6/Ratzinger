@@ -1,5 +1,6 @@
 package rc.diego.controller;
 
+import rc.diego.model.VO.VOComment;
 import rc.diego.model.VO.VOShoppingCart;
 import rc.diego.model.VO.VOCd;
 import rc.diego.model.VO.VOUser;
@@ -37,10 +38,13 @@ public interface InterfaceTaskMapper {
 
     ArrayList<VOUser> getAllUsers();
 
+   void addComment(VOComment comment);
+    ArrayList<VOComment> getAllComments(VOCd cd);
     void deactivateUser(VOUser user);
     void activateUser(VOUser user);
     void updateUser(VOUser user);
     boolean getUser(VOUser user, boolean active);
     boolean getAllUser(VOUser user);
+
 }
 

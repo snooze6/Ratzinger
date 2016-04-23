@@ -1,15 +1,15 @@
 package rc.diego.model.task;
 
 import rc.diego.model.VO.VOShoppingCart;
-import rc.diego.model.persistence.AbstractFactoryMySQL;
-import rc.diego.model.persistence.InterfaceDAOFactory;
+import rc.diego.model.persistence.DataManager;
+import rc.diego.model.persistence.MySQL.AbstractFactoryMySQL;
+import rc.diego.model.persistence.AbstractDAOFactory;
 
 /**
  * Created by entakitos on 17/03/16.
  */
 public class getAllCdsFromDataBase implements InterfaceTask{
     private VOShoppingCart shoppingCart;
-    private InterfaceDAOFactory daoFactory;
 
     public VOShoppingCart getShoppingCart() {
         return shoppingCart;
@@ -21,7 +21,6 @@ public class getAllCdsFromDataBase implements InterfaceTask{
 
     @Override
     public void run() {
-        daoFactory = new AbstractFactoryMySQL();
-        shoppingCart = daoFactory.getDAOCds().getAllCDs();
+        shoppingCart = DataManager.getDAOCds().getAllCDs();
     }
 }

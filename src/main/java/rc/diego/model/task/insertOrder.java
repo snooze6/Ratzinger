@@ -2,9 +2,9 @@ package rc.diego.model.task;
 
 import rc.diego.model.VO.VOShoppingCart;
 import rc.diego.model.VO.VOUser;
-import rc.diego.model.persistence.AbstractFactoryMySQL;
-import rc.diego.model.persistence.DAOPedidosMySQL;
-import rc.diego.model.persistence.InterfaceDAOFactory;
+import rc.diego.model.persistence.DataManager;
+import rc.diego.model.persistence.MySQL.AbstractFactoryMySQL;
+import rc.diego.model.persistence.AbstractDAOFactory;
 
 import java.sql.SQLException;
 
@@ -13,18 +13,9 @@ import java.sql.SQLException;
  */
 public class insertOrder implements InterfaceTask {
 
-    private InterfaceDAOFactory daoFactory= new AbstractFactoryMySQL();
     private VOUser user;
     private VOShoppingCart carrito;
     private boolean enoughStock=false;
-
-    public InterfaceDAOFactory getDaoFactory() {
-        return daoFactory;
-    }
-
-    public void setDaoFactory(InterfaceDAOFactory daoFactory) {
-        this.daoFactory = daoFactory;
-    }
 
     public VOUser getUser() {
         return user;
@@ -50,11 +41,11 @@ public class insertOrder implements InterfaceTask {
     public void run() {
         try {
             System.out.println("YES");
-            enoughStock=daoFactory.getDAOPedidos().insertOrder(user,carrito);
+            enoughStock= DataManager.getDAOPedidos().insertOrder(user,carrito);
             System.out.println("YES2");
-            if(!user.isVip() && daoFactory.getDAOUsers().checkVipCondition(user)) {
+            if(!user.isVip() && DataManager.getDAOUsers().checkVipCondition(user)) {
                 System.out.println("YES3");
-                daoFactory.getDAOUsers().makeVip(user);
+                DataManager.getDAOUsers().makeVip(user);
                 System.out.println("YES4");
             }
         } catch (SQLException e) {

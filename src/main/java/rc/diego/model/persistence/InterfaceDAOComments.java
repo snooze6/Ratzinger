@@ -10,5 +10,5 @@ import java.util.ArrayList;
  */
 public interface InterfaceDAOComments {
      ArrayList<VOComment> getCommentsByProduct(VOCd cd) throws Exception;
-     void insertComment(VOComment comment) throws Exception;
+     boolean insertComment(VOComment comment);
 }

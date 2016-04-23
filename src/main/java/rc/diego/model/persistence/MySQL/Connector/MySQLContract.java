@@ -1,4 +1,4 @@
-package rc.diego.model.persistence.Connector;
+package rc.diego.model.persistence.MySQL.Connector;
 
 /**
  * Created by entakitos on 8/03/16.
@@ -72,18 +72,6 @@ public class MySQLContract {
         public static String idCommentParent="idCommentParent";
         public static String idProduct = "idProduct";
         public static String dt="dt";
+        public static String valoracion="valoracion";
     }
-
 }
-   /* CREATE TABLE Comments (
-        idComment int NOT NULL PRIMARY KEY,
-        idCommentParent int,
-        title varchar(50),
-    content varchar(300),
-    dt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        idProduct int(11),
-        DNI varchar(9),
-        FOREIGN KEY (idCommentParent) REFERENCES Comments(idComment),
-        FOREIGN KEY (DNI) references users(DNI),
-        FOREIGN KEY (idProduct) references products(id)
-        )ENGINE=InnoDB DEFAULT CHARSET=utf8;*/

@@ -1,5 +1,6 @@
 package rc.diego.controller;
 
+import rc.diego.model.VO.VOComment;
 import rc.diego.model.VO.VOShoppingCart;
 import rc.diego.model.VO.VOCd;
 import rc.diego.model.VO.VOUser;
@@ -136,6 +137,19 @@ public class TaskMapper implements InterfaceTaskMapper{
     }
 
     @Override
+    public void addComment(VOComment comment) {
+        System.out.println("TaskMapper ejecuta run add comment");
+        tm.runTask(new addComment(comment));
+
+    }
+
+    @Override
+    public ArrayList<VOComment> getAllComments(VOCd cd) {
+        getAllCommentsFromDataBase comments = new getAllCommentsFromDataBase(cd);
+        tm.runTask(comments);
+        return comments.getCommentsUnrrolled();
+    }
+
     public void deactivateUser(VOUser user) {
         tm.runTask(new deactivateUser().setUser(user));
     }
@@ -160,6 +174,7 @@ public class TaskMapper implements InterfaceTaskMapper{
         ge.setUser(user);
         tm.runTask(ge);
         return ge.isOk();
+
     }
 
     @Override

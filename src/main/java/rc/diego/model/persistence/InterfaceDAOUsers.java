@@ -1,6 +1,7 @@
 package rc.diego.model.persistence;
 
 import rc.diego.model.VO.VOUser;
+import rc.diego.model.persistence.MySQL.DAOUsersMySQL;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -11,6 +12,8 @@ import java.util.ArrayList;
  * Created by entakitos on 31/03/16.
  */
 public interface InterfaceDAOUsers {
+    //TODO:pendiente de mirar como cachear
+
     void insertUser(VOUser user) throws SQLException, DAOUsersMySQL.UserAlreadyExistsException;
     boolean getUser(VOUser user) throws SQLException, InvalidKeySpecException, NoSuchAlgorithmException;
     boolean getUser(VOUser user, boolean active) throws SQLException, InvalidKeySpecException, NoSuchAlgorithmException;

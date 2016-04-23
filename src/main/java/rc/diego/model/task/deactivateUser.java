@@ -1,7 +1,7 @@
 package rc.diego.model.task;
 
 import rc.diego.model.VO.VOUser;
-import rc.diego.model.persistence.AbstractFactoryMySQL;
+import rc.diego.model.persistence.DataManager;
 import rc.diego.model.persistence.InterfaceDAOFactory;
 
 import java.sql.SQLException;
@@ -13,7 +13,6 @@ import java.sql.SQLException;
  */
 public class deactivateUser implements InterfaceTask{
     private VOUser users;
-    private InterfaceDAOFactory daoFactory;
 
     public VOUser getUser() {
         return users;
@@ -26,9 +25,8 @@ public class deactivateUser implements InterfaceTask{
 
     @Override
     public void run() {
-        daoFactory = new AbstractFactoryMySQL();
         try {
-            daoFactory.getDAOUsers().deactivateUser(users);
+            DataManager.getDAOUsers().deactivateUser(users);
         } catch (SQLException e) {
             e.printStackTrace();
         }

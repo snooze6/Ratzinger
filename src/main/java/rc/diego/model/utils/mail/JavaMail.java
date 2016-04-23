@@ -69,8 +69,8 @@ public class JavaMail {
             texto.append("</table>");
 
             if(user.isVip()) {
-                texto.append("\n\nDescuento VIP(20%): "+ new DecimalFormat("#.##").format(total[0] * 0.8F)+"€");
-                texto.append("\n\nTotal+IVA(21%): "+ new DecimalFormat("#.##").format(total[0] * 0.8F * 1.21)+"€");
+                texto.append("\n\nDescuento VIP(20%): "+ new DecimalFormat("#.##").format(total[0] * 0.8F)+"€ ");
+                texto.append("\n\nTotal+IVA(21%): "+ new DecimalFormat("#.##").format(total[0] * 0.8F * 1.21)+"€ ");
             }else{
 
             }

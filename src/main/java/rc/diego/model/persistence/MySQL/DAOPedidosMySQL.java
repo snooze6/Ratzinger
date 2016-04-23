@@ -1,9 +1,10 @@
-package rc.diego.model.persistence;
+package rc.diego.model.persistence.MySQL;
 
 import rc.diego.model.VO.VOCd;
 import rc.diego.model.VO.VOShoppingCart;
 import rc.diego.model.VO.VOUser;
-import rc.diego.model.persistence.Connector.MySQLContract;
+import rc.diego.model.persistence.MySQL.Connector.MySQLContract;
+import rc.diego.model.persistence.InterfaceDAOPedidos;
 
 import java.sql.*;
 

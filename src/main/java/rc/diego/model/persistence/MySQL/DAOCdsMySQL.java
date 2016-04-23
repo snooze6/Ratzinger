@@ -1,13 +1,13 @@
-package rc.diego.model.persistence;
+package rc.diego.model.persistence.MySQL;
 
 import rc.diego.model.VO.VOCd;
 import rc.diego.model.VO.VOShoppingCart;
-import rc.diego.model.persistence.Connector.MySQLContract;
+import rc.diego.model.persistence.MySQL.Connector.MySQLContract;
+import rc.diego.model.persistence.InterfaceDAOCds;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  * Created by entakitos on 17/03/16.

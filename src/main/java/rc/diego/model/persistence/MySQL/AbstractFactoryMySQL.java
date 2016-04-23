@@ -1,9 +1,11 @@
-package rc.diego.model.persistence;
+package rc.diego.model.persistence.MySQL;
+
+import rc.diego.model.persistence.*;
 
 /**
  * Created by entakitos on 17/03/16.
  */
-public class AbstractFactoryMySQL implements InterfaceDAOFactory{
+public class AbstractFactoryMySQL extends AbstractDAOFactory {
 
     @Override
     public InterfaceDAOPedidos getDAOPedidos() {
@@ -24,4 +26,5 @@ public class AbstractFactoryMySQL implements InterfaceDAOFactory{
     public InterfaceDAOComments getDAOComments() {
         return new DAOCommentsMySQL();
     }
+
 }
