@@ -1,6 +1,8 @@
 # Ratzinger
 
-Proyecto para la asignatura de Desarrollo de Aplicaciones Web Avanzadas basado en J2E.
+Proyecto para la asignatura de Desarrollo de Aplicaciones Web Avanzadas basado en J2E. El proyecto consistía en la realización de una pequeña tienda online.
+
+
 
 La arquitectura elegida de la aplicación está basada en una aproximación realizada por [DiegoReiriz](https://github.com/DiegoReiriz) hacia las conocidas Arquitecturas Hexagonales o Clean Architectures, pero no fue posible ceñirse completamente debido a ciertas restricciones impuestas por el profesor de la asignatura.
 
