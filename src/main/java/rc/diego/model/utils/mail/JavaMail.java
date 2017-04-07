@@ -21,9 +21,9 @@ import javax.mail.internet.MimeMessage;
 
 public class JavaMail {
 
-    private final String from = "dawatest4@gmail.com";
-    private final String username = "dawatest4@gmail.com";//change accordingly
-    private final String password = "4testdawa";//change accordingly
+    private final String from = "example@mail.domain";//change accordingly
+    private final String username = "example@mail.domain";//change accordingly
+    private final String password = "root";//change accordingly
 
     private final Properties props = new Properties();
 
